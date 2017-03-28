@@ -205,7 +205,7 @@
     {
         if ([controller isKindOfClass:[TabBarHandler class]])
         {
-            controller.tabBarController.selectedIndex = 0;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ProfileEdited" object:nil];
             [self.navigationController popToViewController:controller animated:YES];
             
             break;

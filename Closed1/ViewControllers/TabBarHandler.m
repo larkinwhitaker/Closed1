@@ -21,8 +21,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileUpdatedSucessFully) name:@"ProfileEdited" object:nil];
 //    [self setViewControllers:@[homeScreen, navController5]];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)profileUpdatedSucessFully
+{
+    self.selectedIndex = 0;
 }
 
 

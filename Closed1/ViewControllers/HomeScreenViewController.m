@@ -27,6 +27,7 @@
     self.tablView.rowHeight = UITableViewAutomaticDimension;
     
     [self createCustumNavigationBar];
+    self.tablView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
 }
 
 - (void)createCustumNavigationBar
