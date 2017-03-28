@@ -23,6 +23,9 @@
     
     [super viewDidLoad];
     
+    [self createCustumNavigationBar];
+
+    
     CNContactStore *store = [[CNContactStore alloc]init];
     
     if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined) {
@@ -41,7 +44,6 @@
         [self retrieveContactsWithStore:store];
         
     }
-    
     
 
 }

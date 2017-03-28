@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "TabBarHandler.h"
 
+
 @interface LoginViewController ()<LinkedInLoginDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *linkedinButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailtextField;
@@ -41,6 +42,8 @@
     
   [self.navigationController setNavigationBarHidden:YES];
 
+    
+//    [self openHomeScreen];
 }
 
 
@@ -51,6 +54,7 @@
     [self presentViewController:webView animated:YES completion:nil];
     
 }
+
 
 - (IBAction)loginbButtonTapped:(id)sender {
     
@@ -84,6 +88,11 @@
 
 -(void)openHomeScreen
 {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    self.emailtextField.text = @"";
+    self.passwordTextField.text = @"";
+    
+    
     TabBarHandler *tabBarScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarHandler"];
     
     [UIView transitionWithView:self.navigationController.view

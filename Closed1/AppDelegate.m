@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import <linkedin-sdk/LISDK.h>
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate ()
 
 @end
@@ -16,8 +17,11 @@
 @implementation AppDelegate
 
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [Fabric with:@[[Crashlytics class]]];
+    
     return YES;
 }
 

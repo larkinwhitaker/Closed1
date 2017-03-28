@@ -7,6 +7,10 @@
 //
 
 #import "TabBarHandler.h"
+#import "HomeScreenViewController.h"
+#import "SearchViewController.h"
+#import "ContactsViewController.h"
+#import "ShareViewController.h"
 
 @interface TabBarHandler ()
 
@@ -16,8 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+//    [self setViewControllers:@[homeScreen, navController5]];
     
 }
 

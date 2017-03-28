@@ -7,8 +7,10 @@
 //
 
 #import "SettingsViewController.h"
+#import "SettingsTableViewCell.h"
+#import "EditProfileViewController.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -30,19 +32,78 @@
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Closed1"];
+    [navItem setTitle:@"Settings"];
     [self.view addSubview:navBar];
     
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - TableView Delegates
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 454;
+}
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCell"];
+    [cell.emailButton addTarget:self action:@selector(emaiButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.gemeralButton addTarget:self action:@selector(openGeneralView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.profileButton addTarget:self action:@selector(profileVisibility) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.deleteButton addTarget:self action:@selector(deleteButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.editProfile addTarget:self action:@selector(editProfileTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+
+-(void)editProfileTapped
+{
+    EditProfileViewController *editProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
+    
+    [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+-(void)openGeneralView
+{
+    
+}
+
+-(void)emaiButtonTapped
+{
+    
+}
+
+-(void)profileVisibility
+{
+    
+}
+
+-(void)deleteButtonTapped
+{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to delete?" message:@"Deleting your account will delete all of the content you have created. It will be completely irrecoverable." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
 
 @end

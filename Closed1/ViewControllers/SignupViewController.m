@@ -10,8 +10,9 @@
 #import "SignupTableViewCell.h"
 #import "MBProgressHUD.h"
 #import "TabBarHandler.h"
+#import "CustomListViewController.h"
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 
@@ -82,24 +83,38 @@
     _signupCell= [tableView dequeueReusableCellWithIdentifier:@"SignupTableViewCell"];
     [_signupCell.signupButton addTarget:self action:@selector(signupButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    self.signupCell.signupView.layer.cornerRadius = 5;
-    UIBezierPath *shadowPath = [UIBezierPath
-                                bezierPathWithRoundedRect: self.signupCell.signupView.bounds
-                                cornerRadius: 5];
-    
-    
-    self.signupCell.signupView.layer.masksToBounds = false;
-    self.signupCell.signupView.layer.shadowColor = [[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0] CGColor];
-    self.signupCell.signupView.layer.shadowOffset = CGSizeMake(-3, 3);
-    self.signupCell.signupView.layer.shadowOpacity = 0.5;
-    self.signupCell.signupView.layer.shadowPath = shadowPath.CGPath;
-    
-    
+    [_signupCell.countrySelectionButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
     
     return _signupCell;
 }
 
+-(void)openCountrySelectionScreen
+{
+    CustomListViewController  *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomListViewController"];
+    listViewController.delegate = self;
+    listViewController.heightOFRow = 40.0;
+    listViewController.title = @"Search Country";
+    NSArray *countryList = [self getDataFromJsonFile:@"CountryList"];
+    countryList = [countryList valueForKey:@"data"];
+    
+    NSMutableArray *countryListArray = [[NSMutableArray alloc]init];
+    
+    for (NSInteger i =0; i<countryList.count; i++) {
+        
+        [countryListArray addObject:[[countryList objectAtIndex:i] valueForKey:@"Country"]];
+    }
+    
+    listViewController.listArray = [[NSMutableArray alloc]initWithObjects:countryListArray, nil];
+    [self presentViewController:listViewController animated:YES completion:nil];
+}
+
+-(NSArray *)getDataFromJsonFile: (NSString *)fileName
+{
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:fileName ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *dataFromlLocal = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    return dataFromlLocal;
+}
 
 -(void)signupButtonTapped: (id)sender
 {
@@ -163,7 +178,15 @@
         
         }else{
             
-            [self submitDataToServer];
+            if ([_signupCell.passwordTextField.text isEqualToString:_signupCell.confirmPasswordTextField.text]) {
+                
+                [self submitDataToServer];
+
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Password not matched" message:@"Please re-enter the password. Both password must be same" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+            }
+            
         }
 
     
@@ -207,4 +230,14 @@
     [textField.layer addAnimation:animation forKey:@"position"];
     
 }
+
+#pragma mark - Country Selected Delegate
+
+-(void)getSelectedIndex:(NSInteger)selectedIndex SelectedProgram:(NSString *)selectedProgram
+{
+    NSLog(@"%@", selectedProgram);
+    [_signupCell.countrySelectionButton setTitle:selectedProgram forState:UIControlStateNormal];
+    [_signupCell.countrySelectionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+}
+
 @end
