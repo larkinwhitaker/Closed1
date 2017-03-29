@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		10A66D4FFBB9D5809F137A41 /* Pods_Closed1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */; };
 		878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */; };
+		AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1F15501E8C062E00DD9529 /* MessageUI.framework */; };
+		AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */; };
+		AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */; };
+		AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */; };
 		AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DC91E86DADB00C3B4B6 /* main.m */; };
 		AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCC1E86DADB00C3B4B6 /* AppDelegate.m */; };
 		AD7A5DD01E86DADB00C3B4B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCF1E86DADB00C3B4B6 /* ViewController.m */; };
@@ -129,6 +133,11 @@
 		6765D7B468AE86EF187AB759 /* Pods-Closed1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1/Pods-Closed1.release.xcconfig"; sourceTree = "<group>"; };
 		728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BC64B6BDBE8FE74C43CABD /* Pods-Closed1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AD1F15501E8C062E00DD9529 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
+		AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
+		AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
+		AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		AD7A5DC51E86DADB00C3B4B6 /* Closed1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closed1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7A5DC91E86DADB00C3B4B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7A5DCB1E86DADB00C3B4B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -309,6 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */,
 				AD7A5DFF1E86DB0D00C3B4B6 /* linkedin-sdk.framework in Frameworks */,
 				878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */,
 			);
@@ -336,6 +346,7 @@
 		8925BBA90190DC31F38CA276 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD1F15501E8C062E00DD9529 /* MessageUI.framework */,
 				BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */,
 				728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */,
 				D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */,
@@ -430,6 +441,9 @@
 				ADCED86D1E8AC2AA00B9A06A /* SettingsTableViewCell.m */,
 				ADCED8731E8AD4D200B9A06A /* EditProfileTableViewCell.h */,
 				ADCED8741E8AD4D200B9A06A /* EditProfileTableViewCell.m */,
+				AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */,
+				AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */,
+				AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -477,6 +491,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */,
 				ADCED8801E8ADFBA00B9A06A /* CurrentLocationImage.png */,
 				ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */,
 				ADCED8691E8AC10C00B9A06A /* TableViewDiscloserImage.png */,
@@ -859,6 +874,7 @@
 				ADEAE02D1E898E6600D36B55 /* HomeScreenTableViewCell.xib in Resources */,
 				AD93F75A1E87FD78008488B9 /* admin-logo.png in Resources */,
 				ADEAE0391E89925A00D36B55 /* cloud-38-128.png in Resources */,
+				AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */,
 				ADEAE0351E89925A00D36B55 /* 1220-128.png in Resources */,
 				ADEAE0361E89925A00D36B55 /* 1490651759_Asset_3.png in Resources */,
 				ADEAE03D1E89979600D36B55 /* friends-128.png in Resources */,
@@ -873,6 +889,7 @@
 				AD93F74E1E87F624008488B9 /* main-background1.jpg in Resources */,
 				ADEAE0381E89925A00D36B55 /* 1490651911_icon-136-document-edit.png in Resources */,
 				ADCED87F1E8ADFAD00B9A06A /* CountryList.json in Resources */,
+				AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */,
 				AD93F7961E880E16008488B9 /* IQKeyboardManager.bundle in Resources */,
 				AD7A5DD31E86DADB00C3B4B6 /* Main.storyboard in Resources */,
 				ADCED8811E8ADFBA00B9A06A /* CurrentLocationImage.png in Resources */,
@@ -1082,6 +1099,7 @@
 				ADCED86E1E8AC2AA00B9A06A /* SettingsTableViewCell.m in Sources */,
 				AD93F7F21E8823B7008488B9 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				ADEAE02C1E898E6600D36B55 /* HomeScreenTableViewCell.m in Sources */,
+				AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */,
 				AD93F7EF1E8823B7008488B9 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */,
 				AD93F7F41E8823B7008488B9 /* MagicalRecord+Actions.m in Sources */,
@@ -1270,6 +1288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K226Z6SSQD;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Closed1",
@@ -1294,6 +1313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K226Z6SSQD;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Closed1",

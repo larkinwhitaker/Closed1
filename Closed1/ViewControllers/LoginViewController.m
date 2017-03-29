@@ -43,20 +43,30 @@
   [self.navigationController setNavigationBarHidden:YES];
 
     
-//    [self openHomeScreen];
+    [self openHomeScreen];
+    
+    
+    
+    
+    
+        
 }
+
 
 
 - (IBAction)loginViaLinkedIn:(id)sender {
     
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.delegate = self;
-    [self presentViewController:webView animated:YES completion:nil];
+    //[self presentViewController:webView animated:YES completion:nil];
     
 }
 
 
 - (IBAction)loginbButtonTapped:(id)sender {
+    
+    
+    [self.view endEditing:YES];
     
     if ([[self.emailtextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         

@@ -7,9 +7,13 @@
 //
 
 #import "ShareViewController.h"
+#import "JVFloatLabeledTextView.h"
 
 @interface ShareViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *shareDealButton;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextView *nametextView;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextView *commentTextView;
 @end
 
 @implementation ShareViewController
