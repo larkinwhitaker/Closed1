@@ -12,9 +12,11 @@
 #import <MessageUI/MessageUI.h>
 #import "ContactsTableViewCell.h"
 
-@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViee;
+@property(nonatomic) BOOL isMailContactSelected;
+
 @end
 
 @implementation ContactsViewController
@@ -52,13 +54,19 @@
 
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
+
 - (void)createCustumNavigationBar
 {
     [self.navigationController setNavigationBarHidden:YES];
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
-    UIBarButtonItem *contacts = [[UIBarButtonItem alloc]initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(openContactsScreen)];
+    UIBarButtonItem *contacts = [[UIBarButtonItem alloc]initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(pickContactMethod)];
     
     navItem.rightBarButtonItem = contacts;
     
@@ -72,7 +80,38 @@
     
 }
 
--(void)openContactsScreen
+-(void)pickContactMethod
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Select method" message:@"Please select one method via you want to sent invitations" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Mail" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        [self openContactScreenFroMail];
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        [self openContactsScreenForContacts];
+
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+-(void)openContactScreenFroMail
+{
+    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc]init];
+    NSPredicate *enablePredicate = [NSPredicate predicateWithFormat:@"(emailAddresses.@count > 0)"];
+    contactPicker.predicateForEnablingContact = enablePredicate;
+    contactPicker.delegate = self;
+    _isMailContactSelected = YES;
+    [self presentViewController:contactPicker animated:NO completion:nil];
+}
+
+
+-(void)openContactsScreenForContacts
 {
     CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc]init];
     
@@ -85,6 +124,7 @@
 //    contactPicker.predicateForSelectionOfContact = contactSelectionPredicate;
 
     contactPicker.delegate = self;
+    _isMailContactSelected = NO;
     [self presentViewController:contactPicker animated:NO completion:nil];
 }
 
@@ -93,13 +133,6 @@
     [super viewWillAppear: animated];
     self.tableViee.estimatedRowHeight = 70.0;
     self.tableViee.rowHeight = UITableViewAutomaticDimension;
-    
-}
-
-
--(void) retrieveContactsWithStore: (CNContactStore *)store
-{
-    
 }
 
 #pragma mark - Conatact picker Delegate
@@ -112,10 +145,21 @@
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
 {
     NSMutableArray *phoneList = [[NSMutableArray alloc]init];
-
-    if ([contact isKeyAvailable:CNContactPhoneNumbersKey]) {
+    
+    
+    if (_isMailContactSelected) {
         
-        NSArray *contactPhone = contact.phoneNumbers;
+        if ([contact isKeyAvailable:CNContactEmailAddressesKey]) {
+            
+            for (NSInteger i =0; i<contact.emailAddresses.count; i++) {
+                
+                [phoneList addObject:[[contact.emailAddresses objectAtIndex:i] value]];
+                
+            }
+            
+            
+        }
+    }else{
         
         if ([contact isKeyAvailable:CNContactPhoneNumbersKey]) {
             
@@ -128,11 +172,21 @@
             }
             
         }
+        
+        
     }
+
     
     if (phoneList.count != 0) {
         
-        [self sendMessages:phoneList];
+        if (_isMailContactSelected) {
+            
+            [self sendMails:phoneList];
+        }else{
+            
+            [self sendMessages:phoneList];
+
+        }
         
     }else{
         
@@ -145,30 +199,57 @@
 {
     NSMutableArray *phoneList = [[NSMutableArray alloc]init];
     
-    for (CNContact *contact in contacts) {
+    
+    if (_isMailContactSelected) {
         
-        if ([contact isKeyAvailable:CNContactPhoneNumbersKey]) {
+        for (CNContact *contact in contacts) {
             
-            NSLog(@"%@", [[[contact.phoneNumbers objectAtIndex:0] value] valueForKey:@"digits"]);
-            
-            for (NSInteger i =0; i<contact.phoneNumbers.count; i++) {
-                
-                [phoneList addObject:[[[contact.phoneNumbers objectAtIndex:i] value] valueForKey:@"digits"]];
+                if ([contact isKeyAvailable:CNContactEmailAddressesKey]) {
+                    
+                    for (NSInteger i =0; i<contact.emailAddresses.count; i++) {
+                        
+                        [phoneList addObject:[[contact.emailAddresses objectAtIndex:i] value]];
+                        
+                    }
+                    
+                }
                 
             }
+    }else{
+        
+        
+        
+        for (CNContact *contact in contacts) {
             
+            if ([contact isKeyAvailable:CNContactPhoneNumbersKey]) {
+                
+                for (NSInteger i =0; i<contact.phoneNumbers.count; i++) {
+                    
+                    [phoneList addObject:[[[contact.phoneNumbers objectAtIndex:i] value] valueForKey:@"digits"]];
+                    
+                }
+                
+            }
         }
     }
     
     if (phoneList.count != 0) {
         
-        [self sendMessages:phoneList];
+        if (_isMailContactSelected) {
+            
+            [self sendMails:phoneList];
+        }else{
+            
+            [self sendMessages:phoneList];
+            
+        }
+
         
     }else{
         
-       [[[UIAlertView alloc]initWithTitle:@"No contacts selected" message:@"Please select atleast one contact to send invites" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc]initWithTitle:@"No contacts selected" message:@"Please select atleast one contact to send invites" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }
-
+    
 }
 
 -(void)sendMessages: (NSArray *)contactsList
@@ -189,12 +270,39 @@
 
 }
 
+-(void)sendMails: (NSArray *)contactList
+{
+    // From within your active view controller
+    if([MFMailComposeViewController canSendMail]) {
+        
+        MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
+        mailCont.mailComposeDelegate = self;
+        
+        [mailCont setSubject:@"Invitations for Closed1"];
+        [mailCont setToRecipients:contactList];
+        [mailCont setMessageBody:@"Please install the app by clicking on below link." isHTML:NO];
+        
+        [self presentModalViewController:mailCont animated:YES];
+    }
+
+}
+
 #pragma mark - Message Delegate
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     NSLog(@"%ld", (long)result);
+    [self dismissModalViewControllerAnimated:YES];
+
 }
+
+#pragma mark - Mail composer Delegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark - Tableview delegate
 
@@ -205,7 +313,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    return 68;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,6 +323,7 @@
     contactsCell.profileImage.image = [UIImage imageNamed:@"male-circle-128.png"];
     contactsCell.nameLabel.text = @"Nazim Siddiqui";
     contactsCell.companyLabel.text = @"Kratin LLC";
+    contactsCell.titleLabel.text = @"iOS Developer";
     
     return contactsCell;
 }
