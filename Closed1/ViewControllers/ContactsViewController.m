@@ -134,8 +134,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    self.tableViee.estimatedRowHeight = 70.0;
-    self.tableViee.rowHeight = UITableViewAutomaticDimension;
+//    self.tableViee.estimatedRowHeight = 70.0;
+//    self.tableViee.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - Conatact picker Delegate
@@ -147,6 +147,9 @@
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
 {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
     NSMutableArray *phoneList = [[NSMutableArray alloc]init];
     
     
@@ -200,6 +203,8 @@
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts
 {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
     NSMutableArray *phoneList = [[NSMutableArray alloc]init];
     
     
@@ -267,8 +272,9 @@
         controller.body = @"Hey i would you like to invite for using Closed 1 app. Please find a below link to install.";
         controller.recipients = filteredContacts;
         controller.messageComposeDelegate = self;
-        [self presentViewController:controller animated:YES completion:nil];
-//        [self presentModalViewController:controller animated:YES];
+        [controller didMoveToParentViewController:self];
+        [self presentModalViewController:controller animated:YES];
+
     }
 
 }
@@ -286,6 +292,7 @@
         [mailCont setMessageBody:@"Please install the app by clicking on below link." isHTML:NO];
         
         [self presentModalViewController:mailCont animated:YES];
+        
     }
 
 }
@@ -294,11 +301,18 @@
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-    NSLog(@"%ld", (long)result);
-    [self dismissModalViewControllerAnimated:YES];
+    if (result == MessageComposeResultCancelled){
+        NSLog(@"Message cancelled");
+    }
+    else if (result == MessageComposeResultSent){
+        NSLog(@"Message sent");
+    }
+    else{
+        NSLog(@"Message failed");
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
-
 #pragma mark - Mail composer Delegate
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
