@@ -43,7 +43,7 @@
   [self.navigationController setNavigationBarHidden:YES];
 
     
-    [self openHomeScreen];
+//    [self openHomeScreen];
     
     
     
@@ -77,7 +77,17 @@
         [self animateView:self.passwordTextField];
     }else{
         
-        [self submitDataToServer];
+        NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+        NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailReg];
+        if([emailPredicate evaluateWithObject: _emailtextField.text] == NO){
+            
+            [self animateView:self.emailtextField];
+        }else{
+            
+            [self submitDataToServer];
+
+        }
+        
     }
     
     

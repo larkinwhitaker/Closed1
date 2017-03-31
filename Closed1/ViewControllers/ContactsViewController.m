@@ -11,6 +11,7 @@
 #import <ContactsUI/ContactsUI.h>
 #import <MessageUI/MessageUI.h>
 #import "ContactsTableViewCell.h"
+#import "ProfileDetailViewController.h"
 
 @interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
@@ -71,7 +72,7 @@
     navItem.rightBarButtonItem = contacts;
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:107.0/255.0 green:225.0/255.0 blue:211.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -95,6 +96,8 @@
         [self openContactsScreenForContacts];
 
     }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
     
     [self presentViewController:alertController animated:YES completion:nil];
     
@@ -321,12 +324,53 @@
     
     ContactsTableViewCell *contactsCell = [tableView dequeueReusableCellWithIdentifier:@"ContactsTableViewCell"];
     contactsCell.profileImage.image = [UIImage imageNamed:@"male-circle-128.png"];
-    contactsCell.nameLabel.text = @"Nazim Siddiqui";
-    contactsCell.companyLabel.text = @"Kratin LLC";
+    contactsCell.nameLabel.text = @"John Doe";
+    contactsCell.companyLabel.text = @"Google LLC";
     contactsCell.titleLabel.text = @"iOS Developer";
     
     return contactsCell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
+    
+    [self.navigationController pushViewController:profileDetail animated:YES];
+}
+
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Block" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+                                        NSLog(@"Action to perform with Button 1");
+        
+        
+        
+        
+                                    }];
+    button.backgroundColor = [UIColor yellowColor]; //arbitrary color
+    UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+                                         NSLog(@"Action to perform with Button2!");
+        
+                                     }];
+    button2.backgroundColor = [UIColor redColor];
+    
+    return @[button, button2];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+#pragma mark - Set as YES to add swipe Functionality
+    return NO;
+}
+
 
 
 

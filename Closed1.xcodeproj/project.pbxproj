@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		10A66D4FFBB9D5809F137A41 /* Pods_Closed1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */; };
 		878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */; };
+		AD03A16D1E8EC8DA00852776 /* ProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */; };
+		AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */; };
 		AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1F15501E8C062E00DD9529 /* MessageUI.framework */; };
 		AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */; };
 		AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */; };
@@ -133,6 +135,9 @@
 		6765D7B468AE86EF187AB759 /* Pods-Closed1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1/Pods-Closed1.release.xcconfig"; sourceTree = "<group>"; };
 		728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BC64B6BDBE8FE74C43CABD /* Pods-Closed1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetailViewController.h; sourceTree = "<group>"; };
+		AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetailViewController.m; sourceTree = "<group>"; };
+		AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_itunesartwork3x.png; sourceTree = "<group>"; };
 		AD1F15501E8C062E00DD9529 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
 		AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
@@ -484,6 +489,8 @@
 				AD9344FE1E897D4700E60A4B /* SettingsViewController.m */,
 				ADCED8701E8ACFC700B9A06A /* EditProfileViewController.h */,
 				ADCED8711E8ACFC700B9A06A /* EditProfileViewController.m */,
+				AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */,
+				AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -491,6 +498,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */,
 				AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */,
 				ADCED8801E8ADFBA00B9A06A /* CurrentLocationImage.png */,
 				ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */,
@@ -888,6 +896,7 @@
 				ADCED7D21E8AAF4C00B9A06A /* countries.plist in Resources */,
 				AD93F74E1E87F624008488B9 /* main-background1.jpg in Resources */,
 				ADEAE0381E89925A00D36B55 /* 1490651911_icon-136-document-edit.png in Resources */,
+				AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */,
 				ADCED87F1E8ADFAD00B9A06A /* CountryList.json in Resources */,
 				AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */,
 				AD93F7961E880E16008488B9 /* IQKeyboardManager.bundle in Resources */,
@@ -1102,6 +1111,7 @@
 				AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */,
 				AD93F7EF1E8823B7008488B9 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */,
+				AD03A16D1E8EC8DA00852776 /* ProfileDetailViewController.m in Sources */,
 				AD93F7F41E8823B7008488B9 /* MagicalRecord+Actions.m in Sources */,
 				AD93F7F91E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m in Sources */,
 				AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */,

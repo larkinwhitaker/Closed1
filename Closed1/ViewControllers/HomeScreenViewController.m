@@ -12,6 +12,7 @@
 #import "HomeScreenTableViewCell.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
+
 @property (strong, nonatomic) IBOutlet UITableView *tablView;
 
 @end
@@ -37,7 +38,7 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:107.0/255.0 green:225.0/255.0 blue:211.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
