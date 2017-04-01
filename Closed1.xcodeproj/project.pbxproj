@@ -86,6 +86,11 @@
 		AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D91E8823B7008488B9 /* MagicalRecordInternal.m */; };
 		AD93F7FB1E8823B7008488B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */; };
 		ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5CACA1E879E94000DF38D /* WebViewController.m */; };
+		ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */; };
+		ADA806DB1E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */; };
+		ADA806DE1E900590009C0B38 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806DD1E900590009C0B38 /* ChangePasswordViewController.m */; };
+		ADA806E11E90169D009C0B38 /* EmailSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806E01E90169D009C0B38 /* EmailSettingViewController.m */; };
+		ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806E31E902593009C0B38 /* EmailSettingsCell.m */; };
 		ADCED7D21E8AAF4C00B9A06A /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADCED7D11E8AAF4C00B9A06A /* countries.plist */; };
 		ADCED86A1E8AC10C00B9A06A /* TableViewDiscloserDownImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */; };
 		ADCED86B1E8AC10C00B9A06A /* TableViewDiscloserImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCED8691E8AC10C00B9A06A /* TableViewDiscloserImage.png */; };
@@ -286,6 +291,16 @@
 		ADA5CAC41E879D78000DF38D /* Closed1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Closed1-Bridging-Header.h"; sourceTree = "<group>"; };
 		ADA5CAC91E879E94000DF38D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		ADA5CACA1E879E94000DF38D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
+		ADA806D51E90053B009C0B38 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		ADA806D71E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NavigationBarAttribute.h"; sourceTree = "<group>"; };
+		ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NavigationBarAttribute.m"; sourceTree = "<group>"; };
+		ADA806DC1E900590009C0B38 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		ADA806DD1E900590009C0B38 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		ADA806DF1E90169D009C0B38 /* EmailSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSettingViewController.h; sourceTree = "<group>"; };
+		ADA806E01E90169D009C0B38 /* EmailSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSettingViewController.m; sourceTree = "<group>"; };
+		ADA806E21E902593009C0B38 /* EmailSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSettingsCell.h; sourceTree = "<group>"; };
+		ADA806E31E902593009C0B38 /* EmailSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSettingsCell.m; sourceTree = "<group>"; };
 		ADCED75D1E8AAAA600B9A06A /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		ADCED7D11E8AAF4C00B9A06A /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableViewDiscloserDownImage.png; sourceTree = "<group>"; };
@@ -384,6 +399,7 @@
 		AD7A5DC71E86DADB00C3B4B6 /* Closed1 */ = {
 			isa = PBXGroup;
 			children = (
+				ADA806D21E90053B009C0B38 /* Category */,
 				AD9344E31E89659100E60A4B /* Custom Cell */,
 				AD93F75B1E880E16008488B9 /* Third Party */,
 				AD93F7561E87FD55008488B9 /* Images */,
@@ -449,6 +465,8 @@
 				AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */,
 				AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */,
 				AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */,
+				ADA806E21E902593009C0B38 /* EmailSettingsCell.h */,
+				ADA806E31E902593009C0B38 /* EmailSettingsCell.m */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -491,6 +509,10 @@
 				ADCED8711E8ACFC700B9A06A /* EditProfileViewController.m */,
 				AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */,
 				AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */,
+				ADA806DC1E900590009C0B38 /* ChangePasswordViewController.h */,
+				ADA806DD1E900590009C0B38 /* ChangePasswordViewController.m */,
+				ADA806DF1E90169D009C0B38 /* EmailSettingViewController.h */,
+				ADA806E01E90169D009C0B38 /* EmailSettingViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -734,6 +756,17 @@
 				AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHud;
+			sourceTree = "<group>";
+		};
+		ADA806D21E90053B009C0B38 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				ADA806D51E90053B009C0B38 /* UIImage+animatedGIF.h */,
+				ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */,
+				ADA806D71E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.h */,
+				ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		ADCED7D01E8AAF4C00B9A06A /* Suporting Files */ = {
@@ -1099,9 +1132,12 @@
 				ADCED87C1E8ADDA400B9A06A /* ListViewCell.m in Sources */,
 				AD93F7F61E8823B7008488B9 /* MagicalRecord+iCloud.m in Sources */,
 				ADCED8781E8ADC3F00B9A06A /* CustomListViewController.m in Sources */,
+				ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */,
 				ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */,
+				ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */,
 				AD93F7F81E8823B7008488B9 /* MagicalRecord+Setup.m in Sources */,
 				AD93F79C1E881110008488B9 /* SignupViewController.m in Sources */,
+				ADA806DE1E900590009C0B38 /* ChangePasswordViewController.m in Sources */,
 				AD9344EC1E89770700E60A4B /* NJKWebViewProgress.m in Sources */,
 				AD93F7E11E8823B7008488B9 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				AD93F7911E880E16008488B9 /* IQBarButtonItem.m in Sources */,
@@ -1117,6 +1153,7 @@
 				AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */,
 				AD93F78B1E880E16008488B9 /* IQUIView+Hierarchy.m in Sources */,
 				AD93F7881E880E16008488B9 /* IQNSArray+Sort.m in Sources */,
+				ADA806DB1E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m in Sources */,
 				AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */,
 				AD9344E61E89665800E60A4B /* SignupTableViewCell.m in Sources */,
 				AD93F7951E880E16008488B9 /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -1146,6 +1183,7 @@
 				AD7A5DD61E86DADB00C3B4B6 /* Closed1.xcdatamodeld in Sources */,
 				AD93F7EB1E8823B7008488B9 /* NSManagedObject+MagicalRequests.m in Sources */,
 				AD9344FC1E897D3C00E60A4B /* ShareViewController.m in Sources */,
+				ADA806E11E90169D009C0B38 /* EmailSettingViewController.m in Sources */,
 				AD93F7921E880E16008488B9 /* IQPreviousNextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

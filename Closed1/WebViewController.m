@@ -8,7 +8,7 @@
 
 #import "WebViewController.h"
 #import "NJKWebViewProgress.h"
-
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface WebViewController ()<UIWebViewDelegate>
 
@@ -36,7 +36,8 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     [super viewDidLoad];
     _webView.delegate = self;
     [self configureProxyWebView];
-
+[self.navigationController configureNavigationBar:self
+ ];
 
     [self startAuthorization];
 }

@@ -43,16 +43,9 @@
   [self.navigationController setNavigationBarHidden:YES];
 
     
-//    [self openHomeScreen];
+    [self openHomeScreen];
     
-    
-    
-    
-    
-        
 }
-
-
 
 - (IBAction)loginViaLinkedIn:(id)sender {
     

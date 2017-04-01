@@ -33,6 +33,14 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+}
+
+
 - (void)createCustumNavigationBar
 {
     [self.navigationController setNavigationBarHidden:YES];
