@@ -8,9 +8,12 @@
 
 #import "ChangePasswordViewController.h"
 #import "UINavigationController+NavigationBarAttribute.h"
+#import "ClosedResverResponce.h"
+#import "MBProgressHUD.h"
 
 
-@interface ChangePasswordViewController ()
+@interface ChangePasswordViewController ()<ServerFailedDelegate>
+
 @property (strong, nonatomic) IBOutlet UIView *changePasswordView;
 @property (strong, nonatomic) IBOutlet UITextField *currentPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *updatedPasswordTextField;
@@ -98,6 +101,50 @@
 
 -(void)submitDataToServer:(id)sender
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Changing Password";
+    hud.dimBackground = YES;
+    
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=setNewPassword&email=%@&password=%@",_userEmail, self.confirmPasswordTextField.text] DictionartyToServer:@{}];
+        
+        NSLog(@"%@", serverResponce);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+            if (serverResponce != nil) {
+                
+                if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                    
+                    if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                        
+                        
+                        UIAlertController *alertCobtroller = [UIAlertController alertControllerWithTitle:@"Password changed successfully" message:@"You have successfully change password. Please login again" preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        [alertCobtroller addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                            
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                        }]];
+                        
+                        [self presentViewController:alertCobtroller animated:YES completion:nil];
+                        
+                        
+                    }else{
+                        [self serverFailedWithTitle:@"Failed to Identify it's you" SubtitleString:@"Sorry we are unable to identify you please try again later or check your email ID."];
+                    }
+                }else{
+                    [self serverFailedWithTitle:@"Failed to Identify it's you" SubtitleString:@"Sorry we are unable to identify you please try again later or check your email ID."];
+                }
+            }
+        });
+        
+        
+    });
     
 }
 
@@ -114,14 +161,11 @@
     
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Server Failed Delegate
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    [[[UIAlertView alloc] initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+}
 
 @end

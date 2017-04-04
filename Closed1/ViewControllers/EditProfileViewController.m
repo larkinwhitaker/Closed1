@@ -72,7 +72,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 572;
+    return 664;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,13 +84,16 @@
     
 #pragma mark - Remove Code
     
-    editProfileCell.usernameTextField.text = @"John";
     editProfileCell.emailTextField.text = @"johndoe@hotmail.com";
     editProfileCell.fullNameTextField.text = @"John Doe";
     editProfileCell.citytextField.text = @"Nagpur";
     editProfileCell.stateTextField.text = @"Maharashtra";
     editProfileCell.phoneNumberTextField.text = @"1234567890";
     [editProfileCell.countryButton setTitle:@"India" forState:UIControlStateNormal];
+    editProfileCell.companyNameTextField.text = @"Google LLC";
+    editProfileCell.designationTextField.text = @"iOS Developer";
+    editProfileCell.terrotoryTextField.text = @"Los Angeles";
+
     
     [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -128,30 +131,37 @@
 
 -(void)updateProfileTapped: (id)sender
 {
-    if ([[editProfileCell.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
-        
-        [self animateView:editProfileCell.usernameTextField];
-        [self.tableView setContentOffset:CGPointZero animated:YES];
+    if([[editProfileCell.companyNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        [self animateView:editProfileCell.companyNameTextField];
+    }else if([[editProfileCell.designationTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        [self animateView:editProfileCell.designationTextField];
+    }else if([[editProfileCell.terrotoryTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        [self animateView:editProfileCell.terrotoryTextField];
         
     }else if ([[editProfileCell.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:editProfileCell.emailTextField];
-        [self.tableView setContentOffset:CGPointZero animated:YES];
         
         
     }else if ([[editProfileCell.fullNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:editProfileCell.fullNameTextField];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+
         
     }
     else if ([[editProfileCell.citytextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:editProfileCell.citytextField];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+
         
     }
     else if ([[editProfileCell.stateTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:editProfileCell.stateTextField];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+
         
     }
     else if ([[editProfileCell.phoneNumberTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
@@ -232,7 +242,7 @@
 
 -(void)getSelectedIndex:(NSInteger)selectedIndex SelectedProgram:(NSString *)selectedProgram
 {
-    NSLog(@"%@", selectedProgram);
+    
     [editProfileCell.countryButton setTitle:selectedProgram forState:UIControlStateNormal];
     [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }

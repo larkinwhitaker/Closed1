@@ -11,9 +11,11 @@
 #import "WebViewController.h"
 #import "MBProgressHUD.h"
 #import "TabBarHandler.h"
+#import "ClosedResverResponce.h"
+#import "ChangePasswordViewController.h"
 
 
-@interface LoginViewController ()<LinkedInLoginDelegate>
+@interface LoginViewController ()<LinkedInLoginDelegate,ServerFailedDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *linkedinButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailtextField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *passwordTextField;
@@ -43,7 +45,7 @@
   [self.navigationController setNavigationBarHidden:YES];
 
     
-    [self openHomeScreen];
+     [self openHomeScreen];
     
 }
 
@@ -51,7 +53,7 @@
     
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.delegate = self;
-    //[self presentViewController:webView animated:YES completion:nil];
+//    [self presentViewController:webView animated:YES completion:nil];
     
 }
 
@@ -86,6 +88,59 @@
     
 }
 - (IBAction)forgotPasswordTapped:(id)sender {
+    
+    [self.view endEditing:YES];
+    
+    NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailReg];
+    
+    if ([[self.emailtextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        
+        [self animateView:self.emailtextField];
+    }else if([emailPredicate evaluateWithObject: _emailtextField.text] == NO){
+   
+        [self animateView:self.emailtextField];
+    }else{
+        
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Fetching Details";
+    hud.dimBackground = YES;
+    
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            [ClosedResverResponce sharedInstance].delegate = self;
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=forgotPassword&email=%@", self.emailtextField.text] DictionartyToServer:@{}];
+            
+            NSLog(@"%@", serverResponce);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (serverResponce != nil) {
+                    
+                    if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                        
+                        if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                            
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            self.emailtextField.text = @"";
+                            self.passwordTextField.text = @"";
+                            
+                            ChangePasswordViewController *changePasswordVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
+                            
+                            changePasswordVC.userEmail = self.emailtextField.text;
+                            [self.navigationController pushViewController:changePasswordVC animated:YES];
+                        }else{
+                            [self serverFailedWithTitle:@"Failed to Identify it's you" SubtitleString:@"Sorry we are unable to identify you please try again later or check your email ID."];
+                        }
+                    }else{
+                        [self serverFailedWithTitle:@"Failed to Identify it's you" SubtitleString:@"Sorry we are unable to identify you please try again later or check your email ID."];
+                    }
+                }
+            
+               });
+        });
+    }
     
 }
 
@@ -191,5 +246,16 @@
         [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"Failed to login with linkedin. Please try again or login manually" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }
 }
+
+
+#pragma mark - Server Failed Delegates
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+ 
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+}
+
 
 @end

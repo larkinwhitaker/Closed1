@@ -8,6 +8,7 @@
 
 #import "EmailSettingViewController.h"
 #import "EmailSettingsCell.h"
+#import "MBProgressHUD.h"
 
 @interface EmailSettingViewController ()<UITabBarDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -60,14 +61,25 @@
     
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Change Password"];
+    [navItem setTitle:@"Email Setting"];
     [self.view addSubview:navBar];
     
 }
 
 -(void)saveButtonTapped: (id)sender
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Saving Profile";
+    hud.dimBackground = YES;
     
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(profileSavesSucessFully) userInfo:nil repeats:NO];
+}
+
+-(void)profileSavesSucessFully
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender

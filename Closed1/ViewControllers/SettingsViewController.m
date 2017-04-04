@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "SettingsTableViewCell.h"
 #import "EditProfileViewController.h"
+#import "ChangePasswordViewController.h"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -26,6 +27,12 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 
+}
+- (IBAction)changePasswordTapped:(id)sender {
+    
+    ChangePasswordViewController *changePassword = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
+    changePassword.userEmail = @"aasif.demo@gmail.com";
+    [self.navigationController pushViewController:changePassword animated:YES];
 }
 
 - (void)createCustumNavigationBar

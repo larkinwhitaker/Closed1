@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangePasswordViewController : UIViewController
+@property(nonatomic, strong) NSString *userEmail;
 
 @end
