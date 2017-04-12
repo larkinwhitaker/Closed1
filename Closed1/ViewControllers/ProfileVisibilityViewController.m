@@ -100,7 +100,7 @@
         NSArray *twoString = [_companyVisibility componentsSeparatedByString:@"@"];
         leftLable.text = [twoString firstObject];
         [rightButton addTarget:self action:@selector(rightButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        rightButton.tag = indexPath.row;
+        rightButton.tag = 5;
         rightLabel.text = [twoString lastObject];
         
         return leftAlignmentCell;
@@ -120,7 +120,7 @@
         NSArray *twoString = [_emailVisibility componentsSeparatedByString:@"@"];
         leftLable.text = [twoString firstObject];
         [rightButton addTarget:self action:@selector(rightButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        rightButton.tag = indexPath.row;
+        rightButton.tag = 8;
         rightLabel.text = [twoString lastObject];
         
         return leftAlignmentCell;
