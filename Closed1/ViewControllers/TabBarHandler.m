@@ -11,6 +11,8 @@
 #import "SearchViewController.h"
 #import "ContactsViewController.h"
 #import "ShareViewController.h"
+#import "NavigationController.h"
+#import "SettingsViewController.h"
 
 @interface TabBarHandler ()
 
@@ -23,6 +25,22 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileUpdatedSucessFully) name:@"ProfileEdited" object:nil];
 //    [self setViewControllers:@[homeScreen, navController5]];
+    
+    
+    ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
+    
+    HomeScreenViewController *homeScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeScreenViewController"];
+
+    SearchViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    
+    ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
+    
+    SettingsViewController *settings = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    
+    self.viewControllers = @[homeScreen, contactScreen, searchView, shareDeal, settings];
+    
+    
+    
     
 }
 

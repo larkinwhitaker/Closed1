@@ -12,11 +12,27 @@
 #import <MessageUI/MessageUI.h>
 #import "ContactsTableViewCell.h"
 #import "ProfileDetailViewController.h"
+#import "ContactDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
+#import "UIImageView+WebCache.h"
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "ClosedResverResponce.h"
+#import "UserDetails+CoreDataClass.h"
+#import "MBProgressHUD.h"
 
-@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
+
+@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViee;
 @property(nonatomic) BOOL isMailContactSelected;
+
+@property(nonatomic) NSArray *contactDetails;
+
+@property (nonatomic , retain) NSFetchedResultsController * fetchedResultsController;
+@property (nonatomic , retain) NSFetchedResultsController * searchedFRC;
+@property(nonatomic)     NSString * globalPredicateString;
+
+
 
 @end
 
@@ -29,29 +45,82 @@
     
     [super viewDidLoad];
     
+    
     [self createCustumNavigationBar];
+    
+    self.tableViee.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
+    
     [self.tableViee registerNib:[UINib nibWithNibName:@"ContactsTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsTableViewCell"];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ContactsTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsTableViewCell"];
+   
+    [ContactDetails MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    _contactDetails = [ContactDetails MR_findAll];
 
     
-//    CNContactStore *store = [[CNContactStore alloc]init];
-//    
-//    if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined) {
-//        
-//        [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError *error){
-//            
-//            if (granted) {
-//                
-//                [self retrieveContactsWithStore:store];
-//                
-//            }
-//        }];
-//        
-//    }else if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized)
-//    {
-//        [self retrieveContactsWithStore:store];
-//        
-//    }
+    if (_contactDetails.count == 0) {
+        
+        [self getContactViewData];
+
+        
+    }
     
+    
+    self.searchDisplayController.searchResultsTableView.estimatedRowHeight = 90;
+    self.searchDisplayController.searchResultsTableView.rowHeight = 90;
+
+    
+    
+    
+    
+
+}
+
+-(void)getContactViewData
+{
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    [ClosedResverResponce sharedInstance].delegate = self;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Fetching Contacts";
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&ID=%lld", userDetails.userID] DictionartyToServer:@{}];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSArray *contactList = [arrayOfContacts valueForKey:@"data"];
+            
+            for (NSDictionary * entity in contactList) {
+                
+                //        if (![[entity valueForKey:@"FirstName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"LastName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"Biography"] isEqual:[NSNull null]] && ![[entity valueForKey:@"BoardCertified"] isEqual:[NSNull null]]) {
+                
+                
+                
+                ContactDetails *contact = [ContactDetails MR_createEntity];
+                contact.userName = [entity valueForKey:@"contact"];
+                contact.company = [entity valueForKey:@"company"];
+                contact.designation = [entity valueForKey:@"title"];
+                contact.imageURL = [entity valueForKey:@"profile_image_url"];
+                contact.userID = [[entity valueForKey:@"user_id"] integerValue];
+            }
+            
+            //    }
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+        });
+        
+        
+    });
+    
+   
 
 }
 
@@ -134,9 +203,33 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-//    self.tableViee.estimatedRowHeight = 70.0;
-//    self.tableViee.rowHeight = UITableViewAutomaticDimension;
+    [self.fetchedResultsController performFetch:nil];
+    [self tableViewReloadDataWithAnimation:YES];
+
+    
 }
+
+
+-(void)tableViewReloadDataWithAnimation:(BOOL)animate
+{
+    CATransition *transition;
+    if(animate)
+    {
+        transition = [CATransition animation];
+        transition.type = kCATransitionFade;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.fillMode = kCAFillModeForwards;
+        transition.duration = 0.3;
+        transition.subtype = kCATransitionFromTop;
+        
+        [self.tableViee.layer addAnimation:transition forKey:@"UITableViewReloadDataAnimationKey"];
+    }
+    
+    [self.tableViee reloadData];
+    
+}
+
+
 
 #pragma mark - Conatact picker Delegate
 
@@ -323,10 +416,100 @@
 
 #pragma mark - Tableview delegate
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 15;
+#pragma mark - TableView DataSource methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+#ifdef DEBUG
+        
+        NSLog(@"%lu",(unsigned long)[[_searchedFRC sections]count]);
+#endif
+        return [[_searchedFRC sections] count];
+    }
+    else
+    {
+#ifdef DEBUG
+        
+        NSLog(@"%lu",(unsigned long)[[_fetchedResultsController sections]count]);
+#endif
+        return [[_fetchedResultsController sections]count];
+    }
+    
 }
+
+
+- (NSArray *) sectionIndexTitlesForTableView: (UITableView *) tableView
+{
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+#ifdef DEBUG
+        
+        NSLog(@"%lu",(unsigned long)[[self.searchedFRC sectionIndexTitles] count]);
+#endif
+        return [self.searchedFRC sectionIndexTitles];
+    }
+    else
+    {
+#ifdef DEBUG
+        
+        NSLog(@"%lu",(unsigned long)[[self.fetchedResultsController sectionIndexTitles] count]);
+#endif
+        return [self.fetchedResultsController sectionIndexTitles];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [self.searchedFRC sectionForSectionIndexTitle:title atIndex:index];
+        
+    }
+    else
+    {
+        return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        NSArray * titleArray = [self.searchedFRC sectionIndexTitles];
+        return [titleArray objectAtIndex:section];
+        
+    }
+    else
+    {
+        NSArray * titleArray = [self.fetchedResultsController sectionIndexTitles];
+        return [titleArray objectAtIndex:section];
+    }
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        id sectionInfo = [[_searchedFRC sections] objectAtIndex:section];
+#ifdef DEBUG
+        
+        NSLog(@"Number of Rows in SearchDisplayController.tableview : %lu",(unsigned long)[sectionInfo numberOfObjects]);
+#endif
+        return [sectionInfo numberOfObjects];
+    }
+    else
+    {
+        id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
+#ifdef DEBUG
+        
+        NSLog(@"%lu",(unsigned long)[sectionInfo numberOfObjects]);
+#endif
+        return [sectionInfo numberOfObjects];
+    }
+    
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -336,11 +519,28 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    ContactDetails * contact;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        contact = [_searchedFRC objectAtIndexPath:indexPath];
+    }
+    else
+    {
+        contact = [_fetchedResultsController objectAtIndexPath:indexPath];
+        
+    }
+    
+    
     ContactsTableViewCell *contactsCell = [tableView dequeueReusableCellWithIdentifier:@"ContactsTableViewCell"];
-    contactsCell.profileImage.image = [UIImage imageNamed:@"male-circle-128.png"];
-    contactsCell.nameLabel.text = @"John Doe";
-    contactsCell.companyLabel.text = @"Google LLC";
-    contactsCell.titleLabel.text = @"iOS Developer";
+    NSString *imageURL = contact.imageURL;
+    NSString* urlEncoded = [imageURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    
+    [contactsCell.profileImage sd_setImageWithURL:[NSURL URLWithString:urlEncoded] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+    contactsCell.nameLabel.text = contact.userName;
+    contactsCell.companyLabel.text = contact.company;
+    contactsCell.titleLabel.text = contact.designation;
     
     return contactsCell;
 }
@@ -350,6 +550,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
+    
+    ContactDetails * contact;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        contact = [_searchedFRC objectAtIndexPath:indexPath];
+    }
+    else
+    {
+        contact = [_fetchedResultsController objectAtIndexPath:indexPath];
+        
+    }
+    
+    profileDetail.singleContact = contact;
+    
     
     [self.navigationController pushViewController:profileDetail animated:YES];
 }
@@ -384,6 +599,175 @@
 #pragma mark - Set as YES to add swipe Functionality
     return NO;
 }
+
+
+-(NSData *)getDataFromLocalJSONFileForEntity:(NSString *)entityName
+{
+    NSString * filePath = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@",entityName] ofType:@"json"];
+    NSData * data = [NSData dataWithContentsOfFile:filePath];
+    return data;
+}
+
+
+
+#pragma mark - NSFetchedResultControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableViee beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    //    if(YES)
+    //    {
+    //        return;
+    //    }
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableViee insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableViee deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeMove:
+            break;
+        case  NSFetchedResultsChangeUpdate:
+            //TODOURGENT change the cell only
+            //     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableViee deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.tableViee insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableViee;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableViee endUpdates];
+}
+
+
+#pragma mark - Initialize Fetchresult Controller
+- (NSFetchedResultsController *)fetchedResultsController {
+    return [self configureFetchedResultsControllerForProvider];
+}
+
+
+//Get fetched Result controller for Providers
+-(NSFetchedResultsController *)configureFetchedResultsControllerForProvider
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userName" ascending:YES];
+    NSFetchRequest *fetchRequest = [ContactDetails MR_requestAll];
+    [fetchRequest setSortDescriptors:@[nameSortDescriptor]];
+    
+    //[fetchRequest setFetchLimit:100];         // Let's say limit fetch to 100
+    [fetchRequest setFetchBatchSize:20];      // After 20 are faulted
+    
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:@"firstLetter" cacheName:nil];
+    self.fetchedResultsController = theFetchedResultsController;
+    self.fetchedResultsController.delegate = (id)self;
+    return _fetchedResultsController;
+}
+
+
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    _searchedFRC = nil;
+    NSString * predicateString = @"";
+    NSArray * searchStringArray = [searchString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    searchStringArray = [searchStringArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ' '"]];
+    for(NSString *searchStringComponent in searchStringArray)
+    {
+        //On filtering array on blank string is there in one of the component
+        if(searchStringComponent.length > 0)
+            predicateString = [NSString stringWithFormat:@" %@ (userName beginswith[c] \"%@\" || company beginswith[c] \"%@\" || designation beginswith[c] \"%@\")  &&",predicateString,searchStringComponent,searchStringComponent,searchStringComponent];
+    }
+    
+    
+    
+    
+    
+    
+    if(_globalPredicateString.length > 0)
+    {
+        //Predicatestring already has && operator in the end from above code
+        predicateString = [NSString stringWithFormat:@"%@ %@",predicateString,_globalPredicateString];
+    }
+    else if (predicateString.length > 0)
+        predicateString = [predicateString substringToIndex:predicateString.length - 3];
+    else
+        predicateString = nil;
+    
+    
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
+    
+    NSFetchRequest * fetchRequestForSearchString = [ContactDetails MR_requestAllSortedBy:@"userName" ascending:YES withPredicate:predicate];
+    //    NSArray * array = [Provider findAllWithPredicate:predicate];
+    
+    [fetchRequestForSearchString setFetchBatchSize:20];
+    NSFetchedResultsController *searchedFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestForSearchString managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:@"firstLetter" cacheName:nil];
+    _searchedFRC = searchedFetchedResultsController;
+    _searchedFRC.delegate = (id)self;
+    [_searchedFRC performFetch:nil];
+    
+    
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+#pragma mark - Server Failed Dlegates
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });}
 
 
 

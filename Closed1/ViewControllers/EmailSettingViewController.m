@@ -22,21 +22,7 @@
     [super viewDidLoad];
     
     [self createCustumNavigationBar];
-    [self configuretableView];
-   
     
-}
-
--(void)configuretableView{
-    
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame: CGRectMake(10, 8, self.view.frame.size.width - 20, 30)];
-    headerView.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
-    headerLabel.text = @"Send an email notice when";
-    headerLabel.font = [UIFont boldSystemFontOfSize:16.0];
-    headerLabel.textColor = [UIColor whiteColor];
-    [headerView addSubview:headerLabel];
-    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)createCustumNavigationBar
@@ -98,7 +84,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 546;
+    return 413;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

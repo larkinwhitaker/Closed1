@@ -11,8 +11,12 @@
 #import "MBProgressHUD.h"
 #import "TabBarHandler.h"
 #import "CustomListViewController.h"
+#import "ClosedResverResponce.h"
+#import "UserDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate>
+
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 
@@ -163,7 +167,7 @@
         
         [self animateView:_signupCell.phoneNumberTextField];
         
-    }else if ([_signupCell.countrySelectionButton.titleLabel.text isEqualToString:@""]){
+    }else if ([_signupCell.countrySelectionButton.titleLabel.text isEqualToString:@"Select Country"]){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }else{
@@ -200,9 +204,86 @@
     hud.dimBackground = YES;
     hud.labelText = @"Hang on,";
     hud.detailsLabelText = @"Signing you up";
+
+    [ClosedResverResponce sharedInstance].delegate = self;
     
-    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(openHomeScreen) userInfo:nil repeats:NO];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@", self.signupCell.usenameTextField.text, self.signupCell.emailtextField.text, self.signupCell.passwordTextField.text,_signupCell.fullNameTextField.text,self.signupCell.cityTextField.text,self.signupCell.stateTextField.text,self.signupCell.countrySelectionButton.titleLabel.text,self.signupCell.phoneNumberTextField.text];
+        
+        NSLog(@"%@", reuestURL);
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: reuestURL DictionartyToServer:@{}];
+        
+        NSLog(@"%@", serverResponce);
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (serverResponce != nil) {
+                
+                if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                    
+                    if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                        
+                        [self saveUserDetails:serverResponce];
+                        [self openHomeScreen];
+                        
+                    }else{
+                        [self serverFailedWithTitle:@"Signup Failed" SubtitleString:@"We occured some error. Please try again later"];
+                        
+                    }
+                    
+                }else{
+                    [self serverFailedWithTitle:@"Signup Failed" SubtitleString:@"We occured some error. Please try again later"];
+                    
+                }
+            }else{
+                
+                [self serverFailedWithTitle:@"Signup Failed" SubtitleString:@"We occured some error. Please try again later"];
+            }
+        });
+
+        
+    });
+    
 }
+
+
+-(void)saveUserDetails: (NSArray *)userData{
+    
+    userData = [userData valueForKey:@"data"];
+    [UserDetails MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+        
+        UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
+        
+        userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
+        userDetails.firstName = [userData valueForKey:@"first_name"];
+        userDetails.lastName = [userData valueForKey:@"last_name"];
+        userDetails.userEmail = [userData valueForKey:@"user_email"];
+        userDetails.userLogin = [userData valueForKey:@"user_login"];
+        
+        
+        [localContext MR_saveToPersistentStoreAndWait];
+        
+    }completion:^(BOOL didSave, NSError *error){
+        
+        if (!didSave) {
+            
+            NSLog(@"Error While Saving: %@", error);
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        }
+    }];
+    
+}
+
+
 -(void)openHomeScreen
 {
     TabBarHandler *tabBarScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarHandler"];
@@ -238,6 +319,18 @@
     NSLog(@"%@", selectedProgram);
     [_signupCell.countrySelectionButton setTitle:selectedProgram forState:UIControlStateNormal];
     [_signupCell.countrySelectionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+}
+
+#pragma mark - ServerFailes Delegates
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });
 }
 
 @end

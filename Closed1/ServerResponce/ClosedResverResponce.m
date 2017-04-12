@@ -1,9 +1,9 @@
 //
-//  ClosedResverResponce.m
-//  Closed1
+//  AirhobServerResponce.m
+//  Airhob
 //
-//  Created by Nazim on 02/04/17.
-//  Copyright © 2017 Alkurn. All rights reserved.
+//  Created by mYwindow on 10/08/16.
+//  Copyright © 2016 mYwindow Inc. All rights reserved.
 //
 
 #import "ClosedResverResponce.h"
@@ -11,6 +11,9 @@
 @implementation ClosedResverResponce
 {
     NSData *serverData;
+    NSString *authentizationToken;
+    BOOL isEncodedzdataSend;
+    //    NSURLSession *session;
 }
 
 +(ClosedResverResponce *)sharedInstance
@@ -30,9 +33,9 @@
     //    [session invalidateAndCancel];
 }
 
--(NSArray *)getResponceFromServer: (NSString *)URLName DictionartyToServer:(NSDictionary *)dictionaryToServer
+-(NSArray *)getResponceFromServer: (NSString *)URLName  DictionartyToServer:(NSDictionary *)dictionaryToServer;
 {
-    NSData * dataFromServer = [self dataFromServerWithURL:URLName DictionaryToServer:dictionaryToServer];
+    NSData * dataFromServer = [self dataFromServerWithURL:URLName WithApiName:@"" DictionaryToServer:dictionaryToServer];
     
     if (dataFromServer != nil)
     {
@@ -46,30 +49,42 @@
 }
 
 
--(NSData *)dataFromServerWithURL:(NSString *)url DictionaryToServer:(NSDictionary *)dictionaryToServer
+-(NSData *)dataFromServerWithURL:(NSString *)url WithApiName:(NSString *)apiName DictionaryToServer:(NSDictionary *)dictionaryToServer
 {
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
-//    NSURL *URL = [[NSURL URLWithString:url] URLByAppendingPathComponent:apiName];
-    
     NSURL *URL = [NSURL URLWithString:url];
-    
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:URL];
     
     urlRequest.HTTPMethod = @"POST";
     NSData *postData = [[NSData alloc]init];
     
-    [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    postData = [NSJSONSerialization dataWithJSONObject:dictionaryToServer options:kNilOptions error:nil];
-    urlRequest.HTTPBody = postData;
-    
+    if (isEncodedzdataSend)
+    {
+        [urlRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        postData = [self encodeDictionary:dictionaryToServer];
+        urlRequest.HTTPBody = postData;
+        
+    }else
+    {
+        [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        postData = [NSJSONSerialization dataWithJSONObject:dictionaryToServer options:kNilOptions error:nil];
+        urlRequest.HTTPBody = postData;
+        
+    }
     
     NSString *string = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
 #if DEBUG
     //    NSLog(@"JSON OBJECT IS: %@", string);
 #endif
+    
+    if (authentizationToken != nil)
+    {
+        [urlRequest addValue:authentizationToken forHTTPHeaderField:@"Authorization"];
+        
+    }
     
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -106,5 +121,22 @@
     
 }
 
-@end
 
+- (NSData*)encodeDictionary:(NSDictionary*)dictionary {
+    NSMutableArray *parts = [[NSMutableArray alloc] init];
+    
+    if (dictionary != nil) {
+        for (NSString *key in dictionary) {
+            NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
+            [parts addObject:part];
+        }
+        NSString *encodedDictionary = [parts componentsJoinedByString:@"&"];
+        return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+    return [[NSData alloc]init];
+}
+
+@end

@@ -10,7 +10,14 @@
 #import <linkedin-sdk/LISDK.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-@interface AppDelegate ()
+#import "MagicalRecord.h"
+
+@import UserNotifications;
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -21,6 +28,37 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [Fabric with:@[[Crashlytics class]]];
+    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Closed1"];
+    
+
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // Push notification initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        // iOS 10 or later
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+        UNAuthorizationOptions authOptions =UNAuthorizationOptionAlert| UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            
+        }
+         ];
+        
+        // For iOS 10 display notification (sent via APNS)
+        [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+        
+#endif
+    }
+    
     
     return YES;
 }
@@ -35,6 +73,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
 }
 
 
@@ -45,6 +84,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
 }
 
 
@@ -100,11 +140,55 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-        if ([LISDKCallbackHandler shouldHandleUrl:url]) {
-            return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-        }
-        return YES;
+
+
+
+#pragma mark - CoreSpotlight methods
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    return NO;
+}
+
+#pragma mark - Google and Facebook login methods
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+    if ([LISDKCallbackHandler shouldHandleUrl:url]) {
+        return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
+    
+    return YES;
+}
+
+
+#pragma mark - Push notification methods
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
     
 @end

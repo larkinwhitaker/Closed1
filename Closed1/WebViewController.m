@@ -38,8 +38,17 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     [self configureProxyWebView];
 [self.navigationController configureNavigationBar:self
  ];
+    
+    if (_isLinkedinSelected) {
+        [self startAuthorization];
+    }else{
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: _urlString]];
+        
+        [_webView loadRequest:request];
 
-    [self startAuthorization];
+    }
+
 }
 
 

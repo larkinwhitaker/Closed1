@@ -17,5 +17,6 @@
 @interface WebViewController : UIViewController
 
 @property(nonatomic,weak) id<LinkedInLoginDelegate>delegate;
-
+@property(nonatomic) BOOL isLinkedinSelected;
+@property(nonatomic) NSString *urlString;
 @end

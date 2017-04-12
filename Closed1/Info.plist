@@ -56,8 +56,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We use photo library to to send picture/video messages.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We use your camera to capture photos/videos.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Allow to acess contacts</string>
+	<string>We use your contacts to sync Chat contacts with this device.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to send location messages.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use your microphone to send audio messages.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

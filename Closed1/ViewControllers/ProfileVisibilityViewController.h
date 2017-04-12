@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileVisibilityViewController : UIViewController
-
+@property(strong, nonatomic, nonnull) NSArray *classListArray;
+@property(strong, nonnull)UIImage *backgrounTableViewImage;
 @end

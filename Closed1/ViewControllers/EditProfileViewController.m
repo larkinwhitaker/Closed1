@@ -30,6 +30,7 @@
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
     [self createCustumNavigationBar];
+    self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
 
 }
 
@@ -94,6 +95,7 @@
     editProfileCell.designationTextField.text = @"iOS Developer";
     editProfileCell.terrotoryTextField.text = @"Los Angeles";
 
+    [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
 

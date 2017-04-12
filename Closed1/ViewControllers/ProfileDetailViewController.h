@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContactDetails+CoreDataProperties.h"
 
 @interface ProfileDetailViewController : UIViewController
+
+@property(nonatomic) ContactDetails *singleContact;
 
 @end

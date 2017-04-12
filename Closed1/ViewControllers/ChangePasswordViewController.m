@@ -165,7 +165,10 @@
 
 -(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
 {
-    [[[UIAlertView alloc] initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });
 }
-
 @end

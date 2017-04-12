@@ -52,7 +52,7 @@
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Closed1"];
+    [navItem setTitle:@"Share a Deal"];
     [self.view addSubview:navBar];
     
 }
