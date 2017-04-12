@@ -8,6 +8,7 @@
 
 #import "ProfileVisibilityViewController.h"
 #import "FlightClassSelectionViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ProfileVisibilityViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedClassDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -69,11 +70,31 @@
     
     navItem.leftBarButtonItem = backButton;
     
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonTapped:)];
+    
+    navItem.rightBarButtonItem = saveButton;
+    
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [navItem setTitle:@"Profile Visibility"];
     [self.view addSubview:navBar];
     
+}
+
+(void)saveButtonTapped: (id)sender
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Saving Profile";
+    hud.dimBackground = YES;
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(profileSavesSucessFully) userInfo:nil repeats:NO];
+}
+
+-(void)profileSavesSucessFully
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - TableView Delegate Methods
