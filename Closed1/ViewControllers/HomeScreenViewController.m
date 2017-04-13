@@ -17,6 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import "WebViewController.h"
 #import "MBProgressHUD.h"
+#import "UserProfileViewController.h"
 
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
@@ -90,6 +91,12 @@
     
 }
 - (IBAction)profileButtonTapped:(id)sender {
+    
+    
+    UserProfileViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    
+    [self.navigationController pushViewController:userProfile animated:YES];
+
 }
 #pragma mark - Tableview delegate
 

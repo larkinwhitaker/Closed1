@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UISwitch *freindsSendsSwict;
 @property (strong, nonatomic) IBOutlet UISwitch *freinfsAcceptSwich;
 
+@property (strong, nonatomic) IBOutlet UILabel *emailLabel;
 
 
 

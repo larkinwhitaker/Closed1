@@ -81,7 +81,7 @@
     
 }
 
-(void)saveButtonTapped: (id)sender
+-(void)saveButtonTapped: (id)sender
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Hang on,";

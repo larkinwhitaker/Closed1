@@ -135,6 +135,8 @@
 		ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */; };
 		ADB4C3FE1E9D287600C71181 /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB4C3FC1E9D287600C71181 /* ContactDetails+CoreDataProperties.m */; };
 		ADB4C4041E9D2E5500C71181 /* UserDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB4C4021E9D2E5500C71181 /* UserDetails+CoreDataProperties.m */; };
+		ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898B1E9FF95900B8D05F /* ProfileCell.m */; };
+		ADBE898F1E9FF9B100B8D05F /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */; };
 		ADCB0FA91E92A96B00170289 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */; };
 		ADCED7D21E8AAF4C00B9A06A /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADCED7D11E8AAF4C00B9A06A /* countries.plist */; };
 		ADCED86A1E8AC10C00B9A06A /* TableViewDiscloserDownImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */; };
@@ -430,6 +432,10 @@
 		ADB4C3FC1E9D287600C71181 /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADB4C4011E9D2E5500C71181 /* UserDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ADB4C4021E9D2E5500C71181 /* UserDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ADBE898A1E9FF95900B8D05F /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		ADBE898B1E9FF95900B8D05F /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		ADBE898D1E9FF9B100B8D05F /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		ADCB0FA71E92A96B00170289 /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
 		ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
 		ADCED75D1E8AAAA600B9A06A /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
@@ -670,6 +676,8 @@
 				ADA806E31E902593009C0B38 /* EmailSettingsCell.m */,
 				AD933A521E9EA3A4002FE9FF /* ProfileDetailsCell.h */,
 				AD933A531E9EA3A4002FE9FF /* ProfileDetailsCell.m */,
+				ADBE898A1E9FF95900B8D05F /* ProfileCell.h */,
+				ADBE898B1E9FF95900B8D05F /* ProfileCell.m */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -718,6 +726,8 @@
 				ADA806E01E90169D009C0B38 /* EmailSettingViewController.m */,
 				ADA806E51E902DAE009C0B38 /* ProfileVisibilityViewController.h */,
 				ADA806E61E902DAE009C0B38 /* ProfileVisibilityViewController.m */,
+				ADBE898D1E9FF9B100B8D05F /* UserProfileViewController.h */,
+				ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1455,6 +1465,7 @@
 				ADACED651E9BFE06001A9F4A /* NSData+Base64.m in Sources */,
 				AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */,
 				AD933A401E9E8093002FE9FF /* AFURLSessionManager.m in Sources */,
+				ADBE898F1E9FF9B100B8D05F /* UserProfileViewController.m in Sources */,
 				ADACED661E9BFE06001A9F4A /* NSData+ImageContentType.m in Sources */,
 				AD93F78B1E880E16008488B9 /* IQUIView+Hierarchy.m in Sources */,
 				AD933A3D1E9E8093002FE9FF /* AFSecurityPolicy.m in Sources */,
@@ -1469,6 +1480,7 @@
 				AD933A3C1E9E8093002FE9FF /* AFNetworkReachabilityManager.m in Sources */,
 				AD93F7ED1E8823B7008488B9 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				AD93F7E91E8823B7008488B9 /* NSManagedObject+MagicalFinders.m in Sources */,
+				ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */,
 				AD93F7981E880E16008488B9 /* JVFloatLabeledTextView.m in Sources */,
 				AD93F78A1E880E16008488B9 /* IQUITextFieldView+Additions.m in Sources */,
 				AD93F78E1E880E16008488B9 /* IQKeyboardManager.m in Sources */,

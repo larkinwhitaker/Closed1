@@ -10,6 +10,14 @@
 #import "SettingsTableViewCell.h"
 #import "EditProfileViewController.h"
 #import "ChangePasswordViewController.h"
+#import "ContactDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
+#import "UIImageView+WebCache.h"
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "ClosedResverResponce.h"
+#import "UserDetails+CoreDataClass.h"
+#import "MBProgressHUD.h"
+
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -67,6 +75,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCell"];
     [cell.emailButton addTarget:self action:@selector(emaiButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
@@ -77,6 +87,10 @@
     [cell.deleteButton addTarget:self action:@selector(deleteButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.editProfile addTarget:self action:@selector(editProfileTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    
+    [cell.profileImageView sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
     return cell;
 }

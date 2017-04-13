@@ -9,10 +9,14 @@
 #import "EmailSettingViewController.h"
 #import "EmailSettingsCell.h"
 #import "MBProgressHUD.h"
+#import "UserDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
 
 @interface EmailSettingViewController ()<UITabBarDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) EmailSettingsCell *emailCell;
+
+
 
 @end
 
@@ -92,6 +96,9 @@
     _emailCell = [tableView dequeueReusableCellWithIdentifier:@"EmailSettingsCell"];
     
     NSLog(@"%lu", (unsigned long)_emailCell.freindsSendsSwict.state);
+    UserDetails *userDEatils = [UserDetails MR_findFirst];
+    
+    _emailCell.emailLabel.text = [NSString stringWithFormat:@"A member mentions you in an update using %@",userDEatils.userEmail];
     
     return _emailCell;
 }

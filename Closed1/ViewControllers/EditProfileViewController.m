@@ -11,6 +11,9 @@
 #import "MBProgressHUD.h"
 #import "CustomListViewController.h"
 #import "TabBarHandler.h"
+#import "MagicalRecord.h"
+#import "UserDetails+CoreDataClass.h"
+
 
 @interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate>
 {
@@ -85,15 +88,17 @@
     
 #pragma mark - Remove Code
     
-    editProfileCell.emailTextField.text = @"johndoe@hotmail.com";
-    editProfileCell.fullNameTextField.text = @"John Doe";
-    editProfileCell.citytextField.text = @"Nagpur";
-    editProfileCell.stateTextField.text = @"Maharashtra";
-    editProfileCell.phoneNumberTextField.text = @"1234567890";
-    [editProfileCell.countryButton setTitle:@"India" forState:UIControlStateNormal];
-    editProfileCell.companyNameTextField.text = @"Google LLC";
-    editProfileCell.designationTextField.text = @"iOS Developer";
-    editProfileCell.terrotoryTextField.text = @"Los Angeles";
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    editProfileCell.emailTextField.text = userDetails.userEmail;
+    editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    editProfileCell.citytextField.text = userDetails.city;
+    editProfileCell.stateTextField.text = @"";
+    editProfileCell.phoneNumberTextField.text = @"";
+    [editProfileCell.countryButton setTitle:userDetails.country forState:UIControlStateNormal];
+    editProfileCell.companyNameTextField.text = userDetails.company;
+    editProfileCell.designationTextField.text = userDetails.title;
+    editProfileCell.terrotoryTextField.text = userDetails.territory;
 
     [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
