@@ -93,8 +93,8 @@
     editProfileCell.emailTextField.text = userDetails.userEmail;
     editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
     editProfileCell.citytextField.text = userDetails.city;
-    editProfileCell.stateTextField.text = @"";
-    editProfileCell.phoneNumberTextField.text = @"";
+    editProfileCell.stateTextField.text = userDetails.state;
+    editProfileCell.phoneNumberTextField.text = userDetails.phoneNumber;
     [editProfileCell.countryButton setTitle:userDetails.country forState:UIControlStateNormal];
     editProfileCell.companyNameTextField.text = userDetails.company;
     editProfileCell.designationTextField.text = userDetails.title;

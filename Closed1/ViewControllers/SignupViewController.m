@@ -263,17 +263,22 @@
         UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
         
         userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
-        userDetails.firstName = [userData valueForKey:@"first_name"];
-        userDetails.lastName = [userData valueForKey:@"last_name"];
+        userDetails.firstName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] firstObject];
+        userDetails.lastName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] lastObject];
         userDetails.userEmail = [userData valueForKey:@"user_email"];
         userDetails.userLogin = [userData valueForKey:@"user_login"];
         userDetails.title = [userData valueForKey:@"title"];
         userDetails.company = [userData valueForKey:@"company"];
-        userDetails.city = [userData valueForKey:@"city"];
-        userDetails.country = [userData valueForKey:@"country"];
+        userDetails.city = [userData valueForKey:_signupCell.cityTextField.text];
+        
+        NSString *countryString = [_signupCell.countrySelectionButton titleForState:UIControlStateNormal];
+        
+        userDetails.country = countryString;
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
         userDetails.profileImage = [userData valueForKey:@"profile Image"];
+         userDetails.phoneNumber = _signupCell.phoneNumberTextField.text;
+        userDetails.state = _signupCell.stateTextField.text;
         
         [localContext MR_saveToPersistentStoreAndWait];
         

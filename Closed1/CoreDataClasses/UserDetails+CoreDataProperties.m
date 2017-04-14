@@ -2,7 +2,7 @@
 //  UserDetails+CoreDataProperties.m
 //  Closed1
 //
-//  Created by Nazim on 11/04/17.
+//  Created by Nazim on 15/04/17.
 //  Copyright © 2017 Alkurn. All rights reserved.
 //
 
@@ -14,17 +14,19 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"UserDetails"];
 }
 
+@dynamic city;
+@dynamic company;
+@dynamic country;
+@dynamic econdaryemail;
 @dynamic firstName;
 @dynamic lastName;
+@dynamic profileImage;
+@dynamic territory;
+@dynamic title;
 @dynamic userEmail;
 @dynamic userID;
 @dynamic userLogin;
-@dynamic title;
-@dynamic company;
-@dynamic city;
-@dynamic country;
-@dynamic territory;
-@dynamic econdaryemail;
-@dynamic profileImage;
+@dynamic phoneNumber;
+@dynamic state;
 
 @end

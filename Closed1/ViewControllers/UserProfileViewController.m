@@ -59,7 +59,14 @@
     
     profileCell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
     profileCell.emailLabel.text = userDetails.userEmail;
-    profileCell.phoneLabel.text = @"Not Found";
+    
+    if (userDetails.phoneNumber == nil) {
+        profileCell.phoneLabel.text = @"Not Found";
+
+    }else{
+        profileCell.phoneLabel.text = userDetails.phoneNumber;
+
+    }
     profileCell.companyLabel.text = userDetails.company;
     profileCell.roleLabel.text = userDetails.title;
     profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];

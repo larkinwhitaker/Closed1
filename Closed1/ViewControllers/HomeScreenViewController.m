@@ -75,6 +75,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationItem setHidesBackButton:YES];
+    [self.navigationController setNavigationBarHidden:YES];
 //    _countingView.backgroundColor = [UIColor whiteColor];
 //    _countingView.fillColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
 //    _countingView.strokeColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];

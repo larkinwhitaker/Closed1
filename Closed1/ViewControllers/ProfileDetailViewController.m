@@ -14,6 +14,8 @@
 #import "ClosedResverResponce.h"
 #import "MBProgressHUD.h"
 #import "HomeScreenViewController.h"
+#import "CommentListViewController.h"
+#import "WebViewController.h"
 
 
 @interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate>
@@ -146,7 +148,22 @@
         
         NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"like"] integerValue];
         
-        //    homeCell.userProfileCOmmnet.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"type"];
+        homeCell.userProfileCOmmnet.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"];
+        
+        homeCell.messageButton.tag = indexPath.row;
+        [homeCell.messageButton addTarget:self action:@selector(messageButonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        NSInteger messageCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"message_count"] integerValue];
+        
+        if (messageCount == 0) {
+            
+            homeCell.messageView.hidden = YES;
+            
+        }else{
+            
+            homeCell.messageView.hidden = NO;
+            homeCell.messageCountLabel.text = [NSString stringWithFormat:@"%zd", messageCount];
+        }
         
         if (likeCount == 0) {
             homeCell.likeView.hidden = YES;
@@ -161,10 +178,30 @@
         
         
         return homeCell;
+
         
     }
     
 }
+
+-(void)messageButonTapped: (UIButton *)sender
+{
+    CommentListViewController *commentListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CommentListViewController"];
+    commentListVC.feedsDetails= [self.feedsArray objectAtIndex:sender.tag];
+    [self.navigationController pushViewController:commentListVC animated:YES];
+}
+
+-(void)userImageButtonTapped: (id)sender
+{
+    
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.title = @"Profile";
+    webView.urlString = [[_feedsArray objectAtIndex:0] valueForKey:@"primary_link"];
+    
+    [self.navigationController pushViewController:webView animated:YES];
+    
+}
+
 
 -(void)callButttonTapped: (id)sender
 {
@@ -219,11 +256,9 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
+        _feedsArray = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            _feedsArray = [serverResponce valueForKey:@"user_data"];
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tableView reloadData];
