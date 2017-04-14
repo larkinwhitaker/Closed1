@@ -267,7 +267,13 @@
         userDetails.lastName = [userData valueForKey:@"last_name"];
         userDetails.userEmail = [userData valueForKey:@"user_email"];
         userDetails.userLogin = [userData valueForKey:@"user_login"];
-        
+        userDetails.title = [userData valueForKey:@"title"];
+        userDetails.company = [userData valueForKey:@"company"];
+        userDetails.city = [userData valueForKey:@"city"];
+        userDetails.country = [userData valueForKey:@"country"];
+        userDetails.territory = [userData valueForKey:@"territory"];
+        userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
+        userDetails.profileImage = [userData valueForKey:@"profile Image"];
         
         [localContext MR_saveToPersistentStoreAndWait];
         

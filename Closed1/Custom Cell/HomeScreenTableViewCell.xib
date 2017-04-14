@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="478" height="223"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="478" height="223"/>
+                <rect key="frame" x="0.0" y="0.0" width="478" height="222.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2S-8C-7Kv">
@@ -129,14 +129,31 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYk-l3-NYM">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="dde-ck-BtG"/>
+                                        </constraints>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0U-4U-mgy">
+                                        <rect key="frame" x="85" y="4" width="63" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="63" id="pcO-om-pfK"/>
+                                        </constraints>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="HSV-XP-y6Q" firstAttribute="top" secondItem="oLJ-Ss-MVz" secondAttribute="top" constant="8" id="1Oe-0O-FDV"/>
+                                    <constraint firstAttribute="bottom" secondItem="mYk-l3-NYM" secondAttribute="bottom" id="1jn-0U-twV"/>
+                                    <constraint firstItem="h0U-4U-mgy" firstAttribute="top" secondItem="oLJ-Ss-MVz" secondAttribute="top" constant="4" id="906-uh-oeg"/>
+                                    <constraint firstItem="mYk-l3-NYM" firstAttribute="leading" secondItem="oLJ-Ss-MVz" secondAttribute="leading" id="Bpk-CD-1Fj"/>
                                     <constraint firstItem="HSV-XP-y6Q" firstAttribute="leading" secondItem="vKJ-xV-NHZ" secondAttribute="trailing" constant="1" id="NmG-fE-iC3"/>
                                     <constraint firstItem="Wfe-yQ-yMr" firstAttribute="top" secondItem="oLJ-Ss-MVz" secondAttribute="top" constant="8" id="Pir-3U-dzI"/>
+                                    <constraint firstItem="mYk-l3-NYM" firstAttribute="top" secondItem="oLJ-Ss-MVz" secondAttribute="top" id="QkA-w4-ztk"/>
                                     <constraint firstItem="vKJ-xV-NHZ" firstAttribute="centerY" secondItem="oLJ-Ss-MVz" secondAttribute="centerY" constant="7" id="R9M-X3-2Pm"/>
                                     <constraint firstItem="ig0-Oe-O8d" firstAttribute="leading" secondItem="HSV-XP-y6Q" secondAttribute="trailing" constant="23" id="VTL-my-JOQ"/>
+                                    <constraint firstItem="h0U-4U-mgy" firstAttribute="leading" secondItem="mYk-l3-NYM" secondAttribute="trailing" constant="13" id="XMx-fh-tcx"/>
                                     <constraint firstItem="Wfe-yQ-yMr" firstAttribute="leading" secondItem="ig0-Oe-O8d" secondAttribute="trailing" constant="1" id="XjP-cR-RxA"/>
                                     <constraint firstAttribute="height" constant="55" id="fD9-OV-utR"/>
                                     <constraint firstItem="ig0-Oe-O8d" firstAttribute="centerY" secondItem="oLJ-Ss-MVz" secondAttribute="centerY" constant="7" id="fxa-cw-sFW"/>
@@ -201,9 +218,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="closed1Title" destination="UeL-z9-R2f" id="3J3-0t-rj1"/>
+                <outlet property="likeButton" destination="mYk-l3-NYM" id="d6f-Je-A1g"/>
                 <outlet property="likeCOuntLabel" destination="REm-Oe-uVv" id="YNZ-FR-ekW"/>
                 <outlet property="likeView" destination="HSV-XP-y6Q" id="zEN-rF-Lmh"/>
+                <outlet property="messageButton" destination="h0U-4U-mgy" id="BmM-gp-8qH"/>
                 <outlet property="messageCountLabel" destination="l8g-or-KOR" id="i8e-b8-BwB"/>
+                <outlet property="messageView" destination="Wfe-yQ-yMr" id="eOu-XT-Djn"/>
                 <outlet property="profileButton" destination="jFy-8V-bdq" id="1Ta-1g-UtS"/>
                 <outlet property="timingLabel" destination="3Pc-9R-dQC" id="kWF-75-FmO"/>
                 <outlet property="userNameLabel" destination="kt4-nx-MgP" id="5Ca-mr-5CY"/>

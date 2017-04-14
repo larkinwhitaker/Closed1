@@ -2,7 +2,7 @@
 //  ContactDetails+CoreDataProperties.m
 //  Closed1
 //
-//  Created by Nazim on 12/04/17.
+//  Created by Nazim on 14/04/17.
 //  Copyright © 2017 Alkurn. All rights reserved.
 //
 
@@ -17,8 +17,15 @@
 @dynamic company;
 @dynamic designation;
 @dynamic imageURL;
-@dynamic userName;
 @dynamic userID;
+@dynamic userName;
+@dynamic city;
+@dynamic country;
+@dynamic secondaryemail;
+@dynamic territory;
+@dynamic title;
+@dynamic userEmail;
+@dynamic userLogin;
 
 
 - (NSString *) firstLetter
@@ -36,6 +43,5 @@
     [self didAccessValueForKey:@"fullName"];
     return fullName;
 }
-
 
 @end

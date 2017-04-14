@@ -11,6 +11,7 @@
 #import "MagicalRecord.h"
 #import "UserDetails+CoreDataClass.h"
 #import "UIImageView+WebCache.h"
+#import "MBProgressHUD.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -38,6 +39,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)backButonTapped:(id)sender {
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - TableView Delegate Methods
 
@@ -58,10 +63,28 @@
     profileCell.companyLabel.text = userDetails.company;
     profileCell.roleLabel.text = userDetails.title;
     profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    [profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
     [profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
     [profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     return profileCell;
 }
+
+-(void)saveProfile: (id)sender
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Saving Profile";
+    hud.dimBackground = YES;
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(profileSavesSucessFully) userInfo:nil repeats:NO];
+}
+
+-(void)profileSavesSucessFully
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(void)displayAlertForChoosingCamera
 {
@@ -98,7 +121,7 @@
         
     }else{
         
-        [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Camera Fucntionality is avilable with your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+        [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Camera Fucntionality is not available with your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
     }
 }
 

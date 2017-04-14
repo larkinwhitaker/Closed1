@@ -109,6 +109,7 @@
 		AD93F7F91E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D61E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m */; };
 		AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D91E8823B7008488B9 /* MagicalRecordInternal.m */; };
 		AD93F7FB1E8823B7008488B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */; };
+		ADA091C61EA11B09005E9975 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA091C51EA11B09005E9975 /* CommentListViewController.m */; };
 		ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5CACA1E879E94000DF38D /* WebViewController.m */; };
 		ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */; };
 		ADA806DB1E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */; };
@@ -378,6 +379,8 @@
 		AD93F7DC1E8823B7008488B9 /* MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecord.h; sourceTree = "<group>"; };
 		AD93F7DE1E8823B7008488B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		ADA091C41EA11B09005E9975 /* CommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListViewController.h; sourceTree = "<group>"; };
+		ADA091C51EA11B09005E9975 /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
 		ADA5CAC41E879D78000DF38D /* Closed1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Closed1-Bridging-Header.h"; sourceTree = "<group>"; };
 		ADA5CAC91E879E94000DF38D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		ADA5CACA1E879E94000DF38D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
@@ -728,6 +731,8 @@
 				ADA806E61E902DAE009C0B38 /* ProfileVisibilityViewController.m */,
 				ADBE898D1E9FF9B100B8D05F /* UserProfileViewController.h */,
 				ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */,
+				ADA091C41EA11B09005E9975 /* CommentListViewController.h */,
+				ADA091C51EA11B09005E9975 /* CommentListViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1408,6 +1413,7 @@
 				AD93F7EC1E8823B7008488B9 /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
 				AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */,
 				AD93F7E01E8823B7008488B9 /* MagicalImportFunctions.m in Sources */,
+				ADA091C61EA11B09005E9975 /* CommentListViewController.m in Sources */,
 				AD93F7F31E8823B7008488B9 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				ADACED721E9BFE06001A9F4A /* UIImageView+WebCache.m in Sources */,
 				AD93F7E21E8823B7008488B9 /* NSEntityDescription+MagicalDataImport.m in Sources */,

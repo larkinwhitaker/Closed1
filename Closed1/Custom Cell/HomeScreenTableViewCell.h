@@ -19,5 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
 @property (strong, nonatomic) IBOutlet UILabel *timingLabel;
 @property (strong, nonatomic) IBOutlet UIView *likeView;
+@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+@property (strong, nonatomic) IBOutlet UIButton *messageButton;
+@property (strong, nonatomic) IBOutlet UIView *messageView;
 
 @end

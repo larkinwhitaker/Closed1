@@ -13,6 +13,7 @@
 #import "HomeScreenTableViewCell.h"
 #import "ClosedResverResponce.h"
 #import "MBProgressHUD.h"
+#import "HomeScreenViewController.h"
 
 
 @interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate>
@@ -100,7 +101,7 @@
 {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-        return 362;
+        return 307 + [HomeScreenViewController findHeightForText:_singleContact.territory havingWidth:self.view.frame.size.width/2 andFont:[UIFont systemFontOfSize:18.0]];
     }else{
         return 223;
     }
@@ -119,9 +120,9 @@
     _profileDetails.userName.text = _singleContact.userName;
     [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
     [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    _profileDetails.territoryLabel.text = @"Not Found";
-    _profileDetails.previosRoleLabel.text = @"Not Found";
-    _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", _singleContact.designation, @"Not found"];
+    _profileDetails.territoryLabel.text = _singleContact.territory;
+    _profileDetails.previosRoleLabel.text = _singleContact.designation;
+    _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", _singleContact.designation, _singleContact.company];
     
         [self.segmentedControl addTarget:self action:@selector(segmentedControlTaped:) forControlEvents:UIControlEventValueChanged];
         

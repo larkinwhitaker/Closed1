@@ -102,11 +102,19 @@
                 
                 
                 ContactDetails *contact = [ContactDetails MR_createEntity];
-                contact.userName = [entity valueForKey:@"contact"];
                 contact.company = [entity valueForKey:@"company"];
                 contact.designation = [entity valueForKey:@"title"];
+                
                 contact.imageURL = [entity valueForKey:@"profile_image_url"];
                 contact.userID = [[entity valueForKey:@"user_id"] integerValue];
+                contact.userName = [entity valueForKey:@"contact"];
+                contact.city = [entity valueForKey:@"city"];
+                contact.country = [entity valueForKey:@"country"];
+                contact.secondaryemail = [entity valueForKey:@"secondary_email"];
+                contact.territory = [entity valueForKey:@"territory"];
+                contact.title = [entity valueForKey:@"title"];
+                contact.userEmail = [entity valueForKey:@"user email"];
+
             }
             
             //    }

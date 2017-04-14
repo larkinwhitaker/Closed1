@@ -18,6 +18,7 @@
 #import "WebViewController.h"
 #import "MBProgressHUD.h"
 #import "UserProfileViewController.h"
+#import "CommentListViewController.h"
 
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
@@ -55,20 +56,17 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
+        _feedsArray = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            _feedsArray = [serverResponce valueForKey:@"user_data"];
 
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tablView reloadData];
         });
-
         
     });
     
-   
     
     
 }
@@ -107,7 +105,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250;
+    CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
+    
+    NSLog(@"%f", heightOfText);
+    return heightOfText+207;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,7 +129,22 @@
     
     NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"like"] integerValue];
     
-//    homeCell.userProfileCOmmnet.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"type"];
+    homeCell.userProfileCOmmnet.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"];
+    
+    homeCell.messageButton.tag = indexPath.row;
+    [homeCell.messageButton addTarget:self action:@selector(messageButonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSInteger messageCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"message_count"] integerValue];
+    
+    if (messageCount == 0) {
+        
+        homeCell.messageView.hidden = YES;
+        
+    }else{
+        
+        homeCell.messageView.hidden = NO;
+        homeCell.messageCountLabel.text = [NSString stringWithFormat:@"%zd", messageCount];
+    }
     
     if (likeCount == 0) {
         homeCell.likeView.hidden = YES;
@@ -136,7 +152,7 @@
         
     }else{
         homeCell.likeView.hidden = NO;
-
+        
         homeCell.likeCOuntLabel.text = [NSString stringWithFormat:@"%zd", likeCount];
     }
     
@@ -145,6 +161,13 @@
     return homeCell;
 }
 
+
+-(void)messageButonTapped: (UIButton *)sender
+{
+    CommentListViewController *commentListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CommentListViewController"];
+    commentListVC.feedsDetails= [self.feedsArray objectAtIndex:sender.tag];
+    [self.navigationController pushViewController:commentListVC animated:YES];
+}
 
 -(void)userImageButtonTapped: (id)sender
 {
@@ -157,5 +180,23 @@
     
 }
 
++ (CGFloat)findHeightForText:(NSString *)text havingWidth:(CGFloat)widthValue andFont:(UIFont *)font
+{
+    CGFloat result = font.pointSize + 4;
+    if (text)
+    {
+        CGSize textSize = { widthValue, CGFLOAT_MAX };       //Width and height of text area
+        CGSize size;
+        
+        //iOS 7
+        CGRect frame = [text boundingRectWithSize:textSize
+                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{ NSFontAttributeName:font }
+                                          context:nil];
+        size = CGSizeMake(frame.size.width, frame.size.height+1);
+        result = MAX(size.height, result); //At least one row
+    }
+    return result;
+}
 
 @end
