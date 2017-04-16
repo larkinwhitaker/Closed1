@@ -51,7 +51,7 @@
                                 <rect key="frame" x="0.0" y="66" width="444" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed1: REYDELL FINANCIAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-z9-R2f">
-                                        <rect key="frame" x="27" y="4" width="253.5" height="21.5"/>
+                                        <rect key="frame" x="8" y="4" width="428" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -59,7 +59,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.70980392160000005" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="UeL-z9-R2f" firstAttribute="leading" secondItem="KaQ-aC-jjM" secondAttribute="leading" constant="27" id="BhP-5i-bwz"/>
+                                    <constraint firstItem="UeL-z9-R2f" firstAttribute="leading" secondItem="KaQ-aC-jjM" secondAttribute="leading" constant="8" id="BhP-5i-bwz"/>
+                                    <constraint firstAttribute="trailing" secondItem="UeL-z9-R2f" secondAttribute="trailing" constant="8" id="Ig1-EK-eQ0"/>
                                     <constraint firstItem="UeL-z9-R2f" firstAttribute="centerY" secondItem="KaQ-aC-jjM" secondAttribute="centerY" id="Lax-7g-LtM"/>
                                     <constraint firstAttribute="height" constant="28" id="ubc-zU-s8f"/>
                                 </constraints>
@@ -166,6 +167,12 @@
                                     <constraint firstAttribute="height" constant="50" id="k4r-nu-K45"/>
                                     <constraint firstAttribute="width" constant="50" id="pQt-Uf-pKm"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Engineer @Alkurn Technologies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-9R-dQC">
                                 <rect key="frame" x="66" y="47.5" width="370" height="12"/>
@@ -219,6 +226,7 @@
             <connections>
                 <outlet property="closed1Title" destination="UeL-z9-R2f" id="3J3-0t-rj1"/>
                 <outlet property="likeButton" destination="mYk-l3-NYM" id="d6f-Je-A1g"/>
+                <outlet property="likeButtonView" destination="vKJ-xV-NHZ" id="f3E-Q8-zIy"/>
                 <outlet property="likeCOuntLabel" destination="REm-Oe-uVv" id="YNZ-FR-ekW"/>
                 <outlet property="likeView" destination="HSV-XP-y6Q" id="zEN-rF-Lmh"/>
                 <outlet property="messageButton" destination="h0U-4U-mgy" id="BmM-gp-8qH"/>

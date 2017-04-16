@@ -8,8 +8,13 @@
 
 #import "ShareViewController.h"
 #import "JVFloatLabeledTextView.h"
+#import "ClosedResverResponce.h"
+#import "UserDetails+CoreDataClass.h"
+#import "MBProgressHUD.h"
+#import "MagicalRecord.h"
 
-@interface ShareViewController ()<UITextViewDelegate>
+
+@interface ShareViewController ()<UITextViewDelegate, ServerFailedDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *shareDealButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextView *nametextView;
@@ -56,12 +61,85 @@
     [self.view addSubview:navBar];
     
 }
+- (IBAction)shareDealTapped:(id)sender {
+    
+    if ([[self.nametextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        
+        
+    }else if ([[self.commentTextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0){
+        
+    }else{
+        
+        [self submitDatatToServer];
+    }
+}
+
+-(void)submitDatatToServer
+{
+    
+
+   
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Posting feed";
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    [ClosedResverResponce sharedInstance].delegate = self;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text] DictionartyToServer:@{}];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"%@", serverResponce);
+            
+            if ([serverResponce valueForKey:@"success"] != nil ) {
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    self.commentTextView.text = @"";
+                    self.nametextView.text = @"";
+                    
+                    [self.tabBarController setSelectedIndex:0];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
+                }else{
+                    
+                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to post feed. Please try again later."];
+
+                }
+            }else{
+                
+                [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to post feed. Please try again later."];
+                
+            }
+            
+        });
+    });
+     
+    
+}
 
 #pragma mark - TextView Delegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     return textView.text.length + (text.length - range.length) <= 125;
+}
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
+    });
+    
 }
 
 @end

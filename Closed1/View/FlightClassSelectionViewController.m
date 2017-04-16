@@ -97,7 +97,7 @@ static NSString * const cellIdentifier = @"PassengerViewCell";
     UINavigationBar *custumNavigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     [custumNavigationBar  setTintColor:[UIColor whiteColor]];
     [custumNavigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [custumNavigationBar setBarTintColor:[UIColor colorWithRed:225.0/255.0 green:60.0/255.0 blue:80.0/255.0 alpha:1.0]];
+    [custumNavigationBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
     custumNavigationBar.translucent = NO;
     
     UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
@@ -108,7 +108,7 @@ static NSString * const cellIdentifier = @"PassengerViewCell";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseNavigationImage"] style:UIBarButtonItemStylePlain  target:self action:@selector(dismissViewController)];
     navigationItem.leftBarButtonItem = leftButton;
-    [navigationItem setTitle:self.title];
+    [navigationItem setTitle:@""];
     custumNavigationBar.items = @[navigationItem];
     
     [self.view addSubview:custumNavigationBar];

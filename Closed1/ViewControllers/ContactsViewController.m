@@ -572,6 +572,7 @@
     }
     
     profileDetail.singleContact = contact;
+    profileDetail.userid = contact.userID;
     
     
     [self.navigationController pushViewController:profileDetail animated:YES];

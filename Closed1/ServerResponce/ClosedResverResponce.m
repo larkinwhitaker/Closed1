@@ -54,7 +54,12 @@
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
-    NSURL *URL = [NSURL URLWithString:url];
+//    NSURL *URL = [NSURL URLWithString:url];
+    
+    NSString *myUnencodedString = url;
+    NSString *encodedString = [myUnencodedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *URL = [[NSURL alloc] initWithString:encodedString];
+    
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:URL];
     

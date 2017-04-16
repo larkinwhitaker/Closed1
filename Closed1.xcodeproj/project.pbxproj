@@ -15,6 +15,7 @@
 		AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */; };
 		AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */; };
 		AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */; };
+		AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5349391EA2820E005DF686 /* LikeSelectedImage.png */; };
 		AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DC91E86DADB00C3B4B6 /* main.m */; };
 		AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCC1E86DADB00C3B4B6 /* AppDelegate.m */; };
 		AD7A5DD01E86DADB00C3B4B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCF1E86DADB00C3B4B6 /* ViewController.m */; };
@@ -179,6 +180,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AD88A5251EA377EE00C7A640 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		163C2FD7DFD47CB6C4B66EF2 /* Pods-Closed1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1UITests/Pods-Closed1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		46A792F364352342C225F3F2 /* Pods-Closed1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +209,7 @@
 		AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
 		AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		AD5349391EA2820E005DF686 /* LikeSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeSelectedImage.png; sourceTree = "<group>"; };
 		AD7A5DC51E86DADB00C3B4B6 /* Closed1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closed1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7A5DC91E86DADB00C3B4B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7A5DCB1E86DADB00C3B4B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -219,6 +234,9 @@
 		AD7E36D01E9D5601004B1215 /* NavigationBarImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarImage.png; sourceTree = "<group>"; };
 		AD7E36D21E9D56A3004B1215 /* SliderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderImage.png; sourceTree = "<group>"; };
 		AD84F38F1E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-03 at 10.45.57 PM.png"; sourceTree = "<group>"; };
+		AD88A51B1EA377EE00C7A640 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		AD88A51C1EA377EE00C7A640 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		AD88A51E1EA377EE00C7A640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD904E2A1E90D59E0096AA4E /* ClosedResverResponce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedResverResponce.h; sourceTree = "<group>"; };
 		AD904E2B1E90D59E0096AA4E /* ClosedResverResponce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedResverResponce.m; sourceTree = "<group>"; };
 		AD933A191E9E8093002FE9FF /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -520,6 +538,7 @@
 				AD7A5DC71E86DADB00C3B4B6 /* Closed1 */,
 				AD7A5DE41E86DADC00C3B4B6 /* Closed1Tests */,
 				AD7A5DEF1E86DADC00C3B4B6 /* Closed1UITests */,
+				AD88A51A1EA377EE00C7A640 /* OneSignalNotificationServiceExtension */,
 				AD7A5DC61E86DADB00C3B4B6 /* Products */,
 				FD435DACCFD109334A8444EC /* Pods */,
 				8925BBA90190DC31F38CA276 /* Frameworks */,
@@ -588,6 +607,16 @@
 				AD7A5DF21E86DADC00C3B4B6 /* Info.plist */,
 			);
 			path = Closed1UITests;
+			sourceTree = "<group>";
+		};
+		AD88A51A1EA377EE00C7A640 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AD88A51B1EA377EE00C7A640 /* NotificationService.h */,
+				AD88A51C1EA377EE00C7A640 /* NotificationService.m */,
+				AD88A51E1EA377EE00C7A640 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		AD904E261E90D51B0096AA4E /* ServerResponce */ = {
@@ -740,6 +769,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD5349391EA2820E005DF686 /* LikeSelectedImage.png */,
 				AD933A501E9EA2B8002FE9FF /* CallWhiteImage.png */,
 				AD7E36D21E9D56A3004B1215 /* SliderImage.png */,
 				AD7E36D01E9D5601004B1215 /* NavigationBarImage.png */,
@@ -1094,6 +1124,7 @@
 				59E4F0AE8C6240432D5343CF /* [CP] Embed Pods Frameworks */,
 				27B3E5079D362DFB0DCDFE3F /* [CP] Copy Pods Resources */,
 				ADCED86F1E8ACD9500B9A06A /* ShellScript */,
+				AD88A5251EA377EE00C7A640 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1207,6 +1238,7 @@
 				AD93F75A1E87FD78008488B9 /* admin-logo.png in Resources */,
 				AD84F3901E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png in Resources */,
 				AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */,
+				AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */,
 				ADEAE0351E89925A00D36B55 /* 1220-128.png in Resources */,
 				ADEAE03D1E89979600D36B55 /* friends-128.png in Resources */,
 				ADCED86B1E8AC10C00B9A06A /* TableViewDiscloserImage.png in Resources */,
