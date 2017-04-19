@@ -88,12 +88,21 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&ID=%lld", userDetails.userID] DictionartyToServer:@{}];
+#pragma mark - Remove Demo Code
+        
+        
+//        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            NSArray *arrayOfContacts = [self getDataFromLocalJSONFileForEntity:@"Contacts"];
+            if ([[arrayOfContacts valueForKey:@"success"] integerValue] == 1) {
+
+            
+            
             NSArray *contactList = [arrayOfContacts valueForKey:@"data"];
+            
             
             for (NSDictionary * entity in contactList) {
                 
@@ -104,30 +113,26 @@
                 ContactDetails *contact = [ContactDetails MR_createEntity];
                 contact.company = [entity valueForKey:@"company"];
                 contact.designation = [entity valueForKey:@"title"];
-                
                 contact.imageURL = [entity valueForKey:@"profile_image_url"];
                 contact.userID = [[entity valueForKey:@"user_id"] integerValue];
                 contact.userName = [entity valueForKey:@"contact"];
-                contact.city = [entity valueForKey:@"city"];
-                contact.country = [entity valueForKey:@"country"];
-                contact.secondaryemail = [entity valueForKey:@"secondary_email"];
-                contact.territory = [entity valueForKey:@"territory"];
                 contact.title = [entity valueForKey:@"title"];
-                contact.userEmail = [entity valueForKey:@"user email"];
-
+                
             }
             
             //    }
             
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"It seems that no contacts has been added in your account yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+            }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
         });
-        
-        
-    });
     
+    });
    
 
 }
@@ -214,6 +219,7 @@
     [self.fetchedResultsController performFetch:nil];
     [self tableViewReloadDataWithAnimation:YES];
 
+   
     
 }
 
@@ -370,7 +376,7 @@
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
-        controller.body = @"Hey i would you like to invite for using Closed 1 app. Please find a below link to install.";
+        controller.body = @"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join";
         controller.recipients = filteredContacts;
         controller.messageComposeDelegate = self;
         [controller didMoveToParentViewController:self];
@@ -390,7 +396,7 @@
         
         [mailCont setSubject:@"Invitations for Closed1"];
         [mailCont setToRecipients:contactList];
-        [mailCont setMessageBody:@"Please install the app by clicking on below link." isHTML:NO];
+        [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
         
         [self presentModalViewController:mailCont animated:YES];
         
@@ -571,7 +577,7 @@
         
     }
     
-    profileDetail.singleContact = contact;
+//    profileDetail.singleContact = contact;
     profileDetail.userid = contact.userID;
     
     
@@ -610,11 +616,13 @@
 }
 
 
--(NSData *)getDataFromLocalJSONFileForEntity:(NSString *)entityName
+-(NSArray *)getDataFromLocalJSONFileForEntity:(NSString *)entityName
 {
     NSString * filePath = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@",entityName] ofType:@"json"];
     NSData * data = [NSData dataWithContentsOfFile:filePath];
-    return data;
+    NSArray *dataFromlLocal = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+
+    return dataFromlLocal;
 }
 
 

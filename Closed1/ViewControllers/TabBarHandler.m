@@ -24,8 +24,6 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileUpdatedSucessFully) name:@"ProfileEdited" object:nil];
-//    [self setViewControllers:@[homeScreen, navController5]];
-    
     
     ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
     
@@ -38,10 +36,7 @@
     SettingsViewController *settings = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
     
     self.viewControllers = @[homeScreen, contactScreen, searchView, shareDeal, settings];
-    
-    
-    
-    
+        
 }
 
 -(void)viewWillAppear:(BOOL)animated

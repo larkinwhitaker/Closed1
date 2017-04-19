@@ -12,6 +12,7 @@
 @interface EditProfileTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailTextField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *secondaryEmail;
 
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *fullNameTextField;
 

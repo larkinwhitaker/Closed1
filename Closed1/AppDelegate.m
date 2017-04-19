@@ -11,13 +11,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "MagicalRecord.h"
+#import "utilities.h"
 
-@import UserNotifications;
-
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
-
-@interface AppDelegate ()<UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<SINServiceDelegate, SINCallClientDelegate>
 
 @end
 
@@ -31,33 +27,88 @@
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Closed1"];
     
-
+#pragma mark - Chatting View
+    
+    
+    // Firebase initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [FIRApp configure];
+    [FIRDatabase database].persistenceEnabled = NO;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // Google login initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // Facebook login initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
     
     //---------------------------------------------------------------------------------------------------------------------------------------------
     // Push notification initialization
     //---------------------------------------------------------------------------------------------------------------------------------------------
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
-        UIUserNotificationType allNotificationTypes =
-        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        // iOS 10 or later
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-        UNAuthorizationOptions authOptions =UNAuthorizationOptionAlert| UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
-        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            
-        }
-         ];
-        
-        // For iOS 10 display notification (sent via APNS)
-        [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        
-        
-#endif
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.0"))
+    {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge)
+                              completionHandler:^(BOOL granted, NSError *error)
+         {
+             if (error == nil) [[UIApplication sharedApplication] registerForRemoteNotifications];
+         }];
     }
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    if (SYSTEM_VERSION_LESS_THAN(@"10.0"))
+    {
+        if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+        {
+            UIUserNotificationType userNotificationTypes = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+            [application registerUserNotificationSettings:settings];
+            [application registerForRemoteNotifications];
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // OneSignal initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [OneSignal initWithLaunchOptions:launchOptions appId:ONESIGNAL_APPID handleNotificationReceived:nil handleNotificationAction:nil
+                            settings:@{kOSSettingsKeyInAppAlerts:@NO}];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [OneSignal setLogLevel:ONE_S_LL_NONE visualLevel:ONE_S_LL_NONE];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // This can be removed once Firebase auth issue is resolved
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    if ([UserDefaults boolForKey:@"Initialized"] == NO)
+    {
+        [UserDefaults setObject:@YES forKey:@"Initialized"];
+        [FUser logOut];
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // Connection, Location initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [Connection shared];
+    [Location shared];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    // Realm initialization
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [CallHistories shared];
+    [Groups shared];
+    [Recents shared];
+    [Users shared];
+    [UserStatuses shared];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
     
     
     return YES;
@@ -73,6 +124,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [Location stop];
+    UpdateLastTerminate(YES);
 
 }
 
@@ -84,6 +138,24 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [Location start];
+    UpdateLastActive();
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [FBSDKAppEvents activateApp];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [OneSignal IdsAvailable:^(NSString *userId, NSString *pushToken)
+     {
+         if (pushToken != nil)
+             [UserDefaults setObject:userId forKey:ONESIGNALID];
+         else [UserDefaults removeObjectForKey:ONESIGNALID];
+         UpdateOneSignalId();
+     }];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [CacheManager cleanupExpired];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [NotificationCenter post:NOTIFICATION_APP_STARTED];
+
     
 }
 
@@ -163,7 +235,10 @@
         return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
     
-    return YES;
+    if ([url.absoluteString containsString:@"google"])
+        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 

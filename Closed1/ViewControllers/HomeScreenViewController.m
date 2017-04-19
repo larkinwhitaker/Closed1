@@ -22,13 +22,17 @@
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
 #import "ProfileDetailViewController.h"
+#import "NavigationController.h"
+#import "ChatsView.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tablView;
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
+@property (strong, nonatomic) IBOutlet UIView *messageCountView;
 
+@property (strong, nonatomic) IBOutlet UILabel *messageCountLabel;
 @property(nonatomic) NSMutableArray *feedsArray;
 
 @end
@@ -49,7 +53,170 @@
     
     [self getFeedsArray];
     
+#pragma mark - Uncommnet this Method
+//    [self getLoginWithChattingView];
     
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
+   RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
+    
+    NSInteger total = 0;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    for (DBRecent *dbrecent in dbrecents)
+        total += dbrecent.counter;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    UITabBarItem *item = self.tabBarController.tabBar.items[0];
+    
+    if (total != 0) {
+        self.messageCountLabel.hidden = NO;
+        self.messageCountView.hidden = NO;
+        self.messageCountLabel.text = [NSString stringWithFormat:@"%zd", total];
+        
+    }else{
+        self.messageCountLabel.hidden = YES;
+        self.messageCountView.hidden = YES;
+    }
+    
+}
+
+-(void)getLoginWithChattingView
+{
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    
+    if ([FUser currentId] != nil) {
+        
+        
+        
+        if ([FUser isOnboardOk])
+        {
+            
+        }
+        else{
+            
+            [self saveUserDetails];
+
+            
+            [ProgressHUD dismiss];
+
+        }
+        
+        
+    }else{
+        
+        
+#pragma mark - Demo Login Code
+        
+        
+        NSString *email = userDetails.userEmail;
+        NSString *password = userDetails.userEmail;
+        
+        if(userDetails.userEmail != nil) email = userDetails.userEmail;
+        
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
+        if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        LogoutUser(DEL_ACCOUNT_NONE);
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        [ProgressHUD show:nil Interaction:NO];
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        [FUser signInWithEmail:email password:password completion:^(FUser *user, NSError *error)
+         {
+             if (error == nil)
+             {
+                 [Account add:email password:password];
+                 UserLoggedIn(LOGIN_EMAIL);
+                 [self saveUserDetails];
+
+                 [ProgressHUD dismiss];
+
+             }
+             else{
+                 
+#pragma mark - Sign up Code
+                 
+                 //---------------------------------------------------------------------------------------------------------------------------------------------
+                 if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
+                 if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
+                 //---------------------------------------------------------------------------------------------------------------------------------------------
+                 LogoutUser(DEL_ACCOUNT_NONE);
+                 //---------------------------------------------------------------------------------------------------------------------------------------------
+                 [ProgressHUD show:nil Interaction:YES];
+                 //---------------------------------------------------------------------------------------------------------------------------------------------
+                 [FUser createUserWithEmail:email password:password completion:^(FUser *user, NSError *error)
+                  {
+                      if (error == nil)
+                      {
+                          [Account add:email password:password];
+                          UserLoggedIn(LOGIN_EMAIL);
+                          
+                          [self saveUserDetails];
+                          [ProgressHUD dismiss];
+
+                          
+                          
+                      }
+                      else [ProgressHUD showError:[error description]];
+                  }];
+                 
+                 
+                 
+             }
+         }];
+        
+        
+        
+    }
+    
+    
+    
+}
+
+-(void)saveUserDetails{
+
+    
+        if ([FUser isOnboardOk])
+        {
+            
+        }
+        else{
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+
+    FUser *user = [FUser currentUser];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    NSString *fullname = @"Demo User";
+    NSString *phone = @"1234567890";
+    NSString *country = @"India";
+            
+    if(userDetails.phoneNumber != nil) phone = userDetails.phoneNumber;
+    if(userDetails.country != nil) country = userDetails.country;
+
+    
+    if(userDetails.firstName != nil) fullname = [NSString stringWithFormat:@"%@", userDetails.firstName];
+    
+    NSString *firstName = @"Demo";
+    NSString *lastName = @"User";
+    NSString *location = @"Not present";
+    
+    if(userDetails.firstName != nil) firstName = userDetails.firstName;
+    if(userDetails.lastName != nil ) lastName = userDetails.lastName;
+    
+    
+    user[FUSER_FULLNAME] = fullname;
+    user[FUSER_FIRSTNAME] = firstName;
+    user[FUSER_LASTNAME] = lastName;
+    user[FUSER_COUNTRY] = country;
+    user[FUSER_LOCATION] = location;
+    user[FUSER_PHONE] = phone;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [user saveInBackground:^(NSError *error)
+     {
+         if (error != nil) [ProgressHUD showError:@"Network error."];
+     }];
+
+    }
+
 }
 
 -(void)getFeedsArray
@@ -103,7 +270,12 @@
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
+    ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
     
+    NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
+    
+//    [self presentViewController:navController1 animated:YES completion:nil];
+
     
 }
 - (IBAction)profileButtonTapped:(id)sender {
@@ -126,7 +298,7 @@
     CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
     
     NSLog(@"%f", heightOfText);
-    return heightOfText+207;
+    return heightOfText+230;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,15 +318,17 @@
     
     homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
     
-    homeCell.closed1Title.text = [NSString stringWithFormat:@"Closed1: %@",[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
+    homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
     
     [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    homeCell.profileButton.tag  = indexPath.row;
     
     homeCell.timingLabel.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"date_recorded"];
     
     NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
     
-    homeCell.userProfileCOmmnet.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"];
+    
+    homeCell.userProfileCOmmnet.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"];
     
     homeCell.messageButton.tag = indexPath.row;
     [homeCell.messageButton addTarget:self action:@selector(messageButonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -247,12 +421,13 @@
 -(void)userImageButtonTapped: (UIButton *)sender
 {
     
-//   ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
-//    
-//    profileDetail.userid = [[[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
-//    
-//    profileDetail.userid = 14;
-//    [self.navigationController pushViewController:profileDetail animated:YES];
+   ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
+    
+    profileDetail.userid = [[[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
+    
+    NSLog(@"Userd id : %zd",[[[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue]);
+    
+    [self.navigationController pushViewController:profileDetail animated:YES];
     
 }
 

@@ -16,14 +16,16 @@
 #import "HomeScreenViewController.h"
 #import "CommentListViewController.h"
 #import "WebViewController.h"
+#import "ChatView.h"
+#import "NavigationController.h"
 
-
-@interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate>
+@interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate, ServerFailedDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property(nonatomic) ProfileDetailsCell *profileDetails;
 @property(nonatomic) NSMutableArray *feedsArray;
+@property(nonatomic) NSDictionary *userDetails;
 
 
 @end
@@ -32,14 +34,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSLog(@"%@", _singleContact);
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Fetching details";
+    self.tableView.hidden = YES;
+    
+    [ClosedResverResponce sharedInstance].delegate = self;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *serverREsponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_data&user_id=%zd", self.userid] DictionartyToServer:@{}];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([serverREsponce valueForKey:@"success"] != nil) {
+                
+                if ([[serverREsponce valueForKey:@"success"] integerValue] == 1) {
+                    self.tableView.hidden = NO;
+                    self.userDetails = [serverREsponce valueForKey:@"data"];
+                }else{
+                    
+                    [self serverFailedWithTitle:@"Failed to fetch profile" SubtitleString:@"We are unable to process your request at this time. Please try again later."];
+                }
+            }else{
+                
+                [self serverFailedWithTitle:@"Failed to fetch profile" SubtitleString:@"We are unable to process your request at this time. Please try again later."];
+            }
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self.tableView reloadData];
+        });
+    });
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HomeScreenTableViewCell" bundle:nil] forCellReuseIdentifier:@"HomeScreenTableViewCell"];
-
+    
     
     [self createCustumNavigationBar];
-   
+    
+    self.tableView.estimatedRowHeight = 362;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
 }
 
 - (void)createCustumNavigationBar
@@ -91,7 +125,7 @@
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
         return 1;
-
+        
     }else{
         
         return _feedsArray.count;
@@ -103,9 +137,12 @@
 {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-        return 207 + [HomeScreenViewController findHeightForText:_singleContact.territory havingWidth:self.view.frame.size.width/2 andFont:[UIFont systemFontOfSize:18.0]];
+        return 307 + [HomeScreenViewController findHeightForText:[self.userDetails valueForKey:@"territory"] havingWidth:self.view.frame.size.width/2 andFont:[UIFont systemFontOfSize:18.0]];
     }else{
-        return 223;
+        CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
+        
+        NSLog(@"%f", heightOfText);
+        return heightOfText+207;
     }
 }
 
@@ -114,21 +151,24 @@
     
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-    
-    
-    _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
-    
-    [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:self.singleContact.imageURL] placeholderImage:[UIImage imageNamed:@""]];
-    _profileDetails.userName.text = _singleContact.userName;
-    [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
-    [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    _profileDetails.territoryLabel.text = _singleContact.territory;
-    _profileDetails.previosRoleLabel.text = _singleContact.designation;
-    _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", _singleContact.designation, _singleContact.company];
-    
+        NSLog(@"%@", _userDetails);
+        
+        _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
+        
+        
+        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"imageURL"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+        _profileDetails.userName.text = [self.userDetails valueForKey:@"userName"];
+        [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
+        [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        _profileDetails.territoryLabel.text = [self.userDetails valueForKey:@"territory"];
+        _profileDetails.previosRoleLabel.text = [self.userDetails valueForKey:@"designation"];
+        _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", [self.userDetails valueForKey:@"title"], [self.userDetails valueForKey:@"company"]];
+        
+        NSLog(@"%@",[self.userDetails valueForKey:@"designation"] );
+        
         [self.segmentedControl addTarget:self action:@selector(segmentedControlTaped:) forControlEvents:UIControlEventValueChanged];
         
-    return _profileDetails;
+        return _profileDetails;
         
     }else{
         HomeScreenTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeScreenTableViewCell"];
@@ -259,25 +299,82 @@
 
 -(void)callButttonTapped: (id)sender
 {
-    NSString *phoneNumber = [@"tel://" stringByAppendingString:@"1234567890"];
+    NSString *userPhone = [_userDetails valueForKey:@"phone"];
+    NSString *phoneNumber = [@"tel://" stringByAppendingString:userPhone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
 }
 
 -(void)messageButtonTapped: (id)sender
+{
+    
+#pragma mark - For Now Chatting Disabled
+    
+    [self sendInVites];
+    /*
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", [self.userDetails valueForKey:@"user_email"]];
+    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
+    
+    NSLog(@"%@", dbuser);
+    
+    if (dbuser.objectId != nil) {
+        
+        [self didSelectSingleUser:dbuser];
+    }else{
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"It seems the user you are connecting with haven't installed the \"Closed1\" App" message:@"would you like to send invite to him?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [self sendInVites];
+        }]];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+
+//    NSDictionary *dictionary = [Chat startPrivate:dbuser2];
+//    [self actionChat:dictionary];
+
+
+*/
+}
+
+
+-(void)sendInVites
 {
     if([MFMailComposeViewController canSendMail]) {
         
         MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
         mailCont.mailComposeDelegate = self;
         
-        [mailCont setSubject:@""];
+        [mailCont setSubject:[self.userDetails valueForKey:@"user_email"]];
         [mailCont setToRecipients:@[]];
-        [mailCont setMessageBody:@"" isHTML:NO];
+        [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
         
         [self presentViewController:mailCont animated:YES completion:nil];
         
     }
+    
+}
 
+- (void)didSelectSingleUser:(DBUser *)dbuser2
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDictionary *dictionary = [Chat startPrivate:dbuser2];
+    [self actionChat:dictionary];
+}
+
+- (void)actionChat:(NSDictionary *)dictionary
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    ChatView *chatView = [[ChatView alloc] initWith:dictionary];
+    chatView.hidesBottomBarWhenPushed = YES;
+    NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatView];
+    
+    [self presentViewController:navController1 animated:YES completion:nil];
 }
 
 #pragma mark - Mail Delegates
@@ -338,6 +435,20 @@
     
 }
 
+#pragma mark - Sserver Failed
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:subtitle preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDestructive handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
 
 
 @end

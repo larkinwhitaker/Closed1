@@ -12,6 +12,7 @@
 #import "UserDetails+CoreDataClass.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
+#import "ClosedResverResponce.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -149,6 +150,52 @@
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Camera Fucntionality is avilable with your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
     }
+}
+
+-(IBAction)deleteButtonTapped:(id)sender
+{
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to delete?" message:@"Deleting your account will delete all of the content you have created. It will be completely irrecoverable." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"Deleting..";
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{}];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                
+                if ([[responce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [UserDetails MR_truncateAll];
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to Delete Profile" message:@"We are getting some issu while deleting your profile. Please try again later" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                }
+                
+                
+                
+            });
+        });
+        
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 #pragma mark - Image Picker Delegate

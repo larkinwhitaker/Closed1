@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
+#import "ClosedResverResponce.h"
+#import "MBProgressHUD.h"
 
 @interface CommentListViewController ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
@@ -157,7 +159,31 @@
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please Enter the comment" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }else{
         
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"Posting Comment";
+        
         [self.messageArray insertObject:@{@"profile_image_url": user.profileImage, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]} atIndex:2];
+        
+        NSString *URL = [NSString stringWithFormat:@" http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[self.feedsDetails valueForKey:@""], _commnetText];
+        
+        NSLog(@"%@", URL);
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: URL DictionartyToServer:@{}];
+            
+            NSLog(@"%@", serverResponce);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            });
+            
+        });
+        
+        
+        
         
         [self.tableView reloadData];
     }

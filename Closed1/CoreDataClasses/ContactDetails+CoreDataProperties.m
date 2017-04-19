@@ -2,7 +2,7 @@
 //  ContactDetails+CoreDataProperties.m
 //  Closed1
 //
-//  Created by Nazim on 14/04/17.
+//  Created by Nazim on 19/04/17.
 //  Copyright © 2017 Alkurn. All rights reserved.
 //
 
@@ -14,34 +14,19 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ContactDetails"];
 }
 
-@dynamic company;
 @dynamic designation;
 @dynamic imageURL;
+@dynamic title;
 @dynamic userID;
 @dynamic userName;
-@dynamic city;
-@dynamic country;
-@dynamic secondaryemail;
-@dynamic territory;
-@dynamic title;
+@dynamic company;
 @dynamic userEmail;
-@dynamic userLogin;
 
-
-- (NSString *) firstLetter
-{
-    [self willAccessValueForKey: @"firstLetter"];
-    NSString *firstLetter = [[[self userName] substringToIndex: 1] uppercaseString];
-    [self didAccessValueForKey: @"firstLetter"];
-    return firstLetter;
-}
-
--(NSString *) fullName
-{
-    [self willAccessValueForKey:@"fullName"];
-    NSString * fullName = [NSString stringWithFormat:@"%@",[self userName]];
-    [self didAccessValueForKey:@"fullName"];
-    return fullName;
-}
-
+    - (NSString *) firstLetter
+    {
+        [self willAccessValueForKey: @"firstLetter"];
+        NSString *firstLetter = [[[self userName] substringToIndex: 1] uppercaseString];
+        [self didAccessValueForKey: @"firstLetter"];
+        return firstLetter;
+    }
 @end

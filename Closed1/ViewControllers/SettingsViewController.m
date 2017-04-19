@@ -17,6 +17,7 @@
 #import "ClosedResverResponce.h"
 #import "UserDetails+CoreDataClass.h"
 #import "MBProgressHUD.h"
+#import "utilities.h"
 
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -142,6 +143,8 @@
                 if ([[responce valueForKey:@"success"] integerValue] == 1) {
                     
                     [UserDetails MR_truncateAll];
+                    LogoutUser(DEL_ACCOUNT_ALL);
+
                     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     

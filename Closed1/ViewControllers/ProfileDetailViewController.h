@@ -11,7 +11,7 @@
 
 @interface ProfileDetailViewController : UIViewController
 
-@property(nonatomic) ContactDetails *singleContact;
+//@property(nonatomic) ContactDetails *singleContact;
 @property(nonatomic) NSInteger userid;
 
 @end

@@ -13,9 +13,10 @@
 #import "TabBarHandler.h"
 #import "MagicalRecord.h"
 #import "UserDetails+CoreDataClass.h"
+#import "ClosedResverResponce.h"
 
 
-@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate>
+@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate>
 {
     EditProfileTableViewCell *editProfileCell;
 }
@@ -76,7 +77,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 664;
+    return 729;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +100,7 @@
     editProfileCell.companyNameTextField.text = userDetails.company;
     editProfileCell.designationTextField.text = userDetails.title;
     editProfileCell.terrotoryTextField.text = userDetails.territory;
-
+    editProfileCell.secondaryEmail.text = userDetails.econdaryemail;
     [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -138,6 +139,8 @@
 
 -(void)updateProfileTapped: (id)sender
 {
+    [self.view endEditing:YES];
+    
     if([[editProfileCell.companyNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
         [self animateView:editProfileCell.companyNameTextField];
     }else if([[editProfileCell.designationTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
@@ -178,8 +181,12 @@
     }else if ([editProfileCell.countryButton.titleLabel.text isEqualToString:@""]){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
-    }else{
+    }else if([[editProfileCell.secondaryEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
         
+        [self animateView:editProfileCell.secondaryEmail];
+        
+    }else{
+    
         NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailReg];
         if([emailPredicate evaluateWithObject: editProfileCell.emailTextField.text] == NO){
@@ -204,7 +211,85 @@
     hud.labelText = @"Hang on,";
     hud.detailsLabelText = @"Updating Profile";
     
-    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(openHomeScreen) userInfo:nil repeats:NO];
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    NSArray *userNameArray = [editProfileCell.fullNameTextField.text componentsSeparatedByString:@" "];
+    
+    NSString *firtName = [userNameArray firstObject];
+    NSString *lastName = [userNameArray lastObject];
+    
+    if (firtName == lastName) {
+        
+        lastName = @"";
+    }
+    
+    
+ NSString *urlName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=update_profile&user_id=%zd&firstname=%@&lastname=%@&username=%@&email=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@", userDetails.userID,firtName, lastName, userDetails.userLogin,userDetails.userEmail,editProfileCell.fullNameTextField.text,editProfileCell.citytextField.text,editProfileCell.stateTextField.text,editProfileCell.countryButton.titleLabel.text,editProfileCell.phoneNumberTextField.text,editProfileCell.designationTextField.text,editProfileCell.companyNameTextField.text,editProfileCell.terrotoryTextField.text,editProfileCell.secondaryEmail.text];
+    
+    [ClosedResverResponce sharedInstance].delegate = self;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:urlName DictionartyToServer:@{}];
+        
+        NSLog(@"%@", serverResponce);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if ([serverResponce valueForKey:@"success"] != nil) {
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [self saveUserProfile:[serverResponce valueForKey:@"data"]];
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }else{
+                    
+                    [self serverFailedWithTitle:@"Oops!@" SubtitleString:@"Failed to update profile. Please try again later."];
+
+                }
+                
+            }else{
+                
+                [self serverFailedWithTitle:@"Oops!@" SubtitleString:@"Failed to update profile. Please try again later."];
+                
+            }
+        });
+       
+        
+    });
+    
+    
+    
+    
+}
+
+-(void)saveUserProfile: (NSDictionary *)userData
+{
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    userDetails.firstName = [userData valueForKey:@"firstname"];
+    userDetails.lastName = [userData valueForKey:@"lastname"];
+    userDetails.userEmail = editProfileCell.emailTextField.text;
+    userDetails.title = editProfileCell.designationTextField.text;
+    userDetails.company = editProfileCell.companyNameTextField.text;
+    userDetails.state = editProfileCell.stateTextField.text;
+    userDetails.phoneNumber = editProfileCell.phoneNumberTextField.text;
+    userDetails.city = editProfileCell.citytextField.text;
+    userDetails.country = editProfileCell.countryButton.titleLabel.text;
+    userDetails.territory = editProfileCell.terrotoryTextField.text;
+    userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
+    userDetails.profileImage = [userData valueForKey:@"profile_image"];
+    
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    
+    UserDetails *user = [UserDetails MR_findFirst];
+    NSLog(@"%@", user.firstName);
+    NSLog(@"%zd", user.userID);
+
 }
 -(void)openHomeScreen
 {
@@ -252,6 +337,14 @@
     
     [editProfileCell.countryButton setTitle:selectedProgram forState:UIControlStateNormal];
     [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+}
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });
 }
 
 @end
