@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) NSString *commnetText;
 @property(nonatomic) NSMutableArray *messageArray;
+@property(atomic) BOOL isApiCalled;
 
 @end
 
@@ -79,6 +80,10 @@
 -(void)backButtonTapped
 {
     [self.navigationController popViewControllerAnimated:YES];
+    if (_isApiCalled){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
+    }
+
 }
 
 
@@ -163,9 +168,7 @@
         hud.dimBackground = YES;
         hud.labelText = @"Posting Comment";
         
-        [self.messageArray insertObject:@{@"profile_image_url": user.profileImage, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]} atIndex:2];
-        
-        NSString *URL = [NSString stringWithFormat:@" http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[self.feedsDetails valueForKey:@""], _commnetText];
+        NSString *URL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[[self.feedsDetails valueForKey:@"Feeds"] valueForKey:@"activity_id"], _commnetText];
         
         NSLog(@"%@", URL);
         
@@ -177,6 +180,17 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    _isApiCalled = YES;
+                    [self.messageArray addObject:@{@"profile_image_url": user.profileImage, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]}];
+                    
+                    [self.tableView reloadData];
+
+                    
+                }else{
+                    
+                }
+                
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             });
             
@@ -185,7 +199,6 @@
         
         
         
-        [self.tableView reloadData];
     }
 }
 

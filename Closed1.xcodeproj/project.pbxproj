@@ -117,6 +117,9 @@
 		ADA806E11E90169D009C0B38 /* EmailSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806E01E90169D009C0B38 /* EmailSettingViewController.m */; };
 		ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806E31E902593009C0B38 /* EmailSettingsCell.m */; };
 		ADA806E71E902DAE009C0B38 /* ProfileVisibilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806E61E902DAE009C0B38 /* ProfileVisibilityViewController.m */; };
+		ADA9004F1EA9261900EAC538 /* FreindRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA9004E1EA9261900EAC538 /* FreindRequestViewController.m */; };
+		ADA900521EA92B2E00EAC538 /* FreindsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA900511EA92B2E00EAC538 /* FreindsCell.m */; };
+		ADA900541EA93DE600EAC538 /* FreinfReuest.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA900531EA93DE500EAC538 /* FreinfReuest.png */; };
 		ADACED651E9BFE06001A9F4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED471E9BFE06001A9F4A /* NSData+Base64.m */; };
 		ADACED661E9BFE06001A9F4A /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED491E9BFE06001A9F4A /* NSData+ImageContentType.m */; };
 		ADACED671E9BFE06001A9F4A /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED4B1E9BFE06001A9F4A /* SDImageCache.m */; };
@@ -814,6 +817,11 @@
 		ADA806E31E902593009C0B38 /* EmailSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSettingsCell.m; sourceTree = "<group>"; };
 		ADA806E51E902DAE009C0B38 /* ProfileVisibilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVisibilityViewController.h; sourceTree = "<group>"; };
 		ADA806E61E902DAE009C0B38 /* ProfileVisibilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVisibilityViewController.m; sourceTree = "<group>"; };
+		ADA9004D1EA9261900EAC538 /* FreindRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreindRequestViewController.h; sourceTree = "<group>"; };
+		ADA9004E1EA9261900EAC538 /* FreindRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreindRequestViewController.m; sourceTree = "<group>"; };
+		ADA900501EA92B2E00EAC538 /* FreindsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreindsCell.h; sourceTree = "<group>"; };
+		ADA900511EA92B2E00EAC538 /* FreindsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreindsCell.m; sourceTree = "<group>"; };
+		ADA900531EA93DE500EAC538 /* FreinfReuest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FreinfReuest.png; sourceTree = "<group>"; };
 		ADACED461E9BFE06001A9F4A /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		ADACED471E9BFE06001A9F4A /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		ADACED481E9BFE06001A9F4A /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -1648,6 +1656,8 @@
 				AD933A531E9EA3A4002FE9FF /* ProfileDetailsCell.m */,
 				ADBE898A1E9FF95900B8D05F /* ProfileCell.h */,
 				ADBE898B1E9FF95900B8D05F /* ProfileCell.m */,
+				ADA900501EA92B2E00EAC538 /* FreindsCell.h */,
+				ADA900511EA92B2E00EAC538 /* FreindsCell.m */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -1700,6 +1710,8 @@
 				ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */,
 				ADA091C41EA11B09005E9975 /* CommentListViewController.h */,
 				ADA091C51EA11B09005E9975 /* CommentListViewController.m */,
+				ADA9004D1EA9261900EAC538 /* FreindRequestViewController.h */,
+				ADA9004E1EA9261900EAC538 /* FreindRequestViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1707,6 +1719,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADA900531EA93DE500EAC538 /* FreinfReuest.png */,
 				AD5349391EA2820E005DF686 /* LikeSelectedImage.png */,
 				AD933A501E9EA2B8002FE9FF /* CallWhiteImage.png */,
 				AD7E36D21E9D56A3004B1215 /* SliderImage.png */,
@@ -3554,6 +3567,7 @@
 				ADBB1EA11EA52B37003CA9DD /* stickersend61@2x.png in Resources */,
 				ADCED86A1E8AC10C00B9A06A /* TableViewDiscloserDownImage.png in Resources */,
 				ADBB1E2A1EA52B37003CA9DD /* stickerlocal20@2x.png in Resources */,
+				ADA900541EA93DE600EAC538 /* FreinfReuest.png in Resources */,
 				ADBB1DE01EA52B37003CA9DD /* callvideo_blank@2x.png in Resources */,
 				ADBB1E731EA52B37003CA9DD /* stickersend15@2x.png in Resources */,
 				ADBB1DE51EA52B37003CA9DD /* chat_back@2x.png in Resources */,
@@ -4102,6 +4116,7 @@
 				ADBB1D831EA52B37003CA9DD /* PrivacyView.m in Sources */,
 				ADBB1D851EA52B37003CA9DD /* TermsView.m in Sources */,
 				ADBB1D901EA52B37003CA9DD /* PremiumView.m in Sources */,
+				ADA900521EA92B2E00EAC538 /* FreindsCell.m in Sources */,
 				ADBB1D571EA52B37003CA9DD /* StickersView.m in Sources */,
 				ADBB1DB91EA52B37003CA9DD /* MediaManager.m in Sources */,
 				AD93F7F21E8823B7008488B9 /* NSPersistentStore+MagicalRecord.m in Sources */,
@@ -4158,6 +4173,7 @@
 				ADBB1DA01EA52B37003CA9DD /* Message.m in Sources */,
 				AD9344E61E89665800E60A4B /* SignupTableViewCell.m in Sources */,
 				ADACED731E9BFE06001A9F4A /* UIView+WebCacheOperation.m in Sources */,
+				ADA9004F1EA9261900EAC538 /* FreindRequestViewController.m in Sources */,
 				AD93F7951E880E16008488B9 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				ADBB1DB81EA52B37003CA9DD /* DownloadManager.m in Sources */,
 				ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */,
@@ -4402,8 +4418,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04464ba9-af8c-4535-a284-2bf1d4ce06f0";
-				PROVISIONING_PROFILE_SPECIFIER = Closed_DEV;
+				PROVISIONING_PROFILE = "117054da-a931-4704-91ca-ffa0f051f3a2";
+				PROVISIONING_PROFILE_SPECIFIER = Closed_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -4429,8 +4445,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04464ba9-af8c-4535-a284-2bf1d4ce06f0";
-				PROVISIONING_PROFILE_SPECIFIER = Closed_DEV;
+				PROVISIONING_PROFILE = "117054da-a931-4704-91ca-ffa0f051f3a2";
+				PROVISIONING_PROFILE_SPECIFIER = Closed_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

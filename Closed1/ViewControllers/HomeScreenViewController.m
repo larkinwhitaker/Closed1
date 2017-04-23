@@ -54,27 +54,8 @@
     [self getFeedsArray];
     
 #pragma mark - Uncommnet this Method
-//    [self getLoginWithChattingView];
+    [self getLoginWithChattingView];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
-   RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
-    
-    NSInteger total = 0;
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    for (DBRecent *dbrecent in dbrecents)
-        total += dbrecent.counter;
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    UITabBarItem *item = self.tabBarController.tabBar.items[0];
-    
-    if (total != 0) {
-        self.messageCountLabel.hidden = NO;
-        self.messageCountView.hidden = NO;
-        self.messageCountLabel.text = [NSString stringWithFormat:@"%zd", total];
-        
-    }else{
-        self.messageCountLabel.hidden = YES;
-        self.messageCountView.hidden = YES;
-    }
     
 }
 
@@ -86,7 +67,7 @@
     
     if ([FUser currentId] != nil) {
         
-        
+        [self configureSinchClient];
         
         if ([FUser isOnboardOk])
         {
@@ -130,6 +111,8 @@
                  [self saveUserDetails];
 
                  [ProgressHUD dismiss];
+                 
+                 [self configureSinchClient];
 
              }
              else{
@@ -153,6 +136,8 @@
                           
                           [self saveUserDetails];
                           [ProgressHUD dismiss];
+                          
+                          [self configureSinchClient];
 
                           
                           
@@ -219,6 +204,19 @@
 
 }
 
+-(void)configureSinchClient
+{
+    // Instantiate a Sinch client object
+    id<SINClient> sinchClient = [Sinch clientWithApplicationKey:SINCH_KEY
+                                              applicationSecret:SINCH_SECRET
+                                                environmentHost:SINCH_HOST
+                                                         userId:[FUser currentId]];
+    
+    [sinchClient setSupportCalling:YES];
+    [sinchClient setSupportMessaging:YES];
+    [sinchClient enableManagedPushNotifications];
+}
+
 -(void)getFeedsArray
 {
     _feedsArray = [[NSMutableArray alloc]init];
@@ -233,6 +231,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            
             for (NSDictionary *singleFeed in serverResponce) {
                 
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
@@ -243,7 +242,6 @@
                 
                 [self.feedsArray addObject:feedDictionary];
             }
-            
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tablView reloadData];
@@ -260,12 +258,25 @@
 {
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController setNavigationBarHidden:YES];
-//    _countingView.backgroundColor = [UIColor whiteColor];
-//    _countingView.fillColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
-//    _countingView.strokeColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
-//    _countingView.textColor = [UIColor whiteColor];
-//    _countingView.hideWhenZero = YES;
-//    _countingView.value = 10;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
+    RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
+    
+    NSInteger total = 0;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    for (DBRecent *dbrecent in dbrecents)
+        total += dbrecent.counter;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    if (total != 0) {
+        self.messageCountLabel.hidden = NO;
+        self.messageCountView.hidden = NO;
+        self.messageCountLabel.text = [NSString stringWithFormat:@"%zd", total];
+        
+    }else{
+        self.messageCountLabel.hidden = YES;
+        self.messageCountView.hidden = YES;
+    }
+
     
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
@@ -274,7 +285,7 @@
     
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
     
-//    [self presentViewController:navController1 animated:YES completion:nil];
+    [self presentViewController:navController1 animated:YES completion:nil];
 
     
 }

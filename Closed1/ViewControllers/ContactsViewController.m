@@ -19,9 +19,10 @@
 #import "ClosedResverResponce.h"
 #import "UserDetails+CoreDataClass.h"
 #import "MBProgressHUD.h"
+#import "FreindRequestViewController.h"
 
 
-@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate>
+@interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate, FreindsListDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViee;
 @property(nonatomic) BOOL isMailContactSelected;
@@ -52,29 +53,29 @@
     
     [self.tableViee registerNib:[UINib nibWithNibName:@"ContactsTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsTableViewCell"];
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ContactsTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsTableViewCell"];
-   
+    
     [ContactDetails MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     _contactDetails = [ContactDetails MR_findAll];
-
+    
     
     if (_contactDetails.count == 0) {
         
         [self getContactViewData];
-
+        
         
     }
     
     
     self.searchDisplayController.searchResultsTableView.estimatedRowHeight = 90;
     self.searchDisplayController.searchResultsTableView.rowHeight = 90;
-
     
     
     
     
-
+    
+    
 }
 
 -(void)getContactViewData
@@ -91,38 +92,38 @@
 #pragma mark - Remove Demo Code
         
         
-//        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
+        //        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSArray *arrayOfContacts = [self getDataFromLocalJSONFileForEntity:@"Contacts"];
             if ([[arrayOfContacts valueForKey:@"success"] integerValue] == 1) {
-
-            
-            
-            NSArray *contactList = [arrayOfContacts valueForKey:@"data"];
-            
-            
-            for (NSDictionary * entity in contactList) {
-                
-                //        if (![[entity valueForKey:@"FirstName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"LastName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"Biography"] isEqual:[NSNull null]] && ![[entity valueForKey:@"BoardCertified"] isEqual:[NSNull null]]) {
                 
                 
                 
-                ContactDetails *contact = [ContactDetails MR_createEntity];
-                contact.company = [entity valueForKey:@"company"];
-                contact.designation = [entity valueForKey:@"title"];
-                contact.imageURL = [entity valueForKey:@"profile_image_url"];
-                contact.userID = [[entity valueForKey:@"user_id"] integerValue];
-                contact.userName = [entity valueForKey:@"contact"];
-                contact.title = [entity valueForKey:@"title"];
+                NSArray *contactList = [arrayOfContacts valueForKey:@"data"];
                 
-            }
-            
-            //    }
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                
+                for (NSDictionary * entity in contactList) {
+                    
+                    //        if (![[entity valueForKey:@"FirstName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"LastName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"Biography"] isEqual:[NSNull null]] && ![[entity valueForKey:@"BoardCertified"] isEqual:[NSNull null]]) {
+                    
+                    
+                    
+                    ContactDetails *contact = [ContactDetails MR_createEntity];
+                    contact.company = [entity valueForKey:@"company"];
+                    contact.designation = [entity valueForKey:@"title"];
+                    contact.imageURL = [entity valueForKey:@"profile_image_url"];
+                    contact.userID = [[entity valueForKey:@"user_id"] integerValue];
+                    contact.userName = [entity valueForKey:@"contact"];
+                    contact.title = [entity valueForKey:@"title"];
+                    
+                }
+                
+                //    }
+                
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"It seems that no contacts has been added in your account yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
@@ -131,10 +132,10 @@
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
         });
-    
+        
     });
-   
-
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -153,6 +154,9 @@
     
     navItem.rightBarButtonItem = contacts;
     
+    UIBarButtonItem *freindRequst = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"FreinfReuest"] style:UIBarButtonItemStylePlain target:self action:@selector(openFreingRequestScreen)];
+    navItem.leftBarButtonItem = freindRequst;
+    
     navBar.items = @[navItem];
     [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
@@ -162,6 +166,14 @@
     [self.view addSubview:navBar];
     
 }
+
+-(void)openFreingRequestScreen
+{
+    FreindRequestViewController  *freinds = [self.storyboard instantiateViewControllerWithIdentifier:@"FreindRequestViewController"];
+    freinds.delegate = self;
+    [self.navigationController pushViewController:freinds animated:YES];
+}
+
 
 -(void)pickContactMethod
 {
@@ -176,7 +188,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         
         [self openContactsScreenForContacts];
-
+        
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
@@ -200,14 +212,14 @@
 {
     CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc]init];
     
-//    NSArray *propertyKeys = @[CNContactPhoneNumbersKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactOrganizationNameKey];
+    //    NSArray *propertyKeys = @[CNContactPhoneNumbersKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactOrganizationNameKey];
     NSPredicate *enablePredicate = [NSPredicate predicateWithFormat:@"(phoneNumbers.@count > 0)"];
-//    NSPredicate *contactSelectionPredicate = [NSPredicate predicateWithFormat:@"phoneNumbers.@count == 1"];
+    //    NSPredicate *contactSelectionPredicate = [NSPredicate predicateWithFormat:@"phoneNumbers.@count == 1"];
     
-//    contactPicker.displayedPropertyKeys = propertyKeys;
+    //    contactPicker.displayedPropertyKeys = propertyKeys;
     contactPicker.predicateForEnablingContact = enablePredicate;
-//    contactPicker.predicateForSelectionOfContact = contactSelectionPredicate;
-
+    //    contactPicker.predicateForSelectionOfContact = contactSelectionPredicate;
+    
     contactPicker.delegate = self;
     _isMailContactSelected = NO;
     [self presentViewController:contactPicker animated:NO completion:nil];
@@ -218,8 +230,8 @@
     [super viewWillAppear: animated];
     [self.fetchedResultsController performFetch:nil];
     [self tableViewReloadDataWithAnimation:YES];
-
-   
+    
+    
     
 }
 
@@ -288,7 +300,7 @@
         
         
     }
-
+    
     
     if (phoneList.count != 0) {
         
@@ -298,7 +310,7 @@
         }else{
             
             [self sendMessages:phoneList];
-
+            
         }
         
     }else{
@@ -319,17 +331,17 @@
         
         for (CNContact *contact in contacts) {
             
-                if ([contact isKeyAvailable:CNContactEmailAddressesKey]) {
+            if ([contact isKeyAvailable:CNContactEmailAddressesKey]) {
+                
+                for (NSInteger i =0; i<contact.emailAddresses.count; i++) {
                     
-                    for (NSInteger i =0; i<contact.emailAddresses.count; i++) {
-                        
-                        [phoneList addObject:[[contact.emailAddresses objectAtIndex:i] value]];
-                        
-                    }
+                    [phoneList addObject:[[contact.emailAddresses objectAtIndex:i] value]];
                     
                 }
                 
             }
+            
+        }
     }else{
         
         
@@ -358,7 +370,7 @@
             [self sendMessages:phoneList];
             
         }
-
+        
         
     }else{
         
@@ -381,9 +393,9 @@
         controller.messageComposeDelegate = self;
         [controller didMoveToParentViewController:self];
         [self presentModalViewController:controller animated:YES];
-
+        
     }
-
+    
 }
 
 -(void)sendMails: (NSArray *)contactList
@@ -401,7 +413,7 @@
         [self presentModalViewController:mailCont animated:YES];
         
     }
-
+    
 }
 
 #pragma mark - Message Delegate
@@ -418,7 +430,7 @@
         NSLog(@"Message failed");
     }
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 #pragma mark - Mail composer Delegate
 
@@ -549,7 +561,7 @@
     ContactsTableViewCell *contactsCell = [tableView dequeueReusableCellWithIdentifier:@"ContactsTableViewCell"];
     NSString *imageURL = contact.imageURL;
     NSString* urlEncoded = [imageURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
+    
     
     [contactsCell.profileImage sd_setImageWithURL:[NSURL URLWithString:urlEncoded] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     contactsCell.nameLabel.text = contact.userName;
@@ -577,7 +589,7 @@
         
     }
     
-//    profileDetail.singleContact = contact;
+    //    profileDetail.singleContact = contact;
     profileDetail.userid = contact.userID;
     
     
@@ -588,25 +600,25 @@
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Block" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
-                                        NSLog(@"Action to perform with Button 1");
+        NSLog(@"Action to perform with Button 1");
         
         
         
         
-                                    }];
+    }];
     button.backgroundColor = [UIColor yellowColor]; //arbitrary color
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
-                                         NSLog(@"Action to perform with Button2!");
+        NSLog(@"Action to perform with Button2!");
         
-                                     }];
+    }];
     button2.backgroundColor = [UIColor redColor];
     
     return @[button, button2];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-   
+    
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -621,7 +633,7 @@
     NSString * filePath = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@",entityName] ofType:@"json"];
     NSData * data = [NSData dataWithContentsOfFile:filePath];
     NSArray *dataFromlLocal = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-
+    
     return dataFromlLocal;
 }
 
@@ -786,7 +798,14 @@
         [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     });}
 
+#pragma mark - Freind List Delegate
 
+-(void)freindListAddedSucessFully
+{
+    [ContactDetails MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [self getContactViewData];
+}
 
 
 

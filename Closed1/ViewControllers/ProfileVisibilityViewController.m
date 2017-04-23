@@ -18,7 +18,6 @@
 @property(nonatomic) NSString *emailVisibility;
 
 
-
 @end
 
 @implementation ProfileVisibilityViewController
@@ -233,7 +232,7 @@
 {
     FlightClassSelectionViewController *classSelectionScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"FlightClassSelectionViewController"];
     classSelectionScreen.delegate = self;
-    classSelectionScreen.title = @"Select Class";
+    classSelectionScreen.title = @"";
     classSelectionScreen.classListArray = @[@"Everyone", @"Only Me", @"All Members", @"My Freinds"];
     [self presentViewController:classSelectionScreen animated:YES completion:nil];
     

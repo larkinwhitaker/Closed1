@@ -232,7 +232,7 @@
                         [self openHomeScreen];
                         
                     }else{
-                        [self serverFailedWithTitle:@"Signup Failed" SubtitleString:@"We occured some error. Please try again later"];
+                        [self serverFailedWithTitle:@"Signup Failed" SubtitleString:[serverResponce valueForKey:@"data"]];
                         
                     }
                     

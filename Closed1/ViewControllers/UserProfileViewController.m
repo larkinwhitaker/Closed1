@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "ClosedResverResponce.h"
+#import "utilities.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -79,12 +80,23 @@
 
 -(void)saveProfile: (id)sender
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Hang on,";
-    hud.detailsLabelText = @"Saving Profile";
-    hud.dimBackground = YES;
+   
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to logout?" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(profileSavesSucessFully) userInfo:nil repeats:NO];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+        
+        [UserDetails MR_truncateAll];
+        LogoutUser(DEL_ACCOUNT_ALL);
+        
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)profileSavesSucessFully

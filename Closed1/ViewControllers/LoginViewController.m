@@ -74,8 +74,9 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
-//    [self presentViewController:webView animated:YES completion:nil];
+    [self presentViewController:webView animated:YES completion:nil];
     
+    /*
     [LISDKSessionManager createSessionWithAuth:[NSArray arrayWithObjects:LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION, nil]
 state:@"some state"
 showGoToAppStoreDialog:YES
@@ -100,6 +101,8 @@ errorBlock:^(NSError *error) {
 //    [self updateControlsWithResponseLabel:YES];
 }
     ];
+    
+    */
     
 }
 
@@ -307,7 +310,7 @@ errorBlock:^(NSError *error) {
         NSString *acessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"LIAccessToken"];
         
         // Specify the URL string that we'll get the profile info from.
-        NSString *targetURLString = [NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(id,first-name,last-name,maiden-name,email-address)?oauth2_access_token=%@&format=json", acessToken] ;
+        NSString *targetURLString = [NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(id,first-name,last-name,maiden-name,email-address,picture-url,headline)?oauth2_access_token=%@&format=json", acessToken] ;
         
         // Initialize a mutable URL request object.
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:targetURLString]];

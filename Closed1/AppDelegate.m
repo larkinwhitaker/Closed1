@@ -20,9 +20,10 @@
 @implementation AppDelegate
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [Fabric with:@[[Crashlytics class]]];
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Closed1"];
@@ -108,8 +109,6 @@
     [Users shared];
     [UserStatuses shared];
     //---------------------------------------------------------------------------------------------------------------------------------------------
-    
-    
     
     return YES;
 }

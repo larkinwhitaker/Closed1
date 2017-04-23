@@ -309,14 +309,18 @@
     
 #pragma mark - For Now Chatting Disabled
     
-    [self sendInVites];
-    /*
+//    [self sendInVites];
+   
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", [self.userDetails valueForKey:@"user_email"]];
     DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
     
     NSLog(@"%@", dbuser);
     
-    if (dbuser.objectId != nil) {
+    if ([dbuser.objectId isEqualToString:[FUser currentId]] == YES)
+    {
+     [ProgressHUD showSuccess:@"This is you."];
+        
+    }else if (dbuser.objectId != nil) {
         
         [self didSelectSingleUser:dbuser];
     }else{
@@ -339,8 +343,7 @@
 //    [self actionChat:dictionary];
 
 
-*/
-}
+//}
 
 
 -(void)sendInVites
@@ -409,19 +412,22 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_feeds&user_id=%zd",self.userid] DictionartyToServer:@{}];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            for (NSDictionary *singleFeed in serverResponce) {
+            if (serverResponce.count>2) {
                 
-                NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
-                
-                [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
-                [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
-                [feedDictionary setValue:singleFeed forKey:@"Feeds"];
-                
-                [self.feedsArray addObject:feedDictionary];
+                for (NSDictionary *singleFeed in serverResponce) {
+                    
+                    NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
+                    
+                    [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
+                    [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
+                    [feedDictionary setValue:singleFeed forKey:@"Feeds"];
+                    
+                    [self.feedsArray addObject:feedDictionary];
+                }
             }
             
             
