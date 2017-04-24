@@ -16,6 +16,7 @@
 		AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */; };
 		AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */; };
 		AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5349391EA2820E005DF686 /* LikeSelectedImage.png */; };
+		AD78B3761EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD78B3741EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.m */; };
 		AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DC91E86DADB00C3B4B6 /* main.m */; };
 		AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCC1E86DADB00C3B4B6 /* AppDelegate.m */; };
 		AD7A5DD01E86DADB00C3B4B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCF1E86DADB00C3B4B6 /* ViewController.m */; };
@@ -556,7 +557,6 @@
 		ADD1D1721E940E7F00C3D59D /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1D1711E940E7F00C3D59D /* CardView.m */; };
 		ADD1D1741E94119500C3D59D /* ic_1491339527_letter.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */; };
 		ADD1D1761E94122E00C3D59D /* ic_1491340365_user_male4.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */; };
-		ADD72EF71EA7D1230032A63D /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD72EF51EA7D1230032A63D /* ContactDetails+CoreDataProperties.m */; };
 		ADEAE02C1E898E6600D36B55 /* HomeScreenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEAE02A1E898E6600D36B55 /* HomeScreenTableViewCell.m */; };
 		ADEAE02D1E898E6600D36B55 /* HomeScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEAE02B1E898E6600D36B55 /* HomeScreenTableViewCell.xib */; };
 		ADEAE0341E89925A00D36B55 /* 020_mail_email_envelope_message-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADEAE02E1E89925A00D36B55 /* 020_mail_email_envelope_message-128.png */; };
@@ -615,6 +615,8 @@
 		AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		AD5349391EA2820E005DF686 /* LikeSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeSelectedImage.png; sourceTree = "<group>"; };
+		AD78B3731EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AD78B3741EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AD7A5DC51E86DADB00C3B4B6 /* Closed1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closed1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7A5DC91E86DADB00C3B4B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7A5DCB1E86DADB00C3B4B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1432,8 +1434,6 @@
 		ADD1D1711E940E7F00C3D59D /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491339527_letter.png; sourceTree = "<group>"; };
 		ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491340365_user_male4.png; sourceTree = "<group>"; };
-		ADD72EF41EA7D1230032A63D /* ContactDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
-		ADD72EF51EA7D1230032A63D /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADEAE0291E898E6600D36B55 /* HomeScreenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenTableViewCell.h; sourceTree = "<group>"; };
 		ADEAE02A1E898E6600D36B55 /* HomeScreenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenTableViewCell.m; sourceTree = "<group>"; };
 		ADEAE02B1E898E6600D36B55 /* HomeScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenTableViewCell.xib; sourceTree = "<group>"; };
@@ -1969,8 +1969,8 @@
 		ADA0C5DF1E969F020060A0B1 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
-				ADD72EF41EA7D1230032A63D /* ContactDetails+CoreDataProperties.h */,
-				ADD72EF51EA7D1230032A63D /* ContactDetails+CoreDataProperties.m */,
+				AD78B3731EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.h */,
+				AD78B3741EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.m */,
 				ADB4C4011E9D2E5500C71181 /* UserDetails+CoreDataProperties.h */,
 				ADB4C4021E9D2E5500C71181 /* UserDetails+CoreDataProperties.m */,
 			);
@@ -4139,6 +4139,7 @@
 				ADBB1D3A1EA52B37003CA9DD /* GroupView.m in Sources */,
 				AD93F7EF1E8823B7008488B9 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				ADBB1EBF1EA52B37003CA9DD /* SinchService.m in Sources */,
+				AD78B3761EAE67FA008F1A01 /* ContactDetails+CoreDataProperties.m in Sources */,
 				ADBB1EC51EA52B37003CA9DD /* SINSLazyMessageClient.m in Sources */,
 				AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */,
 				AD03A16D1E8EC8DA00852776 /* ProfileDetailViewController.m in Sources */,
@@ -4187,7 +4188,6 @@
 				AD93F7981E880E16008488B9 /* JVFloatLabeledTextView.m in Sources */,
 				ADBB1DBF1EA52B37003CA9DD /* Incoming.m in Sources */,
 				AD93F78A1E880E16008488B9 /* IQUITextFieldView+Additions.m in Sources */,
-				ADD72EF71EA7D1230032A63D /* ContactDetails+CoreDataProperties.m in Sources */,
 				AD93F78E1E880E16008488B9 /* IQKeyboardManager.m in Sources */,
 				AD93F7E61E8823B7008488B9 /* NSString+MagicalDataImport.m in Sources */,
 				ADACED681E9BFE06001A9F4A /* SDWebImageCompat.m in Sources */,
@@ -4418,8 +4418,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "117054da-a931-4704-91ca-ffa0f051f3a2";
-				PROVISIONING_PROFILE_SPECIFIER = Closed_Development;
+				PROVISIONING_PROFILE = "fd047e7f-5395-40fb-bc10-5b0bb63c7fa6";
+				PROVISIONING_PROFILE_SPECIFIER = Closed_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -4445,8 +4445,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "117054da-a931-4704-91ca-ffa0f051f3a2";
-				PROVISIONING_PROFILE_SPECIFIER = Closed_Development;
+				PROVISIONING_PROFILE = "fd047e7f-5395-40fb-bc10-5b0bb63c7fa6";
+				PROVISIONING_PROFILE_SPECIFIER = Closed_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

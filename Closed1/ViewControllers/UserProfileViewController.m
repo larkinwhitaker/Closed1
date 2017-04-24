@@ -15,7 +15,7 @@
 #import "ClosedResverResponce.h"
 #import "utilities.h"
 
-@interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ServerFailedDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic)  ProfileCell *profileCell;
@@ -57,25 +57,35 @@
 {
     UserDetails *userDetails = [UserDetails MR_findFirst];
 
-    ProfileCell *profileCell = [tableView dequeueReusableCellWithIdentifier:@"ProfileCell"];
+     _profileCell = [tableView dequeueReusableCellWithIdentifier:@"ProfileCell"];
     
-    profileCell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
-    profileCell.emailLabel.text = userDetails.userEmail;
+    _profileCell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    _profileCell.emailLabel.text = userDetails.userEmail;
     
     if (userDetails.phoneNumber == nil) {
-        profileCell.phoneLabel.text = @"Not Found";
+        _profileCell.phoneLabel.text = @"Not Found";
 
     }else{
-        profileCell.phoneLabel.text = userDetails.phoneNumber;
+        _profileCell.phoneLabel.text = userDetails.phoneNumber;
 
     }
-    profileCell.companyLabel.text = userDetails.company;
-    profileCell.roleLabel.text = userDetails.title;
-    profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
-    [profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
-    [profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
-    [profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
-    return profileCell;
+    FUser *user = [FUser currentUser];
+    _profileCell.companyLabel.text = userDetails.company;
+    _profileCell.roleLabel.text = userDetails.title;
+    _profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    [_profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
+    [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
+//    [profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+    
+    [DownloadManager image:user[FUSER_PICTURE] completion:^(NSString *path, NSError *error, BOOL network)
+     {
+         if (error == nil)
+         {
+             _profileCell.profileImage.image = [[UIImage alloc] initWithContentsOfFile:path];
+         }
+     }];
+    
+    return _profileCell;
 }
 
 -(void)saveProfile: (id)sender
@@ -214,13 +224,112 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    UIImage *pickerImage = info[UIImagePickerControllerOriginalImage] ;
-    _profileCell.profileImage.image = pickerImage;
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    UIImage *imagePicture = [Image square:image size:140];
+    UIImage *imageThumbnail = [Image square:image size:60];
     
+    [self submitImageToServer:imageThumbnail];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
+    NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *reference1 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_picture", @"jpg")];
+    FIRStorageReference *reference2 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_thumbnail", @"jpg")];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [reference1 putData:dataPicture metadata:nil completion:^(FIRStorageMetadata *metadata1, NSError *error)
+     {
+         if (error == nil)
+         {
+             [reference2 putData:dataThumbnail metadata:nil completion:^(FIRStorageMetadata *metadata2, NSError *error)
+              {
+                  if (error == nil)
+                  {
+                      _profileCell.profileImage.image = imagePicture;
+                      NSString *linkPicture = metadata1.downloadURL.absoluteString;
+                      NSString *linkThumbnail = metadata2.downloadURL.absoluteString;
+                      [self saveUserPictures:@{@"linkPicture":linkPicture, @"linkThumbnail":linkThumbnail}];
+                  }
+                  else [ProgressHUD showError:@"Network error."];
+              }];
+         }
+         else [ProgressHUD showError:@"Network error."];
+     }];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
     [picker dismissViewControllerAnimated:YES completion:nil];
+
     
-    [self.tableView reloadData];
+}
+
+- (void)saveUserPictures:(NSDictionary *)links
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    FUser *user = [FUser currentUser];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    user[FUSER_PICTURE] = links[@"linkPicture"];
+    user[FUSER_THUMBNAIL] = links[@"linkThumbnail"];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [user saveInBackground:^(NSError *error)
+     {
+         if (error != nil) [ProgressHUD showError:@"Network error."];
+     }];
+}
+
+
+-(void)submitImageToServer: (UIImage *)imagetoSend
+{
     
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Saving Image";
+    
+    NSString *apiURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=edit_user_profile_picture&userID=%zd&encodedstring=%@", userDetails.userID, [self encodeToBase64String:imagetoSend]];
+    
+    NSLog(@"%@", apiURL);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:apiURL DictionartyToServer:@{}];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"%@", serverResponce);
+            
+            if ([serverResponce valueForKey:@"success"] != nil) {
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    UserDetails *newUserDetails = [UserDetails MR_findFirst];
+                    newUserDetails.profileImage = [[[serverResponce valueForKey:@"data"] firstObject] valueForKey:@"profile_picture"];
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                }else{
+                    [self serverFailedWithTitle:@"Failed to Upload Profile Picture" SubtitleString:nil];
+                }
+            }else{
+                [self serverFailedWithTitle:@"Failed to Upload Profile Picture" SubtitleString:nil];
+
+            }
+            
+           
+        });
+        
+    });
+}
+
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });
 }
 
 

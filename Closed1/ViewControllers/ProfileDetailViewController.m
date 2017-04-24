@@ -142,7 +142,7 @@
         CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
         
         NSLog(@"%f", heightOfText);
-        return heightOfText+207;
+        return heightOfText+260;
     }
 }
 

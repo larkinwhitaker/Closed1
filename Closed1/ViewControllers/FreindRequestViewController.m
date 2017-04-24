@@ -13,10 +13,12 @@
 #import "ClosedResverResponce.h"
 #import "MagicalRecord.h"
 #import "UIImageView+WebCache.h"
+#import "ContactDetails+CoreDataProperties.h"
 
 
 
 @interface FreindRequestViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property(nonatomic) NSArray *friendListArray;
 @property(nonatomic) UserDetails *userdDetails;
@@ -31,29 +33,45 @@
     [self createCustumNavigationBar];
     
     _userdDetails = [UserDetails MR_findFirst];
+   
+    [self getFreindList];
+}
+
+-(void)getFreindList
+{
     
     _friendListArray = [[NSArray alloc]init];
-    NSArray *arrayOfContacts = [self getDataFromLocalJSONFileForEntity:@"Contacts"];
-    _friendListArray = [arrayOfContacts valueForKey:@"data"];
-    
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Getting List";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       
+        
         NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{}];
         
         NSLog(@"%@", servreResponce);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if ([servreResponce valueForKey:@"success"] != nil) {
+                
+                if ([[servreResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    self.friendListArray = [servreResponce valueForKey:@"data"];
+                    
+                    [self.tableView reloadData];
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Sorry no freind request found" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                }
+            }
+            
         });
         
     });
-    
-   
 }
 
 - (void)createCustumNavigationBar
@@ -132,24 +150,38 @@
     hud.labelText = @"Accepting..";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%zd", [[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@""] integerValue]] DictionartyToServer:@{}];
+        
+        NSString *url = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%@", [[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"user_id"]];
+        NSLog(@"%@", url);
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{}];
         
         NSLog(@"%@", serverResponce);
         
-        
-        NSArray *freindResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=%zd&friend_user_id=%zd", self.userdDetails.userID, [[serverResponce valueForKey:@""] integerValue]] DictionartyToServer:@{}];
-        
-        NSLog(@"%@", freindResponce);
-        
-        if ([freindResponce valueForKey:@""]) {
-            
-            [self.delegate freindListAddedSucessFully];
-        }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
+            NSDictionary *entity = [self.friendListArray objectAtIndex:sender.tag];
+            
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                
+                ContactDetails *contact = [ContactDetails MR_createEntity];
+                contact.company = [entity valueForKey:@"company"];
+                contact.designation = [entity valueForKey:@"title"];
+                contact.imageURL = [entity valueForKey:@"profile_image_url"];
+                contact.userID = [[entity valueForKey:@"user_id"] integerValue];
+                contact.userName = [entity valueForKey:@"contact"];
+                contact.title = [entity valueForKey:@"title"];
+                
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                [self getFreindList];
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+            }
+            
         });
         
     });
@@ -165,13 +197,22 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%zd", [[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@""] integerValue]] DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{}];
         
         NSLog(@"%@", serverResponce);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                
+                [self getFreindList];
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+            }
         });
         
     });

@@ -92,12 +92,12 @@
 #pragma mark - Remove Demo Code
         
         
-        //        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
+        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSArray *arrayOfContacts = [self getDataFromLocalJSONFileForEntity:@"Contacts"];
+            //            NSArray *arrayOfContacts = [self getDataFromLocalJSONFileForEntity:@"Contacts"];
             if ([[arrayOfContacts valueForKey:@"success"] integerValue] == 1) {
                 
                 
@@ -724,7 +724,7 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userName" ascending:YES];
+    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userName" ascending:NO];
     NSFetchRequest *fetchRequest = [ContactDetails MR_requestAll];
     [fetchRequest setSortDescriptors:@[nameSortDescriptor]];
     

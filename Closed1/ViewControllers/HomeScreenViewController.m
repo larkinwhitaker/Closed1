@@ -24,6 +24,7 @@
 #import "ProfileDetailViewController.h"
 #import "NavigationController.h"
 #import "ChatsView.h"
+#import "ChatView.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -281,14 +282,61 @@
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
+    
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
+    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
+    
+    NSLog(@"%@", dbuser);
+    
+    if ([dbuser.objectId isEqualToString:[FUser currentId]] == YES)
+    {
+        [ProgressHUD showSuccess:@"This is you."];
+        
+    }else if (dbuser.objectId != nil) {
+        
+        [self didSelectSingleUser:dbuser];
+    }else{
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"It seems the user you are connecting with the user haven't installed the \"Closed1\" App" message:@"would you like to send invite to him?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+        }]];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    
+    
+    /*
     ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
     
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
     
     [self presentViewController:navController1 animated:YES completion:nil];
-
+     */
     
 }
+
+- (void)didSelectSingleUser:(DBUser *)dbuser2
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDictionary *dictionary = [Chat startPrivate:dbuser2];
+    [self actionChat:dictionary];
+}
+
+- (void)actionChat:(NSDictionary *)dictionary
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    ChatView *chatView = [[ChatView alloc] initWith:dictionary];
+    chatView.hidesBottomBarWhenPushed = YES;
+    NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatView];
+    
+    [self presentViewController:navController1 animated:YES completion:nil];
+}
+
 - (IBAction)profileButtonTapped:(id)sender {
     
     
@@ -306,7 +354,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
+    CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
     
     NSLog(@"%f", heightOfText);
     return heightOfText+230;
