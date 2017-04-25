@@ -229,7 +229,7 @@
     UIImage *imagePicture = [Image square:image size:140];
     UIImage *imageThumbnail = [Image square:image size:60];
     
-    [self submitImageToServer:imageThumbnail];
+    //[self submitImageToServer:imageThumbnail];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
     NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);

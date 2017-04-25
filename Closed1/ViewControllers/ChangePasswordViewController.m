@@ -10,6 +10,11 @@
 #import "UINavigationController+NavigationBarAttribute.h"
 #import "ClosedResverResponce.h"
 #import "MBProgressHUD.h"
+#import "ClosedResverResponce.h"
+#import "UserDetails+CoreDataClass.h"
+#import "MBProgressHUD.h"
+#import "MagicalRecord.h"
+#import "utilities.h"
 
 
 @interface ChangePasswordViewController ()<ServerFailedDelegate>
@@ -18,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *currentPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *updatedPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -25,7 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.deleteButton.layer.borderWidth = 2.0f;
+    self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.deleteButton.layer.cornerRadius = 5.0f;
     [self createCustumNavigationBar];
    
 }
@@ -56,6 +64,53 @@
 
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)deleteTapped:(id)sender {
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to delete?" message:@"Deleting your account will delete all of the content you have created. It will be completely irrecoverable." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"Deleting..";
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{}];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                
+                if ([[responce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [UserDetails MR_truncateAll];
+                    LogoutUser(DEL_ACCOUNT_ALL);
+                    
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to Delete Profile" message:@"We are getting some issu while deleting your profile. Please try again later" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                }
+                
+                
+                
+            });
+        });
+        
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
 }
 
 -(void)setAnimatingView: (UIView *)viewToAnimate

@@ -309,8 +309,8 @@
     
 #pragma mark - For Now Chatting Disabled
     
-//    [self sendInVites];
-   
+    [self sendInVites];
+   /*
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", [self.userDetails valueForKey:@"user_email"]];
     DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
     
@@ -336,16 +336,9 @@
         
         [self presentViewController:alertController animated:YES completion:nil];
     }
+    */
 }
-
-
-//    NSDictionary *dictionary = [Chat startPrivate:dbuser2];
-//    [self actionChat:dictionary];
-
-
-//}
-
-
+    
 -(void)sendInVites
 {
     if([MFMailComposeViewController canSendMail]) {

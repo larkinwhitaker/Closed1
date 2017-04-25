@@ -57,15 +57,8 @@
     [ContactDetails MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    _contactDetails = [ContactDetails MR_findAll];
     
     
-    if (_contactDetails.count == 0) {
-        
-        [self getContactViewData];
-        
-        
-    }
     
     
     self.searchDisplayController.searchResultsTableView.estimatedRowHeight = 90;
@@ -231,6 +224,15 @@
     [self.fetchedResultsController performFetch:nil];
     [self tableViewReloadDataWithAnimation:YES];
     
+    _contactDetails = [ContactDetails MR_findAll];
+    
+    if (_contactDetails.count == 0) {
+        
+        [self getContactViewData];
+        
+        
+    }
+
     
     
 }
@@ -806,7 +808,5 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [self getContactViewData];
 }
-
-
 
 @end

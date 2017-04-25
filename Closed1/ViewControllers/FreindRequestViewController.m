@@ -130,8 +130,6 @@
     [freindCell.profileImage sd_setImageWithURL:[NSURL URLWithString:[[_friendListArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
     freindCell.nameLabel.text = [[_friendListArray objectAtIndex:indexPath.row] valueForKey:@"contact"];
-    freindCell.companyLabel.text = [[_friendListArray objectAtIndex:indexPath.row] valueForKey:@"company"];
-    freindCell.titleNameLabel.text = [[_friendListArray objectAtIndex:indexPath.row] valueForKey:@"title"];
     
     freindCell.acceptButton.tag = indexPath.row;
     freindCell.rejectButton.tag = indexPath.row;
@@ -151,7 +149,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSString *url = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%@", [[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"user_id"]];
+        NSString *url = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"accept_link"] firstObject] valueForKey:@"id"]];
         NSLog(@"%@", url);
         
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{}];
@@ -166,16 +164,8 @@
             
             if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
                 
-                ContactDetails *contact = [ContactDetails MR_createEntity];
-                contact.company = [entity valueForKey:@"company"];
-                contact.designation = [entity valueForKey:@"title"];
-                contact.imageURL = [entity valueForKey:@"profile_image_url"];
-                contact.userID = [[entity valueForKey:@"user_id"] integerValue];
-                contact.userName = [entity valueForKey:@"contact"];
-                contact.title = [entity valueForKey:@"title"];
-                
-                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-                [self getFreindList];
+                [self.navigationController popViewControllerAnimated:YES];
+                [self.delegate freindListAddedSucessFully];
                 
             }else{
                 
@@ -197,7 +187,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"reject_link"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{}];
         
         NSLog(@"%@", serverResponce);
         

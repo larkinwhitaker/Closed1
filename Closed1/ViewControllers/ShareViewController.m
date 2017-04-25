@@ -38,7 +38,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+    [formatter setDateFormat:@"MMM-dd-yyyy HH:mm"];
     
     NSDate *currentDate = [NSDate date];
     NSString *dateString = [formatter stringFromDate:currentDate];

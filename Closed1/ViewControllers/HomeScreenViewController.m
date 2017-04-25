@@ -282,7 +282,8 @@
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
-    
+    /*
+    //Demo for Showing in Office
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
     DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
@@ -308,7 +309,7 @@
         
         [self presentViewController:alertController animated:YES completion:nil];
     }
-    
+    */
     
     /*
     ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
