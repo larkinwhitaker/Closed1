@@ -20,6 +20,7 @@
 #import "UserDetails+CoreDataClass.h"
 #import "MBProgressHUD.h"
 #import "FreindRequestViewController.h"
+#import "NZTourTip.h"
 
 
 @interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate, FreindsListDelegate>
@@ -28,6 +29,9 @@
 @property(nonatomic) BOOL isMailContactSelected;
 
 @property(nonatomic) NSArray *contactDetails;
+
+@property(nonatomic) UIButton *freindRequest;
+@property(nonatomic) UIButton *invitesButton;
 
 @property (nonatomic , retain) NSFetchedResultsController * fetchedResultsController;
 @property (nonatomic , retain) NSFetchedResultsController * searchedFRC;
@@ -57,17 +61,9 @@
     [ContactDetails MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    
-    
-    
-    
     self.searchDisplayController.searchResultsTableView.estimatedRowHeight = 90;
     self.searchDisplayController.searchResultsTableView.rowHeight = 90;
-    
-    
-    
-    
-    
+   
     
 }
 
@@ -100,10 +96,10 @@
                 
                 for (NSDictionary * entity in contactList) {
                     
-                    //        if (![[entity valueForKey:@"FirstName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"LastName"] isEqual:[NSNull null]] && ![[entity valueForKey:@"Biography"] isEqual:[NSNull null]] && ![[entity valueForKey:@"BoardCertified"] isEqual:[NSNull null]]) {
+                    ContactDetails *userContact = [ContactDetails MR_findFirstByAttribute:@"userID" withValue:[entity valueForKey:@"user_id"]];
                     
-                    
-                    
+                    if (userContact == nil) {
+                        
                     ContactDetails *contact = [ContactDetails MR_createEntity];
                     contact.company = [entity valueForKey:@"company"];
                     contact.designation = [entity valueForKey:@"title"];
@@ -113,6 +109,7 @@
                     contact.title = [entity valueForKey:@"title"];
                     
                 }
+            }
                 
                 //    }
                 
@@ -123,6 +120,14 @@
             }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceContacts"])
+            {
+                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[_freindRequest, _invitesButton] withMessages:@[@"Tap this to display the pending freind request", @"Tap this to send invites to people to use Closed1 app"] onScreen:self.view];
+                [jgTourTip showTourTip];
+                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTimeExperienceContacts"];
+            }
+
             
         });
         
@@ -143,12 +148,21 @@
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
-    UIBarButtonItem *contacts = [[UIBarButtonItem alloc]initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(pickContactMethod)];
+    _invitesButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [_invitesButton setTitle:@"Invite" forState:UIControlStateNormal];
+    [_invitesButton addTarget:self action:@selector(pickContactMethod) forControlEvents:UIControlEventTouchUpInside];
     
-    navItem.rightBarButtonItem = contacts;
+    UIBarButtonItem *contact = [[UIBarButtonItem alloc]initWithCustomView:_invitesButton];;
     
-    UIBarButtonItem *freindRequst = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"FreinfReuest"] style:UIBarButtonItemStylePlain target:self action:@selector(openFreingRequestScreen)];
-    navItem.leftBarButtonItem = freindRequst;
+    navItem.rightBarButtonItem = contact;
+    
+    _freindRequest = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [_freindRequest setImage:[UIImage imageNamed:@"FreinfReuest"] forState:UIControlStateNormal];
+    [_freindRequest addTarget:self action:@selector(openFreingRequestScreen) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIBarButtonItem *freinds = [[UIBarButtonItem alloc]initWithCustomView:_freindRequest];
+    navItem.leftBarButtonItem = freinds;
     
     navBar.items = @[navItem];
     [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];

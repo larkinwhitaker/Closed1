@@ -25,6 +25,7 @@
 #import "NavigationController.h"
 #import "ChatsView.h"
 #import "ChatView.h"
+#import "NZTourTip.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -246,6 +247,14 @@
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tablView reloadData];
+            
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceHome"])
+            {
+                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[self.profileButton, self.messageButton] withMessages:@[@"Tap this to display your profile", @"Tap this to display all the message people send to you"] onScreen:self.view];
+                [jgTourTip showTourTip];
+                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTimeExperienceHome"];
+            }
+            
         });
         
     });

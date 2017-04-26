@@ -544,6 +544,8 @@
 		ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898B1E9FF95900B8D05F /* ProfileCell.m */; };
 		ADBE898F1E9FF9B100B8D05F /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */; };
 		ADCB0FA91E92A96B00170289 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */; };
+		ADCE92CF1EB0F9AC0018FD25 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE92CC1EB0F9AC0018FD25 /* CMPopTipView.m */; };
+		ADCE92D01EB0F9AC0018FD25 /* NZTourTip.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE92CE1EB0F9AC0018FD25 /* NZTourTip.m */; };
 		ADCED86A1E8AC10C00B9A06A /* TableViewDiscloserDownImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */; };
 		ADCED86B1E8AC10C00B9A06A /* TableViewDiscloserImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCED8691E8AC10C00B9A06A /* TableViewDiscloserImage.png */; };
 		ADCED86E1E8AC2AA00B9A06A /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED86D1E8AC2AA00B9A06A /* SettingsTableViewCell.m */; };
@@ -1413,6 +1415,10 @@
 		ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		ADCB0FA71E92A96B00170289 /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
 		ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
+		ADCE92CB1EB0F9AC0018FD25 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		ADCE92CC1EB0F9AC0018FD25 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
+		ADCE92CD1EB0F9AC0018FD25 /* NZTourTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZTourTip.h; sourceTree = "<group>"; };
+		ADCE92CE1EB0F9AC0018FD25 /* NZTourTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZTourTip.m; sourceTree = "<group>"; };
 		ADCED75D1E8AAAA600B9A06A /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		ADCED7D11E8AAF4C00B9A06A /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		ADCED8681E8AC10C00B9A06A /* TableViewDiscloserDownImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableViewDiscloserDownImage.png; sourceTree = "<group>"; };
@@ -1746,6 +1752,7 @@
 		AD93F75B1E880E16008488B9 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				ADCE92CA1EB0F9AC0018FD25 /* Tour Tip */,
 				ADBB1AB11EA52B35003CA9DD /* Chatting */,
 				AD933A171E9E8093002FE9FF /* AFNetworking */,
 				ADACED451E9BFE06001A9F4A /* SDWebImage */,
@@ -3363,6 +3370,17 @@
 			path = Sinch;
 			sourceTree = "<group>";
 		};
+		ADCE92CA1EB0F9AC0018FD25 /* Tour Tip */ = {
+			isa = PBXGroup;
+			children = (
+				ADCE92CB1EB0F9AC0018FD25 /* CMPopTipView.h */,
+				ADCE92CC1EB0F9AC0018FD25 /* CMPopTipView.m */,
+				ADCE92CD1EB0F9AC0018FD25 /* NZTourTip.h */,
+				ADCE92CE1EB0F9AC0018FD25 /* NZTourTip.m */,
+			);
+			path = "Tour Tip";
+			sourceTree = "<group>";
+		};
 		ADCED7D01E8AAF4C00B9A06A /* Suporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -4030,6 +4048,7 @@
 				AD933A451E9E8093002FE9FF /* UIButton+AFNetworking.m in Sources */,
 				ADACED6C1E9BFE06001A9F4A /* SDWebImageManager.m in Sources */,
 				AD93F7EC1E8823B7008488B9 /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
+				ADCE92CF1EB0F9AC0018FD25 /* CMPopTipView.m in Sources */,
 				ADBB1DC31EA52B37003CA9DD /* DBCallHistory.m in Sources */,
 				AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */,
 				ADBB1D511EA52B37003CA9DD /* SelectMultipleView.m in Sources */,
@@ -4133,6 +4152,7 @@
 				ADBB1DBD1EA52B37003CA9DD /* PhotoMediaItem.m in Sources */,
 				ADBB1D461EA52B37003CA9DD /* MapView.m in Sources */,
 				ADBB1D611EA52B37003CA9DD /* PeopleView.m in Sources */,
+				ADCE92D01EB0F9AC0018FD25 /* NZTourTip.m in Sources */,
 				ADBB1D631EA52B37003CA9DD /* CreateGroupView.m in Sources */,
 				AD933A411E9E8093002FE9FF /* AFAutoPurgingImageCache.m in Sources */,
 				AD933A541E9EA3A4002FE9FF /* ProfileDetailsCell.m in Sources */,
