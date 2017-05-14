@@ -14,12 +14,23 @@
 #import "MagicalRecord.h"
 #import "UserDetails+CoreDataClass.h"
 #import "ClosedResverResponce.h"
+#import "EditProfileViewController.h"
+#import "JobProfileCell.h"
+
+#define kTitle @"Title"
+#define kCopmpany @"Company"
+#define kTerritory @"Territory"
+#define kTargetBuyers @"Target Buyers"
+#define kisCurrentPosition @"CurrentPosition"
 
 
-@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate>
+@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate, UITextFieldDelegate>
 {
     EditProfileTableViewCell *editProfileCell;
+    NSInteger rowCount;
 }
+@property(nonatomic) NSMutableArray *flightDetailsArray;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -28,14 +39,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _flightDetailsArray = [[NSMutableArray alloc]init];
+    [_flightDetailsArray addObject:[self configureFlightDetailsDictionary]];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JobProfileCell" bundle:nil] forCellReuseIdentifier:@"JobProfileCell"];
 
     self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
     
-    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    UIButton *updateProfile = [[UIButton alloc]initWithFrame:footerView.frame];
+    [updateProfile setTitle:@"Update Profile" forState:UIControlStateNormal];
+    [updateProfile addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
+    updateProfile.titleLabel.textColor = [UIColor whiteColor];
+    updateProfile.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0];
+    [footerView addSubview:updateProfile];
+    
+    self.tableView.tableFooterView = footerView;
     
     [self createCustumNavigationBar];
     self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
+    
+    rowCount = 2;
 
+}
+
+-(NSMutableDictionary *)configureFlightDetailsDictionary
+{
+    NSMutableDictionary *flightDetails = [[NSMutableDictionary alloc]init];
+    [flightDetails setValue:@"" forKey:kTitle];
+    [flightDetails setValue:@"" forKey:kCopmpany];
+    [flightDetails setValue:@"" forKey:kTerritory];
+    [flightDetails setValue:@"" forKey:kTargetBuyers];
+    [flightDetails setValue:[NSNumber numberWithBool:NO] forKey:kisCurrentPosition];
+    
+    return flightDetails;
 }
 
 - (void)createCustumNavigationBar
@@ -68,45 +105,133 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if(section == 0) return  1;
+    else if (section == 1) return _flightDetailsArray.count;
+    else return 0;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 729;
+    if(indexPath.section == 0) return 689;
+    else return 360;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-    editProfileCell = [tableView dequeueReusableCellWithIdentifier:@"EditProfileTableViewCell"];
-    
-    [editProfileCell.countryButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
-    
+    if (indexPath.section == 0) {
+        
+        editProfileCell = [tableView dequeueReusableCellWithIdentifier:@"EditProfileTableViewCell"];
+        
+        [editProfileCell.countryButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
+        
 #pragma mark - Remove Code
-    
-    UserDetails *userDetails = [UserDetails MR_findFirst];
-    
-    editProfileCell.emailTextField.text = userDetails.userEmail;
-    editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
-    editProfileCell.citytextField.text = userDetails.city;
-    editProfileCell.stateTextField.text = userDetails.state;
-    editProfileCell.phoneNumberTextField.text = userDetails.phoneNumber;
-    [editProfileCell.countryButton setTitle:userDetails.country forState:UIControlStateNormal];
-    editProfileCell.companyNameTextField.text = userDetails.company;
-    editProfileCell.designationTextField.text = userDetails.title;
-    editProfileCell.terrotoryTextField.text = userDetails.territory;
-    editProfileCell.secondaryEmail.text = userDetails.econdaryemail;
-    [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
-    [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UserDetails *userDetails = [UserDetails MR_findFirst];
+        
+        editProfileCell.emailTextField.text = userDetails.userEmail;
+        editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+        editProfileCell.citytextField.text = userDetails.city;
+        editProfileCell.stateTextField.text = userDetails.state;
+        editProfileCell.phoneNumberTextField.text = userDetails.phoneNumber;
+        [editProfileCell.countryButton setTitle:userDetails.country forState:UIControlStateNormal];
+        editProfileCell.companyNameTextField.text = userDetails.company;
+        editProfileCell.designationTextField.text = userDetails.title;
+        editProfileCell.terrotoryTextField.text = userDetails.territory;
+        editProfileCell.secondaryEmail.text = userDetails.econdaryemail;
+        [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        return editProfileCell;
+    }else{
+        
+        JobProfileCell *jobCell = [tableView dequeueReusableCellWithIdentifier:@"JobProfileCell"];
+        [jobCell.addNewJob addTarget:self action:@selector(addmoreCell:) forControlEvents:UIControlEventTouchUpInside];
+        [jobCell.removeJob addTarget:self action:@selector(removeJobProfile:) forControlEvents:UIControlEventTouchUpInside];
+        jobCell.titleTextField.delegate = self;
+        jobCell.companyTextField.delegate = self;
+        jobCell.territoryTextFiled.delegate = self;
+        jobCell.targetBuyersTextFiled.delegate = self;
+        jobCell.removeJob.tag = indexPath.row;
+        jobCell.addNewJob.tag = indexPath.row;
+        jobCell.titleTextField.tag = indexPath.row;
+        jobCell.companyTextField.tag = indexPath.row;
+        jobCell.territoryTextFiled.tag = indexPath.row;
+        jobCell.targetBuyersTextFiled.tag = indexPath.row;
+        [jobCell.isCurrentPosition addTarget:self action:@selector(currentJobSelected:) forControlEvents:UIControlEventValueChanged];
+        jobCell.isCurrentPosition.tag = indexPath.row;
+        
+        jobCell.titleTextField.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTitle];
+        jobCell.companyTextField.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kCopmpany];
+        jobCell.territoryTextFiled.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTerritory];
+        jobCell.targetBuyersTextFiled.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTargetBuyers];
 
+        
+        return jobCell;
+    }
     
-    return editProfileCell;
+}
+
+-(void)currentJobSelected: (UISwitch *)sender{
+    
+//    [[_flightDetailsArray objectAtIndex:sender.tag] setBool:sender.isSelected forKey:kisCurrentPosition];
+}
+
+-(void)addmoreCell: (UIButton *)sender
+{
+    if (_flightDetailsArray.count>4) {
+        
+        [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"You cannot add more job profiles" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        
+    }else{
+        
+        NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
+        [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:_flightDetailsArray.count inSection:1]];
+        [_flightDetailsArray addObject:[self configureFlightDetailsDictionary]];
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView endUpdates];
+        
+        [self.tableView reloadData];
+    }
+}
+
+-(void)removeJobProfile: (UIButton *)sender{
+    
+    if (_flightDetailsArray.count<2) {
+        
+        [[[UIAlertView alloc]initWithTitle:@"Adding nothing??" message:@"Please add atleast one job profile" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+        
+    }else{
+        
+        NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+        [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:sender.tag inSection:1]];
+        [_flightDetailsArray removeObjectAtIndex:sender.tag];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView endUpdates];
+        
+        [self.tableView reloadData];
+
+    }
+
+}
+
+#pragma mark - TextField Delegates
+
+-(void)textFieldDidEndEditing:(JVFloatLabeledTextField *)textField
+{
+    [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:textField.placeholder];
 }
 
 -(void)openCountrySelectionScreen
@@ -202,6 +327,36 @@
         
         
     }
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *labelText = @"";
+    
+    if (section == 0) {
+        labelText = @"Profile Details";
+    }else if (section == 1){
+        labelText = @"Job / Position Information";
+    }
+    
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    label.font = [UIFont boldSystemFontOfSize:16.0];
+    label.textColor = [UIColor darkGrayColor];
+    label.text = labelText;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    [headerView addSubview:label];
+    headerView.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
+    
+    return headerView;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
 }
 
 -(void)submitDataToServer

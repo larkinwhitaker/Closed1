@@ -88,7 +88,7 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -134,13 +134,16 @@
     {
     HomeScreenTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeScreenTableViewCell"];
     
+        
+        [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        homeCell.userNameLabel.tag = indexPath.row;
     if (![[[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
         
-        homeCell.userNameLabel.text = [[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"];
+        [homeCell.userNameLabel setTitle:[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] forState:UIControlStateNormal];
         
     }else{
         
-        homeCell.userNameLabel.text = @"";
+        [homeCell.userNameLabel setTitle:@"" forState:UIControlStateNormal];
     }
     [homeCell.userProfileImage sd_setImageWithURL:[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"profile_image_url"]
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
@@ -206,13 +209,16 @@
         
         HomeScreenTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeScreenTableViewCell"];
         
+        
+        [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        homeCell.userNameLabel.tag = indexPath.row;
         if (![[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] isEqual:[NSNull null]]) {
             
-            homeCell.userNameLabel.text = [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"];
+            [homeCell.userNameLabel setTitle:[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] forState:UIControlStateNormal];
             
         }else{
             
-            homeCell.userNameLabel.text = @"";
+            [homeCell.userNameLabel setTitle:@"" forState:UIControlStateNormal];
         }
         [homeCell.userProfileImage sd_setImageWithURL:[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]
                                      placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];

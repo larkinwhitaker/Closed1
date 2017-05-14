@@ -78,7 +78,7 @@
     // OneSignal initialization
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [OneSignal initWithLaunchOptions:launchOptions appId:ONESIGNAL_APPID handleNotificationReceived:nil handleNotificationAction:nil
-                            settings:@{kOSSettingsKeyInAppAlerts:@NO}];
+                            settings:@{kOSSettingsKeyInAppAlerts:@YES}];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [OneSignal setLogLevel:ONE_S_LL_NONE visualLevel:ONE_S_LL_NONE];
     //---------------------------------------------------------------------------------------------------------------------------------------------

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PJXAnimatedTabBarController.h"
 
-@interface TabBarHandler : UITabBarController
+@interface TabBarHandler : PJXAnimatedTabBarController
 
 @end

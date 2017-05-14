@@ -71,7 +71,7 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     navItem.leftBarButtonItem = backButton;
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:107.0/255.0 green:225.0/255.0 blue:211.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];

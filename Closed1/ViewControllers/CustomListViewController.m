@@ -58,7 +58,7 @@ NSString *sectionHeadingText = @"";
     
     UILabel *headerViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 5 ,self.view.frame.size.width - 50, 30)];
     headerViewLabel.text = @"Current Location";
-    headerViewLabel.textColor = [UIColor colorWithRed:107.0/255.0 green:225.0/255.0 blue:211.0/255.0 alpha:1.0];
+    headerViewLabel.textColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
     [headerView addSubview:headerViewLabel];
     [headerView addSubview:headerviewImage];
     

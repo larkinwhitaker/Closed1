@@ -36,6 +36,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
 
+@property (strong, nonatomic) IBOutlet UIButton *signupLinkedButton;
 
 
 @end

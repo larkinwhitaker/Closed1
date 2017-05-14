@@ -2,7 +2,7 @@
 //  ContactDetails+CoreDataProperties.h
 //  Closed1
 //
-//  Created by Nazim on 24/04/17.
+//  Created by Nazim on 13/05/17.
 //  Copyright © 2017 Alkurn. All rights reserved.
 //
 

@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *passwordTextField;
 @property(atomic) NSString *acessToken;
 @property (strong, nonatomic) IBOutlet UIView *loginView;
+@property(nonatomic) NSString *imageURL;
 
 @end
 
@@ -38,7 +39,7 @@
 //    [UserDetails MR_truncateAll];
 //    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    
+    _imageURL = @"";
     self.loginView.layer.cornerRadius = 5;
     UIBezierPath *shadowPath = [UIBezierPath
                                 bezierPathWithRoundedRect: self.loginView.bounds
@@ -74,7 +75,7 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
-    [self presentViewController:webView animated:YES completion:nil];
+    [self.navigationController pushViewController:webView animated:YES];
     
     /*
     [LISDKSessionManager createSessionWithAuth:[NSArray arrayWithObjects:LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION, nil]
@@ -266,7 +267,17 @@ errorBlock:^(NSError *error) {
         userDetails.country = [userData valueForKey:@"country"];
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
-        userDetails.profileImage = [userData valueForKey:@"profile Image"];
+        
+        if ([[userData valueForKey:@"profile_image_url"] isEqualToString:@""]) {
+            
+            userDetails.profileImage = _imageURL;
+
+
+        }else{
+         
+            userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
+
+        }
         
         [localContext MR_saveToPersistentStoreAndWait];
         
@@ -337,7 +348,8 @@ errorBlock:^(NSError *error) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self submitDataToServer];
+                    [self submitDataViaLinkedIn:[arrayOfDictionaryFromServer valueForKey:@"emailAddress"] withImageURl:[arrayOfDictionaryFromServer valueForKey:@"pictureUrl"]];
+                    _imageURL = [arrayOfDictionaryFromServer valueForKey:@"pictureUrl"];
                     
                 });
             }
@@ -366,6 +378,54 @@ errorBlock:^(NSError *error) {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     });
+}
+
+-(void)submitDataViaLinkedIn: (NSString *)email withImageURl: (NSString *)imageURL
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Loggin you in";
+    [ClosedResverResponce sharedInstance].delegate= self;
+    
+    NSString *apiName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=linkedinlogin&email=%@&device_id=%@&user_avatar_urls=%@", email, @"123", imageURL];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{}];
+        
+        NSLog(@"%@", serverResponce);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (serverResponce != nil) {
+                
+                if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                    
+                    if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                        
+                        [self saveUserDetails:serverResponce];
+                        [self openHomeScreen];
+                        
+                    }else{
+                        [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+                        
+                    }
+                    
+                }else{
+                    [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+                    
+                }
+            }else{
+                
+                [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+            }
+        });
+        
+    });
+
 }
 
 

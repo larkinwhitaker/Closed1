@@ -10,7 +10,6 @@
 
 @interface HomeScreenTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *userProfileImage;
-@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *closed1Title;
 @property (strong, nonatomic) IBOutlet UILabel *likeCOuntLabel;
@@ -24,4 +23,5 @@
 @property (strong, nonatomic) IBOutlet UIView *messageView;
 @property (strong, nonatomic) IBOutlet UIButton *likeButtonView;
 
+@property (weak, nonatomic) IBOutlet UIButton *userNameLabel;
 @end

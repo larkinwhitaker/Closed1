@@ -21,7 +21,7 @@
 #import "MBProgressHUD.h"
 #import "FreindRequestViewController.h"
 #import "NZTourTip.h"
-
+#import "AddFreindsViewController.h"
 
 @interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate, FreindsListDelegate>
 
@@ -32,6 +32,8 @@
 
 @property(nonatomic) UIButton *freindRequest;
 @property(nonatomic) UIButton *invitesButton;
+@property(nonatomic) UIButton *addFreinds;
+@property(nonatomic) AddFreindsViewController *addFreind;
 
 @property (nonatomic , retain) NSFetchedResultsController * fetchedResultsController;
 @property (nonatomic , retain) NSFetchedResultsController * searchedFRC;
@@ -64,7 +66,7 @@
     self.searchDisplayController.searchResultsTableView.estimatedRowHeight = 90;
     self.searchDisplayController.searchResultsTableView.rowHeight = 90;
    
-    
+    self.addFreind = [self.storyboard instantiateViewControllerWithIdentifier:@"AddFreindsViewController"];
 }
 
 -(void)getContactViewData
@@ -123,7 +125,7 @@
             
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceContacts"])
             {
-                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[_freindRequest, _invitesButton] withMessages:@[@"Tap this to display the pending freind request", @"Tap this to send invites to people to use Closed1 app"] onScreen:self.view];
+                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[_freindRequest, _invitesButton, _addFreinds] withMessages:@[@"Tap this to display the pending freind request", @"Tap this to send invites to people to use Closed1 app", @"Tap this to add freinds which are using closed1"] onScreen:self.view];
                 [jgTourTip showTourTip];
                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTimeExperienceContacts"];
             }
@@ -149,14 +151,21 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     _invitesButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [_invitesButton setTitle:@"Invite" forState:UIControlStateNormal];
+    [_invitesButton setImage:[UIImage imageNamed:@"InviteFreinds"] forState:UIControlStateNormal];
     [_invitesButton addTarget:self action:@selector(pickContactMethod) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *contact = [[UIBarButtonItem alloc]initWithCustomView:_invitesButton];;
     
-    navItem.rightBarButtonItem = contact;
+    self.addFreinds = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [_addFreinds setImage:[UIImage imageNamed:@"AddIndivisual"] forState:UIControlStateNormal];
+    [_addFreinds addTarget:self action:@selector(addFreindList) forControlEvents:UIControlEventTouchUpInside];
     
-    _freindRequest = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIBarButtonItem *adddFreind = [[UIBarButtonItem alloc]initWithCustomView:self.addFreinds];
+    
+    
+    navItem.rightBarButtonItems = @[contact, adddFreind];
+    
+    _freindRequest = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [_freindRequest setImage:[UIImage imageNamed:@"FreinfReuest"] forState:UIControlStateNormal];
     [_freindRequest addTarget:self action:@selector(openFreingRequestScreen) forControlEvents:UIControlEventTouchUpInside];
     
@@ -165,13 +174,20 @@
     navItem.leftBarButtonItem = freinds;
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [navItem setTitle:@"Contacts"];
     [self.view addSubview:navBar];
     
+}
+    
+     
+-(void)addFreindList
+{
+    
+    [self.navigationController pushViewController:_addFreind animated:YES];
 }
 
 -(void)openFreingRequestScreen
@@ -246,8 +262,6 @@
         
         
     }
-
-    
     
 }
 
@@ -408,8 +422,11 @@
         controller.recipients = filteredContacts;
         controller.messageComposeDelegate = self;
         [controller didMoveToParentViewController:self];
-        [self presentModalViewController:controller animated:YES];
+        [self presentViewController:controller animated:YES completion:nil];
         
+    }else{
+        
+        [[[UIAlertView alloc]initWithTitle:@"Sorry you cannot send message" message:@"It seems that you haven't installed sim in your device or Airplone maode is turn ON." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }
     
 }
@@ -426,8 +443,11 @@
         [mailCont setToRecipients:contactList];
         [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
         
-        [self presentModalViewController:mailCont animated:YES];
+        [self presentViewController:mailCont animated:YES completion:nil];
         
+    }else{
+        [[[UIAlertView alloc]initWithTitle:@"Sorry you cannot send mail" message:@"It seems the mail is not setup im your device Please configure your mail ." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
     }
     
 }
@@ -452,7 +472,7 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

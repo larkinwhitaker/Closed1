@@ -84,7 +84,7 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
@@ -137,7 +137,7 @@
 {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-        return 307 + [HomeScreenViewController findHeightForText:[self.userDetails valueForKey:@"territory"] havingWidth:self.view.frame.size.width/2 andFont:[UIFont systemFontOfSize:18.0]];
+        return 272;
     }else{
         CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
         
@@ -156,8 +156,8 @@
         _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
         
         
-        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"imageURL"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
-        _profileDetails.userName.text = [self.userDetails valueForKey:@"userName"];
+        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+        _profileDetails.userName.text = [self.userDetails valueForKey:@"fullname"];
         [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
         [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         _profileDetails.territoryLabel.text = [self.userDetails valueForKey:@"territory"];
@@ -173,13 +173,16 @@
     }else{
         HomeScreenTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeScreenTableViewCell"];
         
+        homeCell.userNameLabel.tag = indexPath.row;
+        [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
         if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
             
-            homeCell.userNameLabel.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"];
+            [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] forState:UIControlStateNormal];
             
         }else{
             
-            homeCell.userNameLabel.text = @"";
+            [homeCell.userNameLabel setTitle:@"" forState:UIControlStateNormal];
         }
         [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                      placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];

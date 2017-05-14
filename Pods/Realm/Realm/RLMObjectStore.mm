@@ -423,7 +423,7 @@ RLMObjectBase *RLMCreateObjectInRealmWithValue(RLMRealm *realm, NSString *classN
                 RLMDynamicSet(object, prop, RLMCoerceToNil(propValue), propertyCreationOptions);
             }
             else if (!foundExisting && !prop.optional) {
-                @throw RLMException(@"Property '%@' of object of type '%@' cannot be nil.", prop.name, info.rlmObjectSchema.className);
+//                @throw RLMException(@"Property '%@' of object of type '%@' cannot be nil.", prop.name, info.rlmObjectSchema.className);
             }
         }
     }

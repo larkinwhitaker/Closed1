@@ -55,7 +55,7 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -64,6 +64,8 @@
     
 }
 - (IBAction)shareDealTapped:(id)sender {
+    
+    [self.view endEditing:YES];
     
     if ([[self.nametextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         

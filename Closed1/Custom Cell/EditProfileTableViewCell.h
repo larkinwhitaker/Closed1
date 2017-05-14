@@ -28,5 +28,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
 @property (strong, nonatomic) IBOutlet UIView *editProfileView;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextField;
 
 @end

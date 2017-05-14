@@ -14,11 +14,14 @@
 #import "ClosedResverResponce.h"
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
+#import "WebViewController.h"
 
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate>
+
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
+@property(nonatomic) NSString *imageURL;
 
 @end
 
@@ -34,6 +37,7 @@
     
     [self createCustumNavigationBar];
     
+    _imageURL = @"";
 
 }
 
@@ -45,7 +49,7 @@
     UINavigationItem * navItem = [[UINavigationItem alloc] init];
     
     navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
+    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
     navBar.translucent = NO;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
@@ -79,7 +83,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 727;
+    return 773;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,6 +92,8 @@
     [_signupCell.signupButton addTarget:self action:@selector(signupButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     [_signupCell.countrySelectionButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_signupCell.signupLinkedButton addTarget:self action:@selector(signupLinkedInTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     return _signupCell;
 }
@@ -197,6 +203,76 @@
     }
 }
 
+-(void)signupLinkedInTapped: (id)sender
+{
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.isLinkedinSelected = YES;
+    webView.delegate = self;
+    [self presentViewController:webView animated:YES completion:nil];
+
+}
+#pragma mark - Linked Login Sucess Delegate
+
+-(void)linkedInAcessToken:(NSString *)acessToken
+{
+    
+    if (acessToken != nil) {
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        
+        NSString *acessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"LIAccessToken"];
+        
+        // Specify the URL string that we'll get the profile info from.
+        NSString *targetURLString = [NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(id,first-name,last-name,maiden-name,email-address,picture-url,headline)?oauth2_access_token=%@&format=json", acessToken] ;
+        
+        // Initialize a mutable URL request object.
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:targetURLString]];
+        
+        // Indicate that this is a GET request.
+        request.HTTPMethod = @"GET";
+        
+        // Add the access token as an HTTP header field.
+        //        [request addValue:[NSString stringWithFormat:@"Bearer %@",acessToken] forHTTPHeaderField:@"Authorization"];
+        
+        NSURLSession *seesion = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        
+        NSURLSessionDataTask *task = [seesion dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *responce,NSError *error){
+            
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) responce;
+            NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+            
+            if (httpResponse.statusCode == 200) {
+                
+                NSArray * arrayOfDictionaryFromServer = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                
+                NSLog(@"%@", arrayOfDictionaryFromServer);
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    NSLog(@"%@", arrayOfDictionaryFromServer);
+                    
+                    self.signupCell.emailtextField.text = [arrayOfDictionaryFromServer valueForKey:@"emailAddress"];
+                    self.signupCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", [arrayOfDictionaryFromServer valueForKey:@"firstName"], [arrayOfDictionaryFromServer valueForKey:@"lastName"]];
+                    self.imageURL = [arrayOfDictionaryFromServer valueForKey:@"pictureUrl"];
+                    
+                });
+            }
+            
+        }];
+        
+        [task resume];
+        
+        
+        
+        
+    }else{
+        
+        [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"Failed to login with linkedin. Please try again or login manually" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    }
+}
 
 -(void)submitDataToServer
 {
@@ -209,7 +285,9 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@", self.signupCell.usenameTextField.text, self.signupCell.emailtextField.text, self.signupCell.passwordTextField.text,_signupCell.fullNameTextField.text,self.signupCell.cityTextField.text,self.signupCell.stateTextField.text,self.signupCell.countrySelectionButton.titleLabel.text,self.signupCell.phoneNumberTextField.text];
+        NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&device_id=%@&user_avatar_urls=%@", self.signupCell.usenameTextField.text, self.signupCell.emailtextField.text, self.signupCell.passwordTextField.text,_signupCell.fullNameTextField.text,self.signupCell.cityTextField.text,self.signupCell.stateTextField.text,self.signupCell.countrySelectionButton.titleLabel.text,self.signupCell.phoneNumberTextField.text, @"1234", self.imageURL];
+        
+        http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=testuserklw1z213&email=testuserklwzl1234567889.alkurn@gmail.com&password=nazim@1234&fullname=nazimsiddiqui&city=nagpur&state=maharashtra&country=India&phone=909238038&device_id=k007&user_avatar_urls=fullimageurl
         
         NSLog(@"%@", reuestURL);
         
@@ -265,8 +343,8 @@
         userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
         userDetails.firstName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] firstObject];
         userDetails.lastName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] lastObject];
-        userDetails.userEmail = [userData valueForKey:@"user_email"];
-        userDetails.userLogin = [userData valueForKey:@"user_login"];
+        userDetails.userEmail = self.signupCell.emailtextField.text;
+        userDetails.userLogin = self.signupCell.usenameTextField.text;
         userDetails.title = [userData valueForKey:@"title"];
         userDetails.company = [userData valueForKey:@"company"];
         userDetails.city = [userData valueForKey:_signupCell.cityTextField.text];
@@ -276,9 +354,18 @@
         userDetails.country = countryString;
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
-        userDetails.profileImage = [userData valueForKey:@"profile Image"];
          userDetails.phoneNumber = _signupCell.phoneNumberTextField.text;
         userDetails.state = _signupCell.stateTextField.text;
+        
+        if ([_imageURL isEqualToString:@""]) {
+            
+            userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
+            
+        }else{
+            
+            userDetails.profileImage = _imageURL;
+        }
+
         
         [localContext MR_saveToPersistentStoreAndWait];
         

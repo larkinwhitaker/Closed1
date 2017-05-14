@@ -75,15 +75,15 @@
     _profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
     [_profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
-//    [profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+    [_profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
-    [DownloadManager image:user[FUSER_PICTURE] completion:^(NSString *path, NSError *error, BOOL network)
-     {
-         if (error == nil)
-         {
-             _profileCell.profileImage.image = [[UIImage alloc] initWithContentsOfFile:path];
-         }
-     }];
+//    [DownloadManager image:user[FUSER_PICTURE] completion:^(NSString *path, NSError *error, BOOL network)
+//     {
+//         if (error == nil)
+//         {
+//             _profileCell.profileImage.image = [[UIImage alloc] initWithContentsOfFile:path];
+//         }
+//     }];
     
     return _profileCell;
 }
@@ -97,7 +97,10 @@
         
         [UserDetails MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
-        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceHome"];
+
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceContacts"];
+
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         [self.navigationController popToRootViewControllerAnimated:YES];
 

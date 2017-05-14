@@ -56,7 +56,22 @@
     [self getFeedsArray];
     
 #pragma mark - Uncommnet this Method
-    [self getLoginWithChattingView];
+//    [self getLoginWithChattingView];
+    
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
+//    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
+//    
+//    NSLog(@"%@", dbuser);
+
+    
+//    NSMutableArray *oneSignalIds = [[NSMutableArray alloc] init];
+//    //---------------------------------------------------------------------------------------------------------------------------------------------
+//        if ([dbuser.oneSignalId length] != 0)
+//        [oneSignalIds addObject:dbuser.oneSignalId];
+//    //---------------------------------------------------------------------------------------------------------------------------------------------
+//    //NSLog(@"%@ - %@", oneSignalIds, text);
+//    //---------------------------------------------------------------------------------------------------------------------------------------------
+//    [OneSignal postNotification:@{@"contents":@{@"en":@"Demo Testing"}, @"include_player_ids":oneSignalIds}];
     
     
 }
@@ -102,7 +117,7 @@
         //---------------------------------------------------------------------------------------------------------------------------------------------
         LogoutUser(DEL_ACCOUNT_NONE);
         //---------------------------------------------------------------------------------------------------------------------------------------------
-        [ProgressHUD show:nil Interaction:NO];
+        //[ProgressHUD show:nil Interaction:NO];
         //---------------------------------------------------------------------------------------------------------------------------------------------
         [FUser signInWithEmail:email password:password completion:^(FUser *user, NSError *error)
          {
@@ -127,7 +142,7 @@
                  //---------------------------------------------------------------------------------------------------------------------------------------------
                  LogoutUser(DEL_ACCOUNT_NONE);
                  //---------------------------------------------------------------------------------------------------------------------------------------------
-                 [ProgressHUD show:nil Interaction:YES];
+                 //[ProgressHUD show:nil Interaction:YES];
                  //---------------------------------------------------------------------------------------------------------------------------------------------
                  [FUser createUserWithEmail:email password:password completion:^(FUser *user, NSError *error)
                   {
@@ -242,7 +257,18 @@
                 [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
                 [feedDictionary setValue:singleFeed forKey:@"Feeds"];
                 
-                [self.feedsArray addObject:feedDictionary];
+                
+                if ([[[feedDictionary valueForKey:@"Feeds"] valueForKey:@"content"] length]>1) {
+                    
+                    [self.feedsArray addObject:feedDictionary];
+
+                }
+            }
+            
+            
+            if (_feedsArray.count == 0) {
+                
+                [self displayErrorForFeeds];
             }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -261,6 +287,21 @@
     
     
     
+}
+
+
+-(void)displayErrorForFeeds
+{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to gets feeds" message:@"We are unable to get the feeds at this moment. Would you like to retry?" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction: [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *Action){
+        
+        [self getFeedsArray];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
@@ -374,13 +415,16 @@
 {
     HomeScreenTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeScreenTableViewCell"];
     
+    homeCell.userNameLabel.tag = indexPath.row;
+    [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
         
-        homeCell.userNameLabel.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"];
+        [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] forState:UIControlStateNormal];
 
     }else{
         
-        homeCell.userNameLabel.text = @"";
+        [homeCell.userNameLabel setTitle:@"" forState:UIControlStateNormal];
     }
        [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
