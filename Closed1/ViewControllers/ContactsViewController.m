@@ -102,20 +102,27 @@
                     
                     if (userContact == nil) {
                         
-                    ContactDetails *contact = [ContactDetails MR_createEntity];
-                    contact.company = [entity valueForKey:@"company"];
-                    contact.designation = [entity valueForKey:@"title"];
-                    contact.imageURL = [entity valueForKey:@"profile_image_url"];
-                    contact.userID = [[entity valueForKey:@"user_id"] integerValue];
-                    contact.userName = [entity valueForKey:@"contact"];
-                    contact.title = [entity valueForKey:@"title"];
-                    
-                }
+//                        if (![[entity valueForKey:@"company"] isEqual:[NSNull null]] && ![[entity valueForKey:@"title"] isEqual:[NSNull null]] && ![[entity valueForKey:@"profile_image_url"] isEqual:[NSNull null]] && ![[entity valueForKey:@"user_id"] isEqual:[NSNull null]] && ![[entity valueForKey:@"contact"] isEqual:[NSNull null]] && ![[entity valueForKey:@"title"] isEqual:[NSNull null]]) {
+                        
+                            ContactDetails *contact = [ContactDetails MR_createEntity];
+                            contact.company = [entity valueForKey:@"company"];
+                            contact.designation = [entity valueForKey:@"title"];
+                            contact.imageURL = [entity valueForKey:@"profile_image_url"];
+                            contact.userID = [[entity valueForKey:@"user_id"] integerValue];
+                            contact.userName = [entity valueForKey:@"contact"];
+                            contact.title = [entity valueForKey:@"title"];
+                        }
+                        
+//                    }
             }
                 
-                //    }
-                
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                if (contactList.count != 0) {
+                    [self.fetchedResultsController performFetch:nil];
+                    [self.tableViee reloadData];
+
+                }
+
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"It seems that no contacts has been added in your account yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
@@ -251,7 +258,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    [self.fetchedResultsController performFetch:nil];
     [self tableViewReloadDataWithAnimation:YES];
     
     _contactDetails = [ContactDetails MR_findAll];

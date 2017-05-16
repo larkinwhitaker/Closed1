@@ -56,7 +56,7 @@
     [self getFeedsArray];
     
 #pragma mark - Uncommnet this Method
-//    [self getLoginWithChattingView];
+   [self getLoginWithChattingView];
     
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
 //    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
@@ -332,61 +332,14 @@
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
-    /*
-    //Demo for Showing in Office
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
-    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
-    
-    NSLog(@"%@", dbuser);
-    
-    if ([dbuser.objectId isEqualToString:[FUser currentId]] == YES)
-    {
-        [ProgressHUD showSuccess:@"This is you."];
-        
-    }else if (dbuser.objectId != nil) {
-        
-        [self didSelectSingleUser:dbuser];
-    }else{
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"It seems the user you are connecting with the user haven't installed the \"Closed1\" App" message:@"would you like to send invite to him?" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            
-        }]];
-        
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-    */
-    
-    /*
     ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
     
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
     
     [self presentViewController:navController1 animated:YES completion:nil];
-     */
     
 }
 
-- (void)didSelectSingleUser:(DBUser *)dbuser2
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    NSDictionary *dictionary = [Chat startPrivate:dbuser2];
-    [self actionChat:dictionary];
-}
-
-- (void)actionChat:(NSDictionary *)dictionary
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    ChatView *chatView = [[ChatView alloc] initWith:dictionary];
-    chatView.hidesBottomBarWhenPushed = YES;
-    NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatView];
-    
-    [self presentViewController:navController1 animated:YES completion:nil];
-}
 
 - (IBAction)profileButtonTapped:(id)sender {
     

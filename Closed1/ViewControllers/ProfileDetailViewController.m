@@ -312,10 +312,6 @@
 -(void)messageButtonTapped: (id)sender
 {
     
-#pragma mark - For Now Chatting Disabled
-    
-    [self sendInVites];
-   /*
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", [self.userDetails valueForKey:@"user_email"]];
     DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
     
@@ -323,7 +319,7 @@
     
     if ([dbuser.objectId isEqualToString:[FUser currentId]] == YES)
     {
-     [ProgressHUD showSuccess:@"This is you."];
+        [ProgressHUD showSuccess:@"This is you."];
         
     }else if (dbuser.objectId != nil) {
         
@@ -341,7 +337,6 @@
         
         [self presentViewController:alertController animated:YES completion:nil];
     }
-    */
 }
     
 -(void)sendInVites

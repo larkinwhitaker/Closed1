@@ -78,7 +78,7 @@
     // OneSignal initialization
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [OneSignal initWithLaunchOptions:launchOptions appId:ONESIGNAL_APPID handleNotificationReceived:nil handleNotificationAction:nil
-                            settings:@{kOSSettingsKeyInAppAlerts:@YES}];
+                            settings:@{kOSSettingsKeyInAppAlerts:@NO}];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [OneSignal setLogLevel:ONE_S_LL_NONE visualLevel:ONE_S_LL_NONE];
     //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -261,6 +261,56 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    if ([[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] containsString:@"sent you a freind request"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Notificationrecived" object:userInfo];
+        
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    if ([[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] containsString:@"sent you a freind request"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Notificationrecived" object:userInfo];
+
+    }
+    
+        // custom code to handle notification content
+        
+        if( [UIApplication sharedApplication].applicationState == UIApplicationStateInactive )
+        {
+            NSLog( @"INACTIVE" );
+            completionHandler( UIBackgroundFetchResultNewData );
+        }
+        else if( [UIApplication sharedApplication].applicationState == UIApplicationStateBackground )
+        {
+            NSLog( @"BACKGROUND" );
+            completionHandler( UIBackgroundFetchResultNewData );
+        }
+        else
+        {
+            NSLog( @"FOREGROUND" );
+            completionHandler( UIBackgroundFetchResultNewData );
+        }
+    
+    
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler  {
+    
+    NSDictionary *userInfo = notification.request.content.userInfo;
+    NSLog(@"%@", userInfo);
+    if ([[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] containsString:@"sent you a freind request"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Notificationrecived" object:userInfo];
+        
+    }
+    if ([userInfo objectForKey:@"aps"]) {
+        
+        [UIApplication sharedApplication].applicationIconBadgeNumber = ([[UIApplication sharedApplication] applicationIconBadgeNumber] + 1);
+        
+    }
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+    
     
 }
 

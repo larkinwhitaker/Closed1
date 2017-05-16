@@ -16,7 +16,6 @@
 		AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155C1E8C36AE00DD9529 /* ContactsTableViewCell.xib */; };
 		AD1F15601E8C3D6000DD9529 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */; };
 		AD3637DE1EC76C8F00D4AAB9 /* AddFreindsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3637DD1EC76C8E00D4AAB9 /* AddFreindsCell.m */; };
-		AD3A28DF1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A28DD1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.m */; };
 		AD3A28E21EC704E800EB3BEE /* AddIndivisual.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A28E01EC704E800EB3BEE /* AddIndivisual.png */; };
 		AD3A28E31EC704E800EB3BEE /* InviteFreinds.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A28E11EC704E800EB3BEE /* InviteFreinds.png */; };
 		AD3A28E61EC706E700EB3BEE /* AddFreindsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A28E51EC706E700EB3BEE /* AddFreindsViewController.m */; };
@@ -564,6 +563,7 @@
 		ADBB1EC81EA52B37003CA9DD /* SINSLazyVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D351EA52B37003CA9DD /* SINSLazyVideoController.m */; };
 		ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898B1E9FF95900B8D05F /* ProfileCell.m */; };
 		ADBE898F1E9FF9B100B8D05F /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */; };
+		ADC405D21ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC405D01ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.m */; };
 		ADC8ED741EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC8ED731EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png */; };
 		ADCB0FA91E92A96B00170289 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */; };
 		ADCE92CF1EB0F9AC0018FD25 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE92CC1EB0F9AC0018FD25 /* CMPopTipView.m */; };
@@ -642,8 +642,6 @@
 		AD1F155F1E8C3D6000DD9529 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		AD3637DC1EC76C8E00D4AAB9 /* AddFreindsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFreindsCell.h; sourceTree = "<group>"; };
 		AD3637DD1EC76C8E00D4AAB9 /* AddFreindsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFreindsCell.m; sourceTree = "<group>"; };
-		AD3A28DC1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
-		AD3A28DD1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AD3A28E01EC704E800EB3BEE /* AddIndivisual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddIndivisual.png; sourceTree = "<group>"; };
 		AD3A28E11EC704E800EB3BEE /* InviteFreinds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFreinds.png; sourceTree = "<group>"; };
 		AD3A28E41EC706E700EB3BEE /* AddFreindsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFreindsViewController.h; sourceTree = "<group>"; };
@@ -1477,6 +1475,8 @@
 		ADBE898B1E9FF95900B8D05F /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		ADBE898D1E9FF9B100B8D05F /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		ADC405CF1ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ADC405D01ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADC8ED731EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-29 at 12.26.11 PM.png"; sourceTree = "<group>"; };
 		ADCB0FA71E92A96B00170289 /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
 		ADCB0FA81E92A96B00170289 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
@@ -2055,8 +2055,8 @@
 		ADA0C5DF1E969F020060A0B1 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
-				AD3A28DC1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.h */,
-				AD3A28DD1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.m */,
+				ADC405CF1ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.h */,
+				ADC405D01ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.m */,
 				ADB4C4011E9D2E5500C71181 /* UserDetails+CoreDataProperties.h */,
 				ADB4C4021E9D2E5500C71181 /* UserDetails+CoreDataProperties.m */,
 			);
@@ -4316,7 +4316,6 @@
 				ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */,
 				ADBB1DA61EA52B37003CA9DD /* NSDictionary+Util.m in Sources */,
 				ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */,
-				AD3A28DF1EC6FCAF00EB3BEE /* ContactDetails+CoreDataProperties.m in Sources */,
 				ADBB1DC91EA52B37003CA9DD /* LoginEmailView.m in Sources */,
 				AD93F7F81E8823B7008488B9 /* MagicalRecord+Setup.m in Sources */,
 				AD93F79C1E881110008488B9 /* SignupViewController.m in Sources */,
@@ -4325,6 +4324,7 @@
 				ADA806DE1E900590009C0B38 /* ChangePasswordViewController.m in Sources */,
 				AD933A481E9E8093002FE9FF /* UIRefreshControl+AFNetworking.m in Sources */,
 				ADBB1DBA1EA52B37003CA9DD /* RealmManager.m in Sources */,
+				ADC405D21ECB6F9F00A836F0 /* ContactDetails+CoreDataProperties.m in Sources */,
 				AD9344EC1E89770700E60A4B /* NJKWebViewProgress.m in Sources */,
 				AD93F7E11E8823B7008488B9 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				ADBB1D671EA52B37003CA9DD /* GroupsView.m in Sources */,

@@ -69,21 +69,12 @@
         _profileCell.phoneLabel.text = userDetails.phoneNumber;
 
     }
-    FUser *user = [FUser currentUser];
     _profileCell.companyLabel.text = userDetails.company;
     _profileCell.roleLabel.text = userDetails.title;
     _profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
     [_profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
-    
-//    [DownloadManager image:user[FUSER_PICTURE] completion:^(NSString *path, NSError *error, BOOL network)
-//     {
-//         if (error == nil)
-//         {
-//             _profileCell.profileImage.image = [[UIImage alloc] initWithContentsOfFile:path];
-//         }
-//     }];
     
     return _profileCell;
 }

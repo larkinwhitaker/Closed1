@@ -13,6 +13,7 @@
 #import "ShareViewController.h"
 #import "NavigationController.h"
 #import "SettingsViewController.h"
+#import "FreindRequestViewController.h"
 
 #import "PJXAnimatedTabBarController.h"
 #import "PJXAnimatedTabBarItem.h"
@@ -33,6 +34,8 @@
 - (void)viewDidLoad {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileUpdatedSucessFully) name:@"ProfileEdited" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRecieved:) name:@"Notificationrecived" object:nil];
     
     PJXBounceAnimation *bounceAnimation = [[PJXBounceAnimation alloc] init];
     bounceAnimation.textSelectedColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
@@ -92,5 +95,16 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
     self.selectedIndex = 0;
 }
 
+
+-(void)notificationRecieved: (NSNotification *)notifcation
+{
+    self.selectedIndex = 1;
+    
+    FreindRequestViewController  *freinds = [self.storyboard instantiateViewControllerWithIdentifier:@"FreindRequestViewController"];
+    [self.navigationController pushViewController:freinds animated:YES];
+
+    
+    
+}
 
 @end
