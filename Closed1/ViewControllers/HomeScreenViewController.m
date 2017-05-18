@@ -26,6 +26,8 @@
 #import "ChatsView.h"
 #import "ChatView.h"
 #import "NZTourTip.h"
+#import "Closed1-Swift.h"
+#import "Closed1-Bridging-Header.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -74,6 +76,10 @@
 //    [OneSignal postNotification:@{@"contents":@{@"en":@"Demo Testing"}, @"include_player_ids":oneSignalIds}];
     
     
+    
+    ContactsListViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
+    
+    [self.navigationController pushViewController:userProfile animated:YES];
 }
 
 -(void)getLoginWithChattingView

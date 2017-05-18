@@ -3153,6 +3153,72 @@
             </objects>
             <point key="canvasLocation" x="2184.8000000000002" y="-453.82308845577217"/>
         </scene>
+        <!--Open Adress Book-->
+        <scene sceneID="rrC-TY-kuy">
+            <objects>
+                <viewController storyboardIdentifier="OpenAdressBook" id="qcR-Ec-dnE" customClass="OpenAdressBook" customModule="Closed1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iz1-2P-4ab"/>
+                        <viewControllerLayoutGuide type="bottom" id="WJi-E4-fSI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rE4-yW-15K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="plI-XH-5UO">
+                                <rect key="frame" x="0.0" y="84" width="375" height="583"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="qcR-Ec-dnE" id="AiY-e7-ZkR"/>
+                                    <outlet property="delegate" destination="qcR-Ec-dnE" id="4Us-xb-GFT"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="EdZ-8R-7Ey">
+                                <rect key="frame" x="0.0" y="60" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qcR-Ec-dnE" id="Sla-Mp-lxb"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EdZ-8R-7Ey" firstAttribute="top" secondItem="iz1-2P-4ab" secondAttribute="bottom" constant="40" id="0zU-80-xMe"/>
+                            <constraint firstItem="plI-XH-5UO" firstAttribute="top" secondItem="EdZ-8R-7Ey" secondAttribute="bottom" constant="-20" id="3Na-yC-9AP"/>
+                            <constraint firstAttribute="trailing" secondItem="EdZ-8R-7Ey" secondAttribute="trailing" id="6I9-ub-aeB"/>
+                            <constraint firstAttribute="trailing" secondItem="plI-XH-5UO" secondAttribute="trailing" id="7yx-Lt-wby"/>
+                            <constraint firstItem="WJi-E4-fSI" firstAttribute="top" secondItem="plI-XH-5UO" secondAttribute="bottom" id="J0a-9V-iRB"/>
+                            <constraint firstItem="plI-XH-5UO" firstAttribute="leading" secondItem="rE4-yW-15K" secondAttribute="leading" id="T3c-Xi-x75"/>
+                            <constraint firstItem="EdZ-8R-7Ey" firstAttribute="leading" secondItem="rE4-yW-15K" secondAttribute="leading" id="nd4-yO-F31"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="EdZ-8R-7Ey" id="niJ-ts-NuX"/>
+                        <outlet property="tableView" destination="plI-XH-5UO" id="EYF-vw-LVQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yh9-UU-hsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="1511"/>
+        </scene>
+        <!--Contacts List View Controller-->
+        <scene sceneID="kNU-ZS-3W2">
+            <objects>
+                <viewController storyboardIdentifier="ContactsListViewController" id="eVB-xA-gkM" customClass="ContactsListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4GR-P0-dga"/>
+                        <viewControllerLayoutGuide type="bottom" id="nsW-OI-f80"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EL7-8W-vBc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0bn-Bt-PMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1679" y="1511"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackButton" width="17" height="27"/>

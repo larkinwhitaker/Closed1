@@ -22,6 +22,9 @@
 #import "FreindRequestViewController.h"
 #import "NZTourTip.h"
 #import "AddFreindsViewController.h"
+#import "Closed1-Swift.h"
+#import "Closed1-Bridging-Header.h"
+
 
 @interface ContactsViewController ()<CNContactPickerDelegate,MFMessageComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ServerFailedDelegate, FreindsListDelegate>
 
@@ -188,6 +191,11 @@
     [navItem setTitle:@"Contacts"];
     [self.view addSubview:navBar];
     
+//    [self.navigationController setNavigationBarHidden:NO];
+//    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"DEMO" style:UIBarButtonItemStylePlain target:self action:@selector(pickContactMethod)];
+    
+    
+    
 }
     
      
@@ -240,6 +248,14 @@
 
 -(void)openContactsScreenForContacts
 {
+    
+    OpenAdressBook *addressBook = [self.storyboard instantiateViewControllerWithIdentifier:@"OpenAdressBook"];
+    [self.navigationController pushViewController:addressBook animated:YES];
+    
+
+    
+    
+    
     CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc]init];
     
     //    NSArray *propertyKeys = @[CNContactPhoneNumbersKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactOrganizationNameKey];
@@ -252,12 +268,14 @@
     
     contactPicker.delegate = self;
     _isMailContactSelected = NO;
-    [self presentViewController:contactPicker animated:NO completion:nil];
+    //[self presentViewController:contactPicker animated:NO completion:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    [self createCustumNavigationBar];
+    
     [self tableViewReloadDataWithAnimation:YES];
     
     _contactDetails = [ContactDetails MR_findAll];
@@ -269,6 +287,13 @@
         
     }
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO];
+
 }
 
 

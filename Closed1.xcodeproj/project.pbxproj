@@ -20,6 +20,7 @@
 		AD3A28E31EC704E800EB3BEE /* InviteFreinds.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A28E11EC704E800EB3BEE /* InviteFreinds.png */; };
 		AD3A28E61EC706E700EB3BEE /* AddFreindsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A28E51EC706E700EB3BEE /* AddFreindsViewController.m */; };
 		AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5349391EA2820E005DF686 /* LikeSelectedImage.png */; };
+		AD7277831ECE2DE7003116E4 /* ContactsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7277821ECE2DE0003116E4 /* ContactsListViewController.swift */; };
 		AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DC91E86DADB00C3B4B6 /* main.m */; };
 		AD7A5DCD1E86DADB00C3B4B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCC1E86DADB00C3B4B6 /* AppDelegate.m */; };
 		AD7A5DD01E86DADB00C3B4B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7A5DCF1E86DADB00C3B4B6 /* ViewController.m */; };
@@ -62,6 +63,11 @@
 		AD9344F91E897D2F00E60A4B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9344F81E897D2F00E60A4B /* SearchViewController.m */; };
 		AD9344FC1E897D3C00E60A4B /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9344FB1E897D3C00E60A4B /* ShareViewController.m */; };
 		AD9344FF1E897D4700E60A4B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9344FE1E897D4700E60A4B /* SettingsViewController.m */; };
+		AD93EC841ECCAE7F00609738 /* AdressBookAscStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */; };
+		AD93EC851ECCAE7F00609738 /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93EC821ECCAE7F00609738 /* GlobalConstant.swift */; };
+		AD93EC861ECCAE7F00609738 /* OpenAdressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93EC831ECCAE7F00609738 /* OpenAdressBook.swift */; };
+		AD93EC891ECCAF2800609738 /* ShortDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93EC871ECCAF2800609738 /* ShortDescription.swift */; };
+		AD93EC8A1ECCAF2800609738 /* ShortDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD93EC881ECCAF2800609738 /* ShortDescription.xib */; };
 		AD93F74E1E87F624008488B9 /* main-background1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD93F74D1E87F624008488B9 /* main-background1.jpg */; };
 		AD93F7551E87F717008488B9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7541E87F717008488B9 /* LoginViewController.m */; };
 		AD93F7581E87FD72008488B9 /* linkedin-button.png in Resources */ = {isa = PBXBuildFile; fileRef = AD93F7571E87FD72008488B9 /* linkedin-button.png */; };
@@ -647,6 +653,7 @@
 		AD3A28E41EC706E700EB3BEE /* AddFreindsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFreindsViewController.h; sourceTree = "<group>"; };
 		AD3A28E51EC706E700EB3BEE /* AddFreindsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFreindsViewController.m; sourceTree = "<group>"; };
 		AD5349391EA2820E005DF686 /* LikeSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeSelectedImage.png; sourceTree = "<group>"; };
+		AD7277821ECE2DE0003116E4 /* ContactsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsListViewController.swift; sourceTree = "<group>"; };
 		AD7A5DC51E86DADB00C3B4B6 /* Closed1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closed1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7A5DC91E86DADB00C3B4B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7A5DCB1E86DADB00C3B4B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -728,6 +735,11 @@
 		AD9344FB1E897D3C00E60A4B /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		AD9344FD1E897D4700E60A4B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AD9344FE1E897D4700E60A4B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdressBookAscStatus.swift; sourceTree = "<group>"; };
+		AD93EC821ECCAE7F00609738 /* GlobalConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
+		AD93EC831ECCAE7F00609738 /* OpenAdressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAdressBook.swift; sourceTree = "<group>"; };
+		AD93EC871ECCAF2800609738 /* ShortDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortDescription.swift; sourceTree = "<group>"; };
+		AD93EC881ECCAF2800609738 /* ShortDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShortDescription.xib; sourceTree = "<group>"; };
 		AD93F74D1E87F624008488B9 /* main-background1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "main-background1.jpg"; path = "../main-background1.jpg"; sourceTree = "<group>"; };
 		AD93F7531E87F717008488B9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD93F7541E87F717008488B9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -1707,6 +1719,8 @@
 		AD9344E31E89659100E60A4B /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AD93EC871ECCAF2800609738 /* ShortDescription.swift */,
+				AD93EC881ECCAF2800609738 /* ShortDescription.xib */,
 				ADACED771E9C0B5A001A9F4A /* LeftAlignmentCell.h */,
 				ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */,
 				ADCED8791E8ADDA400B9A06A /* ListViewCell.h */,
@@ -1755,6 +1769,9 @@
 		AD93F7521E87F717008488B9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */,
+				AD93EC821ECCAE7F00609738 /* GlobalConstant.swift */,
+				AD93EC831ECCAE7F00609738 /* OpenAdressBook.swift */,
 				ADCED8761E8ADC3F00B9A06A /* CustomListViewController.h */,
 				ADCED8771E8ADC3F00B9A06A /* CustomListViewController.m */,
 				ADA5CAC91E879E94000DF38D /* WebViewController.h */,
@@ -1793,6 +1810,7 @@
 				ADA9004E1EA9261900EAC538 /* FreindRequestViewController.m */,
 				AD3A28E41EC706E700EB3BEE /* AddFreindsViewController.h */,
 				AD3A28E51EC706E700EB3BEE /* AddFreindsViewController.m */,
+				AD7277821ECE2DE0003116E4 /* ContactsListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3734,6 +3752,7 @@
 			files = (
 				ADBB1E271EA52B37003CA9DD /* stickerlocal17@2x.png in Resources */,
 				ADBB1E8D1EA52B37003CA9DD /* stickersend41@2x.png in Resources */,
+				AD93EC8A1ECCAF2800609738 /* ShortDescription.xib in Resources */,
 				ADBB1E191EA52B37003CA9DD /* stickerlocal03@2x.png in Resources */,
 				ADBB1E9E1EA52B37003CA9DD /* stickersend58@2x.png in Resources */,
 				ADBB1E771EA52B37003CA9DD /* stickersend19@2x.png in Resources */,
@@ -4329,6 +4348,7 @@
 				AD93F7E11E8823B7008488B9 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				ADBB1D671EA52B37003CA9DD /* GroupsView.m in Sources */,
 				AD93F7911E880E16008488B9 /* IQBarButtonItem.m in Sources */,
+				AD7277831ECE2DE7003116E4 /* ContactsListViewController.swift in Sources */,
 				ADCED86E1E8AC2AA00B9A06A /* SettingsTableViewCell.m in Sources */,
 				ADBB1D831EA52B37003CA9DD /* PrivacyView.m in Sources */,
 				ADBB1D851EA52B37003CA9DD /* TermsView.m in Sources */,
@@ -4413,6 +4433,7 @@
 				AD93F78E1E880E16008488B9 /* IQKeyboardManager.m in Sources */,
 				AD93F7E61E8823B7008488B9 /* NSString+MagicalDataImport.m in Sources */,
 				ADACED681E9BFE06001A9F4A /* SDWebImageCompat.m in Sources */,
+				AD93EC841ECCAE7F00609738 /* AdressBookAscStatus.swift in Sources */,
 				ADBB1DA31EA52B37003CA9DD /* user.m in Sources */,
 				AD9344ED1E89770700E60A4B /* NJKWebViewProgressView.m in Sources */,
 				AD93F7E31E8823B7008488B9 /* NSNumber+MagicalDataImport.m in Sources */,
@@ -4427,6 +4448,7 @@
 				ADE604291EC4DDDC00C1B93C /* JobProfileCell.m in Sources */,
 				AD93F7E71E8823B7008488B9 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				ADBB1D791EA52B37003CA9DD /* CacheView.m in Sources */,
+				AD93EC891ECCAF2800609738 /* ShortDescription.swift in Sources */,
 				ADBB1DBE1EA52B37003CA9DD /* VideoMediaItem.m in Sources */,
 				ADBB1DB41EA52B37003CA9DD /* common.m in Sources */,
 				ADBB1DAE1EA52B37003CA9DD /* Emoji.m in Sources */,
@@ -4443,11 +4465,13 @@
 				AD93F7941E880E16008488B9 /* IQToolbar.m in Sources */,
 				ADB3EDFB1EC8857B001DEC69 /* PJXLeftRotationAnimation.m in Sources */,
 				ADBB1D8F1EA52B37003CA9DD /* premium.m in Sources */,
+				AD93EC861ECCAE7F00609738 /* OpenAdressBook.swift in Sources */,
 				ADBB1D441EA52B37003CA9DD /* VideoView.m in Sources */,
 				ADB3EE021EC8857B001DEC69 /* PJXTransitionItemAnimations.m in Sources */,
 				AD93F7F71E8823B7008488B9 /* MagicalRecord+Options.m in Sources */,
 				AD93F7EE1E8823B7008488B9 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				ADBB1D6F1EA52B37003CA9DD /* CustomStatusView.m in Sources */,
+				AD93EC851ECCAE7F00609738 /* GlobalConstant.swift in Sources */,
 				ADBB1DAA1EA52B37003CA9DD /* Audio.m in Sources */,
 				ADBB1D771EA52B37003CA9DD /* KeepMediaView.m in Sources */,
 				ADBB1D8B1EA52B37003CA9DD /* SwitchAccountView.m in Sources */,
@@ -4684,6 +4708,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46A792F364352342C225F3F2 /* Pods-Closed1Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = K226Z6SSQD;
 				INFOPLIST_FILE = Closed1Tests/Info.plist;
@@ -4698,6 +4723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 78BC64B6BDBE8FE74C43CABD /* Pods-Closed1Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = K226Z6SSQD;
 				INFOPLIST_FILE = Closed1Tests/Info.plist;
@@ -4712,6 +4738,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 642157FED49F5A961D5BE454 /* Pods-Closed1UITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = K226Z6SSQD;
 				INFOPLIST_FILE = Closed1UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -4725,6 +4752,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 163C2FD7DFD47CB6C4B66EF2 /* Pods-Closed1UITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = K226Z6SSQD;
 				INFOPLIST_FILE = Closed1UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
