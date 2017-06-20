@@ -684,24 +684,24 @@
 - (IBAction)actionDetails:(id)sender
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	if ([type isEqualToString:CHAT_PRIVATE])
-	{
-		NSString *userId = [self otherUserId];
-		ProfileView *profileView = [[ProfileView alloc] initWith:userId Chat:NO];
-		[self.navigationController pushViewController:profileView animated:YES];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([type isEqualToString:CHAT_MULTIPLE])
-	{
-		MultipleView *multipleView = [[MultipleView alloc] initWith:groupId members:members];
-		[self.navigationController pushViewController:multipleView animated:YES];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([type isEqualToString:CHAT_GROUP])
-	{
-		GroupView *groupView = [[GroupView alloc] initWith:groupId];
-		[self.navigationController pushViewController:groupView animated:YES];
-	}
+//	if ([type isEqualToString:CHAT_PRIVATE])
+//	{
+//		NSString *userId = [self otherUserId];
+//		ProfileView *profileView = [[ProfileView alloc] initWith:userId Chat:NO];
+//		[self.navigationController pushViewController:profileView animated:YES];
+//	}
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if ([type isEqualToString:CHAT_MULTIPLE])
+//	{
+//		MultipleView *multipleView = [[MultipleView alloc] initWith:groupId members:members];
+//		[self.navigationController pushViewController:multipleView animated:YES];
+//	}
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if ([type isEqualToString:CHAT_GROUP])
+//	{
+//		GroupView *groupView = [[GroupView alloc] initWith:groupId];
+//		[self.navigationController pushViewController:groupView animated:YES];
+//	}
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

@@ -18,7 +18,7 @@
 
 
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate>
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 @property(nonatomic) NSString *imageURL;
@@ -35,9 +35,14 @@
     
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
-    [self createCustumNavigationBar];
-    
     _imageURL = @"";
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self createCustumNavigationBar];
 
 }
 
@@ -83,7 +88,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 773;
+    return 1100;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,8 +99,20 @@
     [_signupCell.countrySelectionButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
     
     [_signupCell.signupLinkedButton addTarget:self action:@selector(signupLinkedInTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_signupCell.termsButton addTarget:self action:@selector(termsButtobnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     return _signupCell;
+}
+
+-(void)termsButtobnTapped: (id)sender
+{
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.title = @"Terms & Conditions";
+    webView.urlString = @"http://socialmedia.alkurn.info/terms-of-service/";
+    
+    [self.navigationController pushViewController:webView animated:YES];
+    
+    
 }
 
 -(void)openCountrySelectionScreen
@@ -157,25 +174,55 @@
     else if ([[_signupCell.fullNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:_signupCell.fullNameTextField];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+
         
     }
     else if ([[_signupCell.cityTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:_signupCell.cityTextField];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+
         
     }
     else if ([[_signupCell.stateTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:_signupCell.stateTextField];
+
         
     }
     else if ([[_signupCell.phoneNumberTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
         [self animateView:_signupCell.phoneNumberTextField];
+
         
     }else if ([_signupCell.countrySelectionButton.titleLabel.text isEqualToString:@"Select Country"]){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    }else if([[_signupCell.titletextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0)
+    {
+        [self animateView:_signupCell.titletextField];
+
+
+    }else if([[_signupCell.companyTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        [self animateView:_signupCell.companyTextField];
+        
+    }else if ([[_signupCell.territoryTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        
+        [self animateView:_signupCell.territoryTextFiled];
+
+    }else if([[_signupCell.secondaryEmailTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        
+        [self animateView:_signupCell.secondaryEmailTextFiled];
+
+    }else if([[_signupCell.territoryTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        
+        [self animateView:_signupCell.territoryTextFiled];
+
+    }else if([[_signupCell.targetBuyersTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
+        
+        [self animateView:_signupCell.targetBuyersTextFiled];
+
     }else{
      
         NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -186,6 +233,10 @@
             [self.tableView setContentOffset:CGPointZero animated:YES];
 
         
+        }else if([emailPredicate evaluateWithObject: _signupCell.secondaryEmailTextFiled.text] == NO){
+            
+            [self animateView:_signupCell.secondaryEmailTextFiled];
+
         }else{
             
             if ([_signupCell.passwordTextField.text isEqualToString:_signupCell.confirmPasswordTextField.text]) {
@@ -280,18 +331,27 @@
     hud.dimBackground = YES;
     hud.labelText = @"Hang on,";
     hud.detailsLabelText = @"Signing you up";
+    
+    NSString *deviceID = @"";
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"FCMToken"]) {
+        
+        deviceID = [[NSUserDefaults standardUserDefaults] valueForKey:@"FCMToken"];
+    }
 
     [ClosedResverResponce sharedInstance].delegate = self;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&device_id=%@&user_avatar_urls=%@", self.signupCell.usenameTextField.text, self.signupCell.emailtextField.text, self.signupCell.passwordTextField.text,_signupCell.fullNameTextField.text,self.signupCell.cityTextField.text,self.signupCell.stateTextField.text,self.signupCell.countrySelectionButton.titleLabel.text,self.signupCell.phoneNumberTextField.text, @"1234", self.imageURL];
+        NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.secondaryEmailTextFiled.text, _signupCell.secondaryEmailTextFiled.text, deviceID, _imageURL];
         
-        http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=testuserklw1z213&email=testuserklwzl1234567889.alkurn@gmail.com&password=nazim@1234&fullname=nazimsiddiqui&city=nagpur&state=maharashtra&country=India&phone=909238038&device_id=k007&user_avatar_urls=fullimageurl
+        
+    
+
+        
         
         NSLog(@"%@", reuestURL);
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: reuestURL DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: reuestURL DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
@@ -345,15 +405,15 @@
         userDetails.lastName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] lastObject];
         userDetails.userEmail = self.signupCell.emailtextField.text;
         userDetails.userLogin = self.signupCell.usenameTextField.text;
-        userDetails.title = [userData valueForKey:@"title"];
-        userDetails.company = [userData valueForKey:@"company"];
+        userDetails.title = self.signupCell.titletextField.text;
+        userDetails.company = self.signupCell.companyTextField.text;
         userDetails.city = [userData valueForKey:_signupCell.cityTextField.text];
         
         NSString *countryString = [_signupCell.countrySelectionButton titleForState:UIControlStateNormal];
         
         userDetails.country = countryString;
-        userDetails.territory = [userData valueForKey:@"territory"];
-        userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
+        userDetails.territory = self.signupCell.territoryTextFiled.text;
+        userDetails.econdaryemail = self.signupCell.secondaryEmailTextFiled.text;
          userDetails.phoneNumber = _signupCell.phoneNumberTextField.text;
         userDetails.state = _signupCell.stateTextField.text;
         
@@ -429,6 +489,84 @@
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     });
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    
+    if (textField == _signupCell.phoneNumberTextField) {
+        
+        
+    
+    int length = (int)[self getLength:textField.text];
+    //NSLog(@"Length  =  %d ",length);
+    
+    if(length == 10)
+    {
+        if(range.length == 0)
+            return NO;
+    }
+    
+    if(length == 3)
+    {
+        NSString *num = [self formatNumber:textField.text];
+        textField.text = [NSString stringWithFormat:@"(%@) ",num];
+        
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"%@",[num substringToIndex:3]];
+    }
+    else if(length == 6)
+    {
+        NSString *num = [self formatNumber:textField.text];
+        //NSLog(@"%@",[num  substringToIndex:3]);
+        //NSLog(@"%@",[num substringFromIndex:3]);
+        textField.text = [NSString stringWithFormat:@"(%@) %@-",[num  substringToIndex:3],[num substringFromIndex:3]];
+        
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"(%@) %@",[num substringToIndex:3],[num substringFromIndex:3]];
+    }
+    
+    return YES;
+    }
+    
+    else{
+        return YES;
+    }
+}
+
+- (NSString *)formatNumber:(NSString *)mobileNumber
+{
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    NSLog(@"%@", mobileNumber);
+    
+    int length = (int)[mobileNumber length];
+    if(length > 10)
+    {
+        mobileNumber = [mobileNumber substringFromIndex: length-10];
+        NSLog(@"%@", mobileNumber);
+        
+    }
+    
+    return mobileNumber;
+}
+
+- (int)getLength:(NSString *)mobileNumber
+{
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    int length = (int)[mobileNumber length];
+    
+    return length;
 }
 
 @end

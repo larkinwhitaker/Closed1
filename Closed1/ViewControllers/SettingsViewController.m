@@ -18,6 +18,7 @@
 #import "UserDetails+CoreDataClass.h"
 #import "MBProgressHUD.h"
 #import "utilities.h"
+#import "JobProfile+CoreDataProperties.h"
 
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -29,13 +30,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createCustumNavigationBar];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableData) name:@"NewFeedsAvilable" object:nil];
+
 }
+
+-(void)reloadTableData
+{
+    [self.tableView reloadData];
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-
+    
 }
 - (IBAction)changePasswordTapped:(id)sender {
     
@@ -128,6 +137,8 @@
         
         [UserDetails MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
+        [JobProfile MR_truncateAll];
+
         
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         [self.navigationController popToRootViewControllerAnimated:YES];

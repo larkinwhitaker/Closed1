@@ -78,7 +78,6 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     [navItem setTitle:@"Signin"];
     [self.view addSubview:navBar];
     
-    
 }
 
 -(void)backButtonTapped: (id)sender

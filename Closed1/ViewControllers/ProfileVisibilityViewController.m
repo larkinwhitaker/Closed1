@@ -233,7 +233,7 @@
     FlightClassSelectionViewController *classSelectionScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"FlightClassSelectionViewController"];
     classSelectionScreen.delegate = self;
     classSelectionScreen.title = @"";
-    classSelectionScreen.classListArray = @[@"Everyone", @"Only Me", @"All Members", @"My Freinds"];
+    classSelectionScreen.classListArray = @[@"Everyone", @"Only Me", @"All Members", @"My Friends"];
     [self presentViewController:classSelectionScreen animated:YES completion:nil];
     
     

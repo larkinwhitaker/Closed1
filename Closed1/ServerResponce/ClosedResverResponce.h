@@ -17,7 +17,7 @@
 @interface ClosedResverResponce : NSObject
 
 +(ClosedResverResponce *)sharedInstance;
--(NSArray *)getResponceFromServer: (NSString *)URLName  DictionartyToServer:(NSDictionary *)dictionaryToServer;
+-(NSArray *)getResponceFromServer: (NSString *)URLName  DictionartyToServer:(NSDictionary *)dictionaryToServer IsEncodingRequires: (BOOL) isEncoding;
 -(void)invalidateCurrentRunningTask;
 @property(nonatomic,weak)id<ServerFailedDelegate>delegate;
 

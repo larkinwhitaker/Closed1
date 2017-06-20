@@ -14,6 +14,8 @@
 #import "MBProgressHUD.h"
 #import "ClosedResverResponce.h"
 #import "utilities.h"
+#import "JobProfile+CoreDataProperties.h"
+#import "AFNetworking.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ServerFailedDelegate>
 
@@ -87,6 +89,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
         
         [UserDetails MR_truncateAll];
+        [JobProfile MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceHome"];
 
@@ -183,7 +186,7 @@
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{}];
+            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -192,6 +195,8 @@
                 if ([[responce valueForKey:@"success"] integerValue] == 1) {
                     
                     [UserDetails MR_truncateAll];
+                    [JobProfile MR_truncateAll];
+
                     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     
@@ -220,54 +225,18 @@
 {
     UIImage *image = info[UIImagePickerControllerEditedImage];
     //---------------------------------------------------------------------------------------------------------------------------------------------
-    UIImage *imagePicture = [Image square:image size:140];
-    UIImage *imageThumbnail = [Image square:image size:60];
+//    UIImage *imagePicture = [Image square:image size:140];
+    UIImage *imageThumbnail = [Image square:image size:160];
     
-    //[self submitImageToServer:imageThumbnail];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
-    NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    FIRStorage *storage = [FIRStorage storage];
-    FIRStorageReference *reference1 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_picture", @"jpg")];
-    FIRStorageReference *reference2 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_thumbnail", @"jpg")];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    [reference1 putData:dataPicture metadata:nil completion:^(FIRStorageMetadata *metadata1, NSError *error)
-     {
-         if (error == nil)
-         {
-             [reference2 putData:dataThumbnail metadata:nil completion:^(FIRStorageMetadata *metadata2, NSError *error)
-              {
-                  if (error == nil)
-                  {
-                      _profileCell.profileImage.image = imagePicture;
-                      NSString *linkPicture = metadata1.downloadURL.absoluteString;
-                      NSString *linkThumbnail = metadata2.downloadURL.absoluteString;
-                      [self saveUserPictures:@{@"linkPicture":linkPicture, @"linkThumbnail":linkThumbnail}];
-                  }
-                  else [ProgressHUD showError:@"Network error."];
-              }];
-         }
-         else [ProgressHUD showError:@"Network error."];
-     }];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [self submitImageToServer:imageThumbnail];
+    
+
+//    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
+//    NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 
     
-}
-
-- (void)saveUserPictures:(NSDictionary *)links
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    FUser *user = [FUser currentUser];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    user[FUSER_PICTURE] = links[@"linkPicture"];
-    user[FUSER_THUMBNAIL] = links[@"linkThumbnail"];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    [user saveInBackground:^(NSError *error)
-     {
-         if (error != nil) [ProgressHUD showError:@"Network error."];
-     }];
 }
 
 
@@ -280,13 +249,56 @@
     hud.dimBackground = YES;
     hud.labelText = @"Saving Image";
     
-    NSString *apiURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=edit_user_profile_picture&userID=%zd&encodedstring=%@", userDetails.userID, [self encodeToBase64String:imagetoSend]];
+    NSDictionary *dictToServer = @{@"picture_code": [self encodeToBase64String:imagetoSend], @"user_id":[NSNumber numberWithInteger:userDetails.userID]};
+
+    NSString *apiURL = @"http://socialmedia.alkurn.info/API/buddypressread/profile_upload_photo/";
+
     
-    NSLog(@"%@", apiURL);
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+
     
+    [manager POST:apiURL parameters:dictToServer progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        NSArray *serverData = responseObject;
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+        
+        if ([[serverData valueForKey:@"error"] isEqual:[NSNull null]]) {
+            self.profileCell.profileImage.image = imagetoSend;
+            UserDetails *newUserDetails = [UserDetails MR_findFirst];
+            newUserDetails.profileImage = [serverData valueForKey:@"imageurl"];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
+
+            
+            [ProgressHUD showSuccess:@"Image Uploaded"];
+        }else{
+            [self serverFailedWithTitle:@"Failed to Upload Profile Picture" SubtitleString:nil];
+            [ProgressHUD showError:@"Failed to Upload image"];
+        }
+
+        
+        
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self serverFailedWithTitle:@"Failed to Upload Profile Picture" SubtitleString:nil];
+;
+            
+        });
+    }];
+    
+    
+    /*
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:apiURL DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:apiURL DictionartyToServer:dictToServer IsEncodingRequires:YES];
         
         dispatch_async(dispatch_get_main_queue(), ^{
            
@@ -312,10 +324,17 @@
         });
         
     });
+     
+     */
 }
 
 - (NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+//    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    NSData *data = UIImagePNGRepresentation(image);
+    NSString *byteArray  = [data base64Encoding];
+    
+    return byteArray;
 }
 
 -(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle

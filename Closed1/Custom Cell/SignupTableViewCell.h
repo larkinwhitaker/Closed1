@@ -33,10 +33,16 @@
 @property (strong, nonatomic) IBOutlet UIView *countrySelectionUnderLineView;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneNumberTextField;
 
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *territoryTextFiled;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *secondaryEmailTextFiled;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextFiled;
 
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *signupLinkedButton;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *companyTextField;
 
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *titletextField;
+@property (weak, nonatomic) IBOutlet UIButton *termsButton;
 
 @end

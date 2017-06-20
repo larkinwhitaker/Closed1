@@ -33,9 +33,12 @@
     //    [session invalidateAndCancel];
 }
 
--(NSArray *)getResponceFromServer: (NSString *)URLName  DictionartyToServer:(NSDictionary *)dictionaryToServer;
+-(NSArray *)getResponceFromServer: (NSString *)URLName  DictionartyToServer:(NSDictionary *)dictionaryToServer IsEncodingRequires: (BOOL) isEncoding
 {
+    isEncodedzdataSend = isEncoding;
+
     NSData * dataFromServer = [self dataFromServerWithURL:URLName WithApiName:@"" DictionaryToServer:dictionaryToServer];
+    
     
     if (dataFromServer != nil)
     {
@@ -69,7 +72,8 @@
     if (isEncodedzdataSend)
     {
         [urlRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        postData = [self encodeDictionary:dictionaryToServer];
+        //postData = [self encodeDictionary:dictionaryToServer];
+        
         urlRequest.HTTPBody = postData;
         
     }else

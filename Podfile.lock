@@ -21,6 +21,9 @@ PODS:
   - Firebase/Database (3.16.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.2)
+  - Firebase/Messaging (3.16.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.3)
   - Firebase/Storage (3.16.0):
     - Firebase/Core
     - FirebaseStorage (= 1.1.0)
@@ -38,6 +41,11 @@ PODS:
     - FirebaseAnalytics (~> 3.7)
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - FirebaseMessaging (1.2.3):
+    - FirebaseAnalytics (~> 3.8)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - FirebaseStorage (1.1.0):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -49,6 +57,8 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
@@ -72,6 +82,7 @@ PODS:
   - MGSwipeTableCell (1.5.6)
   - OneSignal (2.5.2)
   - ProgressHUD (2.4)
+  - Protobuf (3.2.1)
   - Reachability (3.2)
   - Realm (2.1.2):
     - Realm/Headers (= 2.1.2)
@@ -89,6 +100,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Messaging
   - Firebase/Storage
   - GoogleSignIn
   - IQAudioRecorderController
@@ -115,6 +127,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
@@ -127,6 +140,7 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   ProgressHUD: 4b66b0df0e08519c5c7283a198fd2867a114c95a
+  Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
   RNCryptor: 761fc3ed94d1a0e409ba5b8e5dbef6a8f69352a7
@@ -134,6 +148,6 @@ SPEC CHECKSUMS:
   SCSiriWaveformView: fbb2be796930670698ed6705f3b48f3dd387a73f
   SinchRTC: 6c6fb1c23d9ef4aeb89fdaa87121162f4e234bb4
 
-PODFILE CHECKSUM: 295c5fe33c9cf30582e0346ebaf2997305c46b00
+PODFILE CHECKSUM: e5e90ec605ff894422c1ab81148a6123f486a948
 
 COCOAPODS: 1.2.0

@@ -28,6 +28,7 @@
 #import "NZTourTip.h"
 #import "Closed1-Swift.h"
 #import "Closed1-Bridging-Header.h"
+#import "SettingsView.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -38,6 +39,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *messageCountLabel;
 @property(nonatomic) NSMutableArray *feedsArray;
+@property(nonatomic) UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -77,10 +80,63 @@
     
     
     
-    ContactsListViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
+//    ContactsListViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
+//    
+//    [self.navigationController pushViewController:userProfile animated:YES];
     
-    [self.navigationController pushViewController:userProfile animated:YES];
+    
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [_refreshControl addTarget:self action:@selector(refreshButtonTapped:) forControlEvents:UIControlEventValueChanged];
+    _refreshControl.backgroundColor = [UIColor clearColor];
+    _refreshControl.tintColor = [UIColor whiteColor];
+    self.tablView.refreshControl = _refreshControl;
+    
+    [self getFreindListCount];
 }
+
+-(void)getFreindListCount
+{
+    
+    UserDetails *_userdDetails = [UserDetails MR_findFirst];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", servreResponce);
+        
+        if ([servreResponce valueForKey:@"success"] != nil) {
+            
+            if ([[servreResponce valueForKey:@"success"] integerValue] == 1) {
+                
+                NSArray *freinListCOunt = [servreResponce valueForKey:@"data"];
+                [[NSUserDefaults standardUserDefaults] setInteger:freinListCOunt.count forKey:@"FreindRequestCount"];
+            }
+        }
+    });
+    
+}
+
+- (void)refreshButtonTapped:(id)sender
+
+{
+    [self getFeedsArray];
+}
+
+-(void)hideRefreshControl
+{
+    if (_refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        _refreshControl.attributedTitle = attributedTitle;
+        [_refreshControl endRefreshing];
+    }
+}
+
 
 -(void)getLoginWithChattingView
 {
@@ -117,14 +173,7 @@
         
         if(userDetails.userEmail != nil) email = userDetails.userEmail;
         
-        //---------------------------------------------------------------------------------------------------------------------------------------------
-        if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
-        if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
-        //---------------------------------------------------------------------------------------------------------------------------------------------
         LogoutUser(DEL_ACCOUNT_NONE);
-        //---------------------------------------------------------------------------------------------------------------------------------------------
-        //[ProgressHUD show:nil Interaction:NO];
-        //---------------------------------------------------------------------------------------------------------------------------------------------
         [FUser signInWithEmail:email password:password completion:^(FUser *user, NSError *error)
          {
              if (error == nil)
@@ -142,14 +191,7 @@
                  
 #pragma mark - Sign up Code
                  
-                 //---------------------------------------------------------------------------------------------------------------------------------------------
-                 if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
-                 if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
-                 //---------------------------------------------------------------------------------------------------------------------------------------------
                  LogoutUser(DEL_ACCOUNT_NONE);
-                 //---------------------------------------------------------------------------------------------------------------------------------------------
-                 //[ProgressHUD show:nil Interaction:YES];
-                 //---------------------------------------------------------------------------------------------------------------------------------------------
                  [FUser createUserWithEmail:email password:password completion:^(FUser *user, NSError *error)
                   {
                       if (error == nil)
@@ -243,14 +285,17 @@
 -(void)getFeedsArray
 {
     _feedsArray = [[NSMutableArray alloc]init];
-    
+    self.tablView.delegate = nil;
+    self.tablView.dataSource = nil;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Getting Feed";
     
+    UserDetails *user = [UserDetails MR_findFirst];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_user_feeds&user_id=%zd", user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -275,10 +320,16 @@
             if (_feedsArray.count == 0) {
                 
                 [self displayErrorForFeeds];
+            }else{
+               
+                self.tablView.delegate = self;
+                self.tablView.dataSource = self;
+                [self.tablView reloadData];
+
             }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self.tablView reloadData];
+            [self hideRefreshControl];
             
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceHome"])
             {
@@ -338,6 +389,7 @@
 }
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
+
     ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
     
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
@@ -388,9 +440,17 @@
        [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
-    homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
+    homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
     
-    homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
+    
+    NSString *titile = @"Not present";
+    
+    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"] isEqual:@""]) {
+        
+        titile = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"];
+    }
+    
+    homeCell.closed1Title.text = titile;
     
     [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     homeCell.profileButton.tag  = indexPath.row;
@@ -451,7 +511,7 @@
 -(void)messageButonTapped: (UIButton *)sender
 {
     CommentListViewController *commentListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CommentListViewController"];
-    commentListVC.feedsDetails= [self.feedsArray objectAtIndex:sender.tag];
+    commentListVC.feedsDetails= [[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"];
     [self.navigationController pushViewController:commentListVC animated:YES];
 }
 
@@ -483,7 +543,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-       NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{}];
+       NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
         

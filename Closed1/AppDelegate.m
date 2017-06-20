@@ -12,8 +12,13 @@
 #import <Crashlytics/Crashlytics.h>
 #import "MagicalRecord.h"
 #import "utilities.h"
+@import Firebase;
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
 
-@interface AppDelegate ()<SINServiceDelegate, SINCallClientDelegate>
+@import UserNotifications;
+
+@interface AppDelegate ()<SINServiceDelegate, SINCallClientDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -35,6 +40,8 @@
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [FIRApp configure];
     [FIRDatabase database].persistenceEnabled = NO;
+    
+
     //---------------------------------------------------------------------------------------------------------------------------------------------
     
     //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -110,9 +117,38 @@
     [UserStatuses shared];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     
+    
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
+//                                                     name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:) name:kFIRInstanceIDTokenRefreshNotification object:nil];
+//    
+//    
     return YES;
 }
 
+
+-(void)tokenRefreshNotification: (NSNotification *)notification
+{
+    NSString * refreshedToken = [FIRInstanceID instanceID].token;
+    
+    NSLog(@"FCM token is: %@", refreshedToken);
+    [[NSUserDefaults standardUserDefaults] setValue:refreshedToken forKey:@"FCMToken"];
+}
+
+-(void)connectToFCM
+{
+    [[FIRMessaging messaging] connectWithCompletion:^(NSError *error){
+        
+        if (error == nil) {
+            
+            NSLog(@"Connected");
+        }else{
+            NSLog(@"Connection Failed");
+        }
+    }];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -140,6 +176,8 @@
     
     [Location start];
     UpdateLastActive();
+    [self connectToFCM ];
+
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [FBSDKAppEvents activateApp];
     //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -162,6 +200,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    [[FIRMessaging messaging] disconnect];
+    
     [self saveContext];
 }
 
@@ -247,8 +287,30 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+    NSString * refreshedToken = [FIRInstanceID instanceID].token;
+
+    NSLog(@"FCM token is: %@", refreshedToken);
+    [[NSUserDefaults standardUserDefaults] setValue:refreshedToken forKey:@"FCMToken"];
 }
+
+
+// [START refresh_token]
+- (void)messaging:(nonnull FIRMessaging *)messaging didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
+    // Note that this callback will be fired everytime a new token is generated, including the first
+    // time. So if you need to retrieve the token as soon as it is available this is where that
+    // should be done.
+    NSLog(@"FCM registration token: %@", fcmToken);
+    
+    // TODO: If necessary send token to application server.
+}
+
+- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+    NSLog(@"Received data message: %@", remoteMessage.appData);
+}
+// [END ios_10_data_message]
+
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -265,6 +327,10 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notificationrecived" object:userInfo];
         
     }
+    
+    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+    
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

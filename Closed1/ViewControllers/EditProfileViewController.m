@@ -16,12 +16,13 @@
 #import "ClosedResverResponce.h"
 #import "EditProfileViewController.h"
 #import "JobProfileCell.h"
+#import "JobProfile+CoreDataProperties.h"
 
-#define kTitle @"Title"
-#define kCopmpany @"Company"
-#define kTerritory @"Territory"
-#define kTargetBuyers @"Target Buyers"
-#define kisCurrentPosition @"CurrentPosition"
+#define kTitle @"title"
+#define kCopmpany @"company"
+#define kTerritory @"territory"
+#define kTargetBuyers @"target"
+#define kisCurrentPosition @"current_position"
 
 
 @interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate, UITextFieldDelegate>
@@ -41,7 +42,30 @@
     [super viewDidLoad];
     
     _flightDetailsArray = [[NSMutableArray alloc]init];
-    [_flightDetailsArray addObject:[self configureFlightDetailsDictionary]];
+    
+    NSArray *jobArray = [JobProfile MR_findAll];
+    
+    if (jobArray.count == 0) {
+        
+        [_flightDetailsArray addObject:[self configureFlightDetailsDictionary]];
+        
+    }else{
+       
+        for (JobProfile *job in jobArray) {
+            
+            NSString *jobPriofile = @"off";
+            if (job.currentPoistion != nil) {
+                jobPriofile = job.currentPoistion;
+            }
+            
+            
+            [_flightDetailsArray addObject:@{kTitle: job.title, kTargetBuyers: job.targetBuyers, kCopmpany: job.compnay, kTerritory: job.territory, kisCurrentPosition: jobPriofile}];
+            
+        }
+        
+    }
+    
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"JobProfileCell" bundle:nil] forCellReuseIdentifier:@"JobProfileCell"];
 
     self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -63,15 +87,20 @@
 
 }
 
+
 -(NSMutableDictionary *)configureFlightDetailsDictionary
 {
+    
+    UserDetails *user = [UserDetails MR_findFirst];
+    
     NSMutableDictionary *flightDetails = [[NSMutableDictionary alloc]init];
     [flightDetails setValue:@"" forKey:kTitle];
     [flightDetails setValue:@"" forKey:kCopmpany];
     [flightDetails setValue:@"" forKey:kTerritory];
     [flightDetails setValue:@"" forKey:kTargetBuyers];
-    [flightDetails setValue:[NSNumber numberWithBool:NO] forKey:kisCurrentPosition];
-    
+    [flightDetails setValue:@"off" forKey:kisCurrentPosition];
+    [flightDetails setValue:[NSNumber numberWithInteger:user.userID] forKey:@"user_id"];
+    [flightDetails setValue:@"off" forKey:@"chkbox"];
     return flightDetails;
 }
 
@@ -175,6 +204,14 @@
         jobCell.territoryTextFiled.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTerritory];
         jobCell.targetBuyersTextFiled.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTargetBuyers];
 
+        BOOL isSetON = NO;
+        
+        if ([[[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kisCurrentPosition] isEqual:@"on"]) {
+            
+            isSetON = YES;
+        }
+        
+        [jobCell.isCurrentPosition setOn:isSetON];
         
         return jobCell;
     }
@@ -183,7 +220,16 @@
 
 -(void)currentJobSelected: (UISwitch *)sender{
     
-//    [[_flightDetailsArray objectAtIndex:sender.tag] setBool:sender.isSelected forKey:kisCurrentPosition];
+    if (sender.isOn) {
+        
+        [[self.flightDetailsArray objectAtIndex:sender.tag] setValue:@"on" forKey:kisCurrentPosition];
+        
+    }else{
+        [[self.flightDetailsArray objectAtIndex:sender.tag] setValue:@"off" forKey:kisCurrentPosition];
+        
+        
+    }
+    
 }
 
 -(void)addmoreCell: (UIButton *)sender
@@ -231,7 +277,23 @@
 
 -(void)textFieldDidEndEditing:(JVFloatLabeledTextField *)textField
 {
-    [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:textField.placeholder];
+    if ([textField.placeholder isEqualToString:@"Title"]) {
+        
+        [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:kTitle];
+
+        
+    }else if ([textField.placeholder isEqualToString:@"Company"]){
+        [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:kCopmpany];
+
+    }else if ([textField.placeholder isEqualToString:@"Territory"]){
+        [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:kTerritory];
+
+    }else if ([textField.placeholder isEqualToString:@"Target Buyers"]){
+        [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:kTargetBuyers];
+
+    }
+    
+    
 }
 
 -(void)openCountrySelectionScreen
@@ -379,13 +441,33 @@
     }
     
     
- NSString *urlName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=update_profile&user_id=%zd&firstname=%@&lastname=%@&username=%@&email=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@", userDetails.userID,firtName, lastName, userDetails.userLogin,userDetails.userEmail,editProfileCell.fullNameTextField.text,editProfileCell.citytextField.text,editProfileCell.stateTextField.text,editProfileCell.countryButton.titleLabel.text,editProfileCell.phoneNumberTextField.text,editProfileCell.designationTextField.text,editProfileCell.companyNameTextField.text,editProfileCell.terrotoryTextField.text,editProfileCell.secondaryEmail.text];
+    
+    NSDictionary *dictionaryToSevrer = @{
+        @"user_id": [NSNumber numberWithInteger:userDetails.userID],
+        @"firstname": firtName,
+        @"lastname": lastName,
+        @"email": userDetails.userEmail,
+        @"fullname": editProfileCell.fullNameTextField.text,
+        @"city": editProfileCell.citytextField.text,
+        @"state": editProfileCell.stateTextField.text,
+        @"country": editProfileCell.countryButton.titleLabel.text,
+        @"phone": editProfileCell.phoneNumberTextField.text,
+        @"title": editProfileCell.designationTextField.text,
+        @"company": editProfileCell.companyNameTextField.text,
+        @"territory": editProfileCell.terrotoryTextField.text,
+        @"secondary_email": editProfileCell.secondaryEmail.text,
+        @"profile_job": self.flightDetailsArray,
+        };
+    
+    
+    
+ NSString *urlName = @"http://socialmedia.alkurn.info/api-mobile/?function=update_profile";
     
     [ClosedResverResponce sharedInstance].delegate = self;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:urlName DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:urlName DictionartyToServer:dictionaryToSevrer IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
@@ -438,12 +520,32 @@
     userDetails.territory = editProfileCell.terrotoryTextField.text;
     userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
     userDetails.profileImage = [userData valueForKey:@"profile_image"];
+    userDetails.targetBuyers = editProfileCell.targetBuyersTextField.text;
     
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     
     UserDetails *user = [UserDetails MR_findFirst];
     NSLog(@"%@", user.firstName);
     NSLog(@"%zd", user.userID);
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+        
+        for (NSDictionary *singleJob in _flightDetailsArray) {
+            
+            JobProfile *jobDetails = [JobProfile MR_createEntityInContext:localContext];
+            
+            jobDetails.title = [singleJob valueForKey:kTitle];
+            jobDetails.territory = [singleJob valueForKey:kTerritory];
+            jobDetails.compnay = [singleJob valueForKey:kCopmpany];
+            jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
+            jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];
+            
+            [localContext MR_saveToPersistentStoreAndWait];
+            
+            
+        }
+        
+    }];
 
 }
 -(void)openHomeScreen
@@ -501,5 +603,83 @@
         [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     });
 }
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    if (textField == editProfileCell.phoneNumberTextField) {
+        
+        
+        int length = (int)[self getLength:textField.text];
+        //NSLog(@"Length  =  %d ",length);
+        
+        if(length == 10)
+        {
+            if(range.length == 0)
+                return NO;
+        }
+        
+        if(length == 3)
+        {
+            NSString *num = [self formatNumber:textField.text];
+            textField.text = [NSString stringWithFormat:@"(%@) ",num];
+            
+            if(range.length > 0)
+                textField.text = [NSString stringWithFormat:@"%@",[num substringToIndex:3]];
+        }
+        else if(length == 6)
+        {
+            NSString *num = [self formatNumber:textField.text];
+            //NSLog(@"%@",[num  substringToIndex:3]);
+            //NSLog(@"%@",[num substringFromIndex:3]);
+            textField.text = [NSString stringWithFormat:@"(%@) %@-",[num  substringToIndex:3],[num substringFromIndex:3]];
+            
+            if(range.length > 0)
+                textField.text = [NSString stringWithFormat:@"(%@) %@",[num substringToIndex:3],[num substringFromIndex:3]];
+        }
+        
+        
+        return YES;
+    }else{
+        
+        return YES;
+    }
+}
+
+- (NSString *)formatNumber:(NSString *)mobileNumber
+{
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    NSLog(@"%@", mobileNumber);
+    
+    int length = (int)[mobileNumber length];
+    if(length > 10)
+    {
+        mobileNumber = [mobileNumber substringFromIndex: length-10];
+        NSLog(@"%@", mobileNumber);
+        
+    }
+    
+    return mobileNumber;
+}
+
+- (int)getLength:(NSString *)mobileNumber
+{
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    int length = (int)[mobileNumber length];
+    
+    return length;
+}
+
 
 @end

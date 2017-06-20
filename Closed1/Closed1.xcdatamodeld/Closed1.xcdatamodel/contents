@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="ContactDetails" representedClassName="ContactDetails" syncable="YES" codeGenerationType="class">
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="designation" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,6 +8,13 @@
         <attribute name="userEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="JobProfile" representedClassName="JobProfile" syncable="YES" codeGenerationType="class">
+        <attribute name="compnay" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentPoistion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targetBuyers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="territory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UserDetails" representedClassName="UserDetails" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +26,7 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targetBuyers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="territory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userEmail" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +35,7 @@
     </entity>
     <elements>
         <element name="ContactDetails" positionX="-54" positionY="27" width="128" height="150"/>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="270"/>
+        <element name="JobProfile" positionX="-54" positionY="90" width="128" height="120"/>
     </elements>
 </model>

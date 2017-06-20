@@ -2,7 +2,7 @@
 //  UserDetails+CoreDataProperties.m
 //  Closed1
 //
-//  Created by Nazim on 15/04/17.
+//  Created by Nazim on 05/06/17.
 //  Copyright © 2017 Alkurn. All rights reserved.
 //
 
@@ -20,13 +20,14 @@
 @dynamic econdaryemail;
 @dynamic firstName;
 @dynamic lastName;
+@dynamic phoneNumber;
 @dynamic profileImage;
+@dynamic state;
 @dynamic territory;
 @dynamic title;
 @dynamic userEmail;
 @dynamic userID;
 @dynamic userLogin;
-@dynamic phoneNumber;
-@dynamic state;
+@dynamic targetBuyers;
 
 @end

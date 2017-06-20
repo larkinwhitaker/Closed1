@@ -14,6 +14,9 @@
 #import "UIImageView+WebCache.h"
 #import "HomeScreenViewController.h"
 #import "ProfileDetailViewController.h"
+#import "UserDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
+
 
 @interface SearchViewController () <UITabBarDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDelegate, ServerFailedDelegate>
 
@@ -44,10 +47,14 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Getting Feed";
+    UserDetails *user = [UserDetails MR_findFirst];
+
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=get_feeds" DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_user_feeds&user_id=%zd", user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -68,11 +75,16 @@
 
 
                 
-                [self.feedsArray addObject:feedDictionary];
+                if ([[singleFeed valueForKey:@"content"] length]>1) {
+                    
+                    [self.feedsArray addObject:feedDictionary];
+                    
+                }
             }
             
             self.filteredArray = _feedsArray;
-            
+            self.tableView.delegate = self;
+            self.tableView.dataSource = self;
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tableView reloadData];
         });
@@ -149,6 +161,8 @@
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
     homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"Title"], [[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"closed"]];
+        
+        
     
     homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"closed"]];
     
@@ -331,7 +345,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{}];
+        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
         

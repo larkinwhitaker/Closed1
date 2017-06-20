@@ -93,7 +93,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text] DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -112,7 +112,7 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
                 }else{
                     
-                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to post feed. Please try again later."];
+                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:[serverResponce valueForKey:@"data"]];
 
                 }
             }else{
@@ -131,7 +131,18 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    return textView.text.length + (text.length - range.length) <= 125;
+    if (textView == self.nametextView ) {
+        
+        return textView.text.length + (text.length - range.length) <= 25;
+
+        
+    }else{
+    
+        return textView.text.length + (text.length - range.length) <= 125;
+
+    }
+    
+    
 }
 
 -(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle

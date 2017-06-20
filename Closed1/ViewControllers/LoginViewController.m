@@ -17,7 +17,13 @@
 #import "MagicalRecord.h"
 #import "AFNetworking.h"
 #import <linkedin-sdk/LISDK.h>
+#import "JobProfile+CoreDataProperties.h"
 
+#define kTitle @"title"
+#define kCopmpany @"company"
+#define kTerritory @"territory"
+#define kTargetBuyers @"target"
+#define kisCurrentPosition @"current_position"
 
 @interface LoginViewController ()<LinkedInLoginDelegate,ServerFailedDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *linkedinButton;
@@ -34,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"FreindRequestCount"];
 #pragma mark - Remove Code
     
 //    [UserDetails MR_truncateAll];
@@ -143,7 +150,7 @@ errorBlock:^(NSError *error) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             [ClosedResverResponce sharedInstance].delegate = self;
-            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=forgotPassword&email=%@", self.emailtextField.text] DictionartyToServer:@{}];
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=forgotPassword&email=%@", self.emailtextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             NSLog(@"%@", serverResponce);
             
@@ -189,7 +196,7 @@ errorBlock:^(NSError *error) {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{}];
+    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{} IsEncodingRequires:NO];
     
     NSLog(@"%@", serverResponce);
     
@@ -243,7 +250,34 @@ errorBlock:^(NSError *error) {
                     }
                     completion:nil];
     
+    [self getFreindListCount];
     
+    
+    
+}
+
+
+-(void)getFreindListCount
+{
+    
+    UserDetails *_userdDetails = [UserDetails MR_findFirst];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", servreResponce);
+        
+                if ([servreResponce valueForKey:@"success"] != nil) {
+                
+                if ([[servreResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    NSArray *freinListCOunt = [servreResponce valueForKey:@"data"];
+                    [[NSUserDefaults standardUserDefaults] setInteger:freinListCOunt.count forKey:@"FreindRequestCount"];
+                }
+            }
+        });
+
 }
 
 -(void)saveUserDetails: (NSArray *)userData{
@@ -268,16 +302,43 @@ errorBlock:^(NSError *error) {
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
         
-        if ([[userData valueForKey:@"profile_image_url"] isEqualToString:@""]) {
+        if ([[userData valueForKey:@"profile Image"] isEqualToString:@""]) {
             
             userDetails.profileImage = _imageURL;
 
 
         }else{
          
-            userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
+            userDetails.profileImage = [userData valueForKey:@"profile Image"];
 
         }
+        
+        
+        NSArray *flightDetailsArray = [userData valueForKey:@"profile_job"];
+        
+        if (flightDetailsArray.count != 0) {
+            
+            for (NSDictionary *singleJob in flightDetailsArray) {
+                
+                JobProfile *jobDetails = [JobProfile MR_createEntityInContext:localContext];
+                
+                jobDetails.title = [singleJob valueForKey:kTitle];
+                jobDetails.territory = [singleJob valueForKey:kTerritory];
+                jobDetails.compnay = [singleJob valueForKey:kCopmpany];
+                jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
+                if (![[singleJob valueForKey:kisCurrentPosition] isEqual:[NSNull null]]) {
+                    
+                    jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];
+                }
+                
+                [localContext MR_saveToPersistentStoreAndWait];
+                
+                
+            }
+        }
+        
+        
+        
         
         [localContext MR_saveToPersistentStoreAndWait];
         
@@ -392,7 +453,7 @@ errorBlock:^(NSError *error) {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
@@ -426,6 +487,21 @@ errorBlock:^(NSError *error) {
         
     });
 
+}
+
+-(void)textFieldDidEndEditing:(JVFloatLabeledTextField *)textField
+{
+   
+}
+
+-(BOOL)textFieldShouldReturn:(JVFloatLabeledTextField *)textField
+{
+    if (textField == self.passwordTextField) {
+        
+        [self loginbButtonTapped:nil];
+    }
+    
+    return YES;
 }
 
 

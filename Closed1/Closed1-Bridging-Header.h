@@ -13,3 +13,5 @@
 #import "MBProgressHUD.h"
 #import "FreindRequestViewController.h"
 #import "AddFreindsViewController.h"
+#import "ContactsTableViewCell.h"
+#import "ProfileDetailViewController.h"

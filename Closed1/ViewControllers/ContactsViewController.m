@@ -86,7 +86,7 @@
 #pragma mark - Remove Demo Code
         
         
-        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{}];
+        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -120,7 +120,10 @@
             }
                 
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-                if (contactList.count != 0) {
+                
+                NSArray *databaseContact = [ContactDetails MR_findAll];
+                
+                if (databaseContact.count != 0) {
                     [self.fetchedResultsController performFetch:nil];
                     [self.tableViee reloadData];
 

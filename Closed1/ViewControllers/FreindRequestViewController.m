@@ -48,7 +48,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{}];
+        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", servreResponce);
         
@@ -61,7 +61,7 @@
                 if ([[servreResponce valueForKey:@"success"] integerValue] == 1) {
                     
                     self.friendListArray = [servreResponce valueForKey:@"data"];
-                    
+                    [[NSUserDefaults standardUserDefaults] setInteger:self.friendListArray.count forKey:@"FreindRequestCount"];
                     [self.tableView reloadData];
                 }else{
                     
@@ -152,7 +152,7 @@
         NSString *url = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"accept_link"] firstObject] valueForKey:@"id"]];
         NSLog(@"%@", url);
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
@@ -187,7 +187,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"reject_link"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"reject_link"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         

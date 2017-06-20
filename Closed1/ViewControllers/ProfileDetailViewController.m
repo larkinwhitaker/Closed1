@@ -44,7 +44,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverREsponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_data&user_id=%zd", self.userid] DictionartyToServer:@{}];
+        NSArray *serverREsponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_data&user_id=%zd", self.userid] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -187,7 +187,7 @@
         [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                      placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         
-        homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
+        homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
         
         homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
         
@@ -283,7 +283,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{}];
+        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
         
@@ -350,6 +350,15 @@
         [mailCont setToRecipients:@[]];
         [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
         
+        // Get the resource path and read the file using NSData
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"closed1mail_form" ofType:@"html"];
+        NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+        
+        NSString *mimeType = @"text/html";
+       // [mailCont addAttachmentData:fileData mimeType:mimeType fileName:@""];
+
+        
+        
         [self presentViewController:mailCont animated:YES completion:nil];
         
     }
@@ -405,7 +414,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_feeds&user_id=%zd",self.userid] DictionartyToServer:@{}];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_feeds&user_id=%zd",self.userid] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

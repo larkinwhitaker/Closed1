@@ -17,6 +17,7 @@ pod 'GoogleSignIn'
 pod 'OneSignal'
 pod 'Realm', '2.1.2'
 pod 'SinchRTC'
+pod 'Firebase/Messaging'
 
 pod 'IQAudioRecorderController'
 pod 'JSQMessagesViewController'

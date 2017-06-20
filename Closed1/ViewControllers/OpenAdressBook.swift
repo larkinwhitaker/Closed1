@@ -7,7 +7,7 @@
 
 protocol setDataInTableViewDelegate
 {
-    func selectedData(_ name: [String], number: [String], image: [Data])
+    func selectedData(_ name: [String], number: [String])
 }
 
 
@@ -59,10 +59,6 @@ var count = 0
         let nib2 = UINib(nibName: "ShortDescription", bundle: nil)
         tableView.register(nib2, forCellReuseIdentifier: "cell1")
         
-        self.searchDisplayController?.searchResultsTableView.estimatedRowHeight = 90;
-        self.searchDisplayController?.searchResultsTableView.rowHeight = 90;
-        self.searchDisplayController?.searchResultsTableView.register(nib2, forCellReuseIdentifier: "cell1")
-        
         tableView.setEditing(true, animated: false)
         
         self.tableView.allowsMultipleSelectionDuringEditing = true
@@ -82,38 +78,31 @@ var count = 0
     func dismissModal()
     {
         
-        
-        
-//
-            let selectedRows = tableView.indexPathsForSelectedRows!;
-        
-        if selectedRows.count != 0 {
-            for rows in selectedRows{
-                
-                selectedName.append((filterednameSecarh[rows.row]["Name"] as? String)!)
-                selectedNumber.append((filterednameSecarh[rows.row]["Number"] as? String)!)
-                
-                
-            }
+        let selectedRows = tableView.indexPathsForSelectedRows;
+        if selectedRows != nil {
             
-            print("%@",selectedName)
-            print("%@",selectedNumber)
+            if selectedRows?.count != 0 {
+                
+                for rows in selectedRows!{
+                    
+                    selectedName.append((filterednameSecarh[rows.row]["Name"] as? String)!)
+                    selectedNumber.append((filterednameSecarh[rows.row]["Number"] as? String)!)
+                }
+                
+                if self.delegate != nil {
+                    self.delegate.selectedData(selectedName, number: selectedNumber)
+                }
 
-        
-            
-            
-                    if self.delegate != nil{
-                        
-                        
-                    }
-            
-            self.navigationController?.popViewController(animated: true)
-            
+            }else{
+                 UIAlertView(title: "Cannot send empty records", message: "", delegate: nil, cancelButtonTitle: "Ok").show()
+            }
         }else
         {
             UIAlertView(title: "Cannot send empty records", message: "", delegate: nil, cancelButtonTitle: "Ok").show()
             
         }
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -152,7 +141,11 @@ var count = 0
         let navItem = UINavigationItem()
         
         let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(dismissModal))
-            navItem.rightBarButtonItem = addButton
+        let closeButton =  UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(backTapped))
+        navItem.rightBarButtonItem = addButton
+        navItem.leftBarButtonItem = closeButton
+        
+
         navBar.items = [navItem]
         navBar.barTintColor = UIColor(red: 38.0/255.0, green: 166.0/255.0, blue: 154.0/255.0, alpha: 1.0)
         navBar.tintColor = UIColor.white
@@ -164,7 +157,7 @@ var count = 0
     
     func backTapped()
     {
- self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addContactsTapped(_ sender: Any) {

@@ -24,6 +24,7 @@
 #import "PJXFumeAnimation.h"
 #import "PJXRotationAnimation.h"
 #import "PJXFrameItemAnimation.h"
+#import "Closed1-Swift.h"
 
 @interface TabBarHandler ()
 
@@ -37,13 +38,14 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRecieved:) name:@"Notificationrecived" object:nil];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFeedsAvailable) name:@"NewFeedsAvilable" object:nil];
+    
+    
+    
     PJXBounceAnimation *bounceAnimation = [[PJXBounceAnimation alloc] init];
     bounceAnimation.textSelectedColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
     bounceAnimation.iconSelectedColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
-    
-    PJXRotationAnimation *rotationAnimation = [[PJXRotationAnimation alloc] init];
-    rotationAnimation.textSelectedColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
-    rotationAnimation.iconSelectedColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
     
     PJXAnimatedTabBarItem *firstTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"HomeTabBarSelectedImage"] selectedImage:nil];
     firstTabBarItem.animation = bounceAnimation;
@@ -54,19 +56,22 @@
     
     PJXAnimatedTabBarItem *secondTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Contacts" image:[UIImage imageNamed:@"ContactsTabBarSelectedImage"] selectedImage:nil];
     secondTabBarItem.animation = bounceAnimation;
+    secondTabBarItem.badgeValue = @"2";
     secondTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
-    ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
+    
+    ContactsListViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
+//    ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
     contactScreen.tabBarItem = secondTabBarItem;
     
     PJXAnimatedTabBarItem *thirdTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Search" image:[UIImage imageNamed:@"SearchTabBarSelectedImage"] selectedImage:nil];
-    thirdTabBarItem.animation = rotationAnimation;
+    thirdTabBarItem.animation = bounceAnimation;
     thirdTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
     SearchViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchView.tabBarItem = thirdTabBarItem;
 
     
     PJXAnimatedTabBarItem *fourthTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Share Deal" image:[UIImage imageNamed:@"ShareTabBarSelectedImage"] selectedImage:nil];
-    fourthTabBarItem.animation = rotationAnimation;
+    fourthTabBarItem.animation = bounceAnimation;
     fourthTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
 ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
     shareDeal.tabBarItem = fourthTabBarItem;
@@ -93,6 +98,59 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
 -(void)profileUpdatedSucessFully
 {
     self.selectedIndex = 0;
+    
+    
+}
+
+
+-(void)newFeedsAvailable
+
+{
+    NSArray<PJXAnimatedTabBarItem *> *items = (NSArray<PJXAnimatedTabBarItem *> *)self.tabBar.items;
+
+    PJXAnimatedTabBarItem *deselectItem = (PJXAnimatedTabBarItem *)items[3];
+    [deselectItem deselectAnimation];
+
+    PJXAnimatedTabBarItem *selectedItem = (PJXAnimatedTabBarItem *)items[0];
+    [selectedItem selectedState];
+
+    /*
+    NSArray<PJXAnimatedTabBarItem *> *items = (NSArray<PJXAnimatedTabBarItem *> *)self.tabBar.items;
+    
+    NSInteger currentIndex = 3;
+    
+    if(self.tabBarController != nil && self.tabBarController.delegate != nil && [self.tabBarController.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)] && ![self.tabBarController.delegate tabBarController:self.tabBarController shouldSelectViewController:self]) {
+        return ;
+    }
+    
+    if (self.selectedIndex != currentIndex) {
+        PJXAnimatedTabBarItem *animationItem = (PJXAnimatedTabBarItem *)items[currentIndex];
+        [animationItem playAnimation];
+        
+        //PJXAnimatedTabBarItem *deselectItem = (PJXAnimatedTabBarItem *)items[3];
+        //[deselectItem deselectAnimation];
+        
+        PJXAnimatedTabBarItem *selectedItem = (PJXAnimatedTabBarItem *)items[0];
+        [selectedItem selectedState];
+
+        
+        self.selectedIndex = 0;
+        
+        if (self.tabBarController != nil && self.tabBarController.delegate != nil && [self.tabBarController.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
+            [self.tabBarController.delegate tabBarController:self.tabBarController didSelectViewController:self];
+        }
+    } else if (self.selectedIndex == currentIndex) {
+        if (self.viewControllers[self.selectedIndex]) {
+            if (self.viewControllers.count == 1) {
+                UINavigationController *navVC = (UINavigationController *)self.viewControllers[self.selectedIndex];
+                if (navVC) {
+                    [navVC popToRootViewControllerAnimated:YES];
+                }
+            }
+        }
+    }
+     
+     */
 }
 
 

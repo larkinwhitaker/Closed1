@@ -33,7 +33,7 @@
     _messageArray = [[NSMutableArray alloc]init];
     [_messageArray addObject:@""];
     [_messageArray addObject:@""];
-    NSArray *messsages = [self.feedsDetails valueForKey:@"message_array"];
+    NSArray *messsages = [self.feedsDetails  valueForKey:@"message_array"];
     
     if (messsages.count != 0) {
         
@@ -109,11 +109,11 @@
         
         
         UILabel *commnetLabel = (UILabel *)[feedsCell viewWithTag:2];
-        commnetLabel.text = [_feedsDetails valueForKey:@"content"];
+        commnetLabel.text = [_feedsDetails  valueForKey:@"content"];
         
         UILabel *userName = (UILabel *)[feedsCell viewWithTag:3]
         ;
-        userName.text = [_feedsDetails valueForKey:@"closed"];
+        userName.text = [_feedsDetails  valueForKey:@"closed"];
         
         UIImageView *profileImage = (UIImageView *)[feedsCell viewWithTag:1];
         [profileImage sd_setImageWithURL:[NSURL URLWithString:[self.feedsDetails valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
@@ -137,10 +137,12 @@
         
         UILabel *userName = (UILabel *)[commentCell viewWithTag:2];
         UILabel *comment = (UILabel *)[commentCell viewWithTag:3];
+        UILabel *dataTime = (UILabel *)[commentCell viewWithTag:4];
         UIImageView *userImage = (UIImageView *)[commentCell viewWithTag:1];
         
         userName.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"full name"];
         comment.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"content"];
+        dataTime.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"date_recorded"];
         [userImage sd_setImageWithURL:[NSURL URLWithString:[[[self.feedsDetails valueForKey:@""] objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage: [UIImage imageNamed:@"male-circle-128.png"]];
 
         
@@ -168,13 +170,13 @@
         hud.dimBackground = YES;
         hud.labelText = @"Posting Comment";
         
-        NSString *URL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[[self.feedsDetails valueForKey:@"Feeds"] valueForKey:@"activity_id"], _commnetText];
+        NSString *URL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[self.feedsDetails  valueForKey:@"activity_id"], _commnetText];
         
         NSLog(@"%@", URL);
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: URL DictionartyToServer:@{}];
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: URL DictionartyToServer:@{} IsEncodingRequires:NO];
             
             NSLog(@"%@", serverResponce);
             
@@ -182,7 +184,14 @@
                
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     _isApiCalled = YES;
-                    [self.messageArray addObject:@{@"profile_image_url": user.profileImage, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]}];
+                    
+                    NSString *image = @"";
+                    if (user.profileImage != nil) {
+                        
+                        image = user.profileImage;
+                    }
+                    
+                    [self.messageArray addObject:@{@"profile_image_url": image, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]}];
                     
                     [self.tableView reloadData];
 
