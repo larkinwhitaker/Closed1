@@ -17,6 +17,8 @@
 #import "EditProfileViewController.h"
 #import "JobProfileCell.h"
 #import "JobProfile+CoreDataProperties.h"
+#import "CreditCardViewController.h"
+#import "CardDetails+CoreDataProperties.h"
 
 #define kTitle @"title"
 #define kCopmpany @"company"
@@ -25,12 +27,15 @@
 #define kisCurrentPosition @"current_position"
 
 
-@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate, UITextFieldDelegate>
+@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate, UITextFieldDelegate, CreditCardDelegate>
 {
     EditProfileTableViewCell *editProfileCell;
     NSInteger rowCount;
+    
 }
 @property(nonatomic) NSMutableArray *flightDetailsArray;
+@property(nonatomic) NSMutableDictionary *creditCardDictionary;
+@property(nonatomic) NSMutableDictionary *userProfiledetails;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -42,6 +47,34 @@
     [super viewDidLoad];
     
     _flightDetailsArray = [[NSMutableArray alloc]init];
+    
+    
+    CardDetails *cardDetails = [CardDetails MR_findFirst];
+    
+    self.creditCardDictionary = [[NSMutableDictionary alloc]init];
+    [self.creditCardDictionary setValue:cardDetails.cardnumber forKey:@"cardnumber"];
+    [self.creditCardDictionary setValue:cardDetails.cardexpirydate forKey:@"cardexpirydate"];
+    [self.creditCardDictionary setValue:cardDetails.cvvtext forKey:@"CreditCardCVV"];
+    [self.creditCardDictionary setValue:cardDetails.cardname forKey:@"cardname"];
+    [self.creditCardDictionary setValue:cardDetails.cardimagename forKey:@"cardimagename"];
+    
+    [self.creditCardDictionary setValue:cardDetails.cardencryptedtext forKey:@"cardencryptedtext"];
+    [self.creditCardDictionary setValue:cardDetails.cvvimageName forKey:@"creditcardCVVImage"];
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    self.userProfiledetails = [[NSMutableDictionary alloc]init];
+    [self.userProfiledetails setValue: userDetails.userEmail forKey:@"userEmail"];
+    [self.userProfiledetails setValue:userDetails.firstName forKey:@"firstName"];
+    [self.userProfiledetails setValue:userDetails.lastName forKey:@"lastName"];
+    [self.userProfiledetails setValue:userDetails.city forKey:@"city"];
+    [self.userProfiledetails setValue:userDetails.state forKey:@"state"];
+    [self.userProfiledetails setValue:userDetails.phoneNumber forKey:@"phoneNumber"];
+    [self.userProfiledetails setValue:userDetails.country forKey:@"country"];
+    [self.userProfiledetails setValue:userDetails.company forKey:@"company"];
+    [self.userProfiledetails setValue:userDetails.title forKey:@"title"];
+    [self.userProfiledetails setValue:userDetails.territory forKey:@"territory"];
+    [self.userProfiledetails setValue:userDetails.econdaryemail forKey:@"econdaryemail"];
     
     NSArray *jobArray = [JobProfile MR_findAll];
     
@@ -58,9 +91,14 @@
                 jobPriofile = job.currentPoistion;
             }
             
+            NSMutableDictionary *jobDict = [[NSMutableDictionary alloc ]init];
+            [jobDict setObject:job.title forKey:kTitle];
+            [jobDict setObject:job.targetBuyers forKey:kTargetBuyers];
+            [jobDict setObject:job.compnay forKey:kCopmpany];
+            [jobDict setObject:job.territory forKey:kTerritory];
+            [jobDict setObject:jobPriofile forKey:kisCurrentPosition];
             
-            [_flightDetailsArray addObject:@{kTitle: job.title, kTargetBuyers: job.targetBuyers, kCopmpany: job.compnay, kTerritory: job.territory, kisCurrentPosition: jobPriofile}];
-            
+            [self.flightDetailsArray addObject:jobDict];
         }
         
     }
@@ -80,10 +118,16 @@
     
     self.tableView.tableFooterView = footerView;
     
-    [self createCustumNavigationBar];
     self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
     
     rowCount = 2;
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self createCustumNavigationBar];
 
 }
 
@@ -119,6 +163,8 @@
     
     navItem.leftBarButtonItem = backButton;
     
+    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Show Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCardScreen)];
+    navItem.rightBarButtonItem = cardButton;
     
     
     [navBar setTintColor:[UIColor whiteColor]];
@@ -126,6 +172,52 @@
     [navItem setTitle:@"Edit Profile"];
     [self.view addSubview:navBar];
     
+}
+
+-(void)openCardScreen
+{
+    CreditCardViewController *creditCardScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
+    creditCardScreen.delegate = self;
+    creditCardScreen.creditCardDetails = self.creditCardDictionary;
+    [self.navigationController pushViewController:creditCardScreen animated:YES];
+}
+
+-(void)selectedCreditCardDetails:(NSMutableDictionary *)creditCardDetailsDictionary
+{
+    NSLog(@"%@", creditCardDetailsDictionary);
+    [editProfileCell.showCardButton setTitle:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
+    
+    
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardnumber"] forKey:@"cardnumber"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardexpirydate"] forKey:@"cardexpirydate"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"CreditCardCVV"] forKey:@"CreditCardCVV"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardname"] forKey:@"cardname"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardimagename"] forKey:@"cardimagename"];
+    
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forKey:@"cardencryptedtext"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"] forKey:@"creditcardCVVImage"];
+    
+    
+    
+    [CardDetails MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+        
+        CardDetails *cardDetails = [CardDetails MR_createEntityInContext:localContext];
+        
+        cardDetails.cardname = [creditCardDetailsDictionary valueForKey:@"cardname"];
+        cardDetails.cardencryptedtext = [creditCardDetailsDictionary valueForKey:@"cardencryptedtext"];
+        cardDetails.cardexpirydate = [creditCardDetailsDictionary valueForKey:@"cardexpirydate"];
+        cardDetails.cardimagename = [creditCardDetailsDictionary valueForKey:@"cardimagename"];
+        cardDetails.cardnumber = [creditCardDetailsDictionary valueForKey:@"cardnumber"];
+        cardDetails.cvvtext = [creditCardDetailsDictionary valueForKey:@"CreditCardCVV"];
+        cardDetails.cvvimageName = [creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"];
+        
+        [localContext MR_saveToPersistentStoreAndWait];
+    }];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
@@ -149,7 +241,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) return 689;
+    if(indexPath.section == 0) return 730;
     else return 360;
 }
 
@@ -165,17 +257,19 @@
         
         UserDetails *userDetails = [UserDetails MR_findFirst];
         
-        editProfileCell.emailTextField.text = userDetails.userEmail;
-        editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
-        editProfileCell.citytextField.text = userDetails.city;
-        editProfileCell.stateTextField.text = userDetails.state;
-        editProfileCell.phoneNumberTextField.text = userDetails.phoneNumber;
-        [editProfileCell.countryButton setTitle:userDetails.country forState:UIControlStateNormal];
-        editProfileCell.companyNameTextField.text = userDetails.company;
-        editProfileCell.designationTextField.text = userDetails.title;
-        editProfileCell.terrotoryTextField.text = userDetails.territory;
-        editProfileCell.secondaryEmail.text = userDetails.econdaryemail;
+        editProfileCell.emailTextField.text = [self.userProfiledetails valueForKey:@"userEmail"];
+        editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", [self.userProfiledetails valueForKey:@"firstName"], [self.userProfiledetails valueForKey:@"lastName"]];
+        editProfileCell.citytextField.text = [self.userProfiledetails valueForKey:@"city"];
+        editProfileCell.stateTextField.text = [self.userProfiledetails valueForKey:@"state"];
+        editProfileCell.phoneNumberTextField.text = [self.userProfiledetails valueForKey:@"phoneNumber"];
+        [editProfileCell.countryButton setTitle:[self.userProfiledetails valueForKey:@"country"] forState:UIControlStateNormal];
+        editProfileCell.companyNameTextField.text = [self.userProfiledetails valueForKey:@"company"];
+        editProfileCell.designationTextField.text = [self.userProfiledetails valueForKey:@"title"];
+        editProfileCell.terrotoryTextField.text = [self.userProfiledetails valueForKey:@"territory"];
+        editProfileCell.secondaryEmail.text = [self.userProfiledetails valueForKey:@"econdaryemail"];
         [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
+        [editProfileCell.showCardButton addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
         
         [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -196,8 +290,9 @@
         jobCell.companyTextField.tag = indexPath.row;
         jobCell.territoryTextFiled.tag = indexPath.row;
         jobCell.targetBuyersTextFiled.tag = indexPath.row;
-        [jobCell.isCurrentPosition addTarget:self action:@selector(currentJobSelected:) forControlEvents:UIControlEventValueChanged];
         jobCell.isCurrentPosition.tag = indexPath.row;
+
+        [jobCell.isCurrentPosition addTarget:self action:@selector(currentJobSelected:) forControlEvents:UIControlEventValueChanged];
         
         jobCell.titleTextField.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kTitle];
         jobCell.companyTextField.text = [[_flightDetailsArray objectAtIndex:indexPath.row] valueForKey:kCopmpany];
@@ -220,17 +315,32 @@
 
 -(void)currentJobSelected: (UISwitch *)sender{
     
+    
+    for (NSDictionary *job in _flightDetailsArray) {
+        
+        [job setValue:@"off" forKey:kisCurrentPosition];
+    }
+    
+    
+    NSInteger index = sender.tag;
+    
+    NSLog(@"%zd", index);
+    
     if (sender.isOn) {
         
-        [[self.flightDetailsArray objectAtIndex:sender.tag] setValue:@"on" forKey:kisCurrentPosition];
+        [[self.flightDetailsArray objectAtIndex:index] setObject:@"on" forKey:kisCurrentPosition];
         
     }else{
-        [[self.flightDetailsArray objectAtIndex:sender.tag] setValue:@"off" forKey:kisCurrentPosition];
+        [[self.flightDetailsArray objectAtIndex:index] setObject:@"off" forKey:kisCurrentPosition];
         
         
     }
     
+    [self.tableView reloadData];
+    
 }
+    
+
 
 -(void)addmoreCell: (UIButton *)sender
 {

@@ -36,6 +36,38 @@
 		AD7E36D11E9D5601004B1215 /* NavigationBarImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7E36D01E9D5601004B1215 /* NavigationBarImage.png */; };
 		AD7E36D31E9D56A3004B1215 /* SliderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7E36D21E9D56A3004B1215 /* SliderImage.png */; };
 		AD84F3901E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = AD84F38F1E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png */; };
+		AD888EC81EFC4B2500FE4C43 /* CreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888EC51EFC4B2500FE4C43 /* CreditCardViewController.m */; };
+		AD888F411EFC4C5900FE4C43 /* PTKAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F181EFC4C5900FE4C43 /* PTKAddressZip.m */; };
+		AD888F421EFC4C5900FE4C43 /* PTKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F1A1EFC4C5900FE4C43 /* PTKCard.m */; };
+		AD888F431EFC4C5900FE4C43 /* PTKCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F1C1EFC4C5900FE4C43 /* PTKCardCVC.m */; };
+		AD888F441EFC4C5900FE4C43 /* PTKCardExpiry.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F1E1EFC4C5900FE4C43 /* PTKCardExpiry.m */; };
+		AD888F451EFC4C5900FE4C43 /* PTKCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F201EFC4C5900FE4C43 /* PTKCardNumber.m */; };
+		AD888F461EFC4C5900FE4C43 /* PTKComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F231EFC4C5900FE4C43 /* PTKComponent.m */; };
+		AD888F471EFC4C5900FE4C43 /* PTKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F251EFC4C5900FE4C43 /* PTKTextField.m */; };
+		AD888F481EFC4C5900FE4C43 /* PTKUSAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F271EFC4C5900FE4C43 /* PTKUSAddressZip.m */; };
+		AD888F491EFC4C5900FE4C43 /* PTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888F291EFC4C5900FE4C43 /* PTKView.m */; };
+		AD888F4A1EFC4C5900FE4C43 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F2C1EFC4C5900FE4C43 /* amex.png */; };
+		AD888F4B1EFC4C5900FE4C43 /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F2D1EFC4C5900FE4C43 /* amex@2x.png */; };
+		AD888F4C1EFC4C5900FE4C43 /* cvc-amex.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F2E1EFC4C5900FE4C43 /* cvc-amex.png */; };
+		AD888F4D1EFC4C5900FE4C43 /* cvc-amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F2F1EFC4C5900FE4C43 /* cvc-amex@2x.png */; };
+		AD888F4E1EFC4C5900FE4C43 /* cvc.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F301EFC4C5900FE4C43 /* cvc.png */; };
+		AD888F4F1EFC4C5900FE4C43 /* cvc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F311EFC4C5900FE4C43 /* cvc@2x.png */; };
+		AD888F501EFC4C5900FE4C43 /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F321EFC4C5900FE4C43 /* diners.png */; };
+		AD888F511EFC4C5900FE4C43 /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F331EFC4C5900FE4C43 /* diners@2x.png */; };
+		AD888F521EFC4C5900FE4C43 /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F341EFC4C5900FE4C43 /* discover.png */; };
+		AD888F531EFC4C5900FE4C43 /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F351EFC4C5900FE4C43 /* discover@2x.png */; };
+		AD888F541EFC4C5900FE4C43 /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F361EFC4C5900FE4C43 /* jcb.png */; };
+		AD888F551EFC4C5900FE4C43 /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F371EFC4C5900FE4C43 /* jcb@2x.png */; };
+		AD888F561EFC4C5900FE4C43 /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F381EFC4C5900FE4C43 /* mastercard.png */; };
+		AD888F571EFC4C5900FE4C43 /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F391EFC4C5900FE4C43 /* mastercard@2x.png */; };
+		AD888F581EFC4C5900FE4C43 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3A1EFC4C5900FE4C43 /* placeholder.png */; };
+		AD888F591EFC4C5900FE4C43 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3B1EFC4C5900FE4C43 /* placeholder@2x.png */; };
+		AD888F5A1EFC4C5900FE4C43 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3C1EFC4C5900FE4C43 /* visa.png */; };
+		AD888F5B1EFC4C5900FE4C43 /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3D1EFC4C5900FE4C43 /* visa@2x.png */; };
+		AD888F5C1EFC4C5900FE4C43 /* gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3E1EFC4C5900FE4C43 /* gradient@2x.png */; };
+		AD888F5D1EFC4C5900FE4C43 /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3F1EFC4C5900FE4C43 /* textfield.png */; };
+		AD888F5E1EFC4C5900FE4C43 /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F401EFC4C5900FE4C43 /* textfield@2x.png */; };
+		AD888FAD1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */; };
 		AD88EC381EF181C700572D49 /* closed1mail_form.html in Resources */ = {isa = PBXBuildFile; fileRef = AD88EC371EF181C700572D49 /* closed1mail_form.html */; };
 		AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */ = {isa = PBXBuildFile; fileRef = AD904E2B1E90D59E0096AA4E /* ClosedResverResponce.m */; };
 		AD933A3B1E9E8093002FE9FF /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD933A1A1E9E8093002FE9FF /* AFHTTPSessionManager.m */; };
@@ -681,6 +713,50 @@
 		AD7E36D21E9D56A3004B1215 /* SliderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderImage.png; sourceTree = "<group>"; };
 		AD84F38F1E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-03 at 10.45.57 PM.png"; sourceTree = "<group>"; };
 		AD87F2331EA7BBC2001A9C4D /* Closed1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Closed1.entitlements; sourceTree = "<group>"; };
+		AD888EC41EFC4B2500FE4C43 /* CreditCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditCardViewController.h; sourceTree = "<group>"; };
+		AD888EC51EFC4B2500FE4C43 /* CreditCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditCardViewController.m; sourceTree = "<group>"; };
+		AD888F171EFC4C5900FE4C43 /* PTKAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKAddressZip.h; sourceTree = "<group>"; };
+		AD888F181EFC4C5900FE4C43 /* PTKAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKAddressZip.m; sourceTree = "<group>"; };
+		AD888F191EFC4C5900FE4C43 /* PTKCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKCard.h; sourceTree = "<group>"; };
+		AD888F1A1EFC4C5900FE4C43 /* PTKCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKCard.m; sourceTree = "<group>"; };
+		AD888F1B1EFC4C5900FE4C43 /* PTKCardCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKCardCVC.h; sourceTree = "<group>"; };
+		AD888F1C1EFC4C5900FE4C43 /* PTKCardCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKCardCVC.m; sourceTree = "<group>"; };
+		AD888F1D1EFC4C5900FE4C43 /* PTKCardExpiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKCardExpiry.h; sourceTree = "<group>"; };
+		AD888F1E1EFC4C5900FE4C43 /* PTKCardExpiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKCardExpiry.m; sourceTree = "<group>"; };
+		AD888F1F1EFC4C5900FE4C43 /* PTKCardNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKCardNumber.h; sourceTree = "<group>"; };
+		AD888F201EFC4C5900FE4C43 /* PTKCardNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKCardNumber.m; sourceTree = "<group>"; };
+		AD888F211EFC4C5900FE4C43 /* PTKCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKCardType.h; sourceTree = "<group>"; };
+		AD888F221EFC4C5900FE4C43 /* PTKComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKComponent.h; sourceTree = "<group>"; };
+		AD888F231EFC4C5900FE4C43 /* PTKComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKComponent.m; sourceTree = "<group>"; };
+		AD888F241EFC4C5900FE4C43 /* PTKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKTextField.h; sourceTree = "<group>"; };
+		AD888F251EFC4C5900FE4C43 /* PTKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKTextField.m; sourceTree = "<group>"; };
+		AD888F261EFC4C5900FE4C43 /* PTKUSAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKUSAddressZip.h; sourceTree = "<group>"; };
+		AD888F271EFC4C5900FE4C43 /* PTKUSAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKUSAddressZip.m; sourceTree = "<group>"; };
+		AD888F281EFC4C5900FE4C43 /* PTKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKView.h; sourceTree = "<group>"; };
+		AD888F291EFC4C5900FE4C43 /* PTKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKView.m; sourceTree = "<group>"; };
+		AD888F2C1EFC4C5900FE4C43 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
+		AD888F2D1EFC4C5900FE4C43 /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
+		AD888F2E1EFC4C5900FE4C43 /* cvc-amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex.png"; sourceTree = "<group>"; };
+		AD888F2F1EFC4C5900FE4C43 /* cvc-amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex@2x.png"; sourceTree = "<group>"; };
+		AD888F301EFC4C5900FE4C43 /* cvc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvc.png; sourceTree = "<group>"; };
+		AD888F311EFC4C5900FE4C43 /* cvc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc@2x.png"; sourceTree = "<group>"; };
+		AD888F321EFC4C5900FE4C43 /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
+		AD888F331EFC4C5900FE4C43 /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
+		AD888F341EFC4C5900FE4C43 /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
+		AD888F351EFC4C5900FE4C43 /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
+		AD888F361EFC4C5900FE4C43 /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
+		AD888F371EFC4C5900FE4C43 /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
+		AD888F381EFC4C5900FE4C43 /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
+		AD888F391EFC4C5900FE4C43 /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
+		AD888F3A1EFC4C5900FE4C43 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		AD888F3B1EFC4C5900FE4C43 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		AD888F3C1EFC4C5900FE4C43 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
+		AD888F3D1EFC4C5900FE4C43 /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
+		AD888F3E1EFC4C5900FE4C43 /* gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient@2x.png"; sourceTree = "<group>"; };
+		AD888F3F1EFC4C5900FE4C43 /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
+		AD888F401EFC4C5900FE4C43 /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
+		AD888FAA1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CardDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CardDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AD88EC371EF181C700572D49 /* closed1mail_form.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = closed1mail_form.html; sourceTree = "<group>"; };
 		AD904E2A1E90D59E0096AA4E /* ClosedResverResponce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedResverResponce.h; sourceTree = "<group>"; };
 		AD904E2B1E90D59E0096AA4E /* ClosedResverResponce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedResverResponce.m; sourceTree = "<group>"; };
@@ -1656,6 +1732,69 @@
 			path = Closed1UITests;
 			sourceTree = "<group>";
 		};
+		AD888F161EFC4C5900FE4C43 /* PaymentKit */ = {
+			isa = PBXGroup;
+			children = (
+				AD888F171EFC4C5900FE4C43 /* PTKAddressZip.h */,
+				AD888F181EFC4C5900FE4C43 /* PTKAddressZip.m */,
+				AD888F191EFC4C5900FE4C43 /* PTKCard.h */,
+				AD888F1A1EFC4C5900FE4C43 /* PTKCard.m */,
+				AD888F1B1EFC4C5900FE4C43 /* PTKCardCVC.h */,
+				AD888F1C1EFC4C5900FE4C43 /* PTKCardCVC.m */,
+				AD888F1D1EFC4C5900FE4C43 /* PTKCardExpiry.h */,
+				AD888F1E1EFC4C5900FE4C43 /* PTKCardExpiry.m */,
+				AD888F1F1EFC4C5900FE4C43 /* PTKCardNumber.h */,
+				AD888F201EFC4C5900FE4C43 /* PTKCardNumber.m */,
+				AD888F211EFC4C5900FE4C43 /* PTKCardType.h */,
+				AD888F221EFC4C5900FE4C43 /* PTKComponent.h */,
+				AD888F231EFC4C5900FE4C43 /* PTKComponent.m */,
+				AD888F241EFC4C5900FE4C43 /* PTKTextField.h */,
+				AD888F251EFC4C5900FE4C43 /* PTKTextField.m */,
+				AD888F261EFC4C5900FE4C43 /* PTKUSAddressZip.h */,
+				AD888F271EFC4C5900FE4C43 /* PTKUSAddressZip.m */,
+				AD888F281EFC4C5900FE4C43 /* PTKView.h */,
+				AD888F291EFC4C5900FE4C43 /* PTKView.m */,
+				AD888F2A1EFC4C5900FE4C43 /* Resources */,
+			);
+			path = PaymentKit;
+			sourceTree = "<group>";
+		};
+		AD888F2A1EFC4C5900FE4C43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD888F2B1EFC4C5900FE4C43 /* Cards */,
+				AD888F3E1EFC4C5900FE4C43 /* gradient@2x.png */,
+				AD888F3F1EFC4C5900FE4C43 /* textfield.png */,
+				AD888F401EFC4C5900FE4C43 /* textfield@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AD888F2B1EFC4C5900FE4C43 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				AD888F2C1EFC4C5900FE4C43 /* amex.png */,
+				AD888F2D1EFC4C5900FE4C43 /* amex@2x.png */,
+				AD888F2E1EFC4C5900FE4C43 /* cvc-amex.png */,
+				AD888F2F1EFC4C5900FE4C43 /* cvc-amex@2x.png */,
+				AD888F301EFC4C5900FE4C43 /* cvc.png */,
+				AD888F311EFC4C5900FE4C43 /* cvc@2x.png */,
+				AD888F321EFC4C5900FE4C43 /* diners.png */,
+				AD888F331EFC4C5900FE4C43 /* diners@2x.png */,
+				AD888F341EFC4C5900FE4C43 /* discover.png */,
+				AD888F351EFC4C5900FE4C43 /* discover@2x.png */,
+				AD888F361EFC4C5900FE4C43 /* jcb.png */,
+				AD888F371EFC4C5900FE4C43 /* jcb@2x.png */,
+				AD888F381EFC4C5900FE4C43 /* mastercard.png */,
+				AD888F391EFC4C5900FE4C43 /* mastercard@2x.png */,
+				AD888F3A1EFC4C5900FE4C43 /* placeholder.png */,
+				AD888F3B1EFC4C5900FE4C43 /* placeholder@2x.png */,
+				AD888F3C1EFC4C5900FE4C43 /* visa.png */,
+				AD888F3D1EFC4C5900FE4C43 /* visa@2x.png */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		AD904E261E90D51B0096AA4E /* ServerResponce */ = {
 			isa = PBXGroup;
 			children = (
@@ -1774,6 +1913,8 @@
 		AD93F7521E87F717008488B9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD888EC41EFC4B2500FE4C43 /* CreditCardViewController.h */,
+				AD888EC51EFC4B2500FE4C43 /* CreditCardViewController.m */,
 				AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */,
 				AD93EC821ECCAE7F00609738 /* GlobalConstant.swift */,
 				AD93EC831ECCAE7F00609738 /* OpenAdressBook.swift */,
@@ -1853,6 +1994,7 @@
 		AD93F75B1E880E16008488B9 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				AD888F161EFC4C5900FE4C43 /* PaymentKit */,
 				ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */,
 				ADCE92CA1EB0F9AC0018FD25 /* Tour Tip */,
 				ADBB1AB11EA52B35003CA9DD /* Chatting */,
@@ -2078,6 +2220,8 @@
 		ADA0C5DF1E969F020060A0B1 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				AD888FAA1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.h */,
+				AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */,
 				ADA6DCB31EE5A00400AE57F6 /* UserDetails+CoreDataProperties.h */,
 				ADA6DCB41EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m */,
 				ADA6DCAD1EE5892500AE57F6 /* JobProfile+CoreDataProperties.h */,
@@ -3770,18 +3914,24 @@
 				ADBB1E1D1EA52B37003CA9DD /* stickerlocal07@2x.png in Resources */,
 				ADBB1DF31EA52B37003CA9DD /* launchscreen_logo@2x.png in Resources */,
 				ADBB1E651EA52B37003CA9DD /* stickersend01@2x.png in Resources */,
+				AD888F4D1EFC4C5900FE4C43 /* cvc-amex@2x.png in Resources */,
+				AD888F4C1EFC4C5900FE4C43 /* cvc-amex.png in Resources */,
+				AD888F4A1EFC4C5900FE4C43 /* amex.png in Resources */,
 				ADBB1D781EA52B37003CA9DD /* KeepMediaView.xib in Resources */,
 				AD933A511E9EA2B8002FE9FF /* CallWhiteImage.png in Resources */,
 				ADE6042A1EC4DDDC00C1B93C /* JobProfileCell.xib in Resources */,
+				AD888F581EFC4C5900FE4C43 /* placeholder.png in Resources */,
 				ADBB1E131EA52B37003CA9DD /* welcome_logo@2x.png in Resources */,
 				ADBB1E301EA52B37003CA9DD /* stickerlocal26@2x.png in Resources */,
 				ADBB1E6D1EA52B37003CA9DD /* stickersend09@2x.png in Resources */,
+				AD888F4B1EFC4C5900FE4C43 /* amex@2x.png in Resources */,
 				ADBB1D5A1EA52B37003CA9DD /* ChatsCell.xib in Resources */,
 				ADBB1D3F1EA52B37003CA9DD /* AllMediaCell.xib in Resources */,
 				ADBB1EB51EA52B37003CA9DD /* wallpapers03@2x.jpg in Resources */,
 				ADBB1DFF1EA52B37003CA9DD /* premium06@2x.png in Resources */,
 				ADBB1E3B1EA52B37003CA9DD /* stickerlocal37@2x.png in Resources */,
 				ADBB1E5E1EA52B37003CA9DD /* stickerlocal72@2x.png in Resources */,
+				AD888F501EFC4C5900FE4C43 /* diners.png in Resources */,
 				ADBB1D391EA52B37003CA9DD /* ProfileView.xib in Resources */,
 				ADBB1DF51EA52B37003CA9DD /* audiomediaitem_download@2x.png in Resources */,
 				ADBB1DDC1EA52B37003CA9DD /* callaudio_speaker2@2x.png in Resources */,
@@ -3791,6 +3941,7 @@
 				ADBB1E841EA52B37003CA9DD /* stickersend32@2x.png in Resources */,
 				ADBB1EB81EA52B37003CA9DD /* wallpapers06@2x.jpg in Resources */,
 				ADBB1E9C1EA52B37003CA9DD /* stickersend56@2x.png in Resources */,
+				AD888F5C1EFC4C5900FE4C43 /* gradient@2x.png in Resources */,
 				ADBB1EAC1EA52B37003CA9DD /* stickersend72@2x.png in Resources */,
 				ADBB1E211EA52B37003CA9DD /* stickerlocal11@2x.png in Resources */,
 				ADBB1DD61EA52B37003CA9DD /* callaudio_answer@2x.png in Resources */,
@@ -3820,6 +3971,7 @@
 				AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */,
 				AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */,
 				ADBB1D4E1EA52B37003CA9DD /* SelectGroupCell.xib in Resources */,
+				AD888F591EFC4C5900FE4C43 /* placeholder@2x.png in Resources */,
 				ADBB1E741EA52B37003CA9DD /* stickersend16@2x.png in Resources */,
 				ADBB1E391EA52B37003CA9DD /* stickerlocal35@2x.png in Resources */,
 				ADBB1E3F1EA52B37003CA9DD /* stickerlocal41@2x.png in Resources */,
@@ -3882,6 +4034,7 @@
 				ADBB1E941EA52B37003CA9DD /* stickersend48@2x.png in Resources */,
 				ADBB1D911EA52B37003CA9DD /* PremiumView.xib in Resources */,
 				ADBB1E7F1EA52B37003CA9DD /* stickersend27@2x.png in Resources */,
+				AD888F511EFC4C5900FE4C43 /* diners@2x.png in Resources */,
 				ADBB1E8C1EA52B37003CA9DD /* stickersend40@2x.png in Resources */,
 				ADBB1EB61EA52B37003CA9DD /* wallpapers04@2x.jpg in Resources */,
 				ADBB1DFC1EA52B37003CA9DD /* premium03@2x.png in Resources */,
@@ -3911,8 +4064,10 @@
 				ADBB1E091EA52B37003CA9DD /* selectgroup_blank@2x.png in Resources */,
 				ADBB1E7D1EA52B37003CA9DD /* stickersend25@2x.png in Resources */,
 				ADBB1E801EA52B37003CA9DD /* stickersend28@2x.png in Resources */,
+				AD888F531EFC4C5900FE4C43 /* discover@2x.png in Resources */,
 				ADBB1E151EA52B37003CA9DD /* call_incoming.wav in Resources */,
 				ADCED86B1E8AC10C00B9A06A /* TableViewDiscloserImage.png in Resources */,
+				AD888F561EFC4C5900FE4C43 /* mastercard.png in Resources */,
 				ADBB1D741EA52B37003CA9DD /* ArchiveCell.xib in Resources */,
 				ADBB1EB31EA52B37003CA9DD /* wallpapers01@2x.jpg in Resources */,
 				ADBB1E2D1EA52B37003CA9DD /* stickerlocal23@2x.png in Resources */,
@@ -3928,9 +4083,12 @@
 				ADBB1D801EA52B37003CA9DD /* WallpapersCell.xib in Resources */,
 				ADBB1DDD1EA52B37003CA9DD /* callaudio_video1@2x.png in Resources */,
 				AD7E36D31E9D56A3004B1215 /* SliderImage.png in Resources */,
+				AD888F521EFC4C5900FE4C43 /* discover.png in Resources */,
 				ADBB1E4B1EA52B37003CA9DD /* stickerlocal53@2x.png in Resources */,
+				AD888F571EFC4C5900FE4C43 /* mastercard@2x.png in Resources */,
 				ADBB1D821EA52B37003CA9DD /* WallpapersView.xib in Resources */,
 				ADBB1E7C1EA52B37003CA9DD /* stickersend24@2x.png in Resources */,
+				AD888F5A1EFC4C5900FE4C43 /* visa.png in Resources */,
 				ADBB1E881EA52B37003CA9DD /* stickersend36@2x.png in Resources */,
 				ADBB1E1A1EA52B37003CA9DD /* stickerlocal04@2x.png in Resources */,
 				ADBB1E431EA52B37003CA9DD /* stickerlocal45@2x.png in Resources */,
@@ -3948,6 +4106,7 @@
 				AD7A5DD81E86DADB00C3B4B6 /* Assets.xcassets in Resources */,
 				ADBB1DD31EA52B37003CA9DD /* allmedia_blank@2x.png in Resources */,
 				ADBB1EA91EA52B37003CA9DD /* stickersend69@2x.png in Resources */,
+				AD888F5B1EFC4C5900FE4C43 /* visa@2x.png in Resources */,
 				ADBB1E861EA52B37003CA9DD /* stickersend34@2x.png in Resources */,
 				ADBB1E471EA52B37003CA9DD /* stickerlocal49@2x.png in Resources */,
 				ADBB1E961EA52B37003CA9DD /* stickersend50@2x.png in Resources */,
@@ -3963,8 +4122,10 @@
 				ADBB1DE21EA52B37003CA9DD /* callvideo_mute1@2x.png in Resources */,
 				ADBB1E711EA52B37003CA9DD /* stickersend13@2x.png in Resources */,
 				ADBB1E591EA52B37003CA9DD /* stickerlocal67@2x.png in Resources */,
+				AD888F541EFC4C5900FE4C43 /* jcb.png in Resources */,
 				ADBB1EB41EA52B37003CA9DD /* wallpapers02@2x.jpg in Resources */,
 				ADBB1E991EA52B37003CA9DD /* stickersend53@2x.png in Resources */,
+				AD888F5D1EFC4C5900FE4C43 /* textfield.png in Resources */,
 				ADBB1D681EA52B37003CA9DD /* GroupsView.xib in Resources */,
 				ADBB1EB91EA52B37003CA9DD /* wallpapers07@2x.jpg in Resources */,
 				ADBB1E001EA52B37003CA9DD /* premium07@2x.png in Resources */,
@@ -3977,6 +4138,7 @@
 				ADBB1E8B1EA52B37003CA9DD /* stickersend39@2x.png in Resources */,
 				ADBB1E901EA52B37003CA9DD /* stickersend44@2x.png in Resources */,
 				ADCED87D1E8ADDA400B9A06A /* ListViewCell.xib in Resources */,
+				AD888F5E1EFC4C5900FE4C43 /* textfield@2x.png in Resources */,
 				ADBB1E5F1EA52B37003CA9DD /* stickerlocal73@2x.png in Resources */,
 				ADBB1E051EA52B37003CA9DD /* profile_blank@2x.png in Resources */,
 				ADBB1DE31EA52B37003CA9DD /* callvideo_mute2@2x.png in Resources */,
@@ -4017,6 +4179,7 @@
 				ADBB1E751EA52B37003CA9DD /* stickersend17@2x.png in Resources */,
 				ADD1D1741E94119500C3D59D /* ic_1491339527_letter.png in Resources */,
 				ADBB1E931EA52B37003CA9DD /* stickersend47@2x.png in Resources */,
+				AD888F551EFC4C5900FE4C43 /* jcb@2x.png in Resources */,
 				ADBB1E1F1EA52B37003CA9DD /* stickerlocal09@2x.png in Resources */,
 				ADBB1EA81EA52B37003CA9DD /* stickersend68@2x.png in Resources */,
 				ADBB1E531EA52B37003CA9DD /* stickerlocal61@2x.png in Resources */,
@@ -4061,6 +4224,7 @@
 				ADBB1E9F1EA52B37003CA9DD /* stickersend59@2x.png in Resources */,
 				AD93F7581E87FD72008488B9 /* linkedin-button.png in Resources */,
 				ADBB1DEC1EA52B37003CA9DD /* chat_video@2x.png in Resources */,
+				AD888F4F1EFC4C5900FE4C43 /* cvc@2x.png in Resources */,
 				ADBB1E5B1EA52B37003CA9DD /* stickerlocal69@2x.png in Resources */,
 				ADBB1E071EA52B37003CA9DD /* profile_callvideo@2x.png in Resources */,
 				ADBB1E041EA52B37003CA9DD /* premium11@2x.png in Resources */,
@@ -4075,6 +4239,7 @@
 				ADBB1DF71EA52B37003CA9DD /* videomediaitem_download@2x.png in Resources */,
 				ADBB1E7B1EA52B37003CA9DD /* stickersend23@2x.png in Resources */,
 				ADBB1D8C1EA52B37003CA9DD /* SwitchAccountView.xib in Resources */,
+				AD888F4E1EFC4C5900FE4C43 /* cvc.png in Resources */,
 				ADBB1E171EA52B37003CA9DD /* stickerlocal01@2x.png in Resources */,
 				ADBB1DF91EA52B37003CA9DD /* picture_done@2x.png in Resources */,
 				ADBB1EA21EA52B37003CA9DD /* stickersend62@2x.png in Resources */,
@@ -4267,6 +4432,7 @@
 				AD93F7EC1E8823B7008488B9 /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
 				ADCE92CF1EB0F9AC0018FD25 /* CMPopTipView.m in Sources */,
 				ADBB1DC31EA52B37003CA9DD /* DBCallHistory.m in Sources */,
+				AD888F411EFC4C5900FE4C43 /* PTKAddressZip.m in Sources */,
 				AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */,
 				ADBB1D511EA52B37003CA9DD /* SelectMultipleView.m in Sources */,
 				AD93F7E01E8823B7008488B9 /* MagicalImportFunctions.m in Sources */,
@@ -4302,6 +4468,7 @@
 				AD93F7F01E8823B7008488B9 /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				ADCED8751E8AD4D200B9A06A /* EditProfileTableViewCell.m in Sources */,
 				ADBB1DCD1EA52B37003CA9DD /* RegisterEmailView.m in Sources */,
+				AD888F431EFC4C5900FE4C43 /* PTKCardCVC.m in Sources */,
 				ADB3EDFC1EC8857B001DEC69 /* PJXRightRotationAnimation.m in Sources */,
 				ADB3EDF91EC8857B001DEC69 /* PJXFrameItemAnimation.m in Sources */,
 				AD933A471E9E8093002FE9FF /* UIProgressView+AFNetworking.m in Sources */,
@@ -4385,6 +4552,7 @@
 				AD933A541E9EA3A4002FE9FF /* ProfileDetailsCell.m in Sources */,
 				ADBB1D3A1EA52B37003CA9DD /* GroupView.m in Sources */,
 				AD93F7EF1E8823B7008488B9 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
+				AD888F441EFC4C5900FE4C43 /* PTKCardExpiry.m in Sources */,
 				ADBB1EBF1EA52B37003CA9DD /* SinchService.m in Sources */,
 				ADB3EDFA1EC8857B001DEC69 /* PJXFumeAnimation.m in Sources */,
 				ADBB1EC51EA52B37003CA9DD /* SINSLazyMessageClient.m in Sources */,
@@ -4393,6 +4561,7 @@
 				AD93F7F41E8823B7008488B9 /* MagicalRecord+Actions.m in Sources */,
 				AD93F7F91E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m in Sources */,
 				ADBB1DA11EA52B37003CA9DD /* Recent.m in Sources */,
+				AD888F421EFC4C5900FE4C43 /* PTKCard.m in Sources */,
 				ADACED6D1E9BFE06001A9F4A /* SDWebImagePrefetcher.m in Sources */,
 				ADBB1EC81EA52B37003CA9DD /* SINSLazyVideoController.m in Sources */,
 				ADACED651E9BFE06001A9F4A /* NSData+Base64.m in Sources */,
@@ -4412,6 +4581,7 @@
 				AD93F7881E880E16008488B9 /* IQNSArray+Sort.m in Sources */,
 				ADBB1DAC1EA52B37003CA9DD /* Cryptor.m in Sources */,
 				ADA806DB1E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m in Sources */,
+				AD888F471EFC4C5900FE4C43 /* PTKTextField.m in Sources */,
 				AD7A5DCA1E86DADB00C3B4B6 /* main.m in Sources */,
 				ADBB1D921EA52B37003CA9DD /* FObject.m in Sources */,
 				ADBB1DA51EA52B37003CA9DD /* NSDate+Util.m in Sources */,
@@ -4443,6 +4613,7 @@
 				AD93F7E61E8823B7008488B9 /* NSString+MagicalDataImport.m in Sources */,
 				ADACED681E9BFE06001A9F4A /* SDWebImageCompat.m in Sources */,
 				AD93EC841ECCAE7F00609738 /* AdressBookAscStatus.swift in Sources */,
+				AD888FAD1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m in Sources */,
 				ADBB1DA31EA52B37003CA9DD /* user.m in Sources */,
 				AD9344ED1E89770700E60A4B /* NJKWebViewProgressView.m in Sources */,
 				AD93F7E31E8823B7008488B9 /* NSNumber+MagicalDataImport.m in Sources */,
@@ -4464,6 +4635,8 @@
 				ADBB1DC81EA52B37003CA9DD /* DBUserStatus.m in Sources */,
 				ADB3EE041EC8857B001DEC69 /* PJXAnimatedTabBarController.m in Sources */,
 				ADBB1DAB1EA52B37003CA9DD /* Checksum.m in Sources */,
+				AD888F461EFC4C5900FE4C43 /* PTKComponent.m in Sources */,
+				AD888F491EFC4C5900FE4C43 /* PTKView.m in Sources */,
 				ADB3EE081EC8857B001DEC69 /* PJXItemAnimation.m in Sources */,
 				AD933A441E9E8093002FE9FF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				ADBB1DC71EA52B37003CA9DD /* DBUser.m in Sources */,
@@ -4496,6 +4669,7 @@
 				AD933A3B1E9E8093002FE9FF /* AFHTTPSessionManager.m in Sources */,
 				ADB3EDFE1EC8857B001DEC69 /* PJXFlipBottomTransitionItemAnimations.m in Sources */,
 				ADBB1D9F1EA52B37003CA9DD /* Group.m in Sources */,
+				AD888EC81EFC4B2500FE4C43 /* CreditCardViewController.m in Sources */,
 				ADBB1DA21EA52B37003CA9DD /* push.m in Sources */,
 				ADACED761E9C09CA001A9F4A /* FlightClassSelectionViewController.m in Sources */,
 				ADBB1EC31EA52B37003CA9DD /* SINSLazyAudioController.m in Sources */,
@@ -4507,6 +4681,8 @@
 				AD7A5DD61E86DADB00C3B4B6 /* Closed1.xcdatamodeld in Sources */,
 				AD93F7EB1E8823B7008488B9 /* NSManagedObject+MagicalRequests.m in Sources */,
 				ADBB1DCB1EA52B37003CA9DD /* LoginGoogleView.m in Sources */,
+				AD888F451EFC4C5900FE4C43 /* PTKCardNumber.m in Sources */,
+				AD888F481EFC4C5900FE4C43 /* PTKUSAddressZip.m in Sources */,
 				ADBB1D531EA52B37003CA9DD /* SelectSingleView.m in Sources */,
 				ADBB1D551EA52B37003CA9DD /* StickersCell.m in Sources */,
 				ADBB1DB01EA52B37003CA9DD /* Image.m in Sources */,

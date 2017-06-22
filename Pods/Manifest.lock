@@ -90,7 +90,7 @@ PODS:
   - RNCryptor (3.0.1)
   - RNGridMenu (0.1.3)
   - SCSiriWaveformView (1.1.0)
-  - SinchRTC (3.10.1)
+  - SinchRTC (3.11.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -146,7 +146,7 @@ SPEC CHECKSUMS:
   RNCryptor: 761fc3ed94d1a0e409ba5b8e5dbef6a8f69352a7
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
   SCSiriWaveformView: fbb2be796930670698ed6705f3b48f3dd387a73f
-  SinchRTC: 6c6fb1c23d9ef4aeb89fdaa87121162f4e234bb4
+  SinchRTC: ee4da1a6f08d8093813c06d90cf6fbb32068f893
 
 PODFILE CHECKSUM: e5e90ec605ff894422c1ab81148a6123f486a948
 

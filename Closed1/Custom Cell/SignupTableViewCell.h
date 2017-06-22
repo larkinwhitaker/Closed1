@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JVFloatLabeledTextField.h"
+#import "PTKView.h"
 
 @interface SignupTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *signupView;
@@ -44,5 +45,7 @@
 
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *titletextField;
 @property (weak, nonatomic) IBOutlet UIButton *termsButton;
+@property (weak, nonatomic) IBOutlet UIButton *addCardButton;
+@property (weak, nonatomic) IBOutlet PTKView *cardView;
 
 @end

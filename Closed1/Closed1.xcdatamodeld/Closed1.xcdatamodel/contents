@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="CardDetails" representedClassName="CardDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="cardencryptedtext" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardexpirydate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardimagename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cvvimageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cvvtext" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="ContactDetails" representedClassName="ContactDetails" syncable="YES" codeGenerationType="class">
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="designation" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +45,8 @@
     </entity>
     <elements>
         <element name="ContactDetails" positionX="-54" positionY="27" width="128" height="150"/>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="JobProfile" positionX="-54" positionY="90" width="128" height="120"/>
+        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="270"/>
+        <element name="CardDetails" positionX="-54" positionY="99" width="128" height="165"/>
     </elements>
 </model>

@@ -89,7 +89,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "315"
             endingLineNumber = "315"
-            landmarkName = "-linkedInAcessToken:"
+            landmarkName = "-signupButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -499,7 +499,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
             endingLineNumber = "417"
-            landmarkName = "-saveUserDetails:"
+            landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -779,7 +779,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "306"
             endingLineNumber = "306"
-            landmarkName = "-linkedInAcessToken:"
+            landmarkName = "-signupButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -795,7 +795,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "300"
             endingLineNumber = "300"
-            landmarkName = "-linkedInAcessToken:"
+            landmarkName = "-signupButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1449,7 +1449,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "352"
             endingLineNumber = "352"
-            landmarkName = "-submitDataToServer"
+            landmarkName = "-signupLinkedInTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

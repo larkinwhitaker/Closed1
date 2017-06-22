@@ -15,13 +15,16 @@
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
 #import "WebViewController.h"
+#import "CreditCardViewController.h"
+#import "PTKView.h"
+#import "CardDetails+CoreDataProperties.h"
 
-
-
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate>
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate, CreditCardDelegate, PTKViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 @property(nonatomic) NSString *imageURL;
+@property(nonatomic) BOOL isCardValid;
+@property(nonatomic) NSMutableDictionary *creditCardDictionary;
 
 @end
 
@@ -37,7 +40,19 @@
     
     _imageURL = @"";
 
+    self.creditCardDictionary = [[NSMutableDictionary alloc]init];
+    [self.creditCardDictionary setValue:@"" forKey:@"cardnumber"];
+    [self.creditCardDictionary setValue:@"" forKey:@"cardexpirydate"];
+    [self.creditCardDictionary setValue:@"" forKey:@"CreditCardCVV"];
+    [self.creditCardDictionary setValue:@"" forKey:@"cardname"];
+    [self.creditCardDictionary setValue:@"placeholder" forKey:@"cardimagename"];
+
+    [self.creditCardDictionary setValue:@"" forKey:@"cardencryptedtext"];
+    [self.creditCardDictionary setValue:@"cvc" forKey:@"creditcardCVVImage"];
+
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -61,7 +76,8 @@
     
     navItem.leftBarButtonItem = backButton;
 
-    
+    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Add Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCreditCardScreen)];
+    navItem.rightBarButtonItem = cardButton;
     
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -69,15 +85,81 @@
     [self.view addSubview:navBar];
     
 }
--(IBAction)backButtonTapped:(UIBarButtonItem *)sender
 
+#pragma mark - First card Delegate
+
+-(void)openCreditCardScreen
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CreditCardViewController *creditcardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
+    creditcardVC.delegate = self;
+    creditcardVC.creditCardDetails = self.creditCardDictionary;
+    [self.navigationController pushViewController:creditcardVC animated:YES];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)selectedCreditCardDetails:(NSMutableDictionary *)creditCardDetailsDictionary
+{
+    NSLog(@"%@", creditCardDetailsDictionary);
+    [self.signupCell.addCardButton setTitle:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
+    [CardDetails MR_truncateAll];
+    
+    
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardnumber"] forKey:@"cardnumber"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardexpirydate"] forKey:@"cardexpirydate"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"CreditCardCVV"] forKey:@"CreditCardCVV"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardname"] forKey:@"cardname"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardimagename"] forKey:@"cardimagename"];
+    
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forKey:@"cardencryptedtext"];
+    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"] forKey:@"creditcardCVVImage"];
+
+    
+    
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+
+        CardDetails *cardDetails = [CardDetails MR_createEntityInContext:localContext];
+        
+        cardDetails.cardname = [creditCardDetailsDictionary valueForKey:@"cardname"];
+        cardDetails.cardencryptedtext = [creditCardDetailsDictionary valueForKey:@"cardencryptedtext"];
+        cardDetails.cardexpirydate = [creditCardDetailsDictionary valueForKey:@"cardexpirydate"];
+        cardDetails.cardimagename = [creditCardDetailsDictionary valueForKey:@"cardimagename"];
+        cardDetails.cardnumber = [creditCardDetailsDictionary valueForKey:@"cardnumber"];
+        cardDetails.cvvtext = [creditCardDetailsDictionary valueForKey:@"CreditCardCVV"];
+        cardDetails.cvvimageName = [creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"];
+
+        [localContext MR_saveToPersistentStoreAndWait];
+    }];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+}
+
+
+#pragma mark - 2nd Card Delegdate
+- (void) paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid
+{
+    _isCardValid = valid;
+}
+
+-(void)saveCardDetails
+
+{
+    PTKCard* card = _signupCell.cardView.card;
+
+    NSLog(@"Card Number: %@", card.number);
+    NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
+    NSLog(@"Card cvc: %@", card.cvc);
+    
+    [[NSUserDefaults standardUserDefaults] setValue:card.last4 forKey:@"card.last4"];
+
+}
+
+-(IBAction)backButtonTapped:(UIBarButtonItem *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Tableview Delegate
@@ -88,13 +170,16 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1100;
+    return 1140;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _signupCell= [tableView dequeueReusableCellWithIdentifier:@"SignupTableViewCell"];
+    
     [_signupCell.signupButton addTarget:self action:@selector(signupButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    _signupCell.cardView.delegate = self;
+    [_signupCell.addCardButton addTarget:self action:@selector(openCreditCardScreen) forControlEvents:UIControlEventTouchUpInside];
     
     [_signupCell.countrySelectionButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
     
@@ -241,7 +326,13 @@
             
             if ([_signupCell.passwordTextField.text isEqualToString:_signupCell.confirmPasswordTextField.text]) {
                 
-                [self submitDataToServer];
+                if ([self.signupCell.addCardButton.titleLabel.text isEqualToString:@"Add card"]) {
+                    [[[UIAlertView alloc]initWithTitle:@"Credit card details missing" message:@"Please enter your credit card details to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
+                }else{
+                    
+                    [self submitDataToServer];
+                }
 
             }else{
                 

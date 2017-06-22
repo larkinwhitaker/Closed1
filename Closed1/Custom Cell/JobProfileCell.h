@@ -14,10 +14,10 @@
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *titleTextField;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *companyTextField;
 
-@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *territoryTextFiled;
-@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextFiled;
-@property (weak, nonatomic) IBOutlet UISwitch *isCurrentPosition;
-@property (weak, nonatomic) IBOutlet UIButton *addNewJob;
-@property (weak, nonatomic) IBOutlet UIButton *removeJob;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *territoryTextFiled;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextFiled;
+@property (strong, nonatomic) IBOutlet UISwitch *isCurrentPosition;
+@property (strong, nonatomic) IBOutlet UIButton *addNewJob;
+@property (strong, nonatomic) IBOutlet UIButton *removeJob;
 
 @end

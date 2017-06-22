@@ -20,4 +20,6 @@
 
 @protocol SINAudioController;
 @protocol SINVideoController;
+@protocol SINVideoFrameCallback;
+@protocol SINVideoFrame;
 

@@ -124,6 +124,19 @@ typedef NS_ENUM(NSInteger, SINCallDirection) { SINCallDirectionIncoming = 0, SIN
  */
 - (void)sendDTMF:(NSString *)key;
 
+/**
+ * Pause video track for this call
+ *
+ */
+- (void)pauseVideo;
+
+/**
+ * Start video track for this call
+ *
+ */
+- (void)resumeVideo;
+
+
 @end
 
 #pragma mark - SINCallDelegate
@@ -214,6 +227,8 @@ typedef NS_ENUM(NSInteger, SINCallDirection) { SINCallDirectionIncoming = 0, SIN
  * @see SINVideoController
  */
 - (void)callDidAddVideoTrack:(id<SINCall>)call;
+- (void)callDidPauseVideoTrack:(id<SINCall>)call;
+- (void)callDidResumeVideoTrack:(id<SINCall>)call;
 
 
 @end

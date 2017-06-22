@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Sinch/SINExport.h>
+#import <Sinch/SINForwardDeclarations.h>
 
 @protocol SINVideoController <NSObject>
 
@@ -50,6 +51,15 @@
  */
 - (UIView*)localView;
 
+/**
+ * Set a callback for listening to video frames from a remote stream.
+ *
+ * @param callback The callback object that will receive frames.
+ *
+ * @see SINVideoFrameCallback
+ */
+- (void)setVideoFrameCallback:(id<SINVideoFrameCallback>)callback;
+
 @end
 
 /**
@@ -58,3 +68,8 @@
  * If input is AVCaptureDevicePositionUnspecified, returns input.
  */
 SIN_EXPORT AVCaptureDevicePosition SINToggleCaptureDevicePosition(AVCaptureDevicePosition position);
+
+/**
+ * Convert a SINVideoFrame to an UIImage.
+ */
+SIN_EXPORT UIImage* SINUIImageFromVideoFrame(id<SINVideoFrame> videoFrame);

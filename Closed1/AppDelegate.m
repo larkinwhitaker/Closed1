@@ -15,6 +15,7 @@
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
+//@import Stripe;
 
 @import UserNotifications;
 
@@ -33,6 +34,8 @@
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Closed1"];
     
+//    [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"];
+
 #pragma mark - Chatting View
     
     

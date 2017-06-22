@@ -2,7 +2,7 @@ Sinch iOS SDK
 ==========================
 Welcome to Sinch iOS SDK, http://www.sinch.com
 
-Copyright 2014-2015, Sinch AB (reg. no 556969-5397)
+Copyright 2014-2017, Sinch AB (reg. no 556969-5397)
 
 
 Features
@@ -13,6 +13,8 @@ Features
 - Web/app calling
  - Make and receive calls
  - Call both native (iOS and Android) and web clients
+- Video Calling
+ - Make video calls to both native (iOS and Android) and web clients
 - Conference calling
 - Instant messaging
  - Cross platform (iOS, Android, JavaScript)
@@ -41,6 +43,7 @@ Simply open index.html and read about:
 
 - Instructions for first-time developers
 - Using Sinch in your app for making app-to-phone, app-to-app and conference calls
+- Using Sinch in your app for making video calls
 - Using Sinch in your app for sending and receiving messages
 - Other information about Sinch, such as creating your app, note on export
   regulations and more.
@@ -64,6 +67,13 @@ Sample code is available under samples/
 
 -  App-to-App Calling sample using Push Notifications:
      SinchCallingPush.xcodeproj
+     This sample require you to create and upload Apple Push Notification
+     certificates in the Sinch portal.
+
+- App-to-App Video calling sample: SinchVideo.xcodeproj
+
+- App-to-App Video calling sample using Push Notification:
+     SinchVideoPush.xcodeproj
      This sample require you to create and upload Apple Push Notification
      certificates in the Sinch portal.
 
