@@ -45,15 +45,15 @@
     
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     
-    [self getFreindListFromServer];
+    [self getFreindListFromServer:@"Getting List"];
     
 }
 
--(void)getFreindListFromServer
+-(void)getFreindListFromServer: (NSString *)progressTitle
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
-    hud.labelText = @"Getting List";
+    hud.labelText = progressTitle;
     self.tableView.allowsSelection = NO;
     
     UserDetails *user = [UserDetails MR_findFirst];
@@ -142,13 +142,34 @@
     cell.sendrequest.tag = indexPath.row;
     cell.profileImageButton.tag = indexPath.row;
     cell.userName.tag = indexPath.row;
+    
+    
 
     [cell.userName setTitle:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"fullname"] forState:UIControlStateNormal];
     [cell.profileImage sd_setImageWithURL:[NSURL URLWithString:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     [cell.sendrequest addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell.profileImageButton addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell.userName addTarget:self action:@selector(openScreenForProfileDetail:) forControlEvents:UIControlEventTouchUpInside];
-
+    
+    
+    if ([[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"friend_request_result"] count] != 0) {
+        
+        if ([[[[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"friend_request_result"] firstObject] valueForKey:@"is_confirmed"] integerValue] == 0 ) {
+            
+            [cell.sendrequest setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [cell.sendrequest setTitle:@"Cancel Request" forState:UIControlStateNormal];
+            
+        }else{
+            
+            [cell.sendrequest setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            [cell.sendrequest setTitle:@"Send Request" forState:UIControlStateNormal];
+        }
+    }else{
+        
+        [cell.sendrequest setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [cell.sendrequest setTitle:@"Send Request" forState:UIControlStateNormal];
+    }
+    
 
     return cell;
 }
@@ -176,7 +197,50 @@
 {
     //     http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=3&friend_user_id=65
     
+    
+    
     NSLog(@"%@",[self.filteredArray objectAtIndex:sender.tag] );
+    
+    if ([[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"friend_request_result"] count] != 0) {
+        
+        if ([[[[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"friend_request_result"] firstObject] valueForKey:@"is_confirmed"] integerValue] == 0 ) {
+            
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.dimBackground = YES;
+            hud.labelText = @"Cancelling Request";
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"friend_request_result"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+            
+            NSLog(@"%@", serverResponce);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                
+                if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Sucessfully Rejected friend reuest" message:@"" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                    [self.filteredArray removeAllObjects];
+                    [self.tableView reloadData];
+                    self.searchBar.text = @"";
+                    [self.view endEditing:YES];
+                    [self getFreindListFromServer:@"Refreshing List"];
+
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                }
+            });
+            
+                
+            });
+        }
+    }else{
+        
     
     UserDetails *user = [UserDetails MR_findFirst];
     
@@ -217,6 +281,13 @@
                 
                 [[[UIAlertView alloc]initWithTitle:@"Sucessfully send friend reuest" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
                 
+                [self.filteredArray removeAllObjects];
+                [self.tableView reloadData];
+                self.searchBar.text = @"";
+                [self.view endEditing:YES];
+                [self getFreindListFromServer:@"Refreshing List"];
+
+                
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Failed send friend reuest" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
@@ -227,6 +298,8 @@
         });
         
     });
+        
+    }
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

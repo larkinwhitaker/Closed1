@@ -37,6 +37,9 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    
+    [ProgressHUD showSuccess:@"Image Uploaded"];
+
 }
 
 - (void)didReceiveMemoryWarning {

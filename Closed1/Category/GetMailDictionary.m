@@ -46,17 +46,13 @@
             
             if ([[[serverResponce valueForKey:@"data"] valueForKey:@"success"] integerValue] == 1) {
                 
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"MailSendNotification" object:[NSNumber numberWithBool:YES]] ;
                 [self.delegate isMailSendingSuccess:YES];
                 
             }else{
                 
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"MailSendNotification" object:[NSNumber numberWithBool:NO]];
                 [self.delegate isMailSendingSuccess:NO];
 
             }
-
-//            }else return NO;
             
         });
     });

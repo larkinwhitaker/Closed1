@@ -286,12 +286,12 @@
                   moduleName = "Closed1"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/CommentListViewController.m"
-                  timestampString = "520111968.311088"
+                  timestampString = "520362410.878831"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "183"
                   endingLineNumber = "183"
-                  offsetFromSymbolStart = "166">
+                  offsetFromSymbolStart = "253">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -301,7 +301,7 @@
                   moduleName = "Closed1"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/CommentListViewController.m"
-                  timestampString = "520111968.313448"
+                  timestampString = "520362410.882585"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "183"
@@ -1142,11 +1142,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "519993581.012225"
+            timestampString = "520361268.785203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282">
+            startingLineNumber = "355"
+            endingLineNumber = "355">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1156,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "519993581.012225"
+            timestampString = "520361268.785203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-sendFreindRequestTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1168,31 +1168,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "519990755.542342"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-getFreindListFromServer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "519993581.012225"
+            timestampString = "520361268.785203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-sendFreindRequestTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1444,11 +1428,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "519993581.012225"
+            timestampString = "520361268.785203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-openScreenForProfileDetail:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1488,15 +1472,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
-            timestampString = "520022306.83679"
+            timestampString = "520355358.787274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1515,38 +1499,6 @@
             endingLineNumber = "47"
             landmarkName = "-getMailCOmposerDictionary:withNameArray:WithView:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__70-[GetMailDictionary getMailCOmposerDictionary:withNameArray:WithView:]_block_invoke"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/Category/GetMailDictionary.m"
-                  timestampString = "520111968.485052"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "163">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__70-[GetMailDictionary getMailCOmposerDictionary:withNameArray:WithView:]_block_invoke_2"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/Category/GetMailDictionary.m"
-                  timestampString = "520111968.487749"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1562,6 +1514,54 @@
             startingLineNumber = "270"
             endingLineNumber = "270"
             landmarkName = "isMailSendingSuccess(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
+            timestampString = "520361268.785203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "-searchBar:textDidChange:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
+            timestampString = "520357867.391309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
+            timestampString = "520361268.785203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-sendFreindRequestTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
