@@ -163,7 +163,14 @@
     
     navItem.leftBarButtonItem = backButton;
     
-    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Show Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCardScreen)];
+//    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Show Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCardScreen)];
+
+    UIButton *addFreinds = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [addFreinds setImage:[UIImage imageNamed:@"CreditcardDefaultImage.png"] forState:UIControlStateNormal];
+    [addFreinds addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithCustomView:addFreinds];
+    
     navItem.rightBarButtonItem = cardButton;
     
     
@@ -241,7 +248,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) return 730;
+    if(indexPath.section == 0) return 714;
     else return 360;
 }
 

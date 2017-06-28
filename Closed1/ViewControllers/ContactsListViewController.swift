@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-@objc class ContactsListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,MFMailComposeViewControllerDelegate,UIViewControllerTransitioningDelegate,ServerFailedDelegate,FreindsListDelegate,setDataInTableViewDelegate {
+@objc class ContactsListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,MFMailComposeViewControllerDelegate,UIViewControllerTransitioningDelegate,ServerFailedDelegate,FreindsListDelegate,setDataInTableViewDelegate,MailSendDelegates {
    
     @IBOutlet weak var freinfReeustCountLabel: UILabel!
 
@@ -263,6 +263,19 @@ import MessageUI
         self.navigationController?.pushViewController(adressBook, animated: true)
     }
     
+    func isMailSendingSuccess(_ isSuccess: Bool) {
+        
+        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        
+        if isSuccess {
+            UIAlertView(title: "Successfully send mails", message: "", delegate: nil, cancelButtonTitle: "Okay").show()
+            
+        }else{
+            
+            UIAlertView(title: "Failed to send emails", message: "Sorry we are unable to send emails right now. Please try again later", delegate: nil, cancelButtonTitle: "Okay").show()
+        }
+    }
+    
     func selectedData(_ name: [String], number: [String]) {
         
         print("%@", name)
@@ -270,19 +283,24 @@ import MessageUI
         
         if ismailSelected {
             
-            if MFMailComposeViewController.canSendMail() {
-                
-                let composeVC = MFMailComposeViewController()
-                composeVC.setToRecipients(number)
-                composeVC.mailComposeDelegate = self;
-                composeVC.setSubject("Invitations for Closed1 app")
-                composeVC.setMessageBody("Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join", isHTML: false)
-                self.present(composeVC, animated: true, completion: nil)
-                
-            }else{
-                
-                UIAlertView(title: "Sorry you cannot send mail", message: "It seems the mail is not setup im your device Please configure your mail .", delegate: nil, cancelButtonTitle: "Okay").show()
-            }
+           let mailSending = GetMailDictionary()
+            mailSending.delegate = self
+            mailSending.getMailCOmposerDictionary(number, withNameArray: name, with: self.view);
+            
+
+//            if MFMailComposeViewController.canSendMail() {
+//                
+//                let composeVC = MFMailComposeViewController()
+//                composeVC.setToRecipients(number)
+//                composeVC.mailComposeDelegate = self;
+//                composeVC.setSubject("Invitations for Closed1 app")
+//                composeVC.setMessageBody("Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join", isHTML: false)
+//                self.present(composeVC, animated: true, completion: nil)
+//                
+//            }else{
+//                
+//                UIAlertView(title: "Sorry you cannot send mail", message: "It seems the mail is not setup im your device Please configure your mail .", delegate: nil, cancelButtonTitle: "Okay").show()
+//            }
             
         }else{
             
@@ -328,6 +346,7 @@ import MessageUI
         
         let url: String = String(format: "http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", (user!.userID))
 
+        
         
         var dictionaryFromServer:[String:AnyObject]? = nil
         let session = URLSession.shared

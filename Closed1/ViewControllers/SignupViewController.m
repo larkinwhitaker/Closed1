@@ -76,7 +76,11 @@
     
     navItem.leftBarButtonItem = backButton;
 
-    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Add Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCreditCardScreen)];
+    UIButton *addFreinds = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [addFreinds setImage:[UIImage imageNamed:@"CreditcardDefaultImage.png"] forState:UIControlStateNormal];
+    [addFreinds addTarget:self action:@selector(openCreditCardScreen) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithCustomView:addFreinds];
     navItem.rightBarButtonItem = cardButton;
     
     [navBar setTintColor:[UIColor whiteColor]];

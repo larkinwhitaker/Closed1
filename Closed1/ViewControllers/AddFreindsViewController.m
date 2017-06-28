@@ -15,6 +15,9 @@
 #import "UIImageView+WebCache.h"
 #import "ChatsView.h"
 #import "ChatView.h"
+#import "FreindRequestViewController.h"
+#import "ProfileDetailViewController.h"
+
 
 @interface AddFreindsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -91,7 +94,12 @@
 {
     [super viewWillAppear:animated];
     [self createCustumNavigationBar];
-    self.filteredArray = self.freindList;
+    
+    self.filteredArray = [[NSMutableArray alloc]init];
+    [self.filteredArray removeAllObjects];
+    [self.tableView reloadData];
+    self.searchBar.text = @"";
+    _nofreindsLabel.hidden = NO;
 }
 
 - (void)createCustumNavigationBar
@@ -132,9 +140,16 @@
 {
     AddFreindsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddFreindsCell"];
     cell.sendrequest.tag = indexPath.row;
-    cell.userName.text = [[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"fullname"];
+    cell.profileImageButton.tag = indexPath.row;
+    cell.userName.tag = indexPath.row;
+
+    [cell.userName setTitle:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"fullname"] forState:UIControlStateNormal];
     [cell.profileImage sd_setImageWithURL:[NSURL URLWithString:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     [cell.sendrequest addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.profileImageButton addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.userName addTarget:self action:@selector(openScreenForProfileDetail:) forControlEvents:UIControlEventTouchUpInside];
+
+
     return cell;
 }
 
@@ -143,6 +158,19 @@
     return 88;
 }
 
+
+-(void)openScreenForProfileDetail: (UIButton *)sender
+{
+    ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
+    
+    NSLog(@"%@",[self.filteredArray objectAtIndex:sender.tag] );
+    
+    profileDetail.userid = [[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"ID" ] integerValue];
+    profileDetail.shouldNOTDisplayProfile = YES;
+    [self.navigationController pushViewController:profileDetail animated:YES];
+
+    
+}
 
 -(void)sendFreindRequestTapped: (UIButton *)sender
 {
@@ -158,7 +186,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=%@&friend_user_id=%zd", [[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"ID" ], user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=%zd&friend_user_id=%@", user.userID,[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"ID" ]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         

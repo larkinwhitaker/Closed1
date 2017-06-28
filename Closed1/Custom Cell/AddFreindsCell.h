@@ -10,7 +10,8 @@
 
 @interface AddFreindsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
-@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UIButton *userName;
 @property (weak, nonatomic) IBOutlet UIButton *sendrequest;
+@property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
 
 @end

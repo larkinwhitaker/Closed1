@@ -13,5 +13,6 @@
 
 //@property(nonatomic) ContactDetails *singleContact;
 @property(nonatomic) NSInteger userid;
+@property(nonatomic) BOOL shouldNOTDisplayProfile;
 
 @end

@@ -40,6 +40,17 @@
     hud.labelText = @"Fetching details";
     self.tableView.hidden = YES;
     
+    if (_shouldNOTDisplayProfile) {
+        
+        
+        self.segmentedControl.hidden = YES;
+        
+    }else{
+        
+        self.segmentedControl.hidden = NO;
+    }
+    
+    
     [ClosedResverResponce sharedInstance].delegate = self;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -165,6 +176,17 @@
         _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", [self.userDetails valueForKey:@"title"], [self.userDetails valueForKey:@"company"]];
         
         NSLog(@"%@",[self.userDetails valueForKey:@"designation"] );
+        
+        
+        if (_shouldNOTDisplayProfile) {
+            
+            
+            self.segmentedControl.hidden = YES;
+            
+        }else{
+            
+            self.segmentedControl.hidden = NO;
+        }
         
         [self.segmentedControl addTarget:self action:@selector(segmentedControlTaped:) forControlEvents:UIControlEventValueChanged];
         

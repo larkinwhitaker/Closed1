@@ -68,6 +68,7 @@
 		AD888F5D1EFC4C5900FE4C43 /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F3F1EFC4C5900FE4C43 /* textfield.png */; };
 		AD888F5E1EFC4C5900FE4C43 /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888F401EFC4C5900FE4C43 /* textfield@2x.png */; };
 		AD888FAD1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */; };
+		AD888FAF1EFC566B00FE4C43 /* CreditcardDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD888FAE1EFC566A00FE4C43 /* CreditcardDefaultImage.png */; };
 		AD88EC381EF181C700572D49 /* closed1mail_form.html in Resources */ = {isa = PBXBuildFile; fileRef = AD88EC371EF181C700572D49 /* closed1mail_form.html */; };
 		AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */ = {isa = PBXBuildFile; fileRef = AD904E2B1E90D59E0096AA4E /* ClosedResverResponce.m */; };
 		AD933A3B1E9E8093002FE9FF /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD933A1A1E9E8093002FE9FF /* AFHTTPSessionManager.m */; };
@@ -601,6 +602,7 @@
 		ADBB1EC61EA52B37003CA9DD /* SINSLazyProxyBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D301EA52B37003CA9DD /* SINSLazyProxyBase.m */; };
 		ADBB1EC71EA52B37003CA9DD /* SINSServicePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D331EA52B37003CA9DD /* SINSServicePersistence.m */; };
 		ADBB1EC81EA52B37003CA9DD /* SINSLazyVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D351EA52B37003CA9DD /* SINSLazyVideoController.m */; };
+		ADBE701D1F00375400DD919E /* GetMailDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE701C1F00375400DD919E /* GetMailDictionary.m */; };
 		ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898B1E9FF95900B8D05F /* ProfileCell.m */; };
 		ADBE898F1E9FF9B100B8D05F /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBE898E1E9FF9B100B8D05F /* UserProfileViewController.m */; };
 		ADC8ED741EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC8ED731EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png */; };
@@ -757,6 +759,7 @@
 		AD888F401EFC4C5900FE4C43 /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		AD888FAA1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CardDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CardDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AD888FAE1EFC566A00FE4C43 /* CreditcardDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CreditcardDefaultImage.png; sourceTree = "<group>"; };
 		AD88EC371EF181C700572D49 /* closed1mail_form.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = closed1mail_form.html; sourceTree = "<group>"; };
 		AD904E2A1E90D59E0096AA4E /* ClosedResverResponce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedResverResponce.h; sourceTree = "<group>"; };
 		AD904E2B1E90D59E0096AA4E /* ClosedResverResponce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedResverResponce.m; sourceTree = "<group>"; };
@@ -1564,6 +1567,8 @@
 		ADBB1D331EA52B37003CA9DD /* SINSServicePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINSServicePersistence.m; sourceTree = "<group>"; };
 		ADBB1D341EA52B37003CA9DD /* SINSLazyVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINSLazyVideoController.h; sourceTree = "<group>"; };
 		ADBB1D351EA52B37003CA9DD /* SINSLazyVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINSLazyVideoController.m; sourceTree = "<group>"; };
+		ADBE701B1F00375400DD919E /* GetMailDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMailDictionary.h; sourceTree = "<group>"; };
+		ADBE701C1F00375400DD919E /* GetMailDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMailDictionary.m; sourceTree = "<group>"; };
 		ADBE898A1E9FF95900B8D05F /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		ADBE898B1E9FF95900B8D05F /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		ADBE898D1E9FF9B100B8D05F /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
@@ -1964,6 +1969,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD888FAE1EFC566A00FE4C43 /* CreditcardDefaultImage.png */,
 				AD3A28E01EC704E800EB3BEE /* AddIndivisual.png */,
 				AD3A28E11EC704E800EB3BEE /* InviteFreinds.png */,
 				ADC8ED731EB470F50080D222 /* Screen Shot 2017-04-29 at 12.26.11 PM.png */,
@@ -2239,6 +2245,8 @@
 				ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */,
 				ADA806D71E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.h */,
 				ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */,
+				ADBE701B1F00375400DD919E /* GetMailDictionary.h */,
+				ADBE701C1F00375400DD919E /* GetMailDictionary.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -3952,6 +3960,7 @@
 				ADA900541EA93DE600EAC538 /* FreinfReuest.png in Resources */,
 				ADBB1DE01EA52B37003CA9DD /* callvideo_blank@2x.png in Resources */,
 				ADBB1E731EA52B37003CA9DD /* stickersend15@2x.png in Resources */,
+				AD888FAF1EFC566B00FE4C43 /* CreditcardDefaultImage.png in Resources */,
 				ADBB1DE51EA52B37003CA9DD /* chat_back@2x.png in Resources */,
 				ADBB1EB11EA52B37003CA9DD /* stickersend77@2x.png in Resources */,
 				ADBB1EAA1EA52B37003CA9DD /* stickersend70@2x.png in Resources */,
@@ -4493,6 +4502,7 @@
 				ADB3EE071EC8857B001DEC69 /* PJXIconView.m in Sources */,
 				AD93F7F61E8823B7008488B9 /* MagicalRecord+iCloud.m in Sources */,
 				ADBB1D711EA52B37003CA9DD /* StatusView.m in Sources */,
+				ADBE701D1F00375400DD919E /* GetMailDictionary.m in Sources */,
 				ADCED8781E8ADC3F00B9A06A /* CustomListViewController.m in Sources */,
 				ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */,
 				ADBB1D931EA52B37003CA9DD /* FUser+Util.m in Sources */,

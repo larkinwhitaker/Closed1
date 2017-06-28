@@ -15,3 +15,5 @@
 #import "AddFreindsViewController.h"
 #import "ContactsTableViewCell.h"
 #import "ProfileDetailViewController.h"
+#import "AFNetworking.h"
+#import "GetMailDictionary.h"

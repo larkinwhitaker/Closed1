@@ -252,10 +252,35 @@ errorBlock:^(NSError *error) {
     
     [self getFreindListCount];
     
-    
+    [self getUpdatedUserDetails];
     
 }
 
+
+-(void)getUpdatedUserDetails
+{
+    UserDetails *_userdDetails = [UserDetails MR_findFirst];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_data&user_id=%zd", _userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", serverResponce);
+        
+        if (serverResponce != nil) {
+            
+            if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [self saveUserDetails:serverResponce];
+                    
+                }
+            }
+        }
+            });
+}
 
 -(void)getFreindListCount
 {

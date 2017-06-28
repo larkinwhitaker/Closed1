@@ -81,7 +81,13 @@
 -(void)submitDatatToServer
 {
     
-
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *currentDate = [NSDate date];
+    NSString *dateString = [formatter stringFromDate:currentDate];
+    
+    NSLog(@"%@", dateString);
    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
@@ -92,8 +98,8 @@
     [ClosedResverResponce sharedInstance].delegate = self;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@&date_recorded=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text, dateString] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{

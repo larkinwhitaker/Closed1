@@ -465,8 +465,22 @@
     
 }
 
--(void)sendMails: (NSArray *)contactList
-{
+-(void)sendMails: (NSArray *)contactList{
+
+#pragma mark - Add New Code For Email Sending
+
+    
+    NSMutableDictionary *dictionaryToserver = [[NSMutableDictionary alloc]init];
+    
+    
+    
+    
+    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=send_invite_emails" DictionartyToServer:@{} IsEncodingRequires:NO];
+    
+    NSLog(@"%@", serverResponce);
+    
+    
+    
     // From within your active view controller
     if([MFMailComposeViewController canSendMail]) {
         

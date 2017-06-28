@@ -59,9 +59,9 @@
 	[super viewDidLoad];
 	self.title = @"Chats";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self
-//																						   action:@selector(actionCompose)];
-//    
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self
+																						   action:@selector(actionCompose)];
+//
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismmissView:)];
     
     
