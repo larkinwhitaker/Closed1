@@ -15,6 +15,7 @@
 #import "ClosedResverResponce.h"
 #import "utilities.h"
 #import "JobProfile+CoreDataProperties.h"
+#import "CardDetails+CoreDataProperties.h"
 #import "AFNetworking.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ServerFailedDelegate>
@@ -38,7 +39,6 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     
-    [ProgressHUD showSuccess:@"Image Uploaded"];
 
 }
 
@@ -64,7 +64,7 @@
 
      _profileCell = [tableView dequeueReusableCellWithIdentifier:@"ProfileCell"];
     
-    _profileCell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    _profileCell.nameLabel.text = userDetails.firstName;
     _profileCell.emailLabel.text = userDetails.userEmail;
     
     if (userDetails.phoneNumber == nil) {
@@ -76,7 +76,7 @@
     }
     _profileCell.companyLabel.text = userDetails.company;
     _profileCell.roleLabel.text = userDetails.title;
-    _profileCell.userBildName.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    _profileCell.userBildName.text = userDetails.firstName;
     [_profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
@@ -94,6 +94,7 @@
         [UserDetails MR_truncateAll];
         [JobProfile MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
+        [CardDetails MR_truncateAll];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceHome"];
 
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceContacts"];

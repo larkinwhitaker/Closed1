@@ -274,7 +274,10 @@ errorBlock:^(NSError *error) {
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
-                    [self saveUserDetails:serverResponce];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+
+                    [self saveData:serverResponce];
+                    });
                     
                 }
             }
@@ -305,10 +308,15 @@ errorBlock:^(NSError *error) {
 
 }
 
--(void)saveUserDetails: (NSArray *)userData{
+
+-(void)saveData: (NSArray *)userData
+{
+    
     
     userData = [userData valueForKey:@"data"];
     [UserDetails MR_truncateAll];
+    [JobProfile MR_truncateAll];
+
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
@@ -316,8 +324,7 @@ errorBlock:^(NSError *error) {
         UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
         
         userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
-        userDetails.firstName = [userData valueForKey:@"first_name"];
-        userDetails.lastName = [userData valueForKey:@"last_name"];
+        userDetails.firstName = [userData valueForKey:@"fullname"];
         userDetails.userEmail = [userData valueForKey:@"user_email"];
         userDetails.userLogin = [userData valueForKey:@"user_login"];
         userDetails.title = [userData valueForKey:@"title"];
@@ -326,6 +333,75 @@ errorBlock:^(NSError *error) {
         userDetails.country = [userData valueForKey:@"country"];
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
+        userDetails.phoneNumber = [userData valueForKey:@"phone"];
+        userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
+        
+        
+        
+        
+        NSArray *flightDetailsArray = [userData valueForKey:@"profile_job"];
+        
+        if (flightDetailsArray.count != 0) {
+            
+            for (NSDictionary *singleJob in flightDetailsArray) {
+                
+                JobProfile *jobDetails = [JobProfile MR_createEntityInContext:localContext];
+                
+                jobDetails.title = [singleJob valueForKey:kTitle];
+                jobDetails.territory = [singleJob valueForKey:kTerritory];
+                jobDetails.compnay = [singleJob valueForKey:kCopmpany];
+                jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
+                if (![[singleJob valueForKey:kisCurrentPosition] isEqual:[NSNull null]]) {
+                    
+                    jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];
+                }
+                
+                [localContext MR_saveToPersistentStoreAndWait];
+                
+                
+            }
+        }
+        
+        
+        
+        
+        [localContext MR_saveToPersistentStoreAndWait];
+        
+    }completion:^(BOOL didSave, NSError *error){
+        
+        if (!didSave) {
+            
+            NSLog(@"Error While Saving: %@", error);
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        }
+    }];
+    
+}
+
+
+-(void)saveUserDetails: (NSArray *)userData{
+    
+    userData = [userData valueForKey:@"data"];
+    [UserDetails MR_truncateAll];
+    [JobProfile MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+        
+        UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
+        
+        userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
+        userDetails.firstName = [userData valueForKey:@"fullname"];
+        userDetails.userEmail = [userData valueForKey:@"user_email"];
+        userDetails.userLogin = [userData valueForKey:@"user_login"];
+        userDetails.title = [userData valueForKey:@"title"];
+        userDetails.company = [userData valueForKey:@"company"];
+        userDetails.city = [userData valueForKey:@"city"];
+        userDetails.country = [userData valueForKey:@"country"];
+        userDetails.territory = [userData valueForKey:@"territory"];
+        userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
+        userDetails.phoneNumber = [userData valueForKey:@"phone"];
         
         if ([[userData valueForKey:@"profile Image"] isEqualToString:@""]) {
             

@@ -16,5 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *territoryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *previosRoleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *terrotoryTextfield;
+@property (weak, nonatomic) IBOutlet UILabel *targetBuyersTextFiled;
 
 @end

@@ -250,7 +250,7 @@
     NSString *location = @"Not present";
     
     if(userDetails.firstName != nil) firstName = userDetails.firstName;
-    if(userDetails.lastName != nil ) lastName = userDetails.lastName;
+    if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
     
     
     user[FUSER_FULLNAME] = fullname;
@@ -305,7 +305,17 @@
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                 
                 [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
-                [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
+                
+                
+                NSInteger likeCount = 0;
+                
+                if (![[singleFeed valueForKey:@"like"] isEqual:[NSNull null]]) {
+                    
+                    likeCount = [[singleFeed valueForKey:@"like"] integerValue];
+                    
+                }
+                
+                [feedDictionary setValue:[NSNumber numberWithInteger: likeCount] forKey:@"LikeCount"];
                 [feedDictionary setValue:singleFeed forKey:@"Feeds"];
                 
                 
@@ -440,12 +450,20 @@
        [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
-    homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
+    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"] isEqual:@""]) {
+        
+        homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
+
+    }else{
+        
+        homeCell.userTitleLabel.text = @"No Company name present";
+        
+    }
     
     
     NSString *titile = @"Not present";
     
-    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"] isEqual:@""]) {
+    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"] isEqual:@""] && ![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"] isEqual:[NSNull null]]) {
         
         titile = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"];
     }

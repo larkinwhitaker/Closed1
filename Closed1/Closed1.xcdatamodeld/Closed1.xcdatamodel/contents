@@ -32,7 +32,6 @@
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="econdaryemail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,9 +43,9 @@
         <attribute name="userLogin" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="CardDetails" positionX="-54" positionY="99" width="128" height="165"/>
         <element name="ContactDetails" positionX="-54" positionY="27" width="128" height="150"/>
         <element name="JobProfile" positionX="-54" positionY="90" width="128" height="120"/>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="270"/>
-        <element name="CardDetails" positionX="-54" positionY="99" width="128" height="165"/>
+        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

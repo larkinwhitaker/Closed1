@@ -19,7 +19,7 @@
 #import "MBProgressHUD.h"
 #import "utilities.h"
 #import "JobProfile+CoreDataProperties.h"
-
+#import "CardDetails+CoreDataProperties.h"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -98,7 +98,7 @@
     
     [cell.editProfile addTarget:self action:@selector(editProfileTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+    cell.userNameLabel.text = userDetails.firstName;
     
     [cell.profileImageView sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
@@ -138,6 +138,7 @@
         [UserDetails MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
         [JobProfile MR_truncateAll];
+        [CardDetails MR_truncateAll];
 
         
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

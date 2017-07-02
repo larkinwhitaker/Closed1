@@ -191,7 +191,7 @@
                         image = user.profileImage;
                     }
                     
-                    [self.messageArray addObject:@{@"profile_image_url": image, @"content": _commnetText, @"full name":[NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName]}];
+                    [self.messageArray addObject:@{@"profile_image_url": image, @"content": _commnetText, @"full name":user.firstName}];
                     
                     [self.tableView reloadData];
 

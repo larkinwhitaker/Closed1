@@ -10,6 +10,8 @@
 		10A66D4FFBB9D5809F137A41 /* Pods_Closed1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */; };
 		878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */; };
 		AD03A16D1E8EC8DA00852776 /* ProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */; };
+		AD0D6D8F1F041FA10064CA76 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */; };
+		AD0D6D901F041FA10064CA76 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */; };
 		AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */; };
 		AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1F15501E8C062E00DD9529 /* MessageUI.framework */; };
 		AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */; };
@@ -676,6 +678,9 @@
 		78BC64B6BDBE8FE74C43CABD /* Pods-Closed1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetailViewController.h; sourceTree = "<group>"; };
 		AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetailViewController.m; sourceTree = "<group>"; };
+		AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		AD0D6D8D1F041FA10064CA76 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_itunesartwork3x.png; sourceTree = "<group>"; };
 		AD1F15501E8C062E00DD9529 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
@@ -1660,6 +1665,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD0D6D8B1F041FA10064CA76 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */,
+				AD0D6D8D1F041FA10064CA76 /* ProgressHUD.h */,
+				AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
 		AD7A5DBC1E86DADB00C3B4B6 = {
 			isa = PBXGroup;
 			children = (
@@ -2000,6 +2015,7 @@
 		AD93F75B1E880E16008488B9 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				AD0D6D8B1F041FA10064CA76 /* ProgressHUD */,
 				AD888F161EFC4C5900FE4C43 /* PaymentKit */,
 				ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */,
 				ADCE92CA1EB0F9AC0018FD25 /* Tour Tip */,
@@ -4158,6 +4174,7 @@
 				ADBB1DE71EA52B37003CA9DD /* chat_callvideo@2x.png in Resources */,
 				AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */,
 				ADBB1E781EA52B37003CA9DD /* stickersend20@2x.png in Resources */,
+				AD0D6D8F1F041FA10064CA76 /* ProgressHUD.bundle in Resources */,
 				ADBB1EAF1EA52B37003CA9DD /* stickersend75@2x.png in Resources */,
 				ADBB1EB21EA52B37003CA9DD /* stickersend78@2x.png in Resources */,
 				ADBB1D541EA52B37003CA9DD /* SelectSingleView.xib in Resources */,
@@ -4556,6 +4573,7 @@
 				ADBB1DBD1EA52B37003CA9DD /* PhotoMediaItem.m in Sources */,
 				ADBB1D461EA52B37003CA9DD /* MapView.m in Sources */,
 				ADBB1D611EA52B37003CA9DD /* PeopleView.m in Sources */,
+				AD0D6D901F041FA10064CA76 /* ProgressHUD.m in Sources */,
 				ADCE92D01EB0F9AC0018FD25 /* NZTourTip.m in Sources */,
 				ADBB1D631EA52B37003CA9DD /* CreateGroupView.m in Sources */,
 				AD933A411E9E8093002FE9FF /* AFAutoPurgingImageCache.m in Sources */,

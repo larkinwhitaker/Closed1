@@ -64,7 +64,15 @@
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                 
                 [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
-                [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
+            
+                NSInteger likeCount = 0;
+                
+                if (![[singleFeed valueForKey:@"like"] isEqual:[NSNull null]]) {
+                    
+                    likeCount = [[singleFeed valueForKey:@"like"] integerValue];
+                    
+                }
+                [feedDictionary setValue:[NSNumber numberWithInteger:likeCount] forKey:@"LikeCount"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"display_name"] forKey:@"display_name"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"profile_image_url"] forKey:@"profile_image_url"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"Title"] forKey:@"Title"];
@@ -160,8 +168,15 @@
     [homeCell.userProfileImage sd_setImageWithURL:[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"profile_image_url"]
                                  placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
-    homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"Title"], [[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"closed"]];
-        
+        if (![[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"Title"] isEqual:@""]) {
+            
+            homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"Title"], [[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"company"]];
+            
+        }else{
+            
+            homeCell.userTitleLabel.text = @"No Company name present";
+            
+        }
         
     
     homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"closed"]];
@@ -237,8 +252,16 @@
         [homeCell.userProfileImage sd_setImageWithURL:[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]
                                      placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         
-        homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"Title"], [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"closed"]];
         
+        if (![[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"Title"] isEqual:@""]) {
+            
+            homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"Title"], [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"company"]];
+            
+        }else{
+            
+            homeCell.userTitleLabel.text = @"No Company name present";
+            
+        }
         homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"closed"]];
         
         [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];

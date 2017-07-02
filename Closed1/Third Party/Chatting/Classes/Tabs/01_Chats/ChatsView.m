@@ -110,7 +110,7 @@
             
             if(userDetails.phoneNumber != nil) phone = userDetails.phoneNumber;
 
-            if(userDetails.firstName != nil) fullname = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+            if(userDetails.firstName != nil) fullname = userDetails.firstName;
             
             NSString *firstName = @"Demo";
             NSString *lastName = @"User";
@@ -118,7 +118,7 @@
             NSString *location = @"Not found";
             
             if(userDetails.firstName != nil) firstName = userDetails.firstName;
-            if(userDetails.lastName != nil ) lastName = userDetails.lastName;
+            if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
 
             
             user[FUSER_FULLNAME] = fullname;
@@ -190,7 +190,7 @@
                           
                           if(userDetails.phoneNumber != nil) phone = userDetails.phoneNumber;
                           
-                          if(userDetails.firstName != nil) fullname = [NSString stringWithFormat:@"%@ %@", userDetails.firstName, userDetails.lastName];
+                          if(userDetails.firstName != nil) fullname = userDetails.firstName;
                           
                           NSString *firstName = @"Demo";
                           NSString *lastName = @"User";
@@ -198,7 +198,7 @@
                           NSString *location = userDetails.state;
                           
                           if(userDetails.firstName != nil) firstName = userDetails.firstName;
-                          if(userDetails.lastName != nil ) lastName = userDetails.lastName;
+                          if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
                           
                           
                           user[FUSER_FULLNAME] = fullname;

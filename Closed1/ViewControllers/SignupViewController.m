@@ -496,8 +496,7 @@
         UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
         
         userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
-        userDetails.firstName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] firstObject];
-        userDetails.lastName = [[self.signupCell.fullNameTextField.text componentsSeparatedByString:@" "] lastObject];
+        userDetails.firstName = self.signupCell.fullNameTextField.text;
         userDetails.userEmail = self.signupCell.emailtextField.text;
         userDetails.userLogin = self.signupCell.usenameTextField.text;
         userDetails.title = self.signupCell.titletextField.text;

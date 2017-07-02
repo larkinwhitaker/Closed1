@@ -148,7 +148,7 @@
 {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-        return 272;
+        return 313;
     }else{
         CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
         
@@ -173,7 +173,30 @@
         [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         _profileDetails.territoryLabel.text = [self.userDetails valueForKey:@"territory"];
         _profileDetails.previosRoleLabel.text = [self.userDetails valueForKey:@"designation"];
-        _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", [self.userDetails valueForKey:@"title"], [self.userDetails valueForKey:@"company"]];
+        
+        
+        if (![[self.userDetails valueForKey:@"company"] isEqual:@""]) {
+            
+            _profileDetails.titleLabel.text =  [NSString stringWithFormat:@"%@ @ %@", [self.userDetails valueForKey:@"title"], [self.userDetails valueForKey:@"company"]];
+
+        }else{
+            
+            _profileDetails.titleLabel.text = @"No Company name present";
+        }
+        
+        if (![[_userDetails valueForKey:@"Target Buyer"] isEqual:@""]) {
+            
+            _profileDetails.targetBuyersTextFiled.text = [NSString stringWithFormat:@"Target buyers: %@", [_userDetails valueForKey:@"Target Buyer"]];
+            
+        }
+        
+        if (![[_userDetails valueForKey:@"territory"] isEqual:@""]) {
+            
+            _profileDetails.territoryLabel.text = [NSString stringWithFormat:@"Territory: %@", [_userDetails valueForKey:@"territory"]];
+        }
+        
+        
+        
         
         NSLog(@"%@",[self.userDetails valueForKey:@"designation"] );
         
@@ -200,7 +223,7 @@
         
         if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
             
-            [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] forState:UIControlStateNormal];
+            [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_fullname"] forState:UIControlStateNormal];
             
         }else{
             
@@ -209,7 +232,17 @@
         [homeCell.userProfileImage sd_setImageWithURL:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"profile_image_url"]
                                      placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         
-        homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
+        
+        if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"] isEqual:@""]) {
+            
+            homeCell.userTitleLabel.text = [NSString stringWithFormat:@"%@ @ %@", [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"Title"], [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"company"]];
+
+        }else{
+            
+            homeCell.userTitleLabel.text = @"No Company name present";
+            
+        }
+        
         
         homeCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"closed"]];
         
@@ -447,13 +480,30 @@
                     NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                     
                     [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
-                    [feedDictionary setValue:[NSNumber numberWithInteger:[[singleFeed valueForKey:@"like"] integerValue]] forKey:@"LikeCount"];
+                    
+                    NSInteger likeCount = 0;
+                    
+                    if (![[singleFeed valueForKey:@"like"] isEqual:[NSNull null]]) {
+                        
+                        likeCount = [[singleFeed valueForKey:@"like"] integerValue];
+                        
+                    }
+                    
+                    
+                    [feedDictionary setValue:[NSNumber numberWithInteger:likeCount] forKey:@"LikeCount"];
                     [feedDictionary setValue:singleFeed forKey:@"Feeds"];
                     
                     [self.feedsArray addObject:feedDictionary];
+                    
                 }
             }
             
+            
+            if (_feedsArray.count == 0) {
+                
+                [self displayErrorForFeeds];
+            }
+
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tableView reloadData];
@@ -462,7 +512,20 @@
     });
     
     
+}
+
+
+-(void)displayErrorForFeeds{
     
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to gets feeds" message:@"We are unable to get the feeds at this moment. Would you like to retry?" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction: [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *Action){
+        
+        [self getFeedsArray];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Sserver Failed

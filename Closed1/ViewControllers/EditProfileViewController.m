@@ -66,7 +66,6 @@
     self.userProfiledetails = [[NSMutableDictionary alloc]init];
     [self.userProfiledetails setValue: userDetails.userEmail forKey:@"userEmail"];
     [self.userProfiledetails setValue:userDetails.firstName forKey:@"firstName"];
-    [self.userProfiledetails setValue:userDetails.lastName forKey:@"lastName"];
     [self.userProfiledetails setValue:userDetails.city forKey:@"city"];
     [self.userProfiledetails setValue:userDetails.state forKey:@"state"];
     [self.userProfiledetails setValue:userDetails.phoneNumber forKey:@"phoneNumber"];
@@ -248,7 +247,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) return 714;
+    if(indexPath.section == 0) return 513;
     else return 360;
 }
 
@@ -260,12 +259,10 @@
         
         [editProfileCell.countryButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
         
-#pragma mark - Remove Code
         
-        UserDetails *userDetails = [UserDetails MR_findFirst];
         
         editProfileCell.emailTextField.text = [self.userProfiledetails valueForKey:@"userEmail"];
-        editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", [self.userProfiledetails valueForKey:@"firstName"], [self.userProfiledetails valueForKey:@"lastName"]];
+        editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@", [self.userProfiledetails valueForKey:@"firstName"]];
         editProfileCell.citytextField.text = [self.userProfiledetails valueForKey:@"city"];
         editProfileCell.stateTextField.text = [self.userProfiledetails valueForKey:@"state"];
         editProfileCell.phoneNumberTextField.text = [self.userProfiledetails valueForKey:@"phoneNumber"];
@@ -275,7 +272,11 @@
         editProfileCell.terrotoryTextField.text = [self.userProfiledetails valueForKey:@"territory"];
         editProfileCell.secondaryEmail.text = [self.userProfiledetails valueForKey:@"econdaryemail"];
         [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
+        
+         if([self.creditCardDictionary valueForKey:@"cardencryptedtext"] != nil){
+             [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
+
+         }
         [editProfileCell.showCardButton addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
         
         [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -343,7 +344,7 @@
         
     }
     
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
     
 }
     
@@ -408,6 +409,29 @@
     }else if ([textField.placeholder isEqualToString:@"Target Buyers"]){
         [[self.flightDetailsArray objectAtIndex:textField.tag] setValue:textField.text forKey:kTargetBuyers];
 
+    }else if ([textField.placeholder isEqualToString:@"Full Name"]){
+        
+        [self.userProfiledetails setValue:textField.text forKey:@"firstName"];
+        
+    }else if ([textField.placeholder isEqualToString:@"Phone Number"]){
+        
+        [self.userProfiledetails setValue:textField.text forKey:@"phoneNumber"];
+        
+    }else if ([textField.placeholder isEqualToString:@"Email"]){
+    
+        [self.userProfiledetails setValue: textField.text forKey:@"userEmail"];
+        
+    }else if ([textField.placeholder isEqualToString:@"Secondary Email"]){
+        
+        [self.userProfiledetails setValue:textField.text forKey:@"econdaryemail"];
+        
+    }else if ([textField.placeholder isEqualToString:@"City"]){
+        
+        [self.userProfiledetails setValue:textField.text forKey:@"city"];
+        
+    }else if ([textField.placeholder isEqualToString:@"State"]){
+        
+        [self.userProfiledetails setValue:textField.text forKey:@"state"];
     }
     
     
@@ -445,49 +469,43 @@
 {
     [self.view endEditing:YES];
     
-    if([[editProfileCell.companyNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
-        [self animateView:editProfileCell.companyNameTextField];
-    }else if([[editProfileCell.designationTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
-        [self animateView:editProfileCell.designationTextField];
-    }else if([[editProfileCell.terrotoryTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
-        [self animateView:editProfileCell.terrotoryTextField];
+     if ([[editProfileCell.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
-    }else if ([[editProfileCell.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
-        
-        [self animateView:editProfileCell.emailTextField];
+         [[[UIAlertView alloc]initWithTitle:@"Email Missing" message:@"Please enter your email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
         
         
     }else if ([[editProfileCell.fullNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
-        [self animateView:editProfileCell.fullNameTextField];
-        [self.tableView setContentOffset:CGPointZero animated:YES];
+        [[[UIAlertView alloc]initWithTitle:@"Name Missing" message:@"Please enter your full name" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
 
         
     }
     else if ([[editProfileCell.citytextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
-        [self animateView:editProfileCell.citytextField];
-        [self.tableView setContentOffset:CGPointZero animated:YES];
+        [[[UIAlertView alloc]initWithTitle:@"City Missing" message:@"Please enter your city" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
 
         
     }
     else if ([[editProfileCell.stateTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
-        [self animateView:editProfileCell.stateTextField];
-        [self.tableView setContentOffset:CGPointZero animated:YES];
+        [[[UIAlertView alloc]initWithTitle:@"State Missing" message:@"Please enter your state" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
 
         
     }
     else if ([[editProfileCell.phoneNumberTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0) {
         
-        [self animateView:editProfileCell.phoneNumberTextField];
+        [[[UIAlertView alloc]initWithTitle:@"Phone number Missing" message:@"Please enter your phone number" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
         
     }else if ([editProfileCell.countryButton.titleLabel.text isEqualToString:@""]){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }else if([[editProfileCell.secondaryEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
         
-        [self animateView:editProfileCell.secondaryEmail];
+        [[[UIAlertView alloc]initWithTitle:@"Primary Email Invalid" message:@"Please enter a valid email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+
         
     }else{
     
@@ -495,8 +513,7 @@
         NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailReg];
         if([emailPredicate evaluateWithObject: editProfileCell.emailTextField.text] == NO){
             
-            [self animateView:editProfileCell.emailTextField];
-            [self.tableView setContentOffset:CGPointZero animated:YES];
+           [[[UIAlertView alloc]initWithTitle:@"Secondary Email Invalid" message:@"Please enter a valid email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
             
             
         }else{
@@ -513,7 +530,7 @@
     NSString *labelText = @"";
     
     if (section == 0) {
-        labelText = @"Profile Details";
+        labelText = @"Personal Information";
     }else if (section == 1){
         labelText = @"Job / Position Information";
     }
@@ -522,7 +539,7 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.textColor = [UIColor darkGrayColor];
+    label.textColor = [UIColor whiteColor];
     label.text = labelText;
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
@@ -569,9 +586,9 @@
         @"state": editProfileCell.stateTextField.text,
         @"country": editProfileCell.countryButton.titleLabel.text,
         @"phone": editProfileCell.phoneNumberTextField.text,
-        @"title": editProfileCell.designationTextField.text,
-        @"company": editProfileCell.companyNameTextField.text,
-        @"territory": editProfileCell.terrotoryTextField.text,
+        @"title": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTitle],
+        @"company": [[_flightDetailsArray objectAtIndex:0] valueForKey:kCopmpany],
+        @"territory": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory],
         @"secondary_email": editProfileCell.secondaryEmail.text,
         @"profile_job": self.flightDetailsArray,
         };
@@ -625,25 +642,28 @@
 {
     UserDetails *userDetails = [UserDetails MR_findFirst];
     
-    userDetails.firstName = [userData valueForKey:@"firstname"];
-    userDetails.lastName = [userData valueForKey:@"lastname"];
+    userDetails.firstName = editProfileCell.fullNameTextField.text;
     userDetails.userEmail = editProfileCell.emailTextField.text;
-    userDetails.title = editProfileCell.designationTextField.text;
-    userDetails.company = editProfileCell.companyNameTextField.text;
+    userDetails.title = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTitle];
+    userDetails.company = [[_flightDetailsArray objectAtIndex:0] valueForKey:kCopmpany];
     userDetails.state = editProfileCell.stateTextField.text;
     userDetails.phoneNumber = editProfileCell.phoneNumberTextField.text;
     userDetails.city = editProfileCell.citytextField.text;
     userDetails.country = editProfileCell.countryButton.titleLabel.text;
-    userDetails.territory = editProfileCell.terrotoryTextField.text;
+    userDetails.territory = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory];
     userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
     userDetails.profileImage = [userData valueForKey:@"profile_image"];
-    userDetails.targetBuyers = editProfileCell.targetBuyersTextField.text;
+    userDetails.targetBuyers = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTargetBuyers];
     
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     
     UserDetails *user = [UserDetails MR_findFirst];
     NSLog(@"%@", user.firstName);
     NSLog(@"%zd", user.userID);
+    
+    
+    [JobProfile MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
         
@@ -711,6 +731,7 @@
     
     [editProfileCell.countryButton setTitle:selectedProgram forState:UIControlStateNormal];
     [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.userProfiledetails setValue:selectedProgram forKey:@"country"];
 }
 
 -(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle

@@ -37,7 +37,7 @@
     
     _nofreindsLabel = [[UILabel alloc]initWithFrame:self.navigationController.view.frame];
     _nofreindsLabel.hidden = YES;
-    _nofreindsLabel.text = @"Search name of freind whom\nyou wish to send freind request";
+    _nofreindsLabel.text = @"Search name of friend whom\nyou wish to send friend request";
     _nofreindsLabel.numberOfLines = 0;
     _nofreindsLabel.textAlignment = NSTextAlignmentCenter;
     _nofreindsLabel.font = [UIFont boldSystemFontOfSize:14.0];
@@ -119,7 +119,7 @@
     
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Add Freind"];
+    [navItem setTitle:@"Add Friend"];
     [self.view addSubview:navBar];
     
 }
@@ -145,7 +145,7 @@
     
     
 
-    [cell.userName setTitle:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"fullname"] forState:UIControlStateNormal];
+    [cell.userName setTitle:[NSString stringWithFormat:@"%@ %@", [[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"firstname"], [[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"lastname"]] forState:UIControlStateNormal];
     [cell.profileImage sd_setImageWithURL:[NSURL URLWithString:[[self.filteredArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     [cell.sendrequest addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell.profileImageButton addTarget:self action:@selector(sendFreindRequestTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -274,7 +274,10 @@
                 
                 NSLog(@"Push notification users are : %@", oneSignalIds);
                 
-                NSString *message = [NSString stringWithFormat:@"%@ sent you a freind request.", [[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"fullname"]];
+                NSString *fullName = [NSString stringWithFormat:@"%@ %@",[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"firstname"], [[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"lastname"]];
+                
+                
+                NSString *message = [NSString stringWithFormat:@"%@ sent you a friend request.", fullName];
                 
                 [OneSignal postNotification:@{@"contents":@{@"en":message}, @"include_player_ids":oneSignalIds}];
                 
@@ -315,7 +318,7 @@
     }else{
         
         _nofreindsLabel.hidden = YES;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@", @"fullname", searchText];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", @"firstname", searchText, @"lastname", searchText];
         NSMutableArray *filteredList = [NSMutableArray arrayWithArray:[self.freindList filteredArrayUsingPredicate:predicate]];
         
         self.filteredArray = [[NSMutableArray alloc]init];
