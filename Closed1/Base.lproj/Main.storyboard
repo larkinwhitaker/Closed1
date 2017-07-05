@@ -3699,18 +3699,28 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LM-W8-8Ny">
+                                                <rect key="frame" x="16" y="219" width="296" height="125.5"/>
+                                                <string key="text">To get started with the 3 month trial, please fill in the payment information below. After the 3 month trial period, Closed1 will start billing $1.99 per month. You will receive 1 month credit for every 3 users you invite that are not already part of Closed1.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="hpV-1n-k3a" firstAttribute="leading" secondItem="4tb-48-C9B" secondAttribute="trailing" constant="8" id="4Zk-gX-4fT"/>
                                             <constraint firstItem="nun-1d-FPc" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="20" id="5Ga-U4-N6B"/>
+                                            <constraint firstAttribute="trailing" secondItem="8LM-W8-8Ny" secondAttribute="trailing" constant="16" id="9Ua-Js-85G"/>
                                             <constraint firstItem="WAL-QD-Hr8" firstAttribute="top" secondItem="4tb-48-C9B" secondAttribute="bottom" constant="10" id="9di-3x-IAu"/>
                                             <constraint firstItem="WAL-QD-Hr8" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" id="B2Q-dY-Pq0"/>
                                             <constraint firstAttribute="trailing" secondItem="WAL-QD-Hr8" secondAttribute="trailing" id="LJ1-Ar-bi7"/>
                                             <constraint firstItem="jjc-if-cYt" firstAttribute="leading" secondItem="us2-HV-pCc" secondAttribute="trailing" constant="6" id="M8A-gg-6VA"/>
                                             <constraint firstItem="xVi-qg-AsL" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="20" id="NfH-1I-h6B"/>
+                                            <constraint firstItem="8LM-W8-8Ny" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="16" id="O38-2a-xII"/>
                                             <constraint firstAttribute="trailing" secondItem="nun-1d-FPc" secondAttribute="trailing" constant="20" id="Q9t-eS-ucn"/>
                                             <constraint firstItem="s6f-ff-Iay" firstAttribute="top" secondItem="xVi-qg-AsL" secondAttribute="bottom" constant="1" id="TCv-he-OW6"/>
+                                            <constraint firstItem="8LM-W8-8Ny" firstAttribute="top" secondItem="s6f-ff-Iay" secondAttribute="bottom" constant="16" id="Ww4-oD-ez0"/>
                                             <constraint firstItem="hpV-1n-k3a" firstAttribute="centerY" secondItem="4tb-48-C9B" secondAttribute="centerY" id="crg-WE-cmY"/>
                                             <constraint firstItem="s6f-ff-Iay" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" id="d6q-Uo-gjE"/>
                                             <constraint firstAttribute="trailing" secondItem="xVi-qg-AsL" secondAttribute="trailing" constant="20" id="dGs-2L-51P"/>
