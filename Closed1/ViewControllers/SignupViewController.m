@@ -199,7 +199,7 @@
     webView.title = @"Terms & Conditions";
     webView.urlString = @"http://socialmedia.alkurn.info/terms-of-service/";
     
-    [self.navigationController pushViewController:webView animated:YES];
+    [self presentViewController:webView animated:YES completion:nil];
     
     
 }
@@ -402,6 +402,7 @@
                     
                     self.signupCell.emailtextField.text = [arrayOfDictionaryFromServer valueForKey:@"emailAddress"];
                     self.signupCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", [arrayOfDictionaryFromServer valueForKey:@"firstName"], [arrayOfDictionaryFromServer valueForKey:@"lastName"]];
+                    self.signupCell.titletextField.text = [arrayOfDictionaryFromServer valueForKey:@"headline"];
                     self.imageURL = [arrayOfDictionaryFromServer valueForKey:@"pictureUrl"];
                     
                 });
@@ -416,7 +417,7 @@
         
     }else{
         
-        [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"Failed to login with linkedin. Please try again or login manually" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"Failed to sign up with linkedin. Please try again or login manually" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }
 }
 

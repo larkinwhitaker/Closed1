@@ -97,13 +97,13 @@
                                 <color key="onTintColor" red="0.1333333333" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-Rf-9cj">
-                                <rect key="frame" x="8" y="284" width="117" height="28"/>
+                                <rect key="frame" x="8" y="284" width="124" height="28"/>
                                 <color key="backgroundColor" red="0.1333333333" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="117" id="1hO-26-WkI"/>
+                                    <constraint firstAttribute="width" constant="124" id="6mH-rm-2pC"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                <state key="normal" title="Add a new job">
+                                <state key="normal" title="Add a New Job">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

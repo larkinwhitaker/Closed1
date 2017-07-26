@@ -140,7 +140,7 @@ var count = 0
         let navBar = UINavigationBar(frame: CGRect(x: self.view.bounds.origin.x-10, y: self.view.bounds.origin.y , width: self.view.frame.size.width + 10, height: 60))
         let navItem = UINavigationItem()
         
-        let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(dismissModal))
+        let addButton = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(dismissModal))
         let closeButton =  UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(backTapped))
         navItem.rightBarButtonItem = addButton
         navItem.leftBarButtonItem = closeButton

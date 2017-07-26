@@ -70,6 +70,12 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+
+{
+    [self.navigationController setNavigationBarHidden:YES];
+
+}
 -(void)checkUserLoginStataus
 {
     UserDetails *userDetails = [UserDetails MR_findFirst];
@@ -82,7 +88,7 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
-    [self.navigationController pushViewController:webView animated:YES];
+    [self presentViewController:webView animated:YES completion:nil];
     
     /*
     [LISDKSessionManager createSessionWithAuth:[NSArray arrayWithObjects:LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION, nil]
@@ -276,7 +282,7 @@ errorBlock:^(NSError *error) {
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
 
-                    [self saveData:serverResponce];
+                    [self saveUserDetails:serverResponce];
                     });
                     
                 }
@@ -302,13 +308,18 @@ errorBlock:^(NSError *error) {
                     
                     NSArray *freinListCOunt = [servreResponce valueForKey:@"data"];
                     [[NSUserDefaults standardUserDefaults] setInteger:freinListCOunt.count forKey:@"FreindRequestCount"];
+                }else{
+                    [[NSUserDefaults standardUserDefaults] setInteger: 0 forKey:@"FreindRequestCount"];
                 }
-            }
+                }else{
+                    [[NSUserDefaults standardUserDefaults] setInteger: 0 forKey:@"FreindRequestCount"];
+
+                }
         });
 
 }
 
-
+/*
 -(void)saveData: (NSArray *)userData
 {
     
@@ -351,6 +362,7 @@ errorBlock:^(NSError *error) {
                 jobDetails.territory = [singleJob valueForKey:kTerritory];
                 jobDetails.compnay = [singleJob valueForKey:kCopmpany];
                 jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
+                jobDetails.jobid = [[singleJob valueForKey:@"id"] integerValue];
                 if (![[singleJob valueForKey:kisCurrentPosition] isEqual:[NSNull null]]) {
                     
                     jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];
@@ -378,6 +390,8 @@ errorBlock:^(NSError *error) {
     }];
     
 }
+ 
+ */
 
 
 -(void)saveUserDetails: (NSArray *)userData{
@@ -402,6 +416,7 @@ errorBlock:^(NSError *error) {
         userDetails.territory = [userData valueForKey:@"territory"];
         userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
         userDetails.phoneNumber = [userData valueForKey:@"phone"];
+        userDetails.state = [userData valueForKey:@"state"];
         
         if ([[userData valueForKey:@"profile Image"] isEqualToString:@""]) {
             
@@ -427,6 +442,7 @@ errorBlock:^(NSError *error) {
                 jobDetails.territory = [singleJob valueForKey:kTerritory];
                 jobDetails.compnay = [singleJob valueForKey:kCopmpany];
                 jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
+                jobDetails.jobid = [singleJob valueForKey:@"id"];
                 if (![[singleJob valueForKey:kisCurrentPosition] isEqual:[NSNull null]]) {
                     
                     jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];

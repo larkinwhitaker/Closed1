@@ -29,6 +29,8 @@
 #import "Closed1-Swift.h"
 #import "Closed1-Bridging-Header.h"
 #import "SettingsView.h"
+#import "Reachability.h"
+#import "NetworkErrorViewController.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -36,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
 @property (strong, nonatomic) IBOutlet UIView *messageCountView;
+@property(strong) Reachability *internetReachablity;
 
 @property (strong, nonatomic) IBOutlet UILabel *messageCountLabel;
 @property(nonatomic) NSMutableArray *feedsArray;
@@ -48,7 +51,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setReachabilityNotifier];
+
     [self.tablView registerNib:[UINib nibWithNibName:@"HomeScreenTableViewCell" bundle:nil] forCellReuseIdentifier:@"HomeScreenTableViewCell"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFeedsArray) name:@"NewFeedsAvilable" object:nil];
@@ -93,6 +97,29 @@
     
     [self getFreindListCount];
 }
+
+-(void)setReachabilityNotifier
+{
+    __weak __block typeof(self) weakself = self;
+    
+    _internetReachablity = [Reachability reachabilityForInternetConnection];
+    
+    self.internetReachablity.unreachableBlock = ^(Reachability *reachability)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NetworkErrorViewController *networkerrorViewController = [weakself.storyboard instantiateViewControllerWithIdentifier:@"NetworkErrorViewController"];
+            
+            [weakself presentViewController:networkerrorViewController animated:YES completion:nil];
+            
+        });
+        
+    };
+    
+    [_internetReachablity startNotifier];
+    
+}
+
 
 -(void)getFreindListCount
 {
@@ -486,7 +513,7 @@
     [homeCell.likeButton addTarget:self action:@selector(likeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSInteger messageCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"message_count"] integerValue];
+    NSInteger messageCount = [[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"message_count"] integerValue];
     
     if (messageCount == 0) {
         

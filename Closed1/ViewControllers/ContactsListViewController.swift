@@ -10,6 +10,8 @@ import UIKit
 import MessageUI
 
 @objc class ContactsListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,MFMailComposeViewControllerDelegate,UIViewControllerTransitioningDelegate,ServerFailedDelegate,FreindsListDelegate,setDataInTableViewDelegate,MailSendDelegates {
+    
+
    
     @IBOutlet weak var freinfReeustCountLabel: UILabel!
 
@@ -263,12 +265,12 @@ import MessageUI
         self.navigationController?.pushViewController(adressBook, animated: true)
     }
     
-    func isMailSendingSuccess(_ isSuccess: Bool) {
+    func isMailSendingSuccess(_ isSuccess: Bool, withMesssage message: String!) {
         
         MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
         
         if isSuccess {
-            UIAlertView(title: "Successfully send mails", message: "", delegate: nil, cancelButtonTitle: "Okay").show()
+            UIAlertView(title: message, message: "", delegate: nil, cancelButtonTitle: "Okay").show()
             
         }else{
             

@@ -74,6 +74,7 @@
 //                self.filteredArray = self.freindList;
 //                [self.tableView reloadData];
                 _nofreindsLabel.hidden = NO;
+                [[NSUserDefaults standardUserDefaults] setInteger:_freindList.count forKey:@"FreindRequestCount"];
 
                 
             }else{
@@ -222,7 +223,7 @@
                 
                 if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
                     
-                    [[[UIAlertView alloc]initWithTitle:@"Sucessfully Rejected friend reuest" message:@"" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                    [[[UIAlertView alloc]initWithTitle:@"Successfully Rejected Friend Request." message:@"" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
                     [self.filteredArray removeAllObjects];
                     [self.tableView reloadData];
                     self.searchBar.text = @"";
@@ -282,7 +283,7 @@
                 [OneSignal postNotification:@{@"contents":@{@"en":message}, @"include_player_ids":oneSignalIds}];
                 
                 
-                [[[UIAlertView alloc]initWithTitle:@"Sucessfully send friend reuest" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                [[[UIAlertView alloc]initWithTitle:@"Sucessfully sent a friend request." message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
                 
                 [self.filteredArray removeAllObjects];
                 [self.tableView reloadData];
@@ -293,7 +294,7 @@
                 
             }else{
                 
-                [[[UIAlertView alloc]initWithTitle:@"Failed send friend reuest" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                [[[UIAlertView alloc]initWithTitle:@"Failed to send a friend request." message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
             }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -318,7 +319,7 @@
     }else{
         
         _nofreindsLabel.hidden = YES;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", @"firstname", searchText, @"lastname", searchText];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", @"firstname", searchText, @"lastname", searchText, @"user_email", searchText];
         NSMutableArray *filteredList = [NSMutableArray arrayWithArray:[self.freindList filteredArrayUsingPredicate:predicate]];
         
         self.filteredArray = [[NSMutableArray alloc]init];

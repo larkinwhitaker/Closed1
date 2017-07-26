@@ -65,7 +65,7 @@
                     [self.tableView reloadData];
                 }else{
                     
-                    [[[UIAlertView alloc]initWithTitle:@"Sorry no freind request found" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                    [[[UIAlertView alloc]initWithTitle:@"Sorry! No friend request found." message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
                 }
             }
             

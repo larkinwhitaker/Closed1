@@ -36,8 +36,7 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     [super viewDidLoad];
     _webView.delegate = self;
     [self configureProxyWebView];
-[self.navigationController configureNavigationBar:self
- ];
+ 
     
     if (_isLinkedinSelected) {
         [self startAuthorization];
@@ -51,6 +50,10 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self createCustumNavigationBar];
+}
 
 -(void)configureProxyWebView
 {
@@ -83,6 +86,7 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
 -(void)backButtonTapped: (id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 

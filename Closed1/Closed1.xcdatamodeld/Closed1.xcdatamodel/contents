@@ -22,6 +22,7 @@
     <entity name="JobProfile" representedClassName="JobProfile" syncable="YES" codeGenerationType="class">
         <attribute name="compnay" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPoistion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="targetBuyers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="territory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,7 +46,7 @@
     <elements>
         <element name="CardDetails" positionX="-54" positionY="99" width="128" height="165"/>
         <element name="ContactDetails" positionX="-54" positionY="27" width="128" height="150"/>
-        <element name="JobProfile" positionX="-54" positionY="90" width="128" height="120"/>
+        <element name="JobProfile" positionX="-54" positionY="90" width="128" height="135"/>
         <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

@@ -113,7 +113,16 @@
         
         UILabel *userName = (UILabel *)[feedsCell viewWithTag:3]
         ;
-        userName.text = [_feedsDetails  valueForKey:@"closed"];
+        
+        
+        NSString *titile = @"Not present";
+        
+        if (![[_feedsDetails  valueForKey:@"closed"] isEqual:@""] && ![[_feedsDetails  valueForKey:@"closed"] isEqual:[NSNull null]]) {
+            
+            titile = [_feedsDetails  valueForKey:@"closed"];
+        }
+        
+        userName.text = titile;
         
         UIImageView *profileImage = (UIImageView *)[feedsCell viewWithTag:1];
         [profileImage sd_setImageWithURL:[NSURL URLWithString:[self.feedsDetails valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
@@ -143,8 +152,19 @@
         userName.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"full name"];
         comment.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"content"];
         dataTime.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"date_recorded"];
-        [userImage sd_setImageWithURL:[NSURL URLWithString:[[[self.feedsDetails valueForKey:@""] objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"]] placeholderImage: [UIImage imageNamed:@"male-circle-128.png"]];
-
+        
+        
+        NSString *imageURL = @"";
+        
+        if([[_messageArray objectAtIndex:indexPath.row] objectForKey: @"profile_image_url"]){
+            
+            if (![[[_messageArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"] isEqual:[NSNull null]]) {
+                
+                imageURL = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"profile_image_url"];
+            }
+        }
+        
+        [userImage sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         
         return commentCell;
     }

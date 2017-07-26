@@ -18,8 +18,9 @@
 #import "WebViewController.h"
 #import "ChatView.h"
 #import "NavigationController.h"
+#import "GetMailDictionary.h"
 
-@interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate, ServerFailedDelegate>
+@interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate, ServerFailedDelegate, MailSendDelegates>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -167,12 +168,11 @@
         _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
         
         
-        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile Image"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         _profileDetails.userName.text = [self.userDetails valueForKey:@"fullname"];
         [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
         [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        _profileDetails.territoryLabel.text = [self.userDetails valueForKey:@"territory"];
-        _profileDetails.previosRoleLabel.text = [self.userDetails valueForKey:@"designation"];
+        _profileDetails.terrotoryTextfield.text = [self.userDetails valueForKey:@"territory"];
         
         
         if (![[self.userDetails valueForKey:@"company"] isEqual:@""]) {
@@ -184,15 +184,23 @@
             _profileDetails.titleLabel.text = @"No Company name present";
         }
         
-        if (![[_userDetails valueForKey:@"Target Buyer"] isEqual:@""]) {
+        if ([[_userDetails valueForKey:@"Target Buyer"] isEqual:@""] || [[_userDetails valueForKey:@"Target Buyer"] isEqual:[NSNull null]]) {
             
-            _profileDetails.targetBuyersTextFiled.text = [NSString stringWithFormat:@"Target buyers: %@", [_userDetails valueForKey:@"Target Buyer"]];
+            _profileDetails.targetBuyersTextFiled.text = @"Target Buyers: Not present";
             
+        }else{
+            _profileDetails.targetBuyersTextFiled.text = [NSString stringWithFormat:@"Target Buyers: %@", [_userDetails valueForKey:@"Target Buyer"]];
+
         }
         
-        if (![[_userDetails valueForKey:@"territory"] isEqual:@""]) {
+        if ([[_userDetails valueForKey:@"territory"] isEqual:@""] || [[_userDetails valueForKey:@"territory"] isEqual:[NSNull null]]) {
             
-            _profileDetails.territoryLabel.text = [NSString stringWithFormat:@"Territory: %@", [_userDetails valueForKey:@"territory"]];
+            _profileDetails.terrotoryTextfield.text = @"Territory: Not present";
+
+        }else{
+           
+            _profileDetails.terrotoryTextfield.text = [NSString stringWithFormat:@"Territory: %@", [_userDetails valueForKey:@"territory "]];
+
         }
         
         
@@ -381,7 +389,7 @@
         [self didSelectSingleUser:dbuser];
     }else{
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"It seems the user you are connecting with haven't installed the \"Closed1\" App" message:@"would you like to send invite to him?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"It seems the user you are connecting with haven't installed the \"Closed1\" App" message:@"would you like to send invite to him or her?" preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             
@@ -393,30 +401,55 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
 }
+
+#pragma mark - Mail Delegate
+
+-(void)isMailSendingSuccess:(BOOL)isSuccess withMesssage:(NSString *)message
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    if (isSuccess) {
+        
+        [[[UIAlertView alloc]initWithTitle:message message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        
+    }else{
+       
+        [[[UIAlertView alloc]initWithTitle:@"Failed to send emails" message:@"Sorry we are unable to send emails right now. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+    }
+}
     
 -(void)sendInVites
 {
-    if([MFMailComposeViewController canSendMail]) {
-        
-        MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
-        mailCont.mailComposeDelegate = self;
-        
-        [mailCont setSubject:[self.userDetails valueForKey:@"user_email"]];
-        [mailCont setToRecipients:@[]];
-        [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
-        
-        // Get the resource path and read the file using NSData
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"closed1mail_form" ofType:@"html"];
-        NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-        
-        NSString *mimeType = @"text/html";
-       // [mailCont addAttachmentData:fileData mimeType:mimeType fileName:@""];
-
-        
-        
-        [self presentViewController:mailCont animated:YES completion:nil];
-        
-    }
+    
+    GetMailDictionary *mailDict = [[GetMailDictionary alloc]init];
+    mailDict.delegate = self;
+    [mailDict getMailCOmposerDictionary:@[[self.userDetails valueForKey:@"user_email"]] withNameArray:@[[self.userDetails valueForKey:@"fullname"]] WithView:self.view];
+    
+    
+//    if([MFMailComposeViewController canSendMail]) {
+//        
+//        MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
+//        mailCont.mailComposeDelegate = self;
+//        
+//        [mailCont setSubject:[self.userDetails valueForKey:@"user_email"]];
+//        [mailCont setToRecipients:@[]];
+//        [mailCont setMessageBody:@"Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join" isHTML:NO];
+//        
+//        // Get the resource path and read the file using NSData
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"closed1mail_form" ofType:@"html"];
+//        NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+//        
+//        NSString *mimeType = @"text/html";
+//       // [mailCont addAttachmentData:fileData mimeType:mimeType fileName:@""];
+//
+//        
+//        
+//        [self presentViewController:mailCont animated:YES completion:nil];
+//        
+//    }else{
+//        
+//        [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"It seems mail is not configured in your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+//    }
     
 }
 

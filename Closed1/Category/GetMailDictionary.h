@@ -13,7 +13,7 @@
 @protocol MailSendDelegates <NSObject>
 
 
--(void)isMailSendingSuccess: (BOOL)isSuccess;
+-(void)isMailSendingSuccess: (BOOL)isSuccess withMesssage: (NSString *)message;
 
 @end
 

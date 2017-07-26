@@ -13,8 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *callButton;
-@property (strong, nonatomic) IBOutlet UILabel *territoryLabel;
-@property (strong, nonatomic) IBOutlet UILabel *previosRoleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *terrotoryTextfield;
 @property (weak, nonatomic) IBOutlet UILabel *targetBuyersTextFiled;

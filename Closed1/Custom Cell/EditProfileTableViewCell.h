@@ -30,5 +30,6 @@
 @property (strong, nonatomic) IBOutlet UIView *editProfileView;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextField;
 @property (weak, nonatomic) IBOutlet UIButton *showCardButton;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *countryTextField;
 
 @end

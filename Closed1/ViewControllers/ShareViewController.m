@@ -28,7 +28,11 @@
     [super viewDidLoad];
     [self createCustumNavigationBar];
     
+    self.commentTextView.textContainer.lineFragmentPadding = 5.0;
+    self.nametextView.textContainer.lineFragmentPadding = 5.0;
     
+//    textContainerInset = UIEdgeInsets.zero;
+//    textContainer.lineFragmentPadding = 0;
     
 }
 

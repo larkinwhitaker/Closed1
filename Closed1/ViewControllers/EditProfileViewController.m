@@ -83,12 +83,17 @@
         
     }else{
        
+        UserDetails *user = [UserDetails MR_findFirst];
+
+        
         for (JobProfile *job in jobArray) {
+            
             
             NSString *jobPriofile = @"off";
             if (job.currentPoistion != nil) {
                 jobPriofile = job.currentPoistion;
             }
+            
             
             NSMutableDictionary *jobDict = [[NSMutableDictionary alloc ]init];
             [jobDict setObject:job.title forKey:kTitle];
@@ -96,7 +101,8 @@
             [jobDict setObject:job.compnay forKey:kCopmpany];
             [jobDict setObject:job.territory forKey:kTerritory];
             [jobDict setObject:jobPriofile forKey:kisCurrentPosition];
-            
+            [jobDict setObject:job.jobid forKey:@"id"];
+            [jobDict setObject:[NSNumber numberWithInteger:user.userID] forKey:@"user_id"];
             [self.flightDetailsArray addObject:jobDict];
         }
         
@@ -144,6 +150,9 @@
     [flightDetails setValue:@"off" forKey:kisCurrentPosition];
     [flightDetails setValue:[NSNumber numberWithInteger:user.userID] forKey:@"user_id"];
     [flightDetails setValue:@"off" forKey:@"chkbox"];
+    [flightDetails setObject:@"" forKey:@"id"];
+    
+
     return flightDetails;
 }
 
@@ -266,12 +275,11 @@
         editProfileCell.citytextField.text = [self.userProfiledetails valueForKey:@"city"];
         editProfileCell.stateTextField.text = [self.userProfiledetails valueForKey:@"state"];
         editProfileCell.phoneNumberTextField.text = [self.userProfiledetails valueForKey:@"phoneNumber"];
-        [editProfileCell.countryButton setTitle:[self.userProfiledetails valueForKey:@"country"] forState:UIControlStateNormal];
+        editProfileCell.countryTextField.text = [self.userProfiledetails valueForKey:@"country"];
         editProfileCell.companyNameTextField.text = [self.userProfiledetails valueForKey:@"company"];
         editProfileCell.designationTextField.text = [self.userProfiledetails valueForKey:@"title"];
         editProfileCell.terrotoryTextField.text = [self.userProfiledetails valueForKey:@"territory"];
         editProfileCell.secondaryEmail.text = [self.userProfiledetails valueForKey:@"econdaryemail"];
-        [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
          if([self.creditCardDictionary valueForKey:@"cardencryptedtext"] != nil){
              [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
@@ -499,7 +507,7 @@
         [[[UIAlertView alloc]initWithTitle:@"Phone number Missing" message:@"Please enter your phone number" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
 
         
-    }else if ([editProfileCell.countryButton.titleLabel.text isEqualToString:@""]){
+    }else if ([[editProfileCell.countryTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }else if([[editProfileCell.secondaryEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
@@ -584,13 +592,14 @@
         @"fullname": editProfileCell.fullNameTextField.text,
         @"city": editProfileCell.citytextField.text,
         @"state": editProfileCell.stateTextField.text,
-        @"country": editProfileCell.countryButton.titleLabel.text,
+        @"country": editProfileCell.countryTextField.text,
         @"phone": editProfileCell.phoneNumberTextField.text,
         @"title": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTitle],
         @"company": [[_flightDetailsArray objectAtIndex:0] valueForKey:kCopmpany],
         @"territory": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory],
         @"secondary_email": editProfileCell.secondaryEmail.text,
         @"profile_job": self.flightDetailsArray,
+        @"target": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTargetBuyers]
         };
     
     
@@ -619,13 +628,13 @@
                     
                 }else{
                     
-                    [self serverFailedWithTitle:@"Oops!@" SubtitleString:@"Failed to update profile. Please try again later."];
+                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to update profile. Please try again later."];
 
                 }
                 
             }else{
                 
-                [self serverFailedWithTitle:@"Oops!@" SubtitleString:@"Failed to update profile. Please try again later."];
+                [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to update profile. Please try again later."];
                 
             }
         });
@@ -649,7 +658,7 @@
     userDetails.state = editProfileCell.stateTextField.text;
     userDetails.phoneNumber = editProfileCell.phoneNumberTextField.text;
     userDetails.city = editProfileCell.citytextField.text;
-    userDetails.country = editProfileCell.countryButton.titleLabel.text;
+    userDetails.country = editProfileCell.countryTextField.text;
     userDetails.territory = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory];
     userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
     userDetails.profileImage = [userData valueForKey:@"profile_image"];
@@ -669,9 +678,12 @@
         
         for (NSDictionary *singleJob in _flightDetailsArray) {
             
+            
+            
             JobProfile *jobDetails = [JobProfile MR_createEntityInContext:localContext];
             
             jobDetails.title = [singleJob valueForKey:kTitle];
+            jobDetails.jobid = [singleJob valueForKey: @"id"];
             jobDetails.territory = [singleJob valueForKey:kTerritory];
             jobDetails.compnay = [singleJob valueForKey:kCopmpany];
             jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
@@ -729,8 +741,7 @@
 -(void)getSelectedIndex:(NSInteger)selectedIndex SelectedProgram:(NSString *)selectedProgram
 {
     
-    [editProfileCell.countryButton setTitle:selectedProgram forState:UIControlStateNormal];
-    [editProfileCell.countryButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    editProfileCell.countryTextField.text = selectedProgram;
     [self.userProfiledetails setValue:selectedProgram forKey:@"country"];
 }
 

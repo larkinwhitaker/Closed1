@@ -24,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) NSMutableArray *feedsArray;
 @property(nonatomic) NSMutableArray *filteredArray;
+@property(nonatomic) UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -33,16 +35,48 @@
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"HomeScreenTableViewCell" bundle:nil] forCellReuseIdentifier:@"HomeScreenTableViewCell"];
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"HomeScreenTableViewCell" bundle:nil] forCellReuseIdentifier:@"HomeScreenTableViewCell"];
+    
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"signup_bgr"]];
+    self.searchDisplayController.searchResultsTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"signup_bgr"]];
+
+    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+
 
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     [self getFeedsArray];
 
     [self createCustumNavigationBar];
+    
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [_refreshControl addTarget:self action:@selector(refreshButtonTapped:) forControlEvents:UIControlEventValueChanged];
+    _refreshControl.backgroundColor = [UIColor clearColor];
+    _refreshControl.tintColor = [UIColor whiteColor];
+    self.tableView.refreshControl = _refreshControl;
+}
+
+-(void)hideRefreshControl
+{
+    if (_refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        _refreshControl.attributedTitle = attributedTitle;
+        [_refreshControl endRefreshing];
+    }
+}
+
+- (void)refreshButtonTapped:(id)sender
+{
+    [self getFeedsArray];
 }
 
 -(void)getFeedsArray
 {
     _feedsArray = [[NSMutableArray alloc]init];
+    _filteredArray = [[NSMutableArray alloc]init];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
@@ -80,7 +114,10 @@
                 [feedDictionary setValue:[singleFeed valueForKey:@"date_recorded"] forKey:@"date_recorded"];
 
                 [feedDictionary setValue:[singleFeed valueForKey:@"content"] forKey:@"content"];
+                [feedDictionary setValue:[singleFeed valueForKey:@"user_id"] forKey:@"user_id"];
 
+                [feedDictionary setValue:[singleFeed valueForKey:@"company"] forKey:@"company"];
+                [feedDictionary setValue:[singleFeed valueForKey:@"message_count"] forKey:@"message_count"];
 
                 
                 if ([[singleFeed valueForKey:@"content"] length]>1) {
@@ -94,6 +131,8 @@
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self hideRefreshControl];
+
             [self.tableView reloadData];
         });
         
@@ -332,9 +371,23 @@
     
     ProfileDetailViewController *profileDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileDetailViewController"];
     
-    profileDetail.userid = [[[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
     
-    NSLog(@"Userd id : %zd",[[[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue]);
+    if([self.searchDisplayController isActive]){
+        
+        profileDetail.userid = [[[self.filteredArray objectAtIndex:sender.tag]  valueForKey:@"user_id"] integerValue];
+        NSLog(@"Userd id : %zd",[[[self.filteredArray objectAtIndex:sender.tag]  valueForKey:@"user_id"] integerValue]);
+
+
+    }else{
+        
+        profileDetail.userid = [[[self.feedsArray objectAtIndex:sender.tag]  valueForKey:@"user_id"] integerValue];
+        NSLog(@"Userd id : %zd",[[[self.feedsArray objectAtIndex:sender.tag]  valueForKey:@"user_id"] integerValue]);
+
+
+    }
+
+    
+    
     
     [self.navigationController pushViewController:profileDetail animated:YES];
     
@@ -392,6 +445,14 @@
     
     return YES;
 
+}
+
+-(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    });
 }
 
 

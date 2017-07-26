@@ -157,7 +157,6 @@
 		AD93F7FB1E8823B7008488B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */; };
 		ADA091C61EA11B09005E9975 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA091C51EA11B09005E9975 /* CommentListViewController.m */; };
 		ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5CACA1E879E94000DF38D /* WebViewController.m */; };
-		ADA6DCB01EE5892500AE57F6 /* JobProfile+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA6DCAE1EE5892500AE57F6 /* JobProfile+CoreDataProperties.m */; };
 		ADA6DCB61EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA6DCB41EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m */; };
 		ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D61E90053B009C0B38 /* UIImage+animatedGIF.m */; };
 		ADA806DB1E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA806D81E90053B009C0B38 /* UINavigationController+NavigationBarAttribute.m */; };
@@ -624,6 +623,9 @@
 		ADD1D1721E940E7F00C3D59D /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1D1711E940E7F00C3D59D /* CardView.m */; };
 		ADD1D1741E94119500C3D59D /* ic_1491339527_letter.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */; };
 		ADD1D1761E94122E00C3D59D /* ic_1491340365_user_male4.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */; };
+		ADDF35BA1F17DC3F00A240E0 /* InternetErrorImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */; };
+		ADDF35BD1F17DD5F00A240E0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDF35BC1F17DD5F00A240E0 /* Reachability.m */; };
+		ADDF35C01F17DD6B00A240E0 /* NetworkErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDF35BF1F17DD6B00A240E0 /* NetworkErrorViewController.m */; };
 		ADE604291EC4DDDC00C1B93C /* JobProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE604271EC4DDDC00C1B93C /* JobProfileCell.m */; };
 		ADE6042A1EC4DDDC00C1B93C /* JobProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE604281EC4DDDC00C1B93C /* JobProfileCell.xib */; };
 		ADEAE02C1E898E6600D36B55 /* HomeScreenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEAE02A1E898E6600D36B55 /* HomeScreenTableViewCell.m */; };
@@ -633,6 +635,7 @@
 		ADEAE03B1E89931600D36B55 /* male-circle-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADEAE03A1E89931600D36B55 /* male-circle-128.png */; };
 		ADEAE03D1E89979600D36B55 /* friends-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADEAE03C1E89979600D36B55 /* friends-128.png */; };
 		ADEB55691EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB55671EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m */; };
+		ADFFF03E1F10EE2D007E811F /* JobProfile+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFFF03C1F10EE2D007E811F /* JobProfile+CoreDataProperties.m */; };
 		CD4BA8942C45B23CA4F7CA73 /* Pods_Closed1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -936,8 +939,6 @@
 		ADA5CAC41E879D78000DF38D /* Closed1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Closed1-Bridging-Header.h"; sourceTree = "<group>"; };
 		ADA5CAC91E879E94000DF38D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		ADA5CACA1E879E94000DF38D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
-		ADA6DCAD1EE5892500AE57F6 /* JobProfile+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobProfile+CoreDataProperties.h"; sourceTree = "<group>"; };
-		ADA6DCAE1EE5892500AE57F6 /* JobProfile+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JobProfile+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADA6DCB31EE5A00400AE57F6 /* UserDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ADA6DCB41EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADA806D51E90053B009C0B38 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
@@ -1606,6 +1607,11 @@
 		ADD1D1711E940E7F00C3D59D /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491339527_letter.png; sourceTree = "<group>"; };
 		ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491340365_user_male4.png; sourceTree = "<group>"; };
+		ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InternetErrorImage.png; sourceTree = "<group>"; };
+		ADDF35BB1F17DD5F00A240E0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		ADDF35BC1F17DD5F00A240E0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		ADDF35BE1F17DD6B00A240E0 /* NetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkErrorViewController.h; sourceTree = "<group>"; };
+		ADDF35BF1F17DD6B00A240E0 /* NetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkErrorViewController.m; sourceTree = "<group>"; };
 		ADE604261EC4DDDC00C1B93C /* JobProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobProfileCell.h; sourceTree = "<group>"; };
 		ADE604271EC4DDDC00C1B93C /* JobProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobProfileCell.m; sourceTree = "<group>"; };
 		ADE604281EC4DDDC00C1B93C /* JobProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobProfileCell.xib; sourceTree = "<group>"; };
@@ -1618,6 +1624,8 @@
 		ADEAE03C1E89979600D36B55 /* friends-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends-128.png"; sourceTree = "<group>"; };
 		ADEB55661EDF3C2500B87733 /* ContactDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ADEB55671EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ADFFF03B1F10EE2D007E811F /* JobProfile+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobProfile+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ADFFF03C1F10EE2D007E811F /* JobProfile+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JobProfile+CoreDataProperties.m"; sourceTree = "<group>"; };
 		BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11BCAF9CFB0D8C9E0356C51 /* Pods_Closed1_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1933,6 +1941,8 @@
 		AD93F7521E87F717008488B9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ADDF35BE1F17DD6B00A240E0 /* NetworkErrorViewController.h */,
+				ADDF35BF1F17DD6B00A240E0 /* NetworkErrorViewController.m */,
 				AD888EC41EFC4B2500FE4C43 /* CreditCardViewController.h */,
 				AD888EC51EFC4B2500FE4C43 /* CreditCardViewController.m */,
 				AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */,
@@ -1984,6 +1994,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */,
 				AD888FAE1EFC566A00FE4C43 /* CreditcardDefaultImage.png */,
 				AD3A28E01EC704E800EB3BEE /* AddIndivisual.png */,
 				AD3A28E11EC704E800EB3BEE /* InviteFreinds.png */,
@@ -2015,6 +2026,8 @@
 		AD93F75B1E880E16008488B9 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				ADDF35BB1F17DD5F00A240E0 /* Reachability.h */,
+				ADDF35BC1F17DD5F00A240E0 /* Reachability.m */,
 				AD0D6D8B1F041FA10064CA76 /* ProgressHUD */,
 				AD888F161EFC4C5900FE4C43 /* PaymentKit */,
 				ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */,
@@ -2242,12 +2255,12 @@
 		ADA0C5DF1E969F020060A0B1 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				ADFFF03B1F10EE2D007E811F /* JobProfile+CoreDataProperties.h */,
+				ADFFF03C1F10EE2D007E811F /* JobProfile+CoreDataProperties.m */,
 				AD888FAA1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.h */,
 				AD888FAB1EFC4D4F00FE4C43 /* CardDetails+CoreDataProperties.m */,
 				ADA6DCB31EE5A00400AE57F6 /* UserDetails+CoreDataProperties.h */,
 				ADA6DCB41EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m */,
-				ADA6DCAD1EE5892500AE57F6 /* JobProfile+CoreDataProperties.h */,
-				ADA6DCAE1EE5892500AE57F6 /* JobProfile+CoreDataProperties.m */,
 				ADEB55661EDF3C2500B87733 /* ContactDetails+CoreDataProperties.h */,
 				ADEB55671EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m */,
 			);
@@ -4019,6 +4032,7 @@
 				ADBB1E241EA52B37003CA9DD /* stickerlocal14@2x.png in Resources */,
 				ADBB1E251EA52B37003CA9DD /* stickerlocal15@2x.png in Resources */,
 				ADBB1DF61EA52B37003CA9DD /* photomediaitem_download@2x.png in Resources */,
+				ADDF35BA1F17DC3F00A240E0 /* InternetErrorImage.png in Resources */,
 				ADBB1E971EA52B37003CA9DD /* stickersend51@2x.png in Resources */,
 				ADBB1E6B1EA52B37003CA9DD /* stickersend07@2x.png in Resources */,
 				ADBB1D3B1EA52B37003CA9DD /* GroupView.xib in Resources */,
@@ -4469,6 +4483,7 @@
 				ADBB1DA91EA52B37003CA9DD /* Location.m in Sources */,
 				ADACED721E9BFE06001A9F4A /* UIImageView+WebCache.m in Sources */,
 				AD93F7E21E8823B7008488B9 /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				ADDF35C01F17DD6B00A240E0 /* NetworkErrorViewController.m in Sources */,
 				ADBB1D9E1EA52B37003CA9DD /* Chat.m in Sources */,
 				ADACED6E1E9BFE06001A9F4A /* UIButton+WebCache.m in Sources */,
 				AD9344F01E8979A600E60A4B /* TabBarHandler.m in Sources */,
@@ -4624,6 +4639,7 @@
 				ADACED731E9BFE06001A9F4A /* UIView+WebCacheOperation.m in Sources */,
 				ADA9004F1EA9261900EAC538 /* FreindRequestViewController.m in Sources */,
 				AD93F7951E880E16008488B9 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				ADDF35BD1F17DD5F00A240E0 /* Reachability.m in Sources */,
 				ADBB1DB81EA52B37003CA9DD /* DownloadManager.m in Sources */,
 				ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */,
 				ADB3EE011EC8857B001DEC69 /* PJXFlipTopTransitionItemAnimations.m in Sources */,
@@ -4674,13 +4690,13 @@
 				AD93F7E81E8823B7008488B9 /* NSManagedObject+MagicalDataImport.m in Sources */,
 				AD93F7941E880E16008488B9 /* IQToolbar.m in Sources */,
 				ADB3EDFB1EC8857B001DEC69 /* PJXLeftRotationAnimation.m in Sources */,
+				ADFFF03E1F10EE2D007E811F /* JobProfile+CoreDataProperties.m in Sources */,
 				ADBB1D8F1EA52B37003CA9DD /* premium.m in Sources */,
 				AD93EC861ECCAE7F00609738 /* OpenAdressBook.swift in Sources */,
 				ADBB1D441EA52B37003CA9DD /* VideoView.m in Sources */,
 				ADB3EE021EC8857B001DEC69 /* PJXTransitionItemAnimations.m in Sources */,
 				AD93F7F71E8823B7008488B9 /* MagicalRecord+Options.m in Sources */,
 				AD93F7EE1E8823B7008488B9 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
-				ADA6DCB01EE5892500AE57F6 /* JobProfile+CoreDataProperties.m in Sources */,
 				ADBB1D6F1EA52B37003CA9DD /* CustomStatusView.m in Sources */,
 				AD93EC851ECCAE7F00609738 /* GlobalConstant.swift in Sources */,
 				ADBB1DAA1EA52B37003CA9DD /* Audio.m in Sources */,
