@@ -107,7 +107,7 @@
                     
                 }
                 [feedDictionary setValue:[NSNumber numberWithInteger:likeCount] forKey:@"LikeCount"];
-                [feedDictionary setValue:[singleFeed valueForKey:@"display_name"] forKey:@"display_name"];
+                [feedDictionary setValue:[singleFeed valueForKey:@"user_fullname"] forKey:@"user_fullname"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"profile_image_url"] forKey:@"profile_image_url"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"Title"] forKey:@"Title"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"closed"] forKey:@"closed"];
@@ -196,9 +196,9 @@
         
         [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         homeCell.userNameLabel.tag = indexPath.row;
-    if (![[[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
+    if (![[[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"user_fullname"] isEqual:[NSNull null]]) {
         
-        [homeCell.userNameLabel setTitle:[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] forState:UIControlStateNormal];
+        [homeCell.userNameLabel setTitle:[[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"user_fullname"] forState:UIControlStateNormal];
         
     }else{
         
@@ -240,7 +240,9 @@
     
     if (messageCount == 0) {
         
-        homeCell.messageView.hidden = YES;
+        homeCell.messageView.hidden = NO;
+        homeCell.messageCountLabel.text = @"0";
+
         
     }else{
         
@@ -261,8 +263,9 @@
     
     if (likeCount <= 0) {
         
-        homeCell.likeView.hidden = YES;
-        
+        homeCell.likeView.hidden = NO;
+        homeCell.likeCOuntLabel.text = @"0";
+
         
     }else{
         homeCell.likeView.hidden = NO;
@@ -280,9 +283,9 @@
         
         [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         homeCell.userNameLabel.tag = indexPath.row;
-        if (![[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] isEqual:[NSNull null]]) {
+        if (![[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"user_fullname"] isEqual:[NSNull null]]) {
             
-            [homeCell.userNameLabel setTitle:[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"display_name"] forState:UIControlStateNormal];
+            [homeCell.userNameLabel setTitle:[[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"user_fullname"] forState:UIControlStateNormal];
             
         }else{
             
@@ -323,8 +326,10 @@
         
         if (messageCount == 0) {
             
-            homeCell.messageView.hidden = YES;
+            homeCell.messageView.hidden = NO;
             
+            homeCell.messageCountLabel.text = @"0";
+
         }else{
             
             homeCell.messageView.hidden = NO;
@@ -344,7 +349,7 @@
         
         if (likeCount <= 0) {
             
-            homeCell.likeView.hidden = YES;
+            homeCell.likeView.hidden = NO;
             
             
         }else{
@@ -433,7 +438,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", @"display_name", searchString, @"Title", searchString, @"closed", searchString, @"content", searchString];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", @"user_fullname", searchString, @"Title", searchString, @"closed", searchString, @"content", searchString];
     NSMutableArray *filteredList = [NSMutableArray arrayWithArray:[_feedsArray filteredArrayUsingPredicate:predicate]];
     
     self.filteredArray = [[NSMutableArray alloc]init];

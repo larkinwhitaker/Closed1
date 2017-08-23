@@ -43,6 +43,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self reloadTableData];
+
     [self.navigationController setNavigationBarHidden:YES];
     
 }

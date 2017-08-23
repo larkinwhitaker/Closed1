@@ -74,9 +74,7 @@
 //                self.filteredArray = self.freindList;
 //                [self.tableView reloadData];
                 _nofreindsLabel.hidden = NO;
-                [[NSUserDefaults standardUserDefaults] setInteger:_freindList.count forKey:@"FreindRequestCount"];
 
-                
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Failed to get List" message:@"Please try again later." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];

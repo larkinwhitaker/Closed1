@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fEX-nh-kTa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fEX-nh-kTa">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1025,13 +1025,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Op-tV-Gr5">
-                                                    <rect key="frame" x="117" y="111" width="86" height="23"/>
+                                                    <rect key="frame" x="117" y="106" width="86" height="23"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ti3-1o-pp7" customClass="CardView">
-                                                    <rect key="frame" x="18" y="164" width="286" height="156"/>
+                                                    <rect key="frame" x="18" y="167" width="286" height="156"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0N-2Q-HNH">
                                                             <rect key="frame" x="8" y="12" width="35.5" height="16"/>
@@ -1140,13 +1140,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhc-Ni-vsQ">
-                                                    <rect key="frame" x="18" y="133" width="45" height="23"/>
+                                                    <rect key="frame" x="18" y="140" width="45" height="23"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZl-gw-jok">
-                                                    <rect key="frame" x="21" y="340" width="280" height="40"/>
+                                                    <rect key="frame" x="21" y="343" width="280" height="40"/>
                                                     <color key="backgroundColor" red="0.95686274510000002" green="0.043137254899999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Lok-1K-2lH"/>
@@ -1177,12 +1177,12 @@
                                                 <constraint firstItem="IDI-Tp-jML" firstAttribute="top" secondItem="hLG-JD-m62" secondAttribute="topMargin" constant="8" id="FD5-vr-kbn"/>
                                                 <constraint firstItem="QZl-gw-jok" firstAttribute="top" secondItem="ti3-1o-pp7" secondAttribute="bottom" constant="20" id="HEh-da-EwA"/>
                                                 <constraint firstItem="ARI-uF-jCv" firstAttribute="top" secondItem="hLG-JD-m62" secondAttribute="top" constant="16" id="Hg0-E1-k64"/>
-                                                <constraint firstItem="ti3-1o-pp7" firstAttribute="top" secondItem="Dhc-Ni-vsQ" secondAttribute="bottom" constant="8" id="LNl-fq-st9"/>
-                                                <constraint firstItem="ti3-1o-pp7" firstAttribute="top" secondItem="2Op-tV-Gr5" secondAttribute="bottom" constant="30" id="MMw-m7-0c4"/>
+                                                <constraint firstItem="ti3-1o-pp7" firstAttribute="top" secondItem="Dhc-Ni-vsQ" secondAttribute="bottom" constant="4" id="LNl-fq-st9"/>
+                                                <constraint firstItem="ti3-1o-pp7" firstAttribute="top" secondItem="2Op-tV-Gr5" secondAttribute="bottom" constant="38" id="MMw-m7-0c4"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ti3-1o-pp7" secondAttribute="trailing" constant="8" id="U1M-C8-xBo"/>
                                                 <constraint firstItem="Dhc-Ni-vsQ" firstAttribute="leading" secondItem="hLG-JD-m62" secondAttribute="leadingMargin" constant="10" id="guI-fX-lIx"/>
                                                 <constraint firstItem="ti3-1o-pp7" firstAttribute="leading" secondItem="hLG-JD-m62" secondAttribute="leadingMargin" constant="10" id="lrf-nQ-BBI"/>
-                                                <constraint firstItem="2Op-tV-Gr5" firstAttribute="top" secondItem="ARI-uF-jCv" secondAttribute="bottom" constant="15" id="ojX-zP-gEr"/>
+                                                <constraint firstItem="2Op-tV-Gr5" firstAttribute="top" secondItem="ARI-uF-jCv" secondAttribute="bottom" constant="10" id="ojX-zP-gEr"/>
                                                 <constraint firstItem="ARI-uF-jCv" firstAttribute="centerX" secondItem="hLG-JD-m62" secondAttribute="centerX" id="uhs-oc-22N"/>
                                             </constraints>
                                         </tableViewCellContentView>

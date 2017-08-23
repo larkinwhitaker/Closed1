@@ -167,7 +167,6 @@
         
         _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
         
-        
         [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile Image"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         _profileDetails.userName.text = [self.userDetails valueForKey:@"fullname"];
         [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
@@ -229,7 +228,7 @@
         homeCell.userNameLabel.tag = indexPath.row;
         [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         
-        if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
+        if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_fullname"] isEqual:[NSNull null]]) {
             
             [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_fullname"] forState:UIControlStateNormal];
             
@@ -274,7 +273,9 @@
         
         if (messageCount == 0) {
             
-            homeCell.messageView.hidden = YES;
+            homeCell.messageView.hidden = NO;
+            homeCell.messageCountLabel.text = @"0";
+
             
         }else{
             
@@ -295,7 +296,9 @@
         
         if (likeCount <= 0) {
             
-            homeCell.likeView.hidden = YES;
+            homeCell.likeView.hidden = NO;
+            homeCell.likeCOuntLabel.text = @"0";
+
             
             
         }else{
@@ -423,7 +426,7 @@
     
     GetMailDictionary *mailDict = [[GetMailDictionary alloc]init];
     mailDict.delegate = self;
-    [mailDict getMailCOmposerDictionary:@[[self.userDetails valueForKey:@"user_email"]] withNameArray:@[[self.userDetails valueForKey:@"fullname"]] WithView:self.view];
+    [mailDict getMailCOmposerDictionary:@[[self.userDetails valueForKey:@"user_email"]] withNameArray:@[[self.userDetails valueForKey:@"user_fullname"]] WithView:self.view];
     
     
 //    if([MFMailComposeViewController canSendMail]) {

@@ -661,7 +661,7 @@
     userDetails.country = editProfileCell.countryTextField.text;
     userDetails.territory = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory];
     userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
-    userDetails.profileImage = [userData valueForKey:@"profile_image"];
+    userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
     userDetails.targetBuyers = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTargetBuyers];
     
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];

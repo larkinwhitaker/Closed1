@@ -149,7 +149,7 @@
         UILabel *dataTime = (UILabel *)[commentCell viewWithTag:4];
         UIImageView *userImage = (UIImageView *)[commentCell viewWithTag:1];
         
-        userName.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"full name"];
+        userName.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"user_fullname"];
         comment.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"content"];
         dataTime.text = [[_messageArray objectAtIndex:indexPath.row] valueForKey:@"date_recorded"];
         
@@ -211,7 +211,14 @@
                         image = user.profileImage;
                     }
                     
-                    [self.messageArray addObject:@{@"profile_image_url": image, @"content": _commnetText, @"full name":user.firstName}];
+                    NSString *userName = @"";
+                    if (user.firstName != nil) {
+                        
+                        userName = user.firstName;
+                        
+                    }
+                    
+                    [self.messageArray addObject:@{@"profile_image_url": image, @"content": _commnetText, @"user_fullname":userName}];
                     
                     [self.tableView reloadData];
 

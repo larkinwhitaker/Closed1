@@ -33,10 +33,63 @@
     
 
 }
+-(void)saveUserProfileImageForChattingView: (UIImage *)profileImage
+{
+    
+    UIImage *image = profileImage;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    UIImage *imagePicture = [Image square:image size:140];
+    UIImage *imageThumbnail = [Image square:image size:60];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
+    NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *reference1 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_picture", @"jpg")];
+    FIRStorageReference *reference2 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_thumbnail", @"jpg")];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [reference1 putData:dataPicture metadata:nil completion:^(FIRStorageMetadata *metadata1, NSError *error)
+     {
+         if (error == nil)
+         {
+             [reference2 putData:dataThumbnail metadata:nil completion:^(FIRStorageMetadata *metadata2, NSError *error)
+              {
+                  if (error == nil)
+                  {
+                      NSString *linkPicture = metadata1.downloadURL.absoluteString;
+                      NSString *linkThumbnail = metadata2.downloadURL.absoluteString;
+                      [self saveUserPictures:@{@"linkPicture":linkPicture, @"linkThumbnail":linkThumbnail}];
+                  }
+                  else [ProgressHUD showError:@"Network error."];
+              }];
+         }
+         else [ProgressHUD showError:@"Network error."];
+     }];
+    
+    
+}
+
+- (void)saveUserPictures:(NSDictionary *)links
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    FUser *user = [FUser currentUser];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    user[FUSER_PICTURE] = links[@"linkPicture"];
+    user[FUSER_THUMBNAIL] = links[@"linkThumbnail"];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [user saveInBackground:^(NSError *error)
+     {
+         NSLog(@"Error while saving profile image in Cahtting DB");
+     }];
+    
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
     self.navigationController.navigationBar.hidden = YES;
     
 
@@ -80,6 +133,12 @@
     [_profileCell.saveButton addTarget:self action:@selector(saveProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+    
+    if (![_profileCell.profileImage isEqual:[UIImage imageNamed:@"male-circle-128.png"]]) {
+        
+        
+        [self saveUserProfileImageForChattingView:_profileCell.profileImage.image];
+    }
     
     return _profileCell;
 }
@@ -233,6 +292,8 @@
     UIImage *imageThumbnail = [Image square:image size:160];
     
     [self submitImageToServer:imageThumbnail];
+    
+    [self saveUserProfileImageForChattingView:image];
     
 
 //    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);

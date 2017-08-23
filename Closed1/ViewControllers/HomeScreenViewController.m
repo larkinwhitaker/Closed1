@@ -95,7 +95,6 @@
     _refreshControl.tintColor = [UIColor whiteColor];
     self.tablView.refreshControl = _refreshControl;
     
-    [self getFreindListCount];
 }
 
 -(void)setReachabilityNotifier
@@ -121,28 +120,7 @@
 }
 
 
--(void)getFreindListCount
-{
-    
-    UserDetails *_userdDetails = [UserDetails MR_findFirst];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
-        
-        NSLog(@"%@", servreResponce);
-        
-        if ([servreResponce valueForKey:@"success"] != nil) {
-            
-            if ([[servreResponce valueForKey:@"success"] integerValue] == 1) {
-                
-                NSArray *freinListCOunt = [servreResponce valueForKey:@"data"];
-                [[NSUserDefaults standardUserDefaults] setInteger:freinListCOunt.count forKey:@"FreindRequestCount"];
-            }
-        }
-    });
-    
-}
+
 
 - (void)refreshButtonTapped:(id)sender
 
@@ -293,8 +271,10 @@
      }];
 
     }
-
+    
+    
 }
+
 
 -(void)configureSinchClient
 {
@@ -466,9 +446,9 @@
     homeCell.userNameLabel.tag = indexPath.row;
     [homeCell.userNameLabel addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] isEqual:[NSNull null]]) {
+    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_fullname"] isEqual:[NSNull null]]) {
         
-        [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"display_name"] forState:UIControlStateNormal];
+        [homeCell.userNameLabel setTitle:[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_fullname"] forState:UIControlStateNormal];
 
     }else{
         
@@ -517,8 +497,9 @@
     
     if (messageCount == 0) {
         
-        homeCell.messageView.hidden = YES;
-        
+        homeCell.messageView.hidden = NO;
+        homeCell.messageCountLabel.text = @"0";
+
     }else{
         
         homeCell.messageView.hidden = NO;
@@ -538,8 +519,9 @@
     
     if (likeCount <= 0) {
         
-        homeCell.likeView.hidden = YES;
-        
+        homeCell.likeView.hidden = NO;
+        homeCell.likeCOuntLabel.text = @"0";
+
         
     }else{
         homeCell.likeView.hidden = NO;
