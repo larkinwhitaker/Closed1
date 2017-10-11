@@ -79,7 +79,7 @@
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -163,7 +163,7 @@
     
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=setNewPassword&email=%@&password=%@",_userEmail, self.confirmPasswordTextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=setNewPassword&email=%@&password=%@",_userEmail, self.confirmPasswordTextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         

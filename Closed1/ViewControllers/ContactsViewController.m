@@ -86,7 +86,7 @@
 #pragma mark - Remove Demo Code
         
         
-        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray * arrayOfContacts = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_contacts&user_id=%lld", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -475,7 +475,7 @@
     
     
     
-    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=send_invite_emails" DictionartyToServer:@{} IsEncodingRequires:NO];
+    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"https://closed1app.com/api-mobile/?function=send_invite_emails" DictionartyToServer:@{} IsEncodingRequires:NO];
     
     NSLog(@"%@", serverResponce);
     

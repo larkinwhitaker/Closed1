@@ -604,7 +604,7 @@
     
     
     
- NSString *urlName = @"http://socialmedia.alkurn.info/api-mobile/?function=update_profile";
+ NSString *urlName = @"https://closed1app.com/api-mobile/?function=update_profile";
     
     [ClosedResverResponce sharedInstance].delegate = self;
     

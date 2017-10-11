@@ -59,7 +59,7 @@
     UserDetails *user = [UserDetails MR_findFirst];
     
     
-    NSString *URL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=getallmembers&user_id=%zd", user.userID];
+    NSString *URL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=getallmembers&user_id=%zd", user.userID];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -194,7 +194,7 @@
 
 -(void)sendFreindRequestTapped: (UIButton *)sender
 {
-    //     http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=3&friend_user_id=65
+    //     https://closed1app.com/api-mobile/?function=add_friend&initiator_user_id=3&friend_user_id=65
     
     
     
@@ -211,7 +211,7 @@
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"friend_request_result"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"friend_request_result"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             NSLog(@"%@", serverResponce);
             
@@ -249,7 +249,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=add_friend&initiator_user_id=%zd&friend_user_id=%@", user.userID,[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"ID" ]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=add_friend&initiator_user_id=%zd&friend_user_id=%@", user.userID,[[self.filteredArray objectAtIndex:sender.tag] valueForKey:@"ID" ]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         

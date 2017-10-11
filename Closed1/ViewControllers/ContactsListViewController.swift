@@ -9,6 +9,18 @@
 import UIKit
 import MessageUI
 
+extension String {
+    var first: String {
+        return String(characters.prefix(1))
+    }
+    var last: String {
+        return String(characters.suffix(1))
+    }
+    var uppercaseFirst: String {
+        return first.uppercased() + String(characters.dropFirst())
+    }
+}
+
 @objc class ContactsListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,MFMailComposeViewControllerDelegate,UIViewControllerTransitioningDelegate,ServerFailedDelegate,FreindsListDelegate,setDataInTableViewDelegate,MailSendDelegates {
     
 
@@ -65,11 +77,21 @@ import MessageUI
                     var contactListArray: Array<[String:AnyObject]>
                     contactListArray = (dataFromServer?["data"] as? Array<[String: AnyObject]>)!
                     
+                    print(contactListArray)
+                    
                     for entity in contactListArray {
                         
                         var singleDictionary = [String: AnyObject]()
                         
-                        singleDictionary["Name"] = entity["contact"]
+                        var nameOFContact = entity["contact"] as! String;
+                        
+                        print("Before Name was: \(nameOFContact)");
+                        
+                        nameOFContact =  nameOFContact.uppercaseFirst;
+                        
+                        print(nameOFContact.uppercaseFirst);
+                        
+                        singleDictionary["Name"] = nameOFContact.uppercaseFirst as AnyObject
                         
                         singleDictionary["Number"] = entity["company"]
                         
@@ -130,6 +152,11 @@ import MessageUI
             self.freindRequestCountView.isHidden = false;
             self.freinfReeustCountLabel.isHidden = false;
             
+        }else{
+            
+            self.freindRequestCountView.isHidden = true;
+            self.freinfReeustCountLabel.isHidden = true;
+
         }
 
         
@@ -346,7 +373,7 @@ import MessageUI
         
         let user: UserDetails! = UserDetails.mr_findFirst();
         
-        let url: String = String(format: "http://socialmedia.alkurn.info/api-mobile/?function=get_contacts&user_id=%lld", (user!.userID))
+        let url: String = String(format: "https://closed1app.com/api-mobile/?function=get_contacts&user_id=%lld", (user!.userID))
 
         
         
@@ -435,7 +462,7 @@ import MessageUI
             indexOfContact += countForSection[i]
         }
         
-        indexOfContact += indexPath.row == 0 ? 0 : indexPath.row - 1
+        indexOfContact += indexPath.row == 0 ? 0 : indexPath.row
         
         
 
@@ -461,13 +488,14 @@ import MessageUI
             indexOfContact += countForSection[i]
         }
         
-        indexOfContact += indexPath.row == 0 ? 0 : indexPath.row - 1
+        indexOfContact += indexPath.row == 0 ? 0 : indexPath.row 
 
         let imageName = filterednameSecarh[indexOfContact]["imageURL"] as? String
         
         cell.profileImage.sd_setImage(with: URL(string: imageName!), placeholderImage: UIImage(named: "male-circle-128.png"))
         
 
+        print(filterednameSecarh[indexOfContact]);
         
         cell.nameLabel.text = filterednameSecarh[indexOfContact]["Name"] as? String
         cell.companyLabel.text = filterednameSecarh[indexOfContact]["Number"] as? String
@@ -546,6 +574,29 @@ import MessageUI
         
         self.contactDictionary = Array<[String:AnyObject]>()
         self.getFriendListFromServer()
+        
+        var freindRequestCount = UserDefaults.standard.integer(forKey: "FreindRequestCount")
+        
+        if(freindRequestCount>0)
+        {
+            freindRequestCount = freindRequestCount - 1;
+        }
+        
+        UserDefaults.standard.set(freindRequestCount, forKey: "FreindRequestCount")
+        
+        if freindRequestCount>0 {
+            
+            self.freinfReeustCountLabel.text = "\(freindRequestCount)";
+            self.freindRequestCountView.isHidden = false;
+            self.freinfReeustCountLabel.isHidden = false;
+            
+        }else{
+            
+            self.freindRequestCountView.isHidden = true;
+            self.freinfReeustCountLabel.isHidden = true;
+            
+        }
+        
     }
     
     func serverFailed(withTitle title: String!, subtitleString subtitle: String!) {

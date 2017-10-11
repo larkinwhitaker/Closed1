@@ -156,7 +156,7 @@ errorBlock:^(NSError *error) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             [ClosedResverResponce sharedInstance].delegate = self;
-            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=forgotPassword&email=%@", self.emailtextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
+            NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=forgotPassword&email=%@", self.emailtextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             NSLog(@"%@", serverResponce);
             
@@ -198,7 +198,7 @@ errorBlock:^(NSError *error) {
     hud.detailsLabelText = @"Loggin you in";
     [ClosedResverResponce sharedInstance].delegate= self;
     
-    NSString *apiName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=getLogin&username=%@&password=%@", _emailtextField.text, _passwordTextField.text];
+    NSString *apiName = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=getLogin&username=%@&password=%@", _emailtextField.text, _passwordTextField.text];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -269,8 +269,11 @@ errorBlock:^(NSError *error) {
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
+        NSString *url = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_profile_data&user_id=%zd", _userdDetails.userID];
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_profile_data&user_id=%zd", _userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        
         
         NSLog(@"%@", serverResponce);
         
@@ -298,7 +301,7 @@ errorBlock:^(NSError *error) {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", servreResponce);
         
@@ -566,7 +569,7 @@ errorBlock:^(NSError *error) {
     hud.detailsLabelText = @"Loggin you in";
     [ClosedResverResponce sharedInstance].delegate= self;
     
-    NSString *apiName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=linkedinlogin&email=%@&device_id=%@&user_avatar_urls=%@", email, @"123", imageURL];
+    NSString *apiName = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=linkedinlogin&email=%@&device_id=%@&user_avatar_urls=%@", email, @"123", imageURL];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         

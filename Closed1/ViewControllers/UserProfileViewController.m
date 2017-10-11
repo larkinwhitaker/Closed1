@@ -249,7 +249,7 @@
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+            NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=deleteUser&ID=%zd", userDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -316,7 +316,7 @@
     
     NSDictionary *dictToServer = @{@"picture_code": [self encodeToBase64String:imagetoSend], @"user_id":[NSNumber numberWithInteger:userDetails.userID]};
 
-    NSString *apiURL = @"http://socialmedia.alkurn.info/API/buddypressread/profile_upload_photo/";
+    NSString *apiURL = @"https://closed1app.com/API/buddypressread/profile_upload_photo/";
 
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];

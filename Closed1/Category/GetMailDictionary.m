@@ -43,7 +43,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"http://socialmedia.alkurn.info/api-mobile/?function=send_invite_emails" DictionartyToServer:mailDict IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:@"https://closed1app.com/api-mobile/?function=send_invite_emails" DictionartyToServer:mailDict IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         

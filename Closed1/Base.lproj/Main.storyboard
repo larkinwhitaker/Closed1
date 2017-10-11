@@ -3581,7 +3581,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="328" height="548"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1234 5678 9012 3456" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="us2-HV-pCc">
-                                                <rect key="frame" x="20" y="20" width="239" height="30"/>
+                                                <rect key="frame" x="20" y="157" width="239" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yvU-JW-OjQ"/>
                                                 </constraints>
@@ -3589,7 +3589,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-if-cYt">
-                                                <rect key="frame" x="265" y="23" width="43" height="25"/>
+                                                <rect key="frame" x="265" y="159.5" width="43" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="43" id="0uD-Ds-yd3"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="9ys-ic-JIe"/>
@@ -3608,7 +3608,7 @@
                                                 </variation>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nun-1d-FPc">
-                                                <rect key="frame" x="20" y="68" width="288" height="30"/>
+                                                <rect key="frame" x="20" y="205" width="288" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Lex-kV-LC5"/>
                                                     <constraint firstAttribute="height" constant="30" id="oIE-dF-i3R"/>
@@ -3622,14 +3622,14 @@
                                                 </variation>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAL-QD-Hr8">
-                                                <rect key="frame" x="0.0" y="154" width="328" height="1"/>
+                                                <rect key="frame" x="0.0" y="291" width="328" height="1"/>
                                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="mmx-AH-rhF"/>
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4tb-48-C9B">
-                                                <rect key="frame" x="20" y="114" width="239" height="30"/>
+                                                <rect key="frame" x="20" y="251" width="239" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="fDb-Hf-Pfd"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="u75-gy-8kq"/>
@@ -3643,14 +3643,14 @@
                                                 </variation>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6f-ff-Iay">
-                                                <rect key="frame" x="0.0" y="202" width="328" height="1"/>
+                                                <rect key="frame" x="0.0" y="339" width="328" height="1"/>
                                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="cXW-Fx-W2Y"/>
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvc.png" translatesAutoresizingMaskIntoConstraints="NO" id="hpV-1n-k3a">
-                                                <rect key="frame" x="267" y="116.5" width="43" height="25"/>
+                                                <rect key="frame" x="267" y="253.5" width="43" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="43" id="5vH-GE-gjZ"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="9rJ-im-G0b"/>
@@ -3669,7 +3669,7 @@
                                                 </variation>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xVi-qg-AsL">
-                                                <rect key="frame" x="20" y="171" width="288" height="30"/>
+                                                <rect key="frame" x="20" y="308" width="288" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="4Xu-Oy-PhZ"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Cj7-kW-DS4"/>
@@ -3683,9 +3683,9 @@
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LM-W8-8Ny">
-                                                <rect key="frame" x="16" y="219" width="296" height="125.5"/>
-                                                <string key="text">To get started with the 3 month trial, please fill in the payment information below. After the 3 month trial period, Closed1 will start billing $1.99 per month. You will receive 1 month credit for every 3 users you invite that are not already part of Closed1.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <rect key="frame" x="16" y="20" width="296" height="117"/>
+                                                <string key="text">To get started with your free 3 month trial of Closed1, please fill in the payment information below. After the 3 month trial period, Closed1 will begin billing $1.99 per month. You will receive 1 month credit for every 3 users you invite that are new to Closed1 and complete the registration.</string>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -3694,6 +3694,7 @@
                                         <constraints>
                                             <constraint firstItem="hpV-1n-k3a" firstAttribute="leading" secondItem="4tb-48-C9B" secondAttribute="trailing" constant="8" id="4Zk-gX-4fT"/>
                                             <constraint firstItem="nun-1d-FPc" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="20" id="5Ga-U4-N6B"/>
+                                            <constraint firstItem="8LM-W8-8Ny" firstAttribute="top" secondItem="BmC-im-R9a" secondAttribute="top" constant="20" id="7RB-bT-7wZ"/>
                                             <constraint firstAttribute="trailing" secondItem="8LM-W8-8Ny" secondAttribute="trailing" constant="16" id="9Ua-Js-85G"/>
                                             <constraint firstItem="WAL-QD-Hr8" firstAttribute="top" secondItem="4tb-48-C9B" secondAttribute="bottom" constant="10" id="9di-3x-IAu"/>
                                             <constraint firstItem="WAL-QD-Hr8" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" id="B2Q-dY-Pq0"/>
@@ -3703,7 +3704,7 @@
                                             <constraint firstItem="8LM-W8-8Ny" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="16" id="O38-2a-xII"/>
                                             <constraint firstAttribute="trailing" secondItem="nun-1d-FPc" secondAttribute="trailing" constant="20" id="Q9t-eS-ucn"/>
                                             <constraint firstItem="s6f-ff-Iay" firstAttribute="top" secondItem="xVi-qg-AsL" secondAttribute="bottom" constant="1" id="TCv-he-OW6"/>
-                                            <constraint firstItem="8LM-W8-8Ny" firstAttribute="top" secondItem="s6f-ff-Iay" secondAttribute="bottom" constant="16" id="Ww4-oD-ez0"/>
+                                            <constraint firstItem="us2-HV-pCc" firstAttribute="top" secondItem="8LM-W8-8Ny" secondAttribute="bottom" constant="20" id="Z1G-tE-BEL"/>
                                             <constraint firstItem="hpV-1n-k3a" firstAttribute="centerY" secondItem="4tb-48-C9B" secondAttribute="centerY" id="crg-WE-cmY"/>
                                             <constraint firstItem="s6f-ff-Iay" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" id="d6q-Uo-gjE"/>
                                             <constraint firstAttribute="trailing" secondItem="xVi-qg-AsL" secondAttribute="trailing" constant="20" id="dGs-2L-51P"/>
@@ -3712,7 +3713,6 @@
                                             <constraint firstItem="nun-1d-FPc" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="20" id="hCb-lP-yAr"/>
                                             <constraint firstItem="4tb-48-C9B" firstAttribute="leading" secondItem="BmC-im-R9a" secondAttribute="leading" constant="20" id="hDS-Y4-x5V"/>
                                             <constraint firstItem="4tb-48-C9B" firstAttribute="top" secondItem="nun-1d-FPc" secondAttribute="bottom" constant="16" id="hVg-RM-of7"/>
-                                            <constraint firstItem="us2-HV-pCc" firstAttribute="top" secondItem="BmC-im-R9a" secondAttribute="top" constant="20" id="iNd-kH-LPd"/>
                                             <constraint firstItem="nun-1d-FPc" firstAttribute="top" secondItem="us2-HV-pCc" secondAttribute="bottom" constant="8" id="k10-m5-xQb"/>
                                             <constraint firstAttribute="trailing" secondItem="nun-1d-FPc" secondAttribute="trailing" constant="20" id="rny-Wv-4Yu"/>
                                             <constraint firstAttribute="trailing" secondItem="us2-HV-pCc" secondAttribute="trailing" constant="69" id="rpo-jH-HBy"/>
@@ -3728,14 +3728,14 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d21-a6-ZPr">
-                                        <rect key="frame" x="0.0" y="99" width="328" height="1"/>
+                                        <rect key="frame" x="0.0" y="236" width="328" height="1"/>
                                         <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ma6-p9-lIN"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-N8-2eQ">
-                                        <rect key="frame" x="0.0" y="51" width="328" height="1"/>
+                                        <rect key="frame" x="0.0" y="188" width="328" height="1"/>
                                         <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="EA2-Yv-ZPI"/>

@@ -3888,9 +3888,9 @@
 				TargetAttributes = {
 					AD7A5DC41E86DADB00C3B4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = K226Z6SSQD;
+						DevelopmentTeam = BBP8BHJUG8;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4889,7 +4889,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Closed1/Closed1.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = K226Z6SSQD;
+				DEVELOPMENT_TEAM = BBP8BHJUG8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4898,13 +4898,14 @@
 				INFOPLIST_FILE = Closed1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Closed1LLC.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97b657c3-b2a6-45b7-94b9-af6fbb57045f";
-				PROVISIONING_PROFILE_SPECIFIER = DEV_Closed;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -4916,7 +4917,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Closed1/Closed1.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = K226Z6SSQD;
+				DEVELOPMENT_TEAM = BBP8BHJUG8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4925,12 +4926,13 @@
 				INFOPLIST_FILE = Closed1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alkurn.Closed1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Closed1LLC.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97b657c3-b2a6-45b7-94b9-af6fbb57045f";
-				PROVISIONING_PROFILE_SPECIFIER = DEV_Closed;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

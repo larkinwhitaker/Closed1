@@ -190,7 +190,7 @@
         hud.dimBackground = YES;
         hud.labelText = @"Posting Comment";
         
-        NSString *URL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[self.feedsDetails  valueForKey:@"activity_id"], _commnetText];
+        NSString *URL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=feed_comment&user_id=%zd&activity_id=%@&comment=%@", user.userID,[self.feedsDetails  valueForKey:@"activity_id"], _commnetText];
         
         NSLog(@"%@", URL);
         

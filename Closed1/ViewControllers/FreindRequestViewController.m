@@ -15,7 +15,8 @@
 #import "UIImageView+WebCache.h"
 #import "ContactDetails+CoreDataProperties.h"
 
-
+#import "ChatsView.h"
+#import "ChatView.h"
 
 @interface FreindRequestViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -48,7 +49,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *servreResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_friends_request&user_id=%zd",_userdDetails.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", servreResponce);
         
@@ -66,6 +67,8 @@
                 }else{
                     
                     [[[UIAlertView alloc]initWithTitle:@"Sorry! No friend request found." message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"FreindRequestCount"];
+
                 }
             }
             
@@ -149,31 +152,115 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSString *url = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=accept_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"accept_link"] firstObject] valueForKey:@"id"]];
+        NSString *url = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=accept_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"accept_link"] firstObject] valueForKey:@"id"]];
         NSLog(@"%@", url);
         
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
             
             NSDictionary *entity = [self.friendListArray objectAtIndex:sender.tag];
             
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSString *userID = [entity valueForKey:@"user_id"];
             
-            if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+            NSString *url = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_profile_data&user_id=%@", userID];
+            
+            NSLog(@"%@", url);
+            
+            NSArray *responceDict = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
+            
+            
+            
+            
+            if (![[responceDict valueForKey:@"success"] isEqual:[NSNull null]]) {
                 
-                [self.navigationController popViewControllerAnimated:YES];
-                [self.delegate freindListAddedSucessFully];
-                
+                if ([[responceDict valueForKey:@"success"] integerValue] == 1) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        
+                        if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                            
+                            
+                            NSString *userEmail = [[responceDict valueForKey:@"data"] valueForKey:@"user_email"];
+                            
+                            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", userEmail];
+                            DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
+                            
+                            NSLog(@"%@", dbuser);
+                            
+                            
+                            NSMutableArray *oneSignalIds = [[NSMutableArray alloc] init];
+                            
+                            if ([dbuser.oneSignalId length] != 0)
+                                [oneSignalIds addObject:dbuser.oneSignalId];
+                            
+                            NSLog(@"Push notification users are : %@", oneSignalIds);
+                            
+                            NSString *fullName = self.userdDetails.firstName;
+                            
+                            
+                            NSString *message = [NSString stringWithFormat:@"%@ has accepted your friend request.", fullName];
+                            
+                            [OneSignal postNotification:@{@"contents":@{@"en":message}, @"include_player_ids":oneSignalIds}];
+                            
+                            [self.navigationController popViewControllerAnimated:YES];
+                            [self.delegate freindListAddedSucessFully];
+                            
+                        }else{
+                            
+                            [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                        }
+                        
+                    });
+                    
+                }else{
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        
+                        if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                            
+                            [self.navigationController popViewControllerAnimated:YES];
+                            [self.delegate freindListAddedSucessFully];
+                        }else{
+                            
+                            [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                            
+                        }
+                        
+                    });
+                }
             }else{
                 
-                [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    
+                    if ([[serverResponce valueForKey:@"sucess"] integerValue] == 1) {
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [self.delegate freindListAddedSucessFully];
+                    }else{
+                        
+                        [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:[serverResponce valueForKey:@"message"] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                        
+                    }
+                });
             }
             
         });
         
+
+            
+        
+       
     });
     
 }
@@ -187,7 +274,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"reject_link"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=reject_friend_request&request_id=%@", [[[[self.friendListArray objectAtIndex:sender.tag] valueForKey:@"reject_link"] firstObject] valueForKey:@"id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@", serverResponce);
         
