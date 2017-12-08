@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -72,7 +71,7 @@
 	user[FUSER_STATUS] = fieldStatus.text;
 	[user saveInBackground:^(NSError *error)
 	{
-		if (error != nil) [ProgressHUD showError:@"Network error."];
+//		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
 }
 

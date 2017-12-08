@@ -1,8 +1,9 @@
-//  ViewController.swift
-//  ASCStatus8.0
 //
-//  Created by Nazim Siddiqui on 29/01/16.
-//  Copyright © 2016 Kratin. All rights reserved.
+//  WebViewController.m
+//  Closed1
+//
+//  Created by Nazim on 26/03/17.
+//  Copyright © 2017 Alkurn. All rights reserved.
 //
 
 protocol setDataInTableViewDelegate
@@ -78,6 +79,9 @@ var count = 0
     func dismissModal()
     {
         
+        selectedName.removeAll()
+        selectedNumber.removeAll()
+        
         let selectedRows = tableView.indexPathsForSelectedRows;
         if selectedRows != nil {
             
@@ -85,8 +89,8 @@ var count = 0
                 
                 for rows in selectedRows!{
                     
-                    selectedName.append((filterednameSecarh[rows.row]["Name"] as? String)!)
-                    selectedNumber.append((filterednameSecarh[rows.row]["Number"] as? String)!)
+                    selectedName.append((filterednameSecarh[rows.section]["Name"] as? String)!)
+                    selectedNumber.append((filterednameSecarh[rows.section]["Number"] as? String)!)
                 }
                 
                 if self.delegate != nil {
@@ -315,6 +319,11 @@ var count = 0
                     //  self.getAllContacts(AddressBookHandler.getSingleAddressBookReference())
                     self.allPeople = AdressBookAscStatus.sharedInstance().getAllContacts(true)
                     self.manageContacts()
+                   
+                    self.configureSeracgBar()
+                    self.sortFilteredContacts()
+                    self.getTableViewSectionTitle()
+                    self.tableView.reloadData()
                     
                 }
             }

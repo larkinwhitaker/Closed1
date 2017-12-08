@@ -18,6 +18,7 @@
 #import "AFNetworking.h"
 #import <linkedin-sdk/LISDK.h>
 #import "JobProfile+CoreDataProperties.h"
+#import "CreditCardViewController.h"
 
 #define kTitle @"title"
 #define kCopmpany @"company"
@@ -74,13 +75,25 @@
 
 {
     [self.navigationController setNavigationBarHidden:YES];
+    self.emailtextField.text = nil;
+    self.passwordTextField.text = nil;
 
 }
 -(void)checkUserLoginStataus
 {
     UserDetails *userDetails = [UserDetails MR_findFirst];
     
-    if (userDetails.userEmail != nil) [self openHomeScreen];
+    if (userDetails.userEmail != nil){
+     
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.detailsLabelText = @"Checking Login Status";
+        hud.labelText = @"Hang on,";
+        
+        [self getUpdatedUserDetails];
+        
+        
+    }
 }
 
 - (IBAction)loginViaLinkedIn:(id)sender {
@@ -88,6 +101,7 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
+    webView.title = @"Sign in";
     [self presentViewController:webView animated:YES completion:nil];
     
     /*
@@ -200,6 +214,9 @@ errorBlock:^(NSError *error) {
     
     NSString *apiName = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=getLogin&username=%@&password=%@", _emailtextField.text, _passwordTextField.text];
     
+//    NSString *apiName = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=getLogin&username=%@&password=%@", _emailtextField.text, _passwordTextField.text];
+
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
     NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: apiName DictionartyToServer:@{} IsEncodingRequires:NO];
@@ -217,7 +234,16 @@ errorBlock:^(NSError *error) {
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
                     [self saveUserDetails:serverResponce];
-                    [self openHomeScreen];
+
+                    if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                        
+                        [self openHomeScreen];
+                        
+                    }else{
+                        
+                        [self openCreditCardScreen];
+                        
+                    }
                     
                 }else{
                     [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
@@ -239,6 +265,16 @@ errorBlock:^(NSError *error) {
     
 }
 
+
+-(void)openCreditCardScreen
+{
+    CreditCardViewController *creditcardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
+    creditcardVC.shouldOpenHomeScreen = YES;
+    creditcardVC.creditCardDetails = [[NSMutableDictionary alloc]init];
+    [self.navigationController pushViewController:creditcardVC animated:YES];
+    
+}
+
 -(void)openHomeScreen
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -256,9 +292,7 @@ errorBlock:^(NSError *error) {
                     }
                     completion:nil];
     
-    [self getFreindListCount];
-    
-    [self getUpdatedUserDetails];
+    [LoginViewController getFreindListCount];
     
 }
 
@@ -266,9 +300,9 @@ errorBlock:^(NSError *error) {
 -(void)getUpdatedUserDetails
 {
     UserDetails *_userdDetails = [UserDetails MR_findFirst];
-
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       
+        
         NSString *url = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_profile_data&user_id=%zd", _userdDetails.userID];
         
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
@@ -277,24 +311,38 @@ errorBlock:^(NSError *error) {
         
         NSLog(@"%@", serverResponce);
         
-        if (serverResponce != nil) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             
-            if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (serverResponce != nil) {
                 
-                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
-
-                    [self saveUserDetails:serverResponce];
-                    });
-                    
+                    if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                        
+                        if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                            
+                            [self saveUserDetails:serverResponce];
+                            [self openHomeScreen];
+                            
+                        }else{
+                            
+                            [self openCreditCardScreen];
+                            
+                        }
+                        
+                    }
                 }
             }
-        }
-            });
+        });
+        
+        
+    });
 }
 
--(void)getFreindListCount
++(void)getFreindListCount
 {
     
     UserDetails *_userdDetails = [UserDetails MR_findFirst];
@@ -322,79 +370,6 @@ errorBlock:^(NSError *error) {
 
 }
 
-/*
--(void)saveData: (NSArray *)userData
-{
-    
-    
-    userData = [userData valueForKey:@"data"];
-    [UserDetails MR_truncateAll];
-    [JobProfile MR_truncateAll];
-
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
-        
-        UserDetails *userDetails = [UserDetails MR_createEntityInContext:localContext];
-        
-        userDetails.userID = [[userData valueForKey:@"ID"] integerValue];
-        userDetails.firstName = [userData valueForKey:@"fullname"];
-        userDetails.userEmail = [userData valueForKey:@"user_email"];
-        userDetails.userLogin = [userData valueForKey:@"user_login"];
-        userDetails.title = [userData valueForKey:@"title"];
-        userDetails.company = [userData valueForKey:@"company"];
-        userDetails.city = [userData valueForKey:@"city"];
-        userDetails.country = [userData valueForKey:@"country"];
-        userDetails.territory = [userData valueForKey:@"territory"];
-        userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
-        userDetails.phoneNumber = [userData valueForKey:@"phone"];
-        userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
-        
-        
-        
-        
-        NSArray *flightDetailsArray = [userData valueForKey:@"profile_job"];
-        
-        if (flightDetailsArray.count != 0) {
-            
-            for (NSDictionary *singleJob in flightDetailsArray) {
-                
-                JobProfile *jobDetails = [JobProfile MR_createEntityInContext:localContext];
-                
-                jobDetails.title = [singleJob valueForKey:kTitle];
-                jobDetails.territory = [singleJob valueForKey:kTerritory];
-                jobDetails.compnay = [singleJob valueForKey:kCopmpany];
-                jobDetails.targetBuyers = [singleJob valueForKey:kTargetBuyers];
-                jobDetails.jobid = [[singleJob valueForKey:@"id"] integerValue];
-                if (![[singleJob valueForKey:kisCurrentPosition] isEqual:[NSNull null]]) {
-                    
-                    jobDetails.currentPoistion = [singleJob valueForKey:kisCurrentPosition];
-                }
-                
-                [localContext MR_saveToPersistentStoreAndWait];
-                
-                
-            }
-        }
-        
-        
-        
-        
-        [localContext MR_saveToPersistentStoreAndWait];
-        
-    }completion:^(BOOL didSave, NSError *error){
-        
-        if (!didSave) {
-            
-            NSLog(@"Error While Saving: %@", error);
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        }
-    }];
-    
-}
- 
- */
 
 
 -(void)saveUserDetails: (NSArray *)userData{
@@ -417,11 +392,10 @@ errorBlock:^(NSError *error) {
         userDetails.city = [userData valueForKey:@"city"];
         userDetails.country = [userData valueForKey:@"country"];
         userDetails.territory = [userData valueForKey:@"territory"];
-        userDetails.econdaryemail = [userData valueForKey:@"secondary email"];
         userDetails.phoneNumber = [userData valueForKey:@"phone"];
         userDetails.state = [userData valueForKey:@"state"];
         
-        if ([[userData valueForKey:@"profile Image"] isEqualToString:@""]) {
+        if ([[userData valueForKey:@"profile Image"] isEqual:@""]) {
             
             userDetails.profileImage = _imageURL;
 
@@ -583,25 +557,27 @@ errorBlock:^(NSError *error) {
             
             if (serverResponce != nil) {
                 
-                if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
-                    if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    [self saveUserDetails:serverResponce];
+
+                    if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
                         
-                        [self saveUserDetails:serverResponce];
                         [self openHomeScreen];
                         
                     }else{
-                        [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+                        
+                        [self openCreditCardScreen];
                         
                     }
                     
                 }else{
-                    [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+                    [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"It seems that your Email Id does not exist with us. Please proceed to the registration page to sign up. If you believe you received this message in error, please contact info@closed1app.com"];
                     
                 }
             }else{
                 
-                [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
+                [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"It seems that your Email Id does not exist with us. Please proceed to the registration page to sign up. If you believe you received this message in error, please contact info@closed1app.com"];
             }
         });
         

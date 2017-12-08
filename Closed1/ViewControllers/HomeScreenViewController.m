@@ -31,6 +31,9 @@
 #import "SettingsView.h"
 #import "Reachability.h"
 #import "NetworkErrorViewController.h"
+#import "TabBarHandler.h"
+#import <Realm/Realm.h>
+#import "utilities.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -117,6 +120,8 @@
     
     [_internetReachablity startNotifier];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFeedsArray) name:NSSystemTimeZoneDidChangeNotification object:nil];
+    
 }
 
 
@@ -155,13 +160,12 @@
         
         if ([FUser isOnboardOk])
         {
-            
+            [self saveProfileImageOfUserForChatting];
         }
         else{
             
             [self saveUserDetails];
-
-            
+            [self configureSinchClient];
             [ProgressHUD dismiss];
 
         }
@@ -177,6 +181,13 @@
         NSString *password = userDetails.userEmail;
         
         if(userDetails.userEmail != nil) email = userDetails.userEmail;
+        else{
+            
+            email = [NSString stringWithFormat:@"Demo User %zd", rand()];
+            password = [NSString stringWithFormat:@"Demo User %zd", rand()];
+        }
+        
+        
         
         LogoutUser(DEL_ACCOUNT_NONE);
         [FUser signInWithEmail:email password:password completion:^(FUser *user, NSError *error)
@@ -208,11 +219,10 @@
                           [ProgressHUD dismiss];
                           
                           [self configureSinchClient];
-
                           
                           
                       }
-                      else [ProgressHUD showError:[error description]];
+//                      else [ProgressHUD showError:[error description]];
                   }];
                  
                  
@@ -228,12 +238,65 @@
     
 }
 
+-(void)saveProfileImageOfUserForChatting
+{
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+
+    SDImageCache *cache = [SDImageCache sharedImageCache];
+    UIImage *inMemoryImage = [cache imageFromMemoryCacheForKey: userDetails.profileImage];
+    
+    // resolves the SDWebImage issue of image missing
+    if (inMemoryImage)
+    {
+        [self saveUserProfileImageForChattingView:inMemoryImage];
+    }
+    else if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:userDetails.profileImage]])
+    {
+        UIImage *image = [cache imageFromDiskCacheForKey:userDetails.profileImage];
+        if(image != nil){
+            [self saveUserProfileImageForChattingView:image];
+        }
+    }
+    else
+    {
+        UIImageView *demoImageView = [[UIImageView alloc]init];
+        [demoImageView sd_setImageWithURL: [NSURL URLWithString:userDetails.profileImage] placeholderImage:nil options:SDWebImageHighPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            if (error == nil) {
+                
+                if(image){
+                    [self saveUserProfileImageForChattingView:image];
+                }
+
+            }
+            
+            
+        }];
+    }
+    
+    
+    
+    
+    
+    
+    
+//    [demoImageView sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cathceType, NSURL *imageURL){
+//        
+//        if (error == nil) {
+//            
+//            [self saveUserProfileImageForChattingView:image];
+//        }
+//    }];
+
+}
+
 -(void)saveUserDetails{
 
     
         if ([FUser isOnboardOk])
         {
-            
+            [self saveProfileImageOfUserForChatting];
         }
         else{
     UserDetails *userDetails = [UserDetails MR_findFirst];
@@ -254,7 +317,7 @@
     NSString *lastName = @"User";
     NSString *location = @"Not present";
     
-    if(userDetails.firstName != nil) firstName = userDetails.firstName;
+    if(userDetails.firstName != nil) firstName = [[userDetails.firstName componentsSeparatedByString:@" "] firstObject];
     if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
     
     
@@ -267,7 +330,7 @@
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [user saveInBackground:^(NSError *error)
      {
-         if (error != nil) [ProgressHUD showError:@"Network error."];
+         if (error == nil) [self saveProfileImageOfUserForChatting];
      }];
 
     }
@@ -287,10 +350,69 @@
     [sinchClient setSupportCalling:YES];
     [sinchClient setSupportMessaging:YES];
     [sinchClient enableManagedPushNotifications];
+    
+    
+    
+    
 }
+
+
+
+-(void)saveUserProfileImageForChattingView: (UIImage *)profileImage
+{
+    
+    UIImage *image = profileImage;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    UIImage *imagePicture = [Image square:image size:140];
+    UIImage *imageThumbnail = [Image square:image size:60];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    NSData *dataPicture = UIImageJPEGRepresentation(imagePicture, 0.6);
+    NSData *dataThumbnail = UIImageJPEGRepresentation(imageThumbnail, 0.6);
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *reference1 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_picture", @"jpg")];
+    FIRStorageReference *reference2 = [[storage referenceForURL:FIREBASE_STORAGE] child:Filename(@"profile_thumbnail", @"jpg")];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [reference1 putData:dataPicture metadata:nil completion:^(FIRStorageMetadata *metadata1, NSError *error)
+     {
+         if (error == nil)
+         {
+             [reference2 putData:dataThumbnail metadata:nil completion:^(FIRStorageMetadata *metadata2, NSError *error)
+              {
+                  if (error == nil)
+                  {
+                      NSString *linkPicture = metadata1.downloadURL.absoluteString;
+                      NSString *linkThumbnail = metadata2.downloadURL.absoluteString;
+                      [self saveUserPictures:@{@"linkPicture":linkPicture, @"linkThumbnail":linkThumbnail}];
+                  }
+                  else [ProgressHUD showError:@"Network error."];
+              }];
+         }
+         else [ProgressHUD showError:@"Network error."];
+     }];
+    
+    
+}
+
+- (void)saveUserPictures:(NSDictionary *)links
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    FUser *user = [FUser currentUser];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    user[FUSER_PICTURE] = links[@"linkPicture"];
+    user[FUSER_THUMBNAIL] = links[@"linkThumbnail"];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    [user saveInBackground:^(NSError *error)
+     {
+         NSLog(@"Error while saving profile image in Cahtting DB");
+     }];
+    
+}
+
 
 -(void)getFeedsArray
 {
+
     _feedsArray = [[NSMutableArray alloc]init];
     self.tablView.delegate = nil;
     self.tablView.dataSource = nil;
@@ -302,6 +424,9 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        //http://socialmedia.alkurn.info
+        //https://closed1app.com
+        
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_user_feeds&user_id=%zd", user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -311,7 +436,13 @@
                 
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                 
-                [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
+                BOOL isfeedLiked = NO;
+                if (![[singleFeed valueForKey:@"isFeedLiked"] isEqual:[NSNull null]]) {
+                    
+                    isfeedLiked = [[singleFeed valueForKey:@"isFeedLiked"] boolValue];
+                }
+                
+                [feedDictionary setValue:[NSNumber numberWithBool:isfeedLiked] forKey:@"isLike"];
                 
                 
                 NSInteger likeCount = 0;
@@ -325,9 +456,29 @@
                 [feedDictionary setValue:[NSNumber numberWithInteger: likeCount] forKey:@"LikeCount"];
                 [feedDictionary setValue:singleFeed forKey:@"Feeds"];
                 
+
+                
+                NSString *serverdateString = [singleFeed valueForKey:@"date_recorded"];
+                // create dateFormatter with UTC time format
+                NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+                [dateFormatter2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                NSDate *date2 = [dateFormatter2 dateFromString:serverdateString]; // create date from string
+                
+                // change to a readable time format and change to local time zone
+                [dateFormatter2 setDateFormat:@"EEE, MMM d, yyyy - h:mm a"];
+                [dateFormatter2 setTimeZone:[NSTimeZone localTimeZone]];
+                NSString *timestamp2 = [dateFormatter2 stringFromDate:date2];
+                NSLog(@"date = %@", timestamp2);
+                NSDate *outputDate = [dateFormatter2 dateFromString:timestamp2];
+                
+                
+                [feedDictionary setValue:timestamp2 forKey:@"FeedTime"];
+                [feedDictionary setValue:outputDate forKey:@"FeedTimeNsDate"];
+                
                 
                 if ([[[feedDictionary valueForKey:@"Feeds"] valueForKey:@"content"] length]>1) {
-                    
+                
                     [self.feedsArray addObject:feedDictionary];
 
                 }
@@ -339,6 +490,13 @@
                 [self displayErrorForFeeds];
             }else{
                
+                
+                NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"FeedTimeNsDate" ascending:NO];
+               
+                NSArray *feedsSortedArrayy =  [self.feedsArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                
+                self.feedsArray = [NSMutableArray arrayWithArray:feedsSortedArrayy];
+                
                 self.tablView.delegate = self;
                 self.tablView.dataSource = self;
                 [self.tablView reloadData];
@@ -367,13 +525,9 @@
 -(void)displayErrorForFeeds
 {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sorry!!" message:@"No feeds found. Would you like to retry?" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction: [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *Action){
-        
-        [self getFeedsArray];
-    }]];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Welcome to Closed1!" message:@"You don't have any posted deals in your network yet, please proceed to the post a deal page and then invite the rest of your extended sales network. If you believe you received this message in error, please reach out to info@closed1app.com" preferredStyle:UIAlertControllerStyleAlert];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:nil]];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -383,14 +537,41 @@
 {
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController setNavigationBarHidden:YES];
+//
+//    //---------------------------------------------------------------------------------------------------------------------------------------------
+//    
+//    if (total != 0) {
+//        self.messageCountLabel.hidden = NO;
+//        self.messageCountView.hidden = NO;
+//        self.messageCountLabel.text = [NSString stringWithFormat:@"%zd", total];
+//        
+//    }else{
+//        self.messageCountLabel.hidden = YES;
+//        self.messageCountView.hidden = YES;
+//    }
+
+    
+    [self refreshTabCounter];
+    
+}
+
+
+- (void)refreshTabCounter
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    NSInteger total = 0;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
     RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
-    
-    NSInteger total = 0;
-    //---------------------------------------------------------------------------------------------------------------------------------------------
+    TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
+
     for (DBRecent *dbrecent in dbrecents)
         total += dbrecent.counter;
-    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    UITabBarItem *item = tabBarHandler.tabBar.items[0];
+    item.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
+    UIUserNotificationSettings *currentUserNotificationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (currentUserNotificationSettings.types & UIUserNotificationTypeBadge)
+        [UIApplication sharedApplication].applicationIconBadgeNumber = total;
     
     if (total != 0) {
         self.messageCountLabel.hidden = NO;
@@ -401,9 +582,8 @@
         self.messageCountLabel.hidden = YES;
         self.messageCountView.hidden = YES;
     }
-
-    
 }
+
 - (IBAction)messsgaeButtonTapped:(id)sender {
     
 
@@ -480,7 +660,7 @@
     [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     homeCell.profileButton.tag  = indexPath.row;
     
-    homeCell.timingLabel.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"date_recorded"];
+    homeCell.timingLabel.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"FeedTime"] ;
     
     NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
     
@@ -568,11 +748,17 @@
     
     [self.tablView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     
+    NSLog(@"%@", [[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"]);
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *likeURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%@&user_id=%@",[[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"activity_id"] ,[[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"]];
        
-       NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+       NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer: likeURL DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
+        
+        NSLog(@"%@", likeURL);
         
     });
 }

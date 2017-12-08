@@ -4,21 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Bolts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FBSDKCoreKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FBSDKLoginKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +15,11 @@
 			<false/>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Harpy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -112,7 +102,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1572966455E83990C88B3751A2B6EB2B</key>
+		<key>0F7F6ABD6BEBD7DE96E0C47A4EC20497</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,22 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C1302B7D52E7B9E460D94FBE2648561</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3359E9DBFF5C0342AF5155A14F57CC54</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>544A2EDDCEB16F71DA255224556339B8</key>
+		<key>5DABE7D68353508AD8D349E5063D9581</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EAE79ED9DE99EBD54F536DE0F413506</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,12 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69AF7296B7974FE3EE220909E68AF252</key>
+		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
+		<key>7926F5A566D101FA31BB1FB31077E0BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -177,27 +157,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A01D8E92F5BC92843CFF4A67AF167AC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9436DE8FFE3028CFF2DF8AEF0C8C000</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA0AD87A05BF55201C7808C46D09DCAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC5000D645EEAF961C85907CDC796FE1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BF5E8492AD833171E67A19F798CC6361</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C50D44646A386003EFB4055BFD521476</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -212,7 +192,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9DDBBD966EE8076AAC2C3F89654AE77</key>
+		<key>E681059202AFD9BA5E2452227B50707B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

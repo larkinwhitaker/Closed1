@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -35,7 +34,7 @@ void LogoutUser(NSInteger delAccount)
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		[NotificationCenter post:NOTIFICATION_USER_LOGGED_OUT];
 	}
-	else [ProgressHUD showError:@"Logout error."];
+//	else [ProgressHUD showError:@"Logout error."];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLLabel.h"
 
 @interface HomeScreenTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -14,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *closed1Title;
 @property (strong, nonatomic) IBOutlet UILabel *likeCOuntLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageCountLabel;
-@property (strong, nonatomic) IBOutlet UILabel *userProfileCOmmnet;
+@property (strong, nonatomic) IBOutlet HTMLLabel *userProfileCOmmnet;
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
 @property (strong, nonatomic) IBOutlet UILabel *timingLabel;
 @property (strong, nonatomic) IBOutlet UIView *likeView;

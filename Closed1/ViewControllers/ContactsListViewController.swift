@@ -21,14 +21,20 @@ extension String {
     }
 }
 
+@objc protocol ContactsSelectedProtocol: class {
+    func contactsSelectedEmail(_ email: String)
+}
+
 @objc class ContactsListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,MFMailComposeViewControllerDelegate,UIViewControllerTransitioningDelegate,ServerFailedDelegate,FreindsListDelegate,setDataInTableViewDelegate,MailSendDelegates {
     
 
    
+    @IBOutlet weak var tableViewTopConstarint: NSLayoutConstraint!
     @IBOutlet weak var freinfReeustCountLabel: UILabel!
 
     @IBOutlet weak var freindRequestCountView: UIView!
 
+    @IBOutlet weak var canceButton: UIButton!
     
     var contactDictionary = Array<[String:AnyObject]>()
     var delegate: setDataInTableViewDelegate!
@@ -41,20 +47,35 @@ extension String {
     @IBOutlet weak var  invitesButton: UIButton!
     @IBOutlet weak var  addFreinds: UIButton!
     var ismailSelected: Bool!
-    var addFreind: AddFreindsViewController!
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var iscameFromChatScreen : Bool = false
+    weak var chatsDelegate: ContactsSelectedProtocol? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let nib2 = UINib(nibName: "ContactsTableViewCell", bundle: nil)
         tableView.register(nib2, forCellReuseIdentifier: "ContactsTableViewCell")
         
-        addFreind = self.storyboard?.instantiateViewController(withIdentifier: "AddFreindsViewController") as! AddFreindsViewController
+        
+        if(self.iscameFromChatScreen){
+
+            self.tableViewTopConstarint.constant = 0;
+        }else{
+            self.tableViewTopConstarint.constant = -20;
+
+        }
         
         getFriendListFromServer()
+    }
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -83,6 +104,8 @@ extension String {
                         
                         var singleDictionary = [String: AnyObject]()
                         
+                        print(entity);
+                        
                         var nameOFContact = entity["contact"] as! String;
                         
                         print("Before Name was: \(nameOFContact)");
@@ -98,7 +121,9 @@ extension String {
                         singleDictionary["title"] = entity["title"]
                         
                         singleDictionary["imageURL"] = entity["profile_image_url"]
-                        singleDictionary["user_id"] = entity["user_id"]
+                        singleDictionary["user_id"] = entity["user_id"];
+                        singleDictionary["user_email"] = entity["user_email"];
+
                         
                         self.contactDictionary.append(singleDictionary)
                     }
@@ -111,14 +136,16 @@ extension String {
                         MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                         self.tableView.setContentOffset(CGPoint.zero, animated: true)
                         
-                        
-                        if  !(UserDefaults.standard.bool(forKey: "FirstTimeExperienceContacts")){
+                        if(!self.iscameFromChatScreen){
                             
-                            let tourTip = NZTourTip.init(views: [self.freindRequest, self.invitesButton, self.addFreinds], withMessages: ["Tap this to display the pending friend request","Tap this to send invites to people to use Closed1 app","Tap this to add friends which are using closed1"], onScreen: self.view)
-                            tourTip?.show()
-                            UserDefaults.standard.set(true, forKey: "FirstTimeExperienceContacts")
+                            if  !(UserDefaults.standard.bool(forKey: "FirstTimeExperienceContacts")){
+                                
+                                let tourTip = NZTourTip.init(views: [self.freindRequest, self.invitesButton, self.addFreinds], withMessages: ["Tap this to display the pending friend request","Tap this to send invites to people to use Closed1 app","Tap this to add friends which are using closed1"], onScreen: self.view)
+                                tourTip?.show()
+                                UserDefaults.standard.set(true, forKey: "FirstTimeExperienceContacts")
+                            }
+                            
                         }
-                        
                     }
                     
                 }else{
@@ -143,22 +170,45 @@ extension String {
     
     override func viewWillAppear(_ animated: Bool) {
         
-     createCustumNavigationBar()
-    
-        let freingRequestCount = UserDefaults.standard.integer(forKey: "FreindRequestCount")
-        if freingRequestCount>0 {
+        LoginViewController.getFreindListCount()
+        
+        if(iscameFromChatScreen){
             
-            self.freinfReeustCountLabel.text = "\(freingRequestCount)";
-            self.freindRequestCountView.isHidden = false;
-            self.freinfReeustCountLabel.isHidden = false;
+            self.freindRequest.isHidden = true;
+            self.freindRequestCountView.isHidden = true;
+            self.addFreinds.isHidden = true;
+            self.invitesButton.isHidden = true;
+            self.canceButton.isHidden = false;
             
         }else{
+            createCustumNavigationBar()
+            self.freindRequest.isHidden = false;
+            self.freindRequestCountView.isHidden = false;
+            self.addFreinds.isHidden = false;
+            self.invitesButton.isHidden = false;
+            self.canceButton.isHidden = true;
             
-            self.freindRequestCountView.isHidden = true;
-            self.freinfReeustCountLabel.isHidden = true;
+            let freingRequestCount = UserDefaults.standard.integer(forKey: "FreindRequestCount")
+           
 
+            if freingRequestCount>0 {
+                
+                self.freinfReeustCountLabel.text = "\(freingRequestCount)";
+                self.freindRequestCountView.isHidden = false;
+                self.freinfReeustCountLabel.isHidden = false;
+                self.tabBarItem.badgeValue = "\(freingRequestCount)";
+
+            }else{
+                
+                self.freindRequestCountView.isHidden = true;
+                self.freinfReeustCountLabel.isHidden = true;
+                self.tabBarItem.badgeValue = nil;
+
+                
+            }
+            
+            UIApplication.shared.applicationIconBadgeNumber = freingRequestCount;
         }
-
         
     }
     
@@ -338,7 +388,7 @@ extension String {
                 let messageController = MFMessageComposeViewController()
                 messageController.messageComposeDelegate = self;
                 messageController.recipients = number
-                messageController.body = "Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join"
+                messageController.body = "Hi, I would like to invite you to join me on Closed1 to help each other close more deals! Please see the link below to join\n\nhttps://itunes.apple.com/app/id1292742901"
                 self.present(messageController, animated: true, completion: nil)
                 
                 
@@ -355,6 +405,8 @@ extension String {
     
     func addFreindList() {
         
+        let  addFreind = self.storyboard?.instantiateViewController(withIdentifier: "AddFreindsViewController") as! AddFreindsViewController
+
         self.navigationController?.pushViewController(addFreind, animated: true)
     }
     
@@ -372,6 +424,8 @@ extension String {
         let semaphore = DispatchSemaphore(value: 0)
         
         let user: UserDetails! = UserDetails.mr_findFirst();
+        
+        
         
         let url: String = String(format: "https://closed1app.com/api-mobile/?function=get_contacts&user_id=%lld", (user!.userID))
 
@@ -448,12 +502,14 @@ extension String {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        count += 1
-        /// To remove the selected tableview default blue color
-        let cell = tableView.cellForRow(at: indexPath)
-        let backGroundView = UIView()
-        backGroundView.backgroundColor = UIColor.clear
-        cell!.selectedBackgroundView = backGroundView
+        
+//        var indexOfContact:Int = 0
+//        
+//        for i in 0  ..< indexPath.section
+//        {
+//            indexOfContact += countForSection[i]
+//        }
+//        
         
         var indexOfContact:Int = 0
         
@@ -464,15 +520,41 @@ extension String {
         
         indexOfContact += indexPath.row == 0 ? 0 : indexPath.row
         
-        
 
         
-        
-        
-        let profileScreen: ProfileDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "ProfileDetailViewController") as! ProfileDetailViewController
-        profileScreen.userid = (filterednameSecarh[indexOfContact]["user_id"] as? NSInteger)!
-        self.navigationController?.pushViewController(profileScreen, animated: true)
-        
+        if(iscameFromChatScreen){
+            
+            if chatsDelegate != nil {
+                
+                if((filterednameSecarh[indexOfContact]["user_email"] != nil)){
+                    
+                    chatsDelegate?.contactsSelectedEmail(filterednameSecarh[indexOfContact]["user_email"] as! String)
+                    
+                }else{
+                    
+                    chatsDelegate?.contactsSelectedEmail("demo@gmail.com")
+                }
+                
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }else{
+            
+            /// To remove the selected tableview default blue color
+//            let cell = tableView.cellForRow(at: indexPath)
+//            let backGroundView = UIView()
+//            backGroundView.backgroundColor = UIColor.clear
+//            cell!.selectedBackgroundView = backGroundView
+            
+            
+            indexOfContact += indexPath.row == 0 ? 0 : indexPath.row
+            
+            let profileScreen: ProfileDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "ProfileDetailViewController") as! ProfileDetailViewController
+            profileScreen.userid = (filterednameSecarh[indexOfContact]["user_id"] as? NSInteger)!
+            self.navigationController?.pushViewController(profileScreen, animated: true)
+            
+        }
         
     }
     

@@ -16,5 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *editProfile;
 @property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIButton *cancelSubscriptionButton;
+@property (weak, nonatomic) IBOutlet UIButton *updateCardButton;
 
 @end

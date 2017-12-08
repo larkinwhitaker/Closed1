@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -162,7 +161,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[user saveInBackground:^(NSError *error)
 	{
-		if (error != nil) [ProgressHUD showError:@"Network error."];
+//		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -174,7 +173,7 @@
 	user[FUSER_AUTOSAVEMEDIA] = @(autoSaveMedia);
 	[user saveInBackground:^(NSError *error)
 	{
-		if (error != nil) [ProgressHUD showError:@"Network error."];
+//		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -364,7 +363,7 @@
 		{
 			UserLoggedIn(LOGIN_EMAIL);
 		}
-		else [ProgressHUD showError:[error description]];
+//		else [ProgressHUD showError:[error description]];
 	}];
 }
 
@@ -418,10 +417,10 @@
 					NSString *linkThumbnail = metadata2.downloadURL.absoluteString;
 					[self saveUserPictures:@{@"linkPicture":linkPicture, @"linkThumbnail":linkThumbnail}];
 				}
-				else [ProgressHUD showError:@"Network error."];
+//				else [ProgressHUD showError:@"Network error."];
 			}];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[picker dismissViewControllerAnimated:YES completion:nil];

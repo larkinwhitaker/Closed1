@@ -31,8 +31,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
+    
+    
 }
+
 -(void)saveUserProfileImageForChattingView: (UIImage *)profileImage
 {
     
@@ -134,12 +136,7 @@
     [_profileCell.changeProfileButton addTarget:self action:@selector(displayAlertForChoosingCamera) forControlEvents:UIControlEventTouchUpInside];
     [_profileCell.profileImage sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
     
-    if (![_profileCell.profileImage isEqual:[UIImage imageNamed:@"male-circle-128.png"]]) {
         
-        
-        [self saveUserProfileImageForChattingView:_profileCell.profileImage.image];
-    }
-    
     return _profileCell;
 }
 

@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -63,7 +62,7 @@
 			}
 			else [ProgressHUD dismiss];
 		}
-		else [ProgressHUD showError:[error description]];
+//		else [ProgressHUD showError:[error description]];
 	}];
 }
 
@@ -71,22 +70,6 @@
 - (void)signInWithFacebook:(void (^)(FUser *user, NSError *error))completion
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-	NSArray *permissions = @[@"public_profile", @"email", @"user_friends"];
-	[login logInWithReadPermissions:permissions fromViewController:self handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
-	{
-		if (error == nil)
-		{
-			if (result.isCancelled == NO)
-			{
-				NSString *accessToken = [FBSDKAccessToken currentAccessToken].tokenString;
-				FIRAuthCredential *credential = [FIRFacebookAuthProvider credentialWithAccessToken:accessToken];
-				[FUser signInWithCredential:credential completion:completion];
-			}
-			else if (completion != nil) completion(nil, nil);
-		}
-		else if (completion != nil) completion(nil, error);
-	}];
 }
 
 #pragma mark - Email login methods

@@ -7,8 +7,6 @@ target 'Closed1' do
 
 pod 'Fabric'
 pod 'Crashlytics'
-pod 'FBSDKCoreKit'
-pod 'FBSDKLoginKit'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
@@ -18,6 +16,7 @@ pod 'OneSignal'
 pod 'Realm', '2.1.2'
 pod 'SinchRTC'
 pod 'Firebase/Messaging'
+pod 'Harpy'
 
 pod 'IQAudioRecorderController'
 pod 'JSQMessagesViewController'

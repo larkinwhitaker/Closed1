@@ -40,6 +40,9 @@
     self.searchDisplayController.searchResultsTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"signup_bgr"]];
 
     self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    
+    self.searchDisplayController.searchResultsTableView.allowsSelection = NO;
+    self.searchDisplayController.searchResultsTableView.allowsSelectionDuringEditing = NO;
 
 
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
@@ -52,6 +55,9 @@
     _refreshControl.backgroundColor = [UIColor clearColor];
     _refreshControl.tintColor = [UIColor whiteColor];
     self.tableView.refreshControl = _refreshControl;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFeedsArray) name:NSSystemTimeZoneDidChangeNotification object:nil];
+
 }
 
 -(void)hideRefreshControl
@@ -77,6 +83,7 @@
 {
     _feedsArray = [[NSMutableArray alloc]init];
     _filteredArray = [[NSMutableArray alloc]init];
+    [self.tableView reloadData];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
@@ -97,7 +104,13 @@
                 
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                 
-                [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
+                BOOL isfeedLiked = NO;
+                if (![[singleFeed valueForKey:@"isFeedLiked"] isEqual:[NSNull null]]) {
+                    
+                    isfeedLiked = [[singleFeed valueForKey:@"isFeedLiked"] boolValue];
+                }
+                
+                [feedDictionary setValue:[NSNumber numberWithBool:isfeedLiked] forKey:@"isLike"];
             
                 NSInteger likeCount = 0;
                 
@@ -112,21 +125,47 @@
                 [feedDictionary setValue:[singleFeed valueForKey:@"Title"] forKey:@"Title"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"closed"] forKey:@"closed"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"date_recorded"] forKey:@"date_recorded"];
-
+                [feedDictionary setValue:[singleFeed valueForKey:@"activity_id"] forKey:@"activity_id"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"content"] forKey:@"content"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"user_id"] forKey:@"user_id"];
 
                 [feedDictionary setValue:[singleFeed valueForKey:@"company"] forKey:@"company"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"message_count"] forKey:@"message_count"];
+                
+                
+                NSString *serverdateString = [singleFeed valueForKey:@"date_recorded"];
+                // create dateFormatter with UTC time format
+                NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+                [dateFormatter2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                NSDate *date2 = [dateFormatter2 dateFromString:serverdateString]; // create date from string
+                
+                // change to a readable time format and change to local time zone
+                [dateFormatter2 setDateFormat:@"EEE, MMM d, yyyy - h:mm a"];
+                [dateFormatter2 setTimeZone:[NSTimeZone localTimeZone]];
+                NSString *timestamp2 = [dateFormatter2 stringFromDate:date2];
+                NSLog(@"date = %@", timestamp2);
+                NSDate *outputDate = [dateFormatter2 dateFromString:timestamp2];
+                
+                
+                [feedDictionary setValue:timestamp2 forKey:@"FeedTime"];
+                [feedDictionary setValue:outputDate forKey:@"FeedTimeNsDate"];
+                
 
                 
                 if ([[singleFeed valueForKey:@"content"] length]>1) {
-                    
+                
                     [self.feedsArray addObject:feedDictionary];
                     
                 }
             }
             
+//            NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"FeedTimeNsDate" ascending:NO];
+//            
+//            NSArray *feedsSortedArrayy =  [self.feedsArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+//            
+//            self.feedsArray = [NSMutableArray arrayWithArray:feedsSortedArrayy];
+//            
             self.filteredArray = _feedsArray;
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
@@ -223,7 +262,7 @@
     [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     homeCell.profileButton.tag  = indexPath.row;
     
-    homeCell.timingLabel.text = [[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"date_recorded"];
+    homeCell.timingLabel.text = [[_filteredArray objectAtIndex:indexPath.row]  valueForKey:@"FeedTime"];
     
     NSInteger likeCount = [[[_filteredArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
     
@@ -309,7 +348,7 @@
         [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         homeCell.profileButton.tag  = indexPath.row;
         
-        homeCell.timingLabel.text = [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"date_recorded"];
+        homeCell.timingLabel.text = [[_feedsArray objectAtIndex:indexPath.row]  valueForKey:@"FeedTime"];
         
         NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
         
@@ -426,9 +465,13 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSString *likeURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%@&user_id=%@",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"activity_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]];
+        
+        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer: likeURL DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
+        
+        NSLog(@"%@", likeURL);
         
     });
 }

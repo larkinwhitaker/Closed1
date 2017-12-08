@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
+// Copyright (c) 
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -774,7 +774,7 @@
 	{
 		[ProgressHUD showSuccess:@"Successfully saved."];
 	}
-	else [ProgressHUD showError:@"Save failed."];
+//	else [ProgressHUD showError:@"Save failed."];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -91,7 +90,7 @@
 		{
 			group = object;
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -146,7 +145,7 @@
 			labelName.text = name;
 			[Recent updateDescription:group];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -163,7 +162,7 @@
 		{
 			[Recent updatePicture:group];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -189,7 +188,7 @@
 			[Chat startGroup1:group];
 			[Recent updateMembers:group];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -206,7 +205,7 @@
 		{
 			[Recent updateMembers:group];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -228,7 +227,7 @@
 			[self.navigationController popToRootViewControllerAnimated:YES];
 			[NotificationCenter post:NOTIFICATION_CLEANUP_CHATVIEW];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -383,7 +382,7 @@
 			imageGroup.image = imagePicture;
 			[self saveGroupPicture:metadata.downloadURL.absoluteString];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[task observeStatus:FIRStorageTaskStatusProgress handler:^(FIRStorageTaskSnapshot *snapshot)

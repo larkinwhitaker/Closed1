@@ -96,6 +96,7 @@
 {
     CreditCardViewController *creditcardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
     creditcardVC.delegate = self;
+    creditcardVC.isComeFromSignup = YES;
     creditcardVC.creditCardDetails = self.creditCardDictionary;
     [self.navigationController pushViewController:creditcardVC animated:YES];
     
@@ -174,7 +175,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1140;
+    return 1100;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,7 +199,6 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.title = @"Terms & Conditions";
     webView.urlString = @"https://closed1app.com/terms-of-service/";
-    
     [self presentViewController:webView animated:YES completion:nil];
     
     
@@ -300,10 +300,6 @@
         
         [self animateView:_signupCell.territoryTextFiled];
 
-    }else if([[_signupCell.secondaryEmailTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
-        
-        [self animateView:_signupCell.secondaryEmailTextFiled];
-
     }else if([[_signupCell.territoryTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
         
         [self animateView:_signupCell.territoryTextFiled];
@@ -320,11 +316,6 @@
            
             [self animateView:_signupCell.emailtextField];
             [self.tableView setContentOffset:CGPointZero animated:YES];
-
-        
-        }else if([emailPredicate evaluateWithObject: _signupCell.secondaryEmailTextFiled.text] == NO){
-            
-            [self animateView:_signupCell.secondaryEmailTextFiled];
 
         }else{
             
@@ -354,6 +345,7 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
+    webView.title = @"Sign up";
     [self presentViewController:webView animated:YES completion:nil];
 
 }
@@ -403,6 +395,7 @@
                     self.signupCell.emailtextField.text = [arrayOfDictionaryFromServer valueForKey:@"emailAddress"];
                     self.signupCell.fullNameTextField.text = [NSString stringWithFormat:@"%@ %@", [arrayOfDictionaryFromServer valueForKey:@"firstName"], [arrayOfDictionaryFromServer valueForKey:@"lastName"]];
                     self.signupCell.titletextField.text = [arrayOfDictionaryFromServer valueForKey:@"headline"];
+                    self.signupCell.usenameTextField.text =[[[arrayOfDictionaryFromServer valueForKey:@"emailAddress"] componentsSeparatedByString:@"@"] firstObject];
                     self.imageURL = [arrayOfDictionaryFromServer valueForKey:@"pictureUrl"];
                     
                 });
@@ -438,11 +431,12 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        NSString *reuestURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.secondaryEmailTextFiled.text, _signupCell.secondaryEmailTextFiled.text, deviceID, _imageURL];
+//       NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@&number=%@&exp_month=%@&exp_year=%@&cvc=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.secondaryEmailTextFiled.text, _signupCell.secondaryEmailTextFiled.text, deviceID, _imageURL, [self.creditCardDictionary valueForKey:@"cardnumber"], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] firstObject], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] lastObject], [self.creditCardDictionary valueForKey:@"CreditCardCVV"]];
         
         
-    
-
+        NSString *reuestURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@&number=%@&exp_month=%@&exp_year=%@&cvc=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.targetBuyersTextFiled.text, deviceID, _imageURL, [self.creditCardDictionary valueForKey:@"cardnumber"], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] firstObject], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] lastObject], [self.creditCardDictionary valueForKey:@"CreditCardCVV"]];
+        
+        
         
         
         NSLog(@"%@", reuestURL);
@@ -462,8 +456,8 @@
                     
                     if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                         
-                        [self saveUserDetails:serverResponce];
-                        [self openHomeScreen];
+                            [self saveUserDetails:serverResponce];
+                            [self openHomeScreen];
                         
                     }else{
                         [self serverFailedWithTitle:@"Signup Failed" SubtitleString:[serverResponce valueForKey:@"data"]];
@@ -471,7 +465,7 @@
                     }
                     
                 }else{
-                    [self serverFailedWithTitle:@"Signup Failed" SubtitleString:@"We occured some error. Please try again later"];
+                    [self serverFailedWithTitle:@"Signup Failed" SubtitleString:[serverResponce valueForKey:@"data"]];
                     
                 }
             }else{
@@ -508,7 +502,6 @@
         
         userDetails.country = countryString;
         userDetails.territory = self.signupCell.territoryTextFiled.text;
-        userDetails.econdaryemail = self.signupCell.secondaryEmailTextFiled.text;
          userDetails.phoneNumber = _signupCell.phoneNumberTextField.text;
         userDetails.state = _signupCell.stateTextField.text;
         

@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -147,7 +146,7 @@
 			[ProgressHUD dismiss];
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 }
 
@@ -219,7 +218,7 @@
 			imageGroup.image = imagePicture;
 			linkPicture = metadata.downloadURL.absoluteString;
 		}
-		else [ProgressHUD showError:@"Network error."];
+//		else [ProgressHUD showError:@"Network error."];
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[task observeStatus:FIRStorageTaskStatusProgress handler:^(FIRStorageTaskSnapshot *snapshot)

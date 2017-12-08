@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>27611045023-90aqdaltpduleu23tko0ispj8cjmit7q.apps.googleusercontent.com</string>
+	<string>508911524229-p71hkn2gabalhmbd4m5slip9e23gutr1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.27611045023-90aqdaltpduleu23tko0ispj8cjmit7q</string>
+	<string>com.googleusercontent.apps.508911524229-p71hkn2gabalhmbd4m5slip9e23gutr1</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAVCvQpd5yhjOSukHJ8lRItGC8f8nEeSyg</string>
+	<string>AIzaSyCrDJk27sN9JYP9tP0JaGZMFxYSj_lPQTc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>27611045023</string>
+	<string>508911524229</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.alkurn.Closed1</string>
+	<string>com.Closed1LLC.Closed1</string>
 	<key>PROJECT_ID</key>
-	<string>closed1-3a9e3</string>
+	<string>closed1-llc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>closed1-3a9e3.appspot.com</string>
+	<string>closed1-llc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:27611045023:ios:bc6c216a73671cdb</string>
+	<string>1:508911524229:ios:af0273ad45ad40ad</string>
 	<key>DATABASE_URL</key>
-	<string>https://closed1-3a9e3.firebaseio.com</string>
+	<string>https://closed1-llc.firebaseio.com</string>
 </dict>
 </plist>

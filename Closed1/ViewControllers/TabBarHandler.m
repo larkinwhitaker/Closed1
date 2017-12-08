@@ -14,6 +14,8 @@
 #import "NavigationController.h"
 #import "SettingsViewController.h"
 #import "FreindRequestViewController.h"
+#import "ChatsView.h"
+#import "NavigationController.h"
 
 #import "PJXAnimatedTabBarController.h"
 #import "PJXAnimatedTabBarItem.h"
@@ -38,6 +40,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRecieved:) name:@"Notificationrecived" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationForMessageRecieved:) name:@"NotificationMessage" object:nil];
+
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFeedsAvailable) name:@"NewFeedsAvilable" object:nil];
     
@@ -58,11 +63,14 @@
     secondTabBarItem.animation = bounceAnimation;
     secondTabBarItem.badgeValue = @"2";
     secondTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
-    
+    NSInteger total = [[NSUserDefaults standardUserDefaults] integerForKey:@"FreindRequestCount"];
+    secondTabBarItem.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
+
     ContactsListViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
 //    ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
     contactScreen.tabBarItem = secondTabBarItem;
-    
+    contactScreen.iscameFromChatScreen = NO;
+    contactScreen.tabBarItem.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
     PJXAnimatedTabBarItem *thirdTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Search" image:[UIImage imageNamed:@"SearchTabBarSelectedImage"] selectedImage:nil];
     thirdTabBarItem.animation = bounceAnimation;
     thirdTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
@@ -83,10 +91,9 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
     settings.tabBarItem = fifthTabBarItem;
     
     
-    self.viewControllers = @[homeScreen, contactScreen, searchView, shareDeal, settings];
+    self.viewControllers = @[homeScreen, contactScreen,shareDeal, searchView, settings];
     
     [super viewDidLoad];
-
     
 }
 
@@ -99,20 +106,13 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
 {
     self.selectedIndex = 0;
     
-    
 }
 
 
 -(void)newFeedsAvailable
 
 {
-    NSArray<PJXAnimatedTabBarItem *> *items = (NSArray<PJXAnimatedTabBarItem *> *)self.tabBar.items;
-
-    PJXAnimatedTabBarItem *deselectItem = (PJXAnimatedTabBarItem *)items[3];
-    [deselectItem deselectAnimation];
-
-    PJXAnimatedTabBarItem *selectedItem = (PJXAnimatedTabBarItem *)items[0];
-    [selectedItem selectedState];
+    [self selectetabTabWithselcetdIndex:0];
 
     /*
     NSArray<PJXAnimatedTabBarItem *> *items = (NSArray<PJXAnimatedTabBarItem *> *)self.tabBar.items;
@@ -161,8 +161,37 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
     FreindRequestViewController  *freinds = [self.storyboard instantiateViewControllerWithIdentifier:@"FreindRequestViewController"];
     [self.navigationController pushViewController:freinds animated:YES];
 
+    [self selectetabTabWithselcetdIndex:1];
+}
+
+-(void)notificationForMessageRecieved: (NSNotification *)notification
+{
+    
+    self.selectedIndex = 0;
+    ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
+    
+    NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
+    
+    [self presentViewController:navController1 animated:YES completion:nil];
+    
+    [self newFeedsAvailable];
     
     
+}
+
+-(void)selectetabTabWithselcetdIndex: (NSInteger) index
+{
+    NSArray<PJXAnimatedTabBarItem *> *items = (NSArray<PJXAnimatedTabBarItem *> *)self.tabBar.items;
+    
+    
+    for (NSInteger i = 0; i<items.count; i++) {
+        PJXAnimatedTabBarItem *deselectItem = (PJXAnimatedTabBarItem *)items[i];
+        [deselectItem deselectAnimation];
+    }
+    
+    
+    PJXAnimatedTabBarItem *selectedItem = (PJXAnimatedTabBarItem *)items[index];
+    [selectedItem selectedState];
 }
 
 @end

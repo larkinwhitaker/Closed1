@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "519854631.799331"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-signupButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,11 +158,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "522413220.268409"
+            timestampString = "529676183.599811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,11 +174,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "731"
+            endingLineNumber = "731"
             landmarkName = "-likeButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-refreshButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,11 +206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-getLoginWithChattingView"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/Third Party/Chatting/Classes/Tabs/01_Chats/ChatsView.m"
-            timestampString = "514149782.388593"
+            timestampString = "533058220.192792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "-didSelectSingleUser:"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,11 +302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "-searchDisplayController:shouldReloadTableForSearchString:"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,11 +350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522619041.250531"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,11 +366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "518118310.301645"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,15 +378,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "522402615.51952"
+            timestampString = "529744530.657453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-submitDataToServer"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,11 +398,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529681204.408448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
             landmarkName = "-messageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,12 +414,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/AppDelegate.m"
-            timestampString = "519317191.249933"
+            timestampString = "532419371.154207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
-            landmarkName = "-application:didReceiveRemoteNotification:"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "-application:didFailToRegisterForRemoteNotificationsWithError:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -430,12 +430,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/AppDelegate.m"
-            timestampString = "519317191.249933"
+            timestampString = "532419371.154207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-userNotificationCenter:willPresentNotification:withCompletionHandler:"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
+            landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -474,84 +474,6 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "ContactsListViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Closed1.ContactsListViewController.searchBar.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UISearchBar&gt;"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/ContactsListViewController.swift"
-                  timestampString = "517041327.15952"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Closed1.ContactsListViewController.searchBar.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UISearchBar&gt;"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/ContactsListViewController.swift"
-                  timestampString = "517041327.161965"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Closed1.ContactsListViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Closed1.ContactsListViewController"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/ContactsListViewController.swift"
-                  timestampString = "517041327.164361"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "591">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Closed1.ContactsListViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Closed1.ContactsListViewController&gt;"
-                  moduleName = "Closed1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/ContactsListViewController.swift"
-                  timestampString = "517041327.167355"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "519">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -565,44 +487,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/OpenAdressBook.swift"
-            timestampString = "517049485.318392"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "dismissModal()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
-            landmarkName = "-textFieldDidEndEditing:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "619"
-            endingLineNumber = "619"
+            startingLineNumber = "598"
+            endingLineNumber = "598"
             landmarkName = "-textFieldShouldReturn:"
             landmarkType = "7">
          </BreakpointContent>
@@ -613,14 +503,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "519854631.799331"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "-signupButtonTapped:"
-            landmarkType = "7">
+            startingLineNumber = "603"
+            endingLineNumber = "603"
+            landmarkName = "@implementation LoginViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -630,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "519854631.799331"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "-signupButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -646,12 +536,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "618"
+            endingLineNumber = "618"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -662,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -694,13 +584,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/AppDelegate.m"
-            timestampString = "519317191.249933"
+            timestampString = "532419371.154207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "-messaging:didRefreshRegistrationToken:"
-            landmarkType = "7">
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "@implementation AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -742,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "533015581.139642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "-submitImageToServer:"
             landmarkType = "7">
          </BreakpointContent>
@@ -758,11 +648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "533015581.139642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "-submitImageToServer:"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "533015581.139642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-submitImageToServer:"
             landmarkType = "7">
             <Locations>
@@ -822,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "533015581.139642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "-submitImageToServer:"
             landmarkType = "7">
          </BreakpointContent>
@@ -838,11 +728,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "578"
-            endingLineNumber = "578"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
             landmarkName = "-submitDataViaLinkedIn:withImageURl:"
             landmarkType = "7">
          </BreakpointContent>
@@ -854,11 +744,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "533014597.200017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -875,7 +765,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
             endingLineNumber = "144"
-            landmarkName = "-connectToFCM"
+            landmarkName = "-tokenRefreshNotification:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -891,7 +781,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "-tokenRefreshNotification:"
+            landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -902,28 +792,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/AppDelegate.m"
-            timestampString = "519317191.249933"
+            timestampString = "532419371.154207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "-messaging:didRefreshRegistrationToken:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/AppDelegate.m"
-            timestampString = "519317191.249933"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "-application:didRegisterForRemoteNotificationsWithDeviceToken:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1028,12 +902,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "533065386.283168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "-getFreindListCount"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "+getFreindListCount"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1043,28 +917,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "ContactsListViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522616623.502345"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
             <Locations>
@@ -1108,11 +966,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522615181.225847"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,27 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522615181.225847"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-getFeedsArray"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522616623.502345"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -1156,11 +998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "519854631.799331"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "-signupLinkedInTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,11 +1014,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529681204.408448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
             landmarkName = "-messageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,11 +1030,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SettingsViewController.m"
-            timestampString = "522439003.090232"
+            timestampString = "529761966.45931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "-reloadTableData"
             landmarkType = "7">
          </BreakpointContent>
@@ -1204,11 +1046,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529676183.599811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1364,27 +1206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "417"
-            endingLineNumber = "417"
-            landmarkName = "-saveUserDetails:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1396,11 +1222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522619041.250531"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1412,11 +1238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1428,11 +1254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1444,11 +1270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529676183.599811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1460,27 +1286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "521212660.198663"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "521401354.289367"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "-textFieldDidEndEditing:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1492,11 +1302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "521401354.289367"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "607"
-            endingLineNumber = "607"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "-submitDataToServer"
             landmarkType = "7">
          </BreakpointContent>
@@ -1507,30 +1317,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "@implementation LoginViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "-configureSinchClient"
-            landmarkType = "7">
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "@implementation HomeScreenViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1587,28 +1381,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "@implementation LoginViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "521401354.289367"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "615"
-            endingLineNumber = "615"
+            startingLineNumber = "575"
+            endingLineNumber = "575"
             landmarkName = "-submitDataToServer"
             landmarkType = "7">
          </BreakpointContent>
@@ -1627,22 +1405,6 @@
             endingLineNumber = "91"
             landmarkName = "-dataFromServerWithURL:WithApiName:DictionaryToServer:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "@implementation LoginViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1684,11 +1446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529676183.599811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1764,11 +1526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "-userImageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1780,11 +1542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
             landmarkName = "-userImageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1796,11 +1558,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "431"
-            endingLineNumber = "431"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1812,11 +1574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "524231799.828324"
+            timestampString = "529676183.599811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1876,11 +1638,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522615181.225847"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -1892,11 +1654,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "-userImageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1908,11 +1670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "-userImageButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1940,28 +1702,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "533065386.283168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "-getFreindListCount"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "-getUpdatedUserDetails"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "+getFreindListCount"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1972,11 +1718,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "524213764.509873"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1988,11 +1734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2004,11 +1750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "727"
+            endingLineNumber = "727"
             landmarkName = "-likeButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2020,11 +1766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2036,11 +1782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "664"
+            endingLineNumber = "664"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2052,11 +1798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2068,11 +1814,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522616369.534125"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2084,11 +1830,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "522616386.561926"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2100,11 +1846,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2128,15 +1874,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522618211.316211"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2148,11 +1894,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "523"
-            endingLineNumber = "523"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
             landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2164,11 +1910,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
             landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2180,11 +1926,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522619344.752544"
+            timestampString = "532638571.396261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "-linkedInAcessToken:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2196,11 +1942,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522620449.373969"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
+            startingLineNumber = "522"
+            endingLineNumber = "522"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2212,11 +1958,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522620454.249863"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2228,11 +1974,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SignupViewController.m"
-            timestampString = "522620455.311756"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2244,11 +1990,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2260,11 +2006,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/SearchViewController.m"
-            timestampString = "523006094.981071"
+            timestampString = "531347751.814154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2292,11 +2038,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "533065386.283168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "-saveUserDetails:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2308,11 +2054,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "523012098.37542"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "625"
-            endingLineNumber = "625"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
             landmarkName = "-submitDataToServer"
             landmarkType = "7">
          </BreakpointContent>
@@ -2324,11 +2070,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/EditProfileViewController.m"
-            timestampString = "523012839.849038"
+            timestampString = "534372432.242258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "664"
-            endingLineNumber = "664"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
             landmarkName = "-saveUserProfile:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2340,11 +2086,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2356,11 +2102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "523207282.235003"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2372,11 +2118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "575"
-            endingLineNumber = "575"
+            startingLineNumber = "756"
+            endingLineNumber = "756"
             landmarkName = "-likeButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2388,28 +2134,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "524215552.259611"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "573"
-            endingLineNumber = "573"
+            startingLineNumber = "753"
+            endingLineNumber = "753"
             landmarkName = "-likeButtonTapped:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207282.235003"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-saveUserProfileImageForChattingView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2436,11 +2166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "523206281.551491"
+            timestampString = "529741440.448233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -2452,76 +2182,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526582022.744044"
+            timestampString = "533065386.283168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "-getFreindListCount"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523206727.193269"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207505.954278"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523207933.491621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-saveUserProfileImageForChattingView:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/UserProfileViewController.m"
-            timestampString = "523208178.252682"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-saveUserProfileImageForChattingView:"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "+getFreindListCount"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2548,7 +2214,71 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -2564,11 +2294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2580,75 +2310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "534411386.973993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2660,11 +2326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "534411386.973993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "555"
+            endingLineNumber = "555"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2676,11 +2342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
-            timestampString = "526333327.716764"
+            timestampString = "529681204.408448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -2948,11 +2614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/LoginViewController.m"
-            timestampString = "526581743.933358"
+            timestampString = "533065386.283168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-getUpdatedUserDetails"
             landmarkType = "7">
          </BreakpointContent>
@@ -2964,11 +2630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2980,27 +2646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3012,11 +2662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585047.920127"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3028,27 +2678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526584820.405094"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "getFriendListFromServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585772.112697"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3060,11 +2694,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526585792.312195"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3076,11 +2742,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
-            timestampString = "526838840.722818"
+            timestampString = "534408939.747064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "-getFeedsArray"
             landmarkType = "7">
          </BreakpointContent>
@@ -3092,11 +2758,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526842603.275812"
+            timestampString = "534411386.973993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "587"
-            endingLineNumber = "587"
+            startingLineNumber = "669"
+            endingLineNumber = "669"
             landmarkName = "freindListAddedSucessFully()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3108,11 +2774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526842611.198616"
+            timestampString = "534411386.973993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "662"
+            endingLineNumber = "662"
             landmarkName = "freindListAddedSucessFully()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3124,11 +2790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
-            timestampString = "526845211.429611"
+            timestampString = "531424467.732724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "getFriendListFromServer()"
             landmarkType = "7">
             <Locations>
@@ -3163,6 +2829,1446 @@
                   offsetFromSymbolStart = "22">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "@implementation SettingsViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-selectedCreditCardDetails:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/EditProfileViewController.m"
+            timestampString = "534372432.242258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-selectedCreditCardDetails:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SearchViewController.m"
+            timestampString = "531347751.814154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
+            landmarkName = "-likeButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "529680403.563765"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "-likeButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "755"
+            endingLineNumber = "755"
+            landmarkName = "-likeButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "529680428.69214"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "-likeButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SearchViewController.m"
+            timestampString = "531347751.814154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
+            landmarkName = "-likeButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "529694596.896304"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SignupViewController.m"
+            timestampString = "532638571.396261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
+            landmarkName = "-submitDataToServer"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "529744530.657453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-submitDataToServer"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-callApiForCancelSubscription"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54-[SettingsViewController callApiForCancelSubscription]_block_invoke"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/SettingsViewController.m"
+                  timestampString = "529743433.212626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "310">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54-[SettingsViewController callApiForCancelSubscription]_block_invoke_2"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/SettingsViewController.m"
+                  timestampString = "529743433.215118"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "-callApiForCancelSubscription"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SettingsViewController.m"
+            timestampString = "529761966.45931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "-callApiForCancelSubscription"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SignupViewController.m"
+            timestampString = "529743801.762201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-selectedCreditCardDetails:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SignupViewController.m"
+            timestampString = "529743806.195881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "-selectedCreditCardDetails:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-makePaymnetForCardDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "-callAPiforMakingPayment"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-callAPiforMakingPayment"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[CreditCardViewController callAPiforMakingPayment]_block_invoke"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/CreditCardViewController.m"
+                  timestampString = "529749677.772462"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "1058">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[CreditCardViewController callAPiforMakingPayment]_block_invoke_2"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/CreditCardViewController.m"
+                  timestampString = "529749677.775033"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
+            landmarkName = "@implementation CreditCardViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-callAPiforMakingPayment"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "529749344.835483"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-checkUserLoginStataus"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "533065386.283168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "-getUpdatedUserDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-callAPiforMakingPayment"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-callAPiforUpdateCardDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-callAPiforUpdateCardDetails"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__55-[CreditCardViewController callAPiforUpdateCardDetails]_block_invoke"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mYwindow/Downloads/Closed1/Closed1/ViewControllers/CreditCardViewController.m"
+                  timestampString = "534411260.217226"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "996">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__55-[CreditCardViewController callAPiforUpdateCardDetails]_block_invoke_2"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mYwindow/Downloads/Closed1/Closed1/ViewControllers/CreditCardViewController.m"
+                  timestampString = "534411260.220302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SignupViewController.m"
+            timestampString = "532638571.396261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
+            landmarkName = "-submitDataToServer"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/CreditCardViewController.m"
+            timestampString = "529765146.478128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
+            landmarkName = "-getFreindListCount"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/RewardsViewController.m"
+            timestampString = "529770671.796479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-claimRewardtapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "529769730.210853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "530523783.650752"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SearchViewController.m"
+            timestampString = "531347751.814154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-getFeedsArray"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SearchViewController.m"
+            timestampString = "531347751.814154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/AppDelegate.m"
+            timestampString = "532419371.154207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "-application:didReceiveRemoteNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/AppDelegate.m"
+            timestampString = "532419371.154207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "-userNotificationCenter:willPresentNotification:withCompletionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/AppDelegate.m"
+            timestampString = "532419371.154207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
+            landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Harpy/Harpy/Harpy.m"
+            timestampString = "530964944.8062"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "-appStoreVersionIsNewer:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Harpy/Harpy/Harpy.m"
+            timestampString = "530964964.663489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-parseResults:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Harpy/Harpy/Harpy.m"
+            timestampString = "530964968.981055"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-performVersionCheck"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Harpy/Harpy/Harpy.m"
+            timestampString = "530964983.303309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-itunesURL"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Harpy/Harpy/Harpy.m"
+            timestampString = "530965502.629984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-isUpdateCompatibleWithDeviceOS:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "534411386.973993"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "534411386.973993"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/Third Party/Chatting/Classes/Tabs/01_Chats/ChatsView.m"
+            timestampString = "533058220.192792"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "-contactsSelectedEmail:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/Third Party/Chatting/Classes/Tabs/01_Chats/ChatsView.m"
+            timestampString = "533058220.192792"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "-contactsSelectedEmail:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "531424467.732724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "getFriendListFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "534411386.973993"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "selectedData(_:number:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/OpenAdressBook.swift"
+            timestampString = "531422802.340964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "dismissModal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-getLoginWithChattingView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-getLoginWithChattingView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-getLoginWithChattingView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "534411386.973993"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-getLoginWithChattingView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "532459466.049373"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-checkUserLoginStataus"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "532459466.093955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/OpenAdressBook.swift"
+            timestampString = "532631064.023063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "checkABPermission()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/OpenAdressBook.swift"
+            timestampString = "532631153.95099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "promptForAddressBookRequestAccess()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
+            timestampString = "533014383.425257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-getFreindListFromServer:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-saveProfileImageOfUserForChatting"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "-saveProfileImageOfUserForChatting"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HomeScreenViewController saveProfileImageOfUserForChatting]"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/HomeScreenViewController.m"
+                  timestampString = "533017011.092981"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[HomeScreenViewController saveProfileImageOfUserForChatting]_block_invoke"
+                  moduleName = "Closed1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazim/Documents/Alkurn/Closed1/Closed1/ViewControllers/HomeScreenViewController.m"
+                  timestampString = "533017011.095341"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "245"
+                  endingLineNumber = "245"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-saveUserDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-saveProfileImageOfUserForChatting"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-saveUserProfileImageForChattingView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "-saveUserProfileImageForChattingView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/AddFreindsViewController.m"
+            timestampString = "533057748.080892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-searchBar:textDidChange:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "-saveUserDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/Third Party/Chatting/Classes/Tabs/01_Chats/ChatsView.m"
+            timestampString = "533058149.545872"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "-contactsSelectedEmail:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ProfileDetailViewController.m"
+            timestampString = "533058448.844483"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "-messageButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "-saveProfileImageOfUserForChatting"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "-saveProfileImageOfUserForChatting"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/HomeScreenViewController.m"
+            timestampString = "534408939.747064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-getLoginWithChattingView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "534372432.242258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
+            landmarkName = "-submitDataViaLinkedIn:withImageURl:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/LoginViewController.m"
+            timestampString = "533065386.283168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "-getUpdatedUserDetails"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/SignupViewController.m"
+            timestampString = "533065773.01972"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
+            landmarkName = "-submitDataToServer"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Closed1/ViewControllers/ContactsListViewController.swift"
+            timestampString = "534411386.973993"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

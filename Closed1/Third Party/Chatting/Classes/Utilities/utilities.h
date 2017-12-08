@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -22,8 +21,6 @@
 
 #import <Crashlytics/Crashlytics.h>
 #import <Fabric/Fabric.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Firebase/Firebase.h>
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <OneSignal/OneSignal.h>

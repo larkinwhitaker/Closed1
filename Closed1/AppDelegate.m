@@ -11,7 +11,8 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "MagicalRecord.h"
-#import "utilities.h"
+#import "Harpy.h"
+
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
@@ -54,9 +55,6 @@
     //---------------------------------------------------------------------------------------------------------------------------------------------
     
     //---------------------------------------------------------------------------------------------------------------------------------------------
-    // Facebook login initialization
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     
     //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -126,8 +124,16 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:) name:kFIRInstanceIDTokenRefreshNotification object:nil];
-//    
-//    
+    
+    
+    
+//  Harpy setup
+    
+    // Set the UIViewController that will present an instance of UIAlertController
+    [[Harpy sharedInstance] setPresentingViewController:_window.rootViewController];
+    // Perform check for new version of your app
+    [[Harpy sharedInstance] checkVersion];
+    
     return YES;
 }
 
@@ -182,7 +188,6 @@
     [self connectToFCM ];
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
-    [FBSDKAppEvents activateApp];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [OneSignal IdsAvailable:^(NSString *userId, NSString *pushToken)
      {
@@ -277,10 +282,7 @@
         return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
     
-    if ([url.absoluteString containsString:@"google"])
         return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 
@@ -331,6 +333,13 @@
         
     }
     
+    if([userInfo objectForKey:@"custom"]){
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessage" object:userInfo];
+        
+    }
+
+    
     [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
     
     
@@ -343,6 +352,13 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notificationrecived" object:userInfo];
 
     }
+    
+    if([userInfo objectForKey:@"custom"]){
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessage" object:userInfo];
+        
+    }
+
     
         // custom code to handle notification content
         
@@ -378,6 +394,13 @@
         [UIApplication sharedApplication].applicationIconBadgeNumber = ([[UIApplication sharedApplication] applicationIconBadgeNumber] + 1);
         
     }
+    
+    if([userInfo objectForKey:@"custom"]){
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessage" object:userInfo];
+
+    }
+    
     completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
     
     

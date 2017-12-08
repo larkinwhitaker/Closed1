@@ -73,7 +73,6 @@
     [self.userProfiledetails setValue:userDetails.company forKey:@"company"];
     [self.userProfiledetails setValue:userDetails.title forKey:@"title"];
     [self.userProfiledetails setValue:userDetails.territory forKey:@"territory"];
-    [self.userProfiledetails setValue:userDetails.econdaryemail forKey:@"econdaryemail"];
     
     NSArray *jobArray = [JobProfile MR_findAll];
     
@@ -211,28 +210,6 @@
     
     [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forKey:@"cardencryptedtext"];
     [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"] forKey:@"creditcardCVVImage"];
-    
-    
-    
-    [CardDetails MR_truncateAll];
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
-        
-        CardDetails *cardDetails = [CardDetails MR_createEntityInContext:localContext];
-        
-        cardDetails.cardname = [creditCardDetailsDictionary valueForKey:@"cardname"];
-        cardDetails.cardencryptedtext = [creditCardDetailsDictionary valueForKey:@"cardencryptedtext"];
-        cardDetails.cardexpirydate = [creditCardDetailsDictionary valueForKey:@"cardexpirydate"];
-        cardDetails.cardimagename = [creditCardDetailsDictionary valueForKey:@"cardimagename"];
-        cardDetails.cardnumber = [creditCardDetailsDictionary valueForKey:@"cardnumber"];
-        cardDetails.cvvtext = [creditCardDetailsDictionary valueForKey:@"CreditCardCVV"];
-        cardDetails.cvvimageName = [creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"];
-        
-        [localContext MR_saveToPersistentStoreAndWait];
-    }];
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
@@ -276,19 +253,12 @@
         editProfileCell.stateTextField.text = [self.userProfiledetails valueForKey:@"state"];
         editProfileCell.phoneNumberTextField.text = [self.userProfiledetails valueForKey:@"phoneNumber"];
         editProfileCell.countryTextField.text = [self.userProfiledetails valueForKey:@"country"];
-        editProfileCell.companyNameTextField.text = [self.userProfiledetails valueForKey:@"company"];
-        editProfileCell.designationTextField.text = [self.userProfiledetails valueForKey:@"title"];
-        editProfileCell.terrotoryTextField.text = [self.userProfiledetails valueForKey:@"territory"];
-        editProfileCell.secondaryEmail.text = [self.userProfiledetails valueForKey:@"econdaryemail"];
         
          if([self.creditCardDictionary valueForKey:@"cardencryptedtext"] != nil){
              [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
 
          }
         [editProfileCell.showCardButton addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
-        
-        [editProfileCell.updateButton addTarget:self action:@selector(updateProfileTapped:) forControlEvents:UIControlEventTouchUpInside];
-        
         
         return editProfileCell;
     }else{
@@ -429,10 +399,6 @@
     
         [self.userProfiledetails setValue: textField.text forKey:@"userEmail"];
         
-    }else if ([textField.placeholder isEqualToString:@"Secondary Email"]){
-        
-        [self.userProfiledetails setValue:textField.text forKey:@"econdaryemail"];
-        
     }else if ([textField.placeholder isEqualToString:@"City"]){
         
         [self.userProfiledetails setValue:textField.text forKey:@"city"];
@@ -510,18 +476,13 @@
     }else if ([[editProfileCell.countryTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] ==0){
         
         [[[UIAlertView alloc]initWithTitle:@"Oops!!" message:@"Please select the city first to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
-    }else if([[editProfileCell.secondaryEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
-        
-        [[[UIAlertView alloc]initWithTitle:@"Primary Email Invalid" message:@"Please enter a valid email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
-
-        
     }else{
     
         NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailReg];
         if([emailPredicate evaluateWithObject: editProfileCell.emailTextField.text] == NO){
             
-           [[[UIAlertView alloc]initWithTitle:@"Secondary Email Invalid" message:@"Please enter a valid email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+           [[[UIAlertView alloc]initWithTitle:@"Email Invalid" message:@"Please enter a valid email ID" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
             
             
         }else{
@@ -597,7 +558,6 @@
         @"title": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTitle],
         @"company": [[_flightDetailsArray objectAtIndex:0] valueForKey:kCopmpany],
         @"territory": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory],
-        @"secondary_email": editProfileCell.secondaryEmail.text,
         @"profile_job": self.flightDetailsArray,
         @"target": [[_flightDetailsArray objectAtIndex:0] valueForKey:kTargetBuyers]
         };
@@ -660,7 +620,6 @@
     userDetails.city = editProfileCell.citytextField.text;
     userDetails.country = editProfileCell.countryTextField.text;
     userDetails.territory = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTerritory];
-    userDetails.econdaryemail = editProfileCell.secondaryEmail.text;
     userDetails.profileImage = [userData valueForKey:@"profile_image_url"];
     userDetails.targetBuyers = [[_flightDetailsArray objectAtIndex:0] valueForKey:kTargetBuyers];
     

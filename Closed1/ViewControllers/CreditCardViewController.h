@@ -1,9 +1,10 @@
 //
-//  ViewControllerCredit.h
-//  Airhob
+//  WebViewController.m
+//  Closed1
 //
-//  Created by mYwindow on 22/09/16.
-//  Copyright © 2016 mYwindow Inc. All rights reserved.
+//  Created by Nazim on 26/03/17.
+//  Copyright © 2017 Alkurn. All rights reserved.
+//
 //
 
 #import <UIKit/UIKit.h>
@@ -42,5 +43,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cvvPlaceholderImage;
 @property (weak, nonatomic) IBOutlet UITextField *cvvTextFiled;
 @property(nonatomic, strong) NSMutableDictionary *creditCardDetails;
+
+@property(nonatomic ) BOOL isUpdateCarDetails;
+@property(nonatomic ) BOOL shouldOpenHomeScreen;
+@property(nonatomic ) BOOL isComeFromSignup;
 
 @end

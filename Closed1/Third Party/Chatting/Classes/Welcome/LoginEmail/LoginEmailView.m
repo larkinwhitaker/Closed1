@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -60,8 +59,8 @@
 	NSString *email = [fieldEmail.text lowercaseString];
 	NSString *password = fieldPassword.text;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
-	if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
+//	if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
+//	if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	LogoutUser(DEL_ACCOUNT_NONE);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -76,7 +75,7 @@
 				if (delegate != nil) [delegate didLoginEmail];
 			}];
 		}
-		else [ProgressHUD showError:[error description]];
+//		else [ProgressHUD showError:[error description]];
 	}];
 }
 

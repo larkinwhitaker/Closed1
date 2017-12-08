@@ -12,7 +12,6 @@
 @interface EditProfileTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailTextField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *secondaryEmail;
 
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *fullNameTextField;
 
@@ -20,15 +19,7 @@
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *stateTextField;
 @property (strong, nonatomic) IBOutlet UIButton *countryButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneNumberTextField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *companyNameTextField;
-
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *designationTextField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *terrotoryTextField;
-
-
-@property (strong, nonatomic) IBOutlet UIButton *updateButton;
 @property (strong, nonatomic) IBOutlet UIView *editProfileView;
-@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *targetBuyersTextField;
 @property (weak, nonatomic) IBOutlet UIButton *showCardButton;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *countryTextField;
 

@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -84,7 +83,7 @@
 				if (delegate != nil) [delegate didLoginGoogle];
 			}];
 		}
-		else [ProgressHUD showError:[error description]];
+//		else [ProgressHUD showError:[error description]];
 	}];
 }
 

@@ -1,17 +1,7 @@
 PODS:
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.22.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.22.0):
-    - FBSDKCoreKit
   - Firebase/Auth (3.16.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -73,6 +63,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.9)
   - GTMSessionFetcher/Full (1.1.9):
     - GTMSessionFetcher/Core (= 1.1.9)
+  - Harpy (4.1.6)
   - IQAudioRecorderController (1.2.0):
     - SCSiriWaveformView
   - JSQMessagesViewController (7.3.4):
@@ -95,14 +86,13 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - FBSDKCoreKit
-  - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Storage
   - GoogleSignIn
+  - Harpy
   - IQAudioRecorderController
   - JSQMessagesViewController
   - MBProgressHUD
@@ -116,11 +106,8 @@ DEPENDENCIES:
   - SinchRTC
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b
-  FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
   FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -133,6 +120,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  Harpy: 00136386df1e2bb7554a5bef5d56529c9c33739a
   IQAudioRecorderController: 1d46d99330cb2c9381568665d123cf435460a43e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
@@ -148,6 +136,6 @@ SPEC CHECKSUMS:
   SCSiriWaveformView: fbb2be796930670698ed6705f3b48f3dd387a73f
   SinchRTC: ee4da1a6f08d8093813c06d90cf6fbb32068f893
 
-PODFILE CHECKSUM: e5e90ec605ff894422c1ab81148a6123f486a948
+PODFILE CHECKSUM: 2178661498a207b9a58c1a502936471441d282f0
 
 COCOAPODS: 1.2.0

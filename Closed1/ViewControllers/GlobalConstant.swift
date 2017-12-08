@@ -1,9 +1,9 @@
 //
-//  GlobalConstant.swift
-//  ASCStatus8.0
+//  WebViewController.m
+//  Closed1
 //
-//  Created by Nazim Siddiqui on 09/02/16.
-//  Copyright © 2016 Kratin. All rights reserved.
+//  Created by Nazim on 26/03/17.
+//  Copyright © 2017 Alkurn. All rights reserved.
 //
 
 import Foundation

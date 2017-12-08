@@ -78,7 +78,7 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     navBar.translucent = NO;
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Signin"];
+    [navItem setTitle:self.title];
     [self.view addSubview:navBar];
     
 }

@@ -1,5 +1,4 @@
 //
-// Copyright (c) 2016 Related Code - http://relatedcode.com
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -18,9 +17,12 @@
 #import "NavigationController.h"
 #import "UserDetails+CoreDataClass.h"
 #import "MagicalRecord.h"
+#import "ContactsViewController.h"
+#import "Closed1-Swift.h"
+#import "ClosedResverResponce.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface ChatsView()
+@interface ChatsView()<ContactsSelectedProtocol>
 {
 	NSTimer *timer;
 	RLMResults *dbrecents;
@@ -28,6 +30,7 @@
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) ContactsListViewController *contactScreen;
 
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +77,13 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.tableView.tableFooterView = [[UIView alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    self.contactScreen = [storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
+    self.contactScreen.chatsDelegate = self;
+    self.contactScreen.iscameFromChatScreen = YES;
+    
 	[self loadRecents];
 }
 
@@ -83,11 +93,18 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     
     UserDetails *userDetails = [UserDetails MR_findFirst];
@@ -130,7 +147,7 @@
             //---------------------------------------------------------------------------------------------------------------------------------------------
             [user saveInBackground:^(NSError *error)
              {
-                 if (error != nil) [ProgressHUD showError:@"Network error."];
+//                 if (error != nil) [ProgressHUD showError:@"Network error."];
              }];
 
         }
@@ -148,8 +165,8 @@
         if(userDetails.userEmail != nil) email = userDetails.userEmail;
         
         //---------------------------------------------------------------------------------------------------------------------------------------------
-        if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
-        if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
+//        if ([email length] == 0)	{  return; }
+//        if ([password length] == 0)	{  return; }
         //---------------------------------------------------------------------------------------------------------------------------------------------
         LogoutUser(DEL_ACCOUNT_NONE);
         //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -169,8 +186,8 @@
 #pragma mark - Sign up Code
                  
                  //---------------------------------------------------------------------------------------------------------------------------------------------
-                 if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
-                 if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
+//                 if ([email length] == 0)	{ [ProgressHUD showError:@"Please enter your email."]; return; }
+//                 if ([password length] == 0)	{ [ProgressHUD showError:@"Please enter your password."]; return; }
                  //---------------------------------------------------------------------------------------------------------------------------------------------
                  LogoutUser(DEL_ACCOUNT_NONE);
                  //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -210,12 +227,12 @@
                           //---------------------------------------------------------------------------------------------------------------------------------------------
                           [user saveInBackground:^(NSError *error)
                            {
-                               if (error != nil) [ProgressHUD showError:@"Network error."];
+//                               if (error != nil) [ProgressHUD showError:@"Network error."];
                            }];
                           
                           
                       }
-                      else [ProgressHUD showError:[error description]];
+//                      else [ProgressHUD showError:[error description]];
                   }];
                  
 
@@ -326,11 +343,45 @@
 - (void)actionSelectSingle
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	SelectSingleView *selectSingleView = [[SelectSingleView alloc] init];
-	selectSingleView.delegate = self;
-	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:selectSingleView];
-	[self presentViewController:navController animated:YES completion:nil];
+
+    if(self.contactScreen){
+        [self presentViewController:self.contactScreen animated:YES completion:nil];
+    }
+    
+    
+//	SelectSingleView *selectSingleView = [[SelectSingleView alloc] init];
+//	selectSingleView.delegate = self;
+//	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:selectSingleView];
+//	[self presentViewController:navController animated:YES completion:nil];
+//     
+     
 }
+
+#pragma mark:- Contacts Selected Delegate
+
+-(void)contactsSelectedEmail:(NSString *)email
+{
+    NSLog(@"Details are: %@", email);
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", email];
+    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
+    
+    NSLog(@"%@", dbuser);
+    
+    if ([dbuser.objectId isEqualToString:[FUser currentId]] == YES)
+    {
+        [ProgressHUD showSuccess:@"This is you."];
+        
+    }else if (dbuser.objectId != nil) {
+        
+        [self didSelectSingleUser:dbuser];
+    }else{
+        
+        [[[UIAlertView alloc]initWithTitle:@"The user you are messaging has not installed the \"Closed1\" App" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+    }
+    
+}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionSelectMultiple

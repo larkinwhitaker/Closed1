@@ -67,7 +67,7 @@
                     self.userDetails = [serverREsponce valueForKey:@"data"];
                 }else{
                     
-                    [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"No feeds found" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+                    [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"We are unable to process your request at this time. Please try again later." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
                 }
             }else{
                 
@@ -149,7 +149,21 @@
 {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         
-        return 313;
+        CGFloat heightOfText = 0;
+        
+         if ([[_userDetails valueForKey:@"Target Buyer"] isEqual:@""] || [[_userDetails valueForKey:@"Target Buyer"] isEqual:[NSNull null]]) {
+             
+             heightOfText += [HomeScreenViewController findHeightForText:[_userDetails valueForKey:@"Target Buyer"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
+         }
+        
+        if ([[_userDetails valueForKey:@"territory"] isEqual:@""] || [[_userDetails valueForKey:@"territory"] isEqual:[NSNull null]]) {
+            
+            heightOfText += [HomeScreenViewController findHeightForText:[_userDetails valueForKey:@"territory"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
+        }
+       
+        
+        return 313 + heightOfText;
+        
     }else{
         CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
         
@@ -256,7 +270,7 @@
         [homeCell.profileButton addTarget:self action:@selector(userImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         homeCell.profileButton.tag  = indexPath.row;
         
-        homeCell.timingLabel.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"date_recorded"];
+        homeCell.timingLabel.text = [[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"FeedTime"];
         
         NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
         
@@ -349,9 +363,14 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%zd&user_id=%zd",[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"item_id"] ,[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"user_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSString *likeURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%@&user_id=%@",[[[_feedsArray objectAtIndex:sender.tag] valueForKey: @"Feeds"] valueForKey:@"activity_id"] ,[[[_feedsArray objectAtIndex:sender.tag] valueForKey: @"Feeds"] valueForKey:@"user_id"]];
+        
+        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer: likeURL DictionartyToServer:@{} IsEncodingRequires:NO];
         
         NSLog(@"%@",responce);
+        
+        NSLog(@"%@", likeURL);
+        
         
     });
 }
@@ -362,7 +381,7 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.title = @"Profile";
     webView.urlString = [[_feedsArray objectAtIndex:0] valueForKey:@"primary_link"];
-    
+    webView.title = @"Profile";
     [self.navigationController pushViewController:webView animated:YES];
     
 }
@@ -426,7 +445,7 @@
     
     GetMailDictionary *mailDict = [[GetMailDictionary alloc]init];
     mailDict.delegate = self;
-    [mailDict getMailCOmposerDictionary:@[[self.userDetails valueForKey:@"user_email"]] withNameArray:@[[self.userDetails valueForKey:@"user_fullname"]] WithView:self.view];
+    [mailDict getMailCOmposerDictionary:@[[self.userDetails valueForKey:@"user_email"]] withNameArray:@[[self.userDetails valueForKey:@"fullname"]] WithView:self.view];
     
     
 //    if([MFMailComposeViewController canSendMail]) {
@@ -515,7 +534,13 @@
                     
                     NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
                     
-                    [feedDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
+                    BOOL isfeedLiked = NO;
+                    if (![[singleFeed valueForKey:@"isFeedLiked"] isEqual:[NSNull null]]) {
+                        
+                        isfeedLiked = [[singleFeed valueForKey:@"isFeedLiked"] boolValue];
+                    }
+                    
+                    [feedDictionary setValue:[NSNumber numberWithBool:isfeedLiked] forKey:@"isLike"];
                     
                     NSInteger likeCount = 0;
                     
@@ -529,6 +554,30 @@
                     [feedDictionary setValue:[NSNumber numberWithInteger:likeCount] forKey:@"LikeCount"];
                     [feedDictionary setValue:singleFeed forKey:@"Feeds"];
                     
+                    
+                    
+                    NSString *serverdateString = [singleFeed valueForKey:@"date_recorded"];
+                    // create dateFormatter with UTC time format
+                    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+                    [dateFormatter2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                    NSDate *date2 = [dateFormatter2 dateFromString:serverdateString]; // create date from string
+                    
+                    // change to a readable time format and change to local time zone
+                    [dateFormatter2 setDateFormat:@"EEE, MMM d, yyyy - h:mm a"];
+                    [dateFormatter2 setTimeZone:[NSTimeZone localTimeZone]];
+                    NSString *timestamp2 = [dateFormatter2 stringFromDate:date2];
+                    NSLog(@"date = %@", timestamp2);
+                    NSDate *outputDate = [dateFormatter2 dateFromString:timestamp2];
+                    
+                    
+                    [feedDictionary setValue:timestamp2 forKey:@"FeedTime"];
+                    [feedDictionary setValue:outputDate forKey:@"FeedTimeNsDate"];
+
+                    
+                    
+                    
+                    
                     [self.feedsArray addObject:feedDictionary];
                     
                 }
@@ -538,8 +587,14 @@
             if (_feedsArray.count == 0) {
                 
                 [self displayErrorForFeeds];
-            }
+            }else{
 
+            NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"FeedTimeNsDate" ascending:NO];
+            
+            NSArray *feedsSortedArrayy =  [self.feedsArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            
+            self.feedsArray = [NSMutableArray arrayWithArray:feedsSortedArrayy];
+            }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tableView reloadData];

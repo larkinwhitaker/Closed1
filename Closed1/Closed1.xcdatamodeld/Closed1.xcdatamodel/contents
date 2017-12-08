@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="17C83a" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="CardDetails" representedClassName="CardDetails" syncable="YES" codeGenerationType="class">
         <attribute name="cardencryptedtext" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cardexpirydate" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,7 +31,6 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="econdaryemail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImage" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,6 +46,6 @@
         <element name="CardDetails" positionX="-54" positionY="99" width="128" height="165"/>
         <element name="ContactDetails" positionX="-54" positionY="27" width="128" height="150"/>
         <element name="JobProfile" positionX="-54" positionY="90" width="128" height="135"/>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="240"/>
     </elements>
 </model>

@@ -1,13 +1,4 @@
-//
-// Copyright (c) 2016 Related Code - http://relatedcode.com
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
@@ -21,9 +12,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-#define		FIREBASE_STORAGE					@"gs://closed1-3a9e3.appspot.com"
+#define		FIREBASE_STORAGE					@"gs://closed1-llc.appspot.com"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-#define		ONESIGNAL_APPID						@"ee3e01e5-11e4-4ade-b39f-508c275cc9d1"
+#define		ONESIGNAL_APPID						@"3f43e00f-f394-4ed6-a719-99c5e85b0221"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		SINCH_HOST							@"sandbox.sinch.com"
 #define		SINCH_KEY							@"6e4ca667-a6bd-4fe7-b5e0-fa38e40043b1"
