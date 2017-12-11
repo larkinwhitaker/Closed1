@@ -188,6 +188,9 @@
 		ADACED731E9BFE06001A9F4A /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED641E9BFE06001A9F4A /* UIView+WebCacheOperation.m */; };
 		ADACED761E9C09CA001A9F4A /* FlightClassSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED751E9C09CA001A9F4A /* FlightClassSelectionViewController.m */; };
 		ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */; };
+		ADAFAD6C1FDEEA85005D51EF /* EditFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAFAD6B1FDEEA85005D51EF /* EditFeedsViewController.m */; };
+		ADAFAD6F1FDEEFB1005D51EF /* EditedFeedsShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAFAD6E1FDEEFB1005D51EF /* EditedFeedsShareViewController.m */; };
+		ADAFAD711FDF0AFC005D51EF /* MyUserfeeds.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAFAD701FDF0AFB005D51EF /* MyUserfeeds.png */; };
 		ADB2C2461FC9461400B158A4 /* LinkedinSignupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB2C2441FC9461400B158A4 /* LinkedinSignupCell.m */; };
 		ADB2C2471FC9461400B158A4 /* LinkedinSignupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB2C2451FC9461400B158A4 /* LinkedinSignupCell.xib */; };
 		ADB3EDF81EC8857B001DEC69 /* PJXBounceAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EDD11EC8857B001DEC69 /* PJXBounceAnimation.m */; };
@@ -1007,6 +1010,11 @@
 		ADACED751E9C09CA001A9F4A /* FlightClassSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightClassSelectionViewController.m; sourceTree = "<group>"; };
 		ADACED771E9C0B5A001A9F4A /* LeftAlignmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftAlignmentCell.h; sourceTree = "<group>"; };
 		ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftAlignmentCell.m; sourceTree = "<group>"; };
+		ADAFAD6A1FDEEA85005D51EF /* EditFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFeedsViewController.h; sourceTree = "<group>"; };
+		ADAFAD6B1FDEEA85005D51EF /* EditFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFeedsViewController.m; sourceTree = "<group>"; };
+		ADAFAD6D1FDEEFB1005D51EF /* EditedFeedsShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditedFeedsShareViewController.h; sourceTree = "<group>"; };
+		ADAFAD6E1FDEEFB1005D51EF /* EditedFeedsShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditedFeedsShareViewController.m; sourceTree = "<group>"; };
+		ADAFAD701FDF0AFB005D51EF /* MyUserfeeds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyUserfeeds.png; sourceTree = "<group>"; };
 		ADB2C2431FC9461400B158A4 /* LinkedinSignupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedinSignupCell.h; sourceTree = "<group>"; };
 		ADB2C2441FC9461400B158A4 /* LinkedinSignupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedinSignupCell.m; sourceTree = "<group>"; };
 		ADB2C2451FC9461400B158A4 /* LinkedinSignupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkedinSignupCell.xib; sourceTree = "<group>"; };
@@ -1999,8 +2007,8 @@
 				AD9344FE1E897D4700E60A4B /* SettingsViewController.m */,
 				ADCED8701E8ACFC700B9A06A /* EditProfileViewController.h */,
 				ADCED8711E8ACFC700B9A06A /* EditProfileViewController.m */,
-				AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */,
 				AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */,
+				AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */,
 				ADA806DC1E900590009C0B38 /* ChangePasswordViewController.h */,
 				ADA806DD1E900590009C0B38 /* ChangePasswordViewController.m */,
 				ADA806DF1E90169D009C0B38 /* EmailSettingViewController.h */,
@@ -2018,6 +2026,10 @@
 				AD9D9F861F93749E009058D0 /* RewardsViewController.h */,
 				AD9D9F871F93749E009058D0 /* RewardsViewController.m */,
 				AD7277821ECE2DE0003116E4 /* ContactsListViewController.swift */,
+				ADAFAD6A1FDEEA85005D51EF /* EditFeedsViewController.h */,
+				ADAFAD6B1FDEEA85005D51EF /* EditFeedsViewController.m */,
+				ADAFAD6D1FDEEFB1005D51EF /* EditedFeedsShareViewController.h */,
+				ADAFAD6E1FDEEFB1005D51EF /* EditedFeedsShareViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2025,6 +2037,7 @@
 		AD93F7561E87FD55008488B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADAFAD701FDF0AFB005D51EF /* MyUserfeeds.png */,
 				ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */,
 				AD888FAE1EFC566A00FE4C43 /* CreditcardDefaultImage.png */,
 				AD3A28E01EC704E800EB3BEE /* AddIndivisual.png */,
@@ -3924,9 +3937,9 @@
 				TargetAttributes = {
 					AD7A5DC41E86DADB00C3B4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 32DR83AEZL;
+						DevelopmentTeam = BBP8BHJUG8;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4186,6 +4199,7 @@
 				AD3A28E21EC704E800EB3BEE /* AddIndivisual.png in Resources */,
 				ADBB1E281EA52B37003CA9DD /* stickerlocal18@2x.png in Resources */,
 				ADBB1DDF1EA52B37003CA9DD /* callvideo_answer@2x.png in Resources */,
+				ADAFAD711FDF0AFC005D51EF /* MyUserfeeds.png in Resources */,
 				ADBB1E9D1EA52B37003CA9DD /* stickersend57@2x.png in Resources */,
 				ADBB1E0E1EA52B37003CA9DD /* tab_chats@2x.png in Resources */,
 				AD7A5DD81E86DADB00C3B4B6 /* Assets.xcassets in Resources */,
@@ -4725,6 +4739,7 @@
 				ADBB1DBE1EA52B37003CA9DD /* VideoMediaItem.m in Sources */,
 				ADBB1DB41EA52B37003CA9DD /* common.m in Sources */,
 				ADBB1DAE1EA52B37003CA9DD /* Emoji.m in Sources */,
+				ADAFAD6C1FDEEA85005D51EF /* EditFeedsViewController.m in Sources */,
 				ADBB1DC81EA52B37003CA9DD /* DBUserStatus.m in Sources */,
 				ADB3EE041EC8857B001DEC69 /* PJXAnimatedTabBarController.m in Sources */,
 				ADBB1DAB1EA52B37003CA9DD /* Checksum.m in Sources */,
@@ -4783,6 +4798,7 @@
 				AD9344FC1E897D3C00E60A4B /* ShareViewController.m in Sources */,
 				ADACED711E9BFE06001A9F4A /* UIImageView+HighlightedWebCache.m in Sources */,
 				ADBB1DB31EA52B37003CA9DD /* camera.m in Sources */,
+				ADAFAD6F1FDEEFB1005D51EF /* EditedFeedsShareViewController.m in Sources */,
 				ADBB1D591EA52B37003CA9DD /* ChatsCell.m in Sources */,
 				ADA806E11E90169D009C0B38 /* EmailSettingViewController.m in Sources */,
 				AD933A3E1E9E8093002FE9FF /* AFURLRequestSerialization.m in Sources */,
@@ -4940,7 +4956,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Closed1/Closed1.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 32DR83AEZL;
+				DEVELOPMENT_TEAM = BBP8BHJUG8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4949,10 +4965,10 @@
 				INFOPLIST_FILE = Closed1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.airhob.developerApp1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Closed1LLC.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b17e8df-7607-4d71-81e2-a272120acaa1";
+				PROVISIONING_PROFILE_SPECIFIER = Closed1LLC_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -4968,7 +4984,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Closed1/Closed1.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 32DR83AEZL;
+				DEVELOPMENT_TEAM = BBP8BHJUG8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4977,10 +4993,10 @@
 				INFOPLIST_FILE = Closed1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.airhob.developerApp1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Closed1LLC.Closed1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b17e8df-7607-4d71-81e2-a272120acaa1";
+				PROVISIONING_PROFILE_SPECIFIER = Closed1LLC_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "Closed1/Closed1-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

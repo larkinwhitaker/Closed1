@@ -61,16 +61,14 @@
     
     PJXAnimatedTabBarItem *secondTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Contacts" image:[UIImage imageNamed:@"ContactsTabBarSelectedImage"] selectedImage:nil];
     secondTabBarItem.animation = bounceAnimation;
-    secondTabBarItem.badgeValue = @"2";
     secondTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
     NSInteger total = [[NSUserDefaults standardUserDefaults] integerForKey:@"FreindRequestCount"];
-    secondTabBarItem.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
 
     ContactsListViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
 //    ContactsViewController *contactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
     contactScreen.tabBarItem = secondTabBarItem;
-    contactScreen.iscameFromChatScreen = NO;
     contactScreen.tabBarItem.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
+    contactScreen.iscameFromChatScreen = NO;
     PJXAnimatedTabBarItem *thirdTabBarItem = [[PJXAnimatedTabBarItem alloc] initWithTitle:@"Search" image:[UIImage imageNamed:@"SearchTabBarSelectedImage"] selectedImage:nil];
     thirdTabBarItem.animation = bounceAnimation;
     thirdTabBarItem.textColor = [UIColor colorWithRed:227.0/255.0 green:181.0/255.0 blue:5.0/255.0 alpha:1.0];
@@ -97,10 +95,6 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
     
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
 -(void)profileUpdatedSucessFully
 {

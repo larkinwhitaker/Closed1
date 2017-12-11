@@ -274,7 +274,6 @@
         
         NSInteger likeCount = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"LikeCount"] integerValue];
         
-        
         homeCell.userProfileCOmmnet.text = [[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"];
         
         homeCell.messageButton.tag = indexPath.row;
@@ -377,13 +376,7 @@
 
 -(void)userImageButtonTapped: (UIButton *)sender
 {
-    
-    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webView.title = @"Profile";
-    webView.urlString = [[_feedsArray objectAtIndex:0] valueForKey:@"primary_link"];
-    webView.title = @"Profile";
-    [self.navigationController pushViewController:webView animated:YES];
-    
+    [self.segmentedControl setSelectedSegmentIndex:0];
 }
 
 
@@ -608,15 +601,7 @@
 
 -(void)displayErrorForFeeds{
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to gets feeds" message:@"We are unable to get the feeds at this moment. Would you like to retry?" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction: [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *Action){
-        
-        [self getFeedsArray];
-    }]];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    [[[UIAlertView alloc] initWithTitle:@"Welcome to Closed1!" message:@"You don't have any posted deals in your network yet, please proceed to the post a deal page and then invite the rest of your extended sales network. If you believe you received this message in error, please reach out to info@closed1app.com" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
 }
 
 #pragma mark - Sserver Failed

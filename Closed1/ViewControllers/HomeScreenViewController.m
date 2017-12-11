@@ -34,12 +34,15 @@
 #import "TabBarHandler.h"
 #import <Realm/Realm.h>
 #import "utilities.h"
+#import "EditFeedsViewController.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tablView;
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
+@property (weak, nonatomic) IBOutlet UIButton *myFeedsButton;
+
 @property (strong, nonatomic) IBOutlet UIView *messageCountView;
 @property(strong) Reachability *internetReachablity;
 
@@ -508,7 +511,7 @@
             
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceHome"])
             {
-                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[self.profileButton, self.messageButton] withMessages:@[@"Tap this to display your profile", @"Tap this to display all the message people send to you"] onScreen:self.view];
+                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[self.profileButton, self.messageButton, self.myFeedsButton] withMessages:@[@"Tap this to display your profile", @"Tap this to display all the message people send to you", @"Tap this to see your posted Deals"] onScreen:self.view];
                 [jgTourTip showTourTip];
                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTimeExperienceHome"];
             }
@@ -595,6 +598,12 @@
     
 }
 
+- (IBAction)myFeedsButtonTapped:(id)sender {
+    
+    EditFeedsViewController *userfeedsScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"EditFeedsViewController"];
+    [self.navigationController pushViewController:userfeedsScreen animated:YES];
+
+}
 
 - (IBAction)profileButtonTapped:(id)sender {
     
