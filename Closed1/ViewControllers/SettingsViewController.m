@@ -22,6 +22,7 @@
 #import "CardDetails+CoreDataProperties.h"
 #import "CreditCardViewController.h"
 #import "RewardsViewController.h"
+#import "EditFeedsViewController.h"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, CreditCardDelegate>
 @property(nonatomic) NSMutableDictionary *creditCardDictionary;
@@ -66,6 +67,14 @@
     [self.navigationController setNavigationBarHidden:YES];
     
 }
+
+- (IBAction)myDealsButtonTapped:(id)sender {
+    
+    EditFeedsViewController *userfeedsScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"EditFeedsViewController"];
+    [self.navigationController pushViewController:userfeedsScreen animated:YES];
+}
+
+
 - (IBAction)claimrewardsPatted:(id)sender {
     
     [self.navigationController pushViewController:self.rewardsScreen animated:YES];
@@ -140,7 +149,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 580;
+    return 636;
 }
 
 

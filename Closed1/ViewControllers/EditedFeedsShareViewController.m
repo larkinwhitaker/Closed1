@@ -15,7 +15,7 @@
 #import "UINavigationController+NavigationBarAttribute.h"
 
 
-@interface EditedFeedsShareViewController ()
+@interface EditedFeedsShareViewController () <ServerFailedDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *shareDealButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextView *nametextView;
@@ -31,6 +31,8 @@
     
     self.commentTextView.textContainer.lineFragmentPadding = 5.0;
     self.nametextView.textContainer.lineFragmentPadding = 5.0;
+    self.nametextView.text = [self.singlefeedsDetails valueForKey:@"closed"];
+    self.commentTextView.text = [self.singlefeedsDetails valueForKey:@"content"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -38,7 +40,8 @@
     [super viewWillAppear:animated];
     [self.navigationController configureNavigationBar:self];
     self.title = @"Share a Deal";
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM-dd-yyyy HH:mm"];
     
@@ -46,6 +49,11 @@
     NSString *dateString = [formatter stringFromDate:currentDate];
     self.timingLabel.text = dateString;
     
+}
+
+-(void)backButtonTapped: (id) sendeer
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)shareDealTapped:(id)sender {
@@ -148,6 +156,7 @@
     });
     
 }
+
 
 
 @end

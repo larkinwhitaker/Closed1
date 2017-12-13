@@ -40,7 +40,13 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController configureNavigationBar:self];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
     self.title = @"Feeds";
+}
+
+-(void)backButtonTapped: (id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)getUserFeedsDetails
@@ -129,7 +135,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
-    return heightOfText+280;
+    return heightOfText+270;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,6 +164,8 @@
     BOOL isLikeView = [[[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"isLike"] boolValue];
      if(isLikeView == YES) imageName = @"LikeSelectedImage.png";
     [editFeedsCell.likeButtonView setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [editFeedsCell.editFeedsButton addTarget:self action:@selector(editFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [editFeedsCell.deleteFeedsButton addTarget:self action:@selector(deleteFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     
     return editFeedsCell;
