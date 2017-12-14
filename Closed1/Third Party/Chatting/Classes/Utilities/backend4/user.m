@@ -9,9 +9,6 @@
 // THE SOFTWARE.
 
 #import "utilities.h"
-
-#import "WelcomeView.h"
-#import "EditProfileView.h"
 #import "NavigationController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,11 +38,7 @@ void LogoutUser(NSInteger delAccount)
 void LoginUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	WelcomeView *welcomeView = [[WelcomeView alloc] init];
-	[target presentViewController:welcomeView animated:YES completion:^{
-		UIViewController *view = (UIViewController *)target;
-		[view.tabBarController setSelectedIndex:DEFAULT_TAB];
-	}];
+    
 }
 
 #pragma mark -
@@ -54,8 +47,6 @@ void LoginUser(id target)
 void OnboardUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:[[EditProfileView alloc] initWith:YES]];
-	[target presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -

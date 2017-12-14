@@ -10,12 +10,9 @@
 
 #import "utilities.h"
 
-#import "SelectSingleView.h"
-#import "SelectMultipleView.h"
-#import "SelectGroupView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface ChatsView : UIViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, SelectSingleDelegate, SelectMultipleDelegate, SelectGroupDelegate>
+@interface ChatsView : UIViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end

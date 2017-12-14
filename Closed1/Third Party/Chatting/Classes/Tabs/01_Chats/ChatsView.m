@@ -11,9 +11,6 @@
 #import "ChatsView.h"
 #import "ChatsCell.h"
 #import "ChatView.h"
-#import "SelectSingleView.h"
-#import "SelectMultipleView.h"
-#import "SelectGroupView.h"
 #import "NavigationController.h"
 #import "UserDetails+CoreDataClass.h"
 #import "MagicalRecord.h"
@@ -323,19 +320,6 @@
 - (void)actionCompose
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-
-	UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"Single Recipient" style:UIAlertActionStyleDefault
-													handler:^(UIAlertAction *action) { [self actionSelectSingle]; }];
-	UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Multiple Recipients" style:UIAlertActionStyleDefault
-													handler:^(UIAlertAction *action) { [self actionSelectMultiple]; }];
-	UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"Send to Group" style:UIAlertActionStyleDefault
-													handler:^(UIAlertAction *action) { [self actionSelectGroup]; }];
-	UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-
-	[alert addAction:action1]; [alert addAction:action2]; [alert addAction:action3]; [alert addAction:action4];
-//	[self presentViewController:alert animated:YES completion:nil];
-    
     [self actionSelectSingle];
 }
 
@@ -383,25 +367,6 @@
 }
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionSelectMultiple
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	SelectMultipleView *selectMultipleView = [[SelectMultipleView alloc] init];
-	selectMultipleView.delegate = self;
-	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:selectMultipleView];
-	[self presentViewController:navController animated:YES completion:nil];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionSelectGroup
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	SelectGroupView *selectGroupView = [[SelectGroupView alloc] init];
-	selectGroupView.delegate = self;
-	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:selectGroupView];
-	[self presentViewController:navController animated:YES completion:nil];
-}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionArchive:(NSInteger)index

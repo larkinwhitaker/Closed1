@@ -10,11 +10,6 @@
 // THE SOFTWARE.
 
 #import "ChatView.h"
-#import "GroupView.h"
-#import "MultipleView.h"
-#import "ProfileView.h"
-#import "CallAudioView.h"
-#import "CallVideoView.h"
 #import "PictureView.h"
 #import "VideoView.h"
 #import "MapView.h"
@@ -79,19 +74,8 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_back"]
 																	style:UIBarButtonItemStylePlain target:self action:@selector(actionBack)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	UIBarButtonItem *buttonRight1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_callaudio"] style:UIBarButtonItemStylePlain
-																	target:self action:@selector(actionCallAudio)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	UIBarButtonItem *buttonRight2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_callvideo"] style:UIBarButtonItemStylePlain
-																	target:self action:@selector(actionCallVideo)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	if ([type isEqualToString:CHAT_PRIVATE]) self.navigationItem.rightBarButtonItems = @[buttonRight1, buttonRight2];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.navigationController.interactivePopGestureRecognizer.delegate = self;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[NotificationCenter addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_CLEANUP_CHATVIEW];
 	[NotificationCenter addObserver:self selector:@selector(refreshCollectionView1) name:NOTIFICATION_REFRESH_MESSAGES1];
 	[NotificationCenter addObserver:self selector:@selector(refreshCollectionView2) name:NOTIFICATION_REFRESH_MESSAGES2];
@@ -251,11 +235,7 @@
 	{
 		[MessageSend1 send:groupId text:text video:video picture:picture audio:audio view:self.navigationController.view];
 	}
-	else
-	{
-		ActionPremium();
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[self finishSendingMessage];
 }
 
@@ -577,14 +557,7 @@
 		   atIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	DBMessage *dbmessage = [self dbmessage:indexPath];
-	NSString *userId = dbmessage.senderId;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([userId isEqualToString:[FUser currentId]] == NO)
-	{
-		ProfileView *profileView = [[ProfileView alloc] initWith:userId Chat:NO];
-		[self.navigationController pushViewController:profileView animated:YES];
-	}
+	
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -708,14 +681,12 @@
 - (void)actionCallAudio
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	ActionPremium();
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionCallVideo
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	ActionPremium();
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

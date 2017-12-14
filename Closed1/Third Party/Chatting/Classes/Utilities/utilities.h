@@ -44,10 +44,6 @@
 
 #import "AppConstant.h"
 
-#pragma mark - advert
-
-#import "premium.h"
-
 #pragma mark - backend1
 
 #import "FObject.h"

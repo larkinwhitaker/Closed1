@@ -90,7 +90,6 @@
 - (IBAction)actionPhoto:(id)sender
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	ActionPremium2(self);
 }
 
 #pragma mark - UIImagePickerControllerDelegate

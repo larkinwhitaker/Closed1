@@ -28,7 +28,6 @@
 #import "NZTourTip.h"
 #import "Closed1-Swift.h"
 #import "Closed1-Bridging-Header.h"
-#import "SettingsView.h"
 #import "Reachability.h"
 #import "NetworkErrorViewController.h"
 #import "TabBarHandler.h"

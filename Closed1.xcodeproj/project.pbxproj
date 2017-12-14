@@ -212,12 +212,6 @@
 		ADB3EE081EC8857B001DEC69 /* PJXItemAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EDF71EC8857B001DEC69 /* PJXItemAnimation.m */; };
 		ADBB1D361EA52B37003CA9DD /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AB61EA52B35003CA9DD /* ChatView.m */; };
 		ADBB1D371EA52B37003CA9DD /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AB71EA52B35003CA9DD /* ChatView.xib */; };
-		ADBB1D381EA52B37003CA9DD /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1ABB1EA52B35003CA9DD /* ProfileView.m */; };
-		ADBB1D391EA52B37003CA9DD /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1ABC1EA52B35003CA9DD /* ProfileView.xib */; };
-		ADBB1D3A1EA52B37003CA9DD /* GroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1ABF1EA52B35003CA9DD /* GroupView.m */; };
-		ADBB1D3B1EA52B37003CA9DD /* GroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AC01EA52B35003CA9DD /* GroupView.xib */; };
-		ADBB1D3C1EA52B37003CA9DD /* MultipleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AC31EA52B35003CA9DD /* MultipleView.m */; };
-		ADBB1D3D1EA52B37003CA9DD /* MultipleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AC41EA52B35003CA9DD /* MultipleView.xib */; };
 		ADBB1D3E1EA52B37003CA9DD /* AllMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AC71EA52B35003CA9DD /* AllMediaCell.m */; };
 		ADBB1D3F1EA52B37003CA9DD /* AllMediaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AC81EA52B35003CA9DD /* AllMediaCell.xib */; };
 		ADBB1D401EA52B37003CA9DD /* AllMediaView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1ACA1EA52B35003CA9DD /* AllMediaView.m */; };
@@ -229,18 +223,6 @@
 		ADBB1D461EA52B37003CA9DD /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AD61EA52B36003CA9DD /* MapView.m */; };
 		ADBB1D471EA52B37003CA9DD /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AD71EA52B36003CA9DD /* MapView.xib */; };
 		ADBB1D481EA52B37003CA9DD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1ADB1EA52B36003CA9DD /* NavigationController.m */; };
-		ADBB1D491EA52B37003CA9DD /* CallAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1ADE1EA52B36003CA9DD /* CallAudioView.m */; };
-		ADBB1D4A1EA52B37003CA9DD /* CallAudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1ADF1EA52B36003CA9DD /* CallAudioView.xib */; };
-		ADBB1D4B1EA52B37003CA9DD /* CallVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AE21EA52B36003CA9DD /* CallVideoView.m */; };
-		ADBB1D4C1EA52B37003CA9DD /* CallVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AE31EA52B36003CA9DD /* CallVideoView.xib */; };
-		ADBB1D4D1EA52B37003CA9DD /* SelectGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AE61EA52B36003CA9DD /* SelectGroupCell.m */; };
-		ADBB1D4E1EA52B37003CA9DD /* SelectGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AE71EA52B36003CA9DD /* SelectGroupCell.xib */; };
-		ADBB1D4F1EA52B37003CA9DD /* SelectGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AE91EA52B36003CA9DD /* SelectGroupView.m */; };
-		ADBB1D501EA52B37003CA9DD /* SelectGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AEA1EA52B36003CA9DD /* SelectGroupView.xib */; };
-		ADBB1D511EA52B37003CA9DD /* SelectMultipleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AED1EA52B36003CA9DD /* SelectMultipleView.m */; };
-		ADBB1D521EA52B37003CA9DD /* SelectMultipleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AEE1EA52B36003CA9DD /* SelectMultipleView.xib */; };
-		ADBB1D531EA52B37003CA9DD /* SelectSingleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AF11EA52B36003CA9DD /* SelectSingleView.m */; };
-		ADBB1D541EA52B37003CA9DD /* SelectSingleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AF21EA52B36003CA9DD /* SelectSingleView.xib */; };
 		ADBB1D551EA52B37003CA9DD /* StickersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AF51EA52B36003CA9DD /* StickersCell.m */; };
 		ADBB1D561EA52B37003CA9DD /* StickersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AF61EA52B36003CA9DD /* StickersCell.xib */; };
 		ADBB1D571EA52B37003CA9DD /* StickersView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1AF81EA52B36003CA9DD /* StickersView.m */; };
@@ -249,28 +231,6 @@
 		ADBB1D5A1EA52B37003CA9DD /* ChatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1AFE1EA52B36003CA9DD /* ChatsCell.xib */; };
 		ADBB1D5B1EA52B37003CA9DD /* ChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B001EA52B36003CA9DD /* ChatsView.m */; };
 		ADBB1D5C1EA52B37003CA9DD /* ChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B011EA52B36003CA9DD /* ChatsView.xib */; };
-		ADBB1D5D1EA52B37003CA9DD /* CallsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B041EA52B36003CA9DD /* CallsView.m */; };
-		ADBB1D5E1EA52B37003CA9DD /* CallsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B051EA52B36003CA9DD /* CallsView.xib */; };
-		ADBB1D5F1EA52B37003CA9DD /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B081EA52B36003CA9DD /* PeopleCell.m */; };
-		ADBB1D601EA52B37003CA9DD /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B091EA52B36003CA9DD /* PeopleCell.xib */; };
-		ADBB1D611EA52B37003CA9DD /* PeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B0B1EA52B36003CA9DD /* PeopleView.m */; };
-		ADBB1D621EA52B37003CA9DD /* PeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B0C1EA52B36003CA9DD /* PeopleView.xib */; };
-		ADBB1D631EA52B37003CA9DD /* CreateGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B101EA52B36003CA9DD /* CreateGroupView.m */; };
-		ADBB1D641EA52B37003CA9DD /* CreateGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B111EA52B36003CA9DD /* CreateGroupView.xib */; };
-		ADBB1D651EA52B37003CA9DD /* GroupsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B131EA52B36003CA9DD /* GroupsCell.m */; };
-		ADBB1D661EA52B37003CA9DD /* GroupsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B141EA52B36003CA9DD /* GroupsCell.xib */; };
-		ADBB1D671EA52B37003CA9DD /* GroupsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B161EA52B36003CA9DD /* GroupsView.m */; };
-		ADBB1D681EA52B37003CA9DD /* GroupsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B171EA52B36003CA9DD /* GroupsView.xib */; };
-		ADBB1D691EA52B37003CA9DD /* CountriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B1C1EA52B36003CA9DD /* CountriesView.m */; };
-		ADBB1D6A1EA52B37003CA9DD /* CountriesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B1D1EA52B36003CA9DD /* CountriesView.xib */; };
-		ADBB1D6B1EA52B37003CA9DD /* EditProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B1F1EA52B36003CA9DD /* EditProfileView.m */; };
-		ADBB1D6C1EA52B37003CA9DD /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B201EA52B36003CA9DD /* EditProfileView.xib */; };
-		ADBB1D6D1EA52B37003CA9DD /* PasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B231EA52B36003CA9DD /* PasswordView.m */; };
-		ADBB1D6E1EA52B37003CA9DD /* PasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B241EA52B36003CA9DD /* PasswordView.xib */; };
-		ADBB1D6F1EA52B37003CA9DD /* CustomStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B281EA52B36003CA9DD /* CustomStatusView.m */; };
-		ADBB1D701EA52B37003CA9DD /* CustomStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B291EA52B36003CA9DD /* CustomStatusView.xib */; };
-		ADBB1D711EA52B37003CA9DD /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B2B1EA52B36003CA9DD /* StatusView.m */; };
-		ADBB1D721EA52B37003CA9DD /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B2C1EA52B36003CA9DD /* StatusView.xib */; };
 		ADBB1D731EA52B37003CA9DD /* ArchiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B2F1EA52B36003CA9DD /* ArchiveCell.m */; };
 		ADBB1D741EA52B37003CA9DD /* ArchiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B301EA52B36003CA9DD /* ArchiveCell.xib */; };
 		ADBB1D751EA52B37003CA9DD /* ArchiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B321EA52B36003CA9DD /* ArchiveView.m */; };
@@ -287,21 +247,6 @@
 		ADBB1D801EA52B37003CA9DD /* WallpapersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B471EA52B36003CA9DD /* WallpapersCell.xib */; };
 		ADBB1D811EA52B37003CA9DD /* WallpapersView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B491EA52B36003CA9DD /* WallpapersView.m */; };
 		ADBB1D821EA52B37003CA9DD /* WallpapersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B4A1EA52B36003CA9DD /* WallpapersView.xib */; };
-		ADBB1D831EA52B37003CA9DD /* PrivacyView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B4D1EA52B36003CA9DD /* PrivacyView.m */; };
-		ADBB1D841EA52B37003CA9DD /* PrivacyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B4E1EA52B36003CA9DD /* PrivacyView.xib */; };
-		ADBB1D851EA52B37003CA9DD /* TermsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B511EA52B36003CA9DD /* TermsView.m */; };
-		ADBB1D861EA52B37003CA9DD /* TermsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B521EA52B36003CA9DD /* TermsView.xib */; };
-		ADBB1D871EA52B37003CA9DD /* AddAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B551EA52B36003CA9DD /* AddAccountView.m */; };
-		ADBB1D881EA52B37003CA9DD /* AddAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B561EA52B36003CA9DD /* AddAccountView.xib */; };
-		ADBB1D891EA52B37003CA9DD /* SwitchAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B591EA52B36003CA9DD /* SwitchAccountCell.m */; };
-		ADBB1D8A1EA52B37003CA9DD /* SwitchAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B5A1EA52B36003CA9DD /* SwitchAccountCell.xib */; };
-		ADBB1D8B1EA52B37003CA9DD /* SwitchAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B5C1EA52B36003CA9DD /* SwitchAccountView.m */; };
-		ADBB1D8C1EA52B37003CA9DD /* SwitchAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B5D1EA52B36003CA9DD /* SwitchAccountView.xib */; };
-		ADBB1D8D1EA52B37003CA9DD /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B5F1EA52B36003CA9DD /* SettingsView.m */; };
-		ADBB1D8E1EA52B37003CA9DD /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B601EA52B36003CA9DD /* SettingsView.xib */; };
-		ADBB1D8F1EA52B37003CA9DD /* premium.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B641EA52B36003CA9DD /* premium.m */; };
-		ADBB1D901EA52B37003CA9DD /* PremiumView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B661EA52B36003CA9DD /* PremiumView.m */; };
-		ADBB1D911EA52B37003CA9DD /* PremiumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1B671EA52B36003CA9DD /* PremiumView.xib */; };
 		ADBB1D921EA52B37003CA9DD /* FObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B6A1EA52B36003CA9DD /* FObject.m */; };
 		ADBB1D931EA52B37003CA9DD /* FUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B6C1EA52B36003CA9DD /* FUser+Util.m */; };
 		ADBB1D941EA52B37003CA9DD /* FUser.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1B6E1EA52B36003CA9DD /* FUser.m */; };
@@ -357,14 +302,6 @@
 		ADBB1DC61EA52B37003CA9DD /* DBRecent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BDD1EA52B36003CA9DD /* DBRecent.m */; };
 		ADBB1DC71EA52B37003CA9DD /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BDF1EA52B36003CA9DD /* DBUser.m */; };
 		ADBB1DC81EA52B37003CA9DD /* DBUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BE11EA52B36003CA9DD /* DBUserStatus.m */; };
-		ADBB1DC91EA52B37003CA9DD /* LoginEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BE61EA52B36003CA9DD /* LoginEmailView.m */; };
-		ADBB1DCA1EA52B37003CA9DD /* LoginEmailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BE71EA52B36003CA9DD /* LoginEmailView.xib */; };
-		ADBB1DCB1EA52B37003CA9DD /* LoginGoogleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BEA1EA52B36003CA9DD /* LoginGoogleView.m */; };
-		ADBB1DCC1EA52B37003CA9DD /* LoginGoogleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BEB1EA52B36003CA9DD /* LoginGoogleView.xib */; };
-		ADBB1DCD1EA52B37003CA9DD /* RegisterEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BEE1EA52B36003CA9DD /* RegisterEmailView.m */; };
-		ADBB1DCE1EA52B37003CA9DD /* RegisterEmailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BEF1EA52B36003CA9DD /* RegisterEmailView.xib */; };
-		ADBB1DCF1EA52B37003CA9DD /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1BF11EA52B36003CA9DD /* WelcomeView.m */; };
-		ADBB1DD01EA52B37003CA9DD /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BF21EA52B36003CA9DD /* WelcomeView.xib */; };
 		ADBB1DD11EA52B37003CA9DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BF31EA52B36003CA9DD /* GoogleService-Info.plist */; };
 		ADBB1DD21EA52B37003CA9DD /* addaccount_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BF71EA52B36003CA9DD /* addaccount_logo@2x.png */; };
 		ADBB1DD31EA52B37003CA9DD /* allmedia_blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1BF91EA52B36003CA9DD /* allmedia_blank@2x.png */; };
@@ -600,8 +537,6 @@
 		ADBB1EBA1EA52B37003CA9DD /* wallpapers08@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1CFE1EA52B36003CA9DD /* wallpapers08@2x.jpg */; };
 		ADBB1EBB1EA52B37003CA9DD /* wallpapers09@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1CFF1EA52B36003CA9DD /* wallpapers09@2x.jpg */; };
 		ADBB1EBC1EA52B37003CA9DD /* wallpapers10@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1D001EA52B36003CA9DD /* wallpapers10@2x.jpg */; };
-		ADBB1EBD1EA52B37003CA9DD /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1D021EA52B36003CA9DD /* privacy.html */; };
-		ADBB1EBE1EA52B37003CA9DD /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = ADBB1D031EA52B36003CA9DD /* terms.html */; };
 		ADBB1EBF1EA52B37003CA9DD /* SinchService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D221EA52B37003CA9DD /* SinchService.m */; };
 		ADBB1EC01EA52B37003CA9DD /* SINSClientsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D241EA52B37003CA9DD /* SINSClientsObserver.m */; };
 		ADBB1EC11EA52B37003CA9DD /* SINService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBB1D261EA52B37003CA9DD /* SINService.m */; };
@@ -1056,15 +991,6 @@
 		ADBB1AB51EA52B35003CA9DD /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		ADBB1AB61EA52B35003CA9DD /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		ADBB1AB71EA52B35003CA9DD /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
-		ADBB1ABA1EA52B35003CA9DD /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
-		ADBB1ABB1EA52B35003CA9DD /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
-		ADBB1ABC1EA52B35003CA9DD /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
-		ADBB1ABE1EA52B35003CA9DD /* GroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupView.h; sourceTree = "<group>"; };
-		ADBB1ABF1EA52B35003CA9DD /* GroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupView.m; sourceTree = "<group>"; };
-		ADBB1AC01EA52B35003CA9DD /* GroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupView.xib; sourceTree = "<group>"; };
-		ADBB1AC21EA52B35003CA9DD /* MultipleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleView.h; sourceTree = "<group>"; };
-		ADBB1AC31EA52B35003CA9DD /* MultipleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleView.m; sourceTree = "<group>"; };
-		ADBB1AC41EA52B35003CA9DD /* MultipleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleView.xib; sourceTree = "<group>"; };
 		ADBB1AC61EA52B35003CA9DD /* AllMediaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMediaCell.h; sourceTree = "<group>"; };
 		ADBB1AC71EA52B35003CA9DD /* AllMediaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMediaCell.m; sourceTree = "<group>"; };
 		ADBB1AC81EA52B35003CA9DD /* AllMediaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllMediaCell.xib; sourceTree = "<group>"; };
@@ -1082,24 +1008,6 @@
 		ADBB1AD71EA52B36003CA9DD /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		ADBB1ADA1EA52B36003CA9DD /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		ADBB1ADB1EA52B36003CA9DD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
-		ADBB1ADD1EA52B36003CA9DD /* CallAudioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallAudioView.h; sourceTree = "<group>"; };
-		ADBB1ADE1EA52B36003CA9DD /* CallAudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallAudioView.m; sourceTree = "<group>"; };
-		ADBB1ADF1EA52B36003CA9DD /* CallAudioView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallAudioView.xib; sourceTree = "<group>"; };
-		ADBB1AE11EA52B36003CA9DD /* CallVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallVideoView.h; sourceTree = "<group>"; };
-		ADBB1AE21EA52B36003CA9DD /* CallVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallVideoView.m; sourceTree = "<group>"; };
-		ADBB1AE31EA52B36003CA9DD /* CallVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallVideoView.xib; sourceTree = "<group>"; };
-		ADBB1AE51EA52B36003CA9DD /* SelectGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupCell.h; sourceTree = "<group>"; };
-		ADBB1AE61EA52B36003CA9DD /* SelectGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupCell.m; sourceTree = "<group>"; };
-		ADBB1AE71EA52B36003CA9DD /* SelectGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupCell.xib; sourceTree = "<group>"; };
-		ADBB1AE81EA52B36003CA9DD /* SelectGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupView.h; sourceTree = "<group>"; };
-		ADBB1AE91EA52B36003CA9DD /* SelectGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupView.m; sourceTree = "<group>"; };
-		ADBB1AEA1EA52B36003CA9DD /* SelectGroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupView.xib; sourceTree = "<group>"; };
-		ADBB1AEC1EA52B36003CA9DD /* SelectMultipleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMultipleView.h; sourceTree = "<group>"; };
-		ADBB1AED1EA52B36003CA9DD /* SelectMultipleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMultipleView.m; sourceTree = "<group>"; };
-		ADBB1AEE1EA52B36003CA9DD /* SelectMultipleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMultipleView.xib; sourceTree = "<group>"; };
-		ADBB1AF01EA52B36003CA9DD /* SelectSingleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSingleView.h; sourceTree = "<group>"; };
-		ADBB1AF11EA52B36003CA9DD /* SelectSingleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSingleView.m; sourceTree = "<group>"; };
-		ADBB1AF21EA52B36003CA9DD /* SelectSingleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectSingleView.xib; sourceTree = "<group>"; };
 		ADBB1AF41EA52B36003CA9DD /* StickersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickersCell.h; sourceTree = "<group>"; };
 		ADBB1AF51EA52B36003CA9DD /* StickersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickersCell.m; sourceTree = "<group>"; };
 		ADBB1AF61EA52B36003CA9DD /* StickersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StickersCell.xib; sourceTree = "<group>"; };
@@ -1112,39 +1020,6 @@
 		ADBB1AFF1EA52B36003CA9DD /* ChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsView.h; sourceTree = "<group>"; };
 		ADBB1B001EA52B36003CA9DD /* ChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsView.m; sourceTree = "<group>"; };
 		ADBB1B011EA52B36003CA9DD /* ChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatsView.xib; sourceTree = "<group>"; };
-		ADBB1B031EA52B36003CA9DD /* CallsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallsView.h; sourceTree = "<group>"; };
-		ADBB1B041EA52B36003CA9DD /* CallsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallsView.m; sourceTree = "<group>"; };
-		ADBB1B051EA52B36003CA9DD /* CallsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallsView.xib; sourceTree = "<group>"; };
-		ADBB1B071EA52B36003CA9DD /* PeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
-		ADBB1B081EA52B36003CA9DD /* PeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleCell.m; sourceTree = "<group>"; };
-		ADBB1B091EA52B36003CA9DD /* PeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
-		ADBB1B0A1EA52B36003CA9DD /* PeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleView.h; sourceTree = "<group>"; };
-		ADBB1B0B1EA52B36003CA9DD /* PeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleView.m; sourceTree = "<group>"; };
-		ADBB1B0C1EA52B36003CA9DD /* PeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleView.xib; sourceTree = "<group>"; };
-		ADBB1B0F1EA52B36003CA9DD /* CreateGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupView.h; sourceTree = "<group>"; };
-		ADBB1B101EA52B36003CA9DD /* CreateGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupView.m; sourceTree = "<group>"; };
-		ADBB1B111EA52B36003CA9DD /* CreateGroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupView.xib; sourceTree = "<group>"; };
-		ADBB1B121EA52B36003CA9DD /* GroupsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsCell.h; sourceTree = "<group>"; };
-		ADBB1B131EA52B36003CA9DD /* GroupsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsCell.m; sourceTree = "<group>"; };
-		ADBB1B141EA52B36003CA9DD /* GroupsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsCell.xib; sourceTree = "<group>"; };
-		ADBB1B151EA52B36003CA9DD /* GroupsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsView.h; sourceTree = "<group>"; };
-		ADBB1B161EA52B36003CA9DD /* GroupsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsView.m; sourceTree = "<group>"; };
-		ADBB1B171EA52B36003CA9DD /* GroupsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsView.xib; sourceTree = "<group>"; };
-		ADBB1B1B1EA52B36003CA9DD /* CountriesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesView.h; sourceTree = "<group>"; };
-		ADBB1B1C1EA52B36003CA9DD /* CountriesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesView.m; sourceTree = "<group>"; };
-		ADBB1B1D1EA52B36003CA9DD /* CountriesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountriesView.xib; sourceTree = "<group>"; };
-		ADBB1B1E1EA52B36003CA9DD /* EditProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileView.h; sourceTree = "<group>"; };
-		ADBB1B1F1EA52B36003CA9DD /* EditProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileView.m; sourceTree = "<group>"; };
-		ADBB1B201EA52B36003CA9DD /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
-		ADBB1B221EA52B36003CA9DD /* PasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordView.h; sourceTree = "<group>"; };
-		ADBB1B231EA52B36003CA9DD /* PasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordView.m; sourceTree = "<group>"; };
-		ADBB1B241EA52B36003CA9DD /* PasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordView.xib; sourceTree = "<group>"; };
-		ADBB1B271EA52B36003CA9DD /* CustomStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatusView.h; sourceTree = "<group>"; };
-		ADBB1B281EA52B36003CA9DD /* CustomStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatusView.m; sourceTree = "<group>"; };
-		ADBB1B291EA52B36003CA9DD /* CustomStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomStatusView.xib; sourceTree = "<group>"; };
-		ADBB1B2A1EA52B36003CA9DD /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
-		ADBB1B2B1EA52B36003CA9DD /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
-		ADBB1B2C1EA52B36003CA9DD /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		ADBB1B2E1EA52B36003CA9DD /* ArchiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveCell.h; sourceTree = "<group>"; };
 		ADBB1B2F1EA52B36003CA9DD /* ArchiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveCell.m; sourceTree = "<group>"; };
 		ADBB1B301EA52B36003CA9DD /* ArchiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArchiveCell.xib; sourceTree = "<group>"; };
@@ -1169,29 +1044,6 @@
 		ADBB1B481EA52B36003CA9DD /* WallpapersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpapersView.h; sourceTree = "<group>"; };
 		ADBB1B491EA52B36003CA9DD /* WallpapersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpapersView.m; sourceTree = "<group>"; };
 		ADBB1B4A1EA52B36003CA9DD /* WallpapersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallpapersView.xib; sourceTree = "<group>"; };
-		ADBB1B4C1EA52B36003CA9DD /* PrivacyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyView.h; sourceTree = "<group>"; };
-		ADBB1B4D1EA52B36003CA9DD /* PrivacyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyView.m; sourceTree = "<group>"; };
-		ADBB1B4E1EA52B36003CA9DD /* PrivacyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyView.xib; sourceTree = "<group>"; };
-		ADBB1B501EA52B36003CA9DD /* TermsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsView.h; sourceTree = "<group>"; };
-		ADBB1B511EA52B36003CA9DD /* TermsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsView.m; sourceTree = "<group>"; };
-		ADBB1B521EA52B36003CA9DD /* TermsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsView.xib; sourceTree = "<group>"; };
-		ADBB1B541EA52B36003CA9DD /* AddAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountView.h; sourceTree = "<group>"; };
-		ADBB1B551EA52B36003CA9DD /* AddAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountView.m; sourceTree = "<group>"; };
-		ADBB1B561EA52B36003CA9DD /* AddAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAccountView.xib; sourceTree = "<group>"; };
-		ADBB1B581EA52B36003CA9DD /* SwitchAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchAccountCell.h; sourceTree = "<group>"; };
-		ADBB1B591EA52B36003CA9DD /* SwitchAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchAccountCell.m; sourceTree = "<group>"; };
-		ADBB1B5A1EA52B36003CA9DD /* SwitchAccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchAccountCell.xib; sourceTree = "<group>"; };
-		ADBB1B5B1EA52B36003CA9DD /* SwitchAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchAccountView.h; sourceTree = "<group>"; };
-		ADBB1B5C1EA52B36003CA9DD /* SwitchAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchAccountView.m; sourceTree = "<group>"; };
-		ADBB1B5D1EA52B36003CA9DD /* SwitchAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchAccountView.xib; sourceTree = "<group>"; };
-		ADBB1B5E1EA52B36003CA9DD /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
-		ADBB1B5F1EA52B36003CA9DD /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
-		ADBB1B601EA52B36003CA9DD /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
-		ADBB1B631EA52B36003CA9DD /* premium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = premium.h; sourceTree = "<group>"; };
-		ADBB1B641EA52B36003CA9DD /* premium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = premium.m; sourceTree = "<group>"; };
-		ADBB1B651EA52B36003CA9DD /* PremiumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumView.h; sourceTree = "<group>"; };
-		ADBB1B661EA52B36003CA9DD /* PremiumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumView.m; sourceTree = "<group>"; };
-		ADBB1B671EA52B36003CA9DD /* PremiumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PremiumView.xib; sourceTree = "<group>"; };
 		ADBB1B691EA52B36003CA9DD /* FObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FObject.h; sourceTree = "<group>"; };
 		ADBB1B6A1EA52B36003CA9DD /* FObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FObject.m; sourceTree = "<group>"; };
 		ADBB1B6B1EA52B36003CA9DD /* FUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FUser+Util.h"; sourceTree = "<group>"; };
@@ -1303,18 +1155,6 @@
 		ADBB1BE01EA52B36003CA9DD /* DBUserStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserStatus.h; sourceTree = "<group>"; };
 		ADBB1BE11EA52B36003CA9DD /* DBUserStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserStatus.m; sourceTree = "<group>"; };
 		ADBB1BE21EA52B36003CA9DD /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
-		ADBB1BE51EA52B36003CA9DD /* LoginEmailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEmailView.h; sourceTree = "<group>"; };
-		ADBB1BE61EA52B36003CA9DD /* LoginEmailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEmailView.m; sourceTree = "<group>"; };
-		ADBB1BE71EA52B36003CA9DD /* LoginEmailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginEmailView.xib; sourceTree = "<group>"; };
-		ADBB1BE91EA52B36003CA9DD /* LoginGoogleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginGoogleView.h; sourceTree = "<group>"; };
-		ADBB1BEA1EA52B36003CA9DD /* LoginGoogleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginGoogleView.m; sourceTree = "<group>"; };
-		ADBB1BEB1EA52B36003CA9DD /* LoginGoogleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginGoogleView.xib; sourceTree = "<group>"; };
-		ADBB1BED1EA52B36003CA9DD /* RegisterEmailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterEmailView.h; sourceTree = "<group>"; };
-		ADBB1BEE1EA52B36003CA9DD /* RegisterEmailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterEmailView.m; sourceTree = "<group>"; };
-		ADBB1BEF1EA52B36003CA9DD /* RegisterEmailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterEmailView.xib; sourceTree = "<group>"; };
-		ADBB1BF01EA52B36003CA9DD /* WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeView.h; sourceTree = "<group>"; };
-		ADBB1BF11EA52B36003CA9DD /* WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeView.m; sourceTree = "<group>"; };
-		ADBB1BF21EA52B36003CA9DD /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		ADBB1BF31EA52B36003CA9DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBB1BF71EA52B36003CA9DD /* addaccount_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addaccount_logo@2x.png"; sourceTree = "<group>"; };
 		ADBB1BF91EA52B36003CA9DD /* allmedia_blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "allmedia_blank@2x.png"; sourceTree = "<group>"; };
@@ -1551,8 +1391,6 @@
 		ADBB1CFE1EA52B36003CA9DD /* wallpapers08@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wallpapers08@2x.jpg"; sourceTree = "<group>"; };
 		ADBB1CFF1EA52B36003CA9DD /* wallpapers09@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wallpapers09@2x.jpg"; sourceTree = "<group>"; };
 		ADBB1D001EA52B36003CA9DD /* wallpapers10@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wallpapers10@2x.jpg"; sourceTree = "<group>"; };
-		ADBB1D021EA52B36003CA9DD /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
-		ADBB1D031EA52B36003CA9DD /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
 		ADBB1D091EA52B36003CA9DD /* SINAPSEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINAPSEnvironment.h; sourceTree = "<group>"; };
 		ADBB1D0A1EA52B36003CA9DD /* SINAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINAudioController.h; sourceTree = "<group>"; };
 		ADBB1D0B1EA52B36003CA9DD /* SINCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINCall.h; sourceTree = "<group>"; };
@@ -2492,7 +2330,6 @@
 				ADBB1AD81EA52B36003CA9DD /* Misc */,
 				ADBB1AFA1EA52B36003CA9DD /* Tabs */,
 				ADBB1B611EA52B36003CA9DD /* Utilities */,
-				ADBB1BE31EA52B36003CA9DD /* Welcome */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2510,45 +2347,12 @@
 		ADBB1AB81EA52B35003CA9DD /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				ADBB1AB91EA52B35003CA9DD /* 01_Profile */,
-				ADBB1ABD1EA52B35003CA9DD /* 02_Group */,
-				ADBB1AC11EA52B35003CA9DD /* 03_Multiple */,
 				ADBB1AC51EA52B35003CA9DD /* 04_AllMedia */,
 				ADBB1ACC1EA52B35003CA9DD /* 05_Picture */,
 				ADBB1AD01EA52B35003CA9DD /* 06_Video */,
 				ADBB1AD41EA52B36003CA9DD /* 07_Map */,
 			);
 			path = Details;
-			sourceTree = "<group>";
-		};
-		ADBB1AB91EA52B35003CA9DD /* 01_Profile */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1ABA1EA52B35003CA9DD /* ProfileView.h */,
-				ADBB1ABB1EA52B35003CA9DD /* ProfileView.m */,
-				ADBB1ABC1EA52B35003CA9DD /* ProfileView.xib */,
-			);
-			path = 01_Profile;
-			sourceTree = "<group>";
-		};
-		ADBB1ABD1EA52B35003CA9DD /* 02_Group */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1ABE1EA52B35003CA9DD /* GroupView.h */,
-				ADBB1ABF1EA52B35003CA9DD /* GroupView.m */,
-				ADBB1AC01EA52B35003CA9DD /* GroupView.xib */,
-			);
-			path = 02_Group;
-			sourceTree = "<group>";
-		};
-		ADBB1AC11EA52B35003CA9DD /* 03_Multiple */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1AC21EA52B35003CA9DD /* MultipleView.h */,
-				ADBB1AC31EA52B35003CA9DD /* MultipleView.m */,
-				ADBB1AC41EA52B35003CA9DD /* MultipleView.xib */,
-			);
-			path = 03_Multiple;
 			sourceTree = "<group>";
 		};
 		ADBB1AC51EA52B35003CA9DD /* 04_AllMedia */ = {
@@ -2598,11 +2402,6 @@
 			isa = PBXGroup;
 			children = (
 				ADBB1AD91EA52B36003CA9DD /* Application */,
-				ADBB1ADC1EA52B36003CA9DD /* CallAudio */,
-				ADBB1AE01EA52B36003CA9DD /* CallVideo */,
-				ADBB1AE41EA52B36003CA9DD /* SelectGroup */,
-				ADBB1AEB1EA52B36003CA9DD /* SelectMultiple */,
-				ADBB1AEF1EA52B36003CA9DD /* SelectSingle */,
 				ADBB1AF31EA52B36003CA9DD /* Stickers */,
 			);
 			path = Misc;
@@ -2615,59 +2414,6 @@
 				ADBB1ADB1EA52B36003CA9DD /* NavigationController.m */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		ADBB1ADC1EA52B36003CA9DD /* CallAudio */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1ADD1EA52B36003CA9DD /* CallAudioView.h */,
-				ADBB1ADE1EA52B36003CA9DD /* CallAudioView.m */,
-				ADBB1ADF1EA52B36003CA9DD /* CallAudioView.xib */,
-			);
-			path = CallAudio;
-			sourceTree = "<group>";
-		};
-		ADBB1AE01EA52B36003CA9DD /* CallVideo */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1AE11EA52B36003CA9DD /* CallVideoView.h */,
-				ADBB1AE21EA52B36003CA9DD /* CallVideoView.m */,
-				ADBB1AE31EA52B36003CA9DD /* CallVideoView.xib */,
-			);
-			path = CallVideo;
-			sourceTree = "<group>";
-		};
-		ADBB1AE41EA52B36003CA9DD /* SelectGroup */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1AE51EA52B36003CA9DD /* SelectGroupCell.h */,
-				ADBB1AE61EA52B36003CA9DD /* SelectGroupCell.m */,
-				ADBB1AE71EA52B36003CA9DD /* SelectGroupCell.xib */,
-				ADBB1AE81EA52B36003CA9DD /* SelectGroupView.h */,
-				ADBB1AE91EA52B36003CA9DD /* SelectGroupView.m */,
-				ADBB1AEA1EA52B36003CA9DD /* SelectGroupView.xib */,
-			);
-			path = SelectGroup;
-			sourceTree = "<group>";
-		};
-		ADBB1AEB1EA52B36003CA9DD /* SelectMultiple */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1AEC1EA52B36003CA9DD /* SelectMultipleView.h */,
-				ADBB1AED1EA52B36003CA9DD /* SelectMultipleView.m */,
-				ADBB1AEE1EA52B36003CA9DD /* SelectMultipleView.xib */,
-			);
-			path = SelectMultiple;
-			sourceTree = "<group>";
-		};
-		ADBB1AEF1EA52B36003CA9DD /* SelectSingle */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1AF01EA52B36003CA9DD /* SelectSingleView.h */,
-				ADBB1AF11EA52B36003CA9DD /* SelectSingleView.m */,
-				ADBB1AF21EA52B36003CA9DD /* SelectSingleView.xib */,
-			);
-			path = SelectSingle;
 			sourceTree = "<group>";
 		};
 		ADBB1AF31EA52B36003CA9DD /* Stickers */ = {
@@ -2687,9 +2433,6 @@
 			isa = PBXGroup;
 			children = (
 				ADBB1AFB1EA52B36003CA9DD /* 01_Chats */,
-				ADBB1B021EA52B36003CA9DD /* 02_Calls */,
-				ADBB1B061EA52B36003CA9DD /* 03_People */,
-				ADBB1B0D1EA52B36003CA9DD /* 04_Groups */,
 				ADBB1B181EA52B36003CA9DD /* 05_Settings */,
 			);
 			path = Tabs;
@@ -2708,124 +2451,15 @@
 			path = 01_Chats;
 			sourceTree = "<group>";
 		};
-		ADBB1B021EA52B36003CA9DD /* 02_Calls */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B031EA52B36003CA9DD /* CallsView.h */,
-				ADBB1B041EA52B36003CA9DD /* CallsView.m */,
-				ADBB1B051EA52B36003CA9DD /* CallsView.xib */,
-			);
-			path = 02_Calls;
-			sourceTree = "<group>";
-		};
-		ADBB1B061EA52B36003CA9DD /* 03_People */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B071EA52B36003CA9DD /* PeopleCell.h */,
-				ADBB1B081EA52B36003CA9DD /* PeopleCell.m */,
-				ADBB1B091EA52B36003CA9DD /* PeopleCell.xib */,
-				ADBB1B0A1EA52B36003CA9DD /* PeopleView.h */,
-				ADBB1B0B1EA52B36003CA9DD /* PeopleView.m */,
-				ADBB1B0C1EA52B36003CA9DD /* PeopleView.xib */,
-			);
-			path = 03_People;
-			sourceTree = "<group>";
-		};
-		ADBB1B0D1EA52B36003CA9DD /* 04_Groups */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B0E1EA52B36003CA9DD /* 01_CreateGroup */,
-				ADBB1B121EA52B36003CA9DD /* GroupsCell.h */,
-				ADBB1B131EA52B36003CA9DD /* GroupsCell.m */,
-				ADBB1B141EA52B36003CA9DD /* GroupsCell.xib */,
-				ADBB1B151EA52B36003CA9DD /* GroupsView.h */,
-				ADBB1B161EA52B36003CA9DD /* GroupsView.m */,
-				ADBB1B171EA52B36003CA9DD /* GroupsView.xib */,
-			);
-			path = 04_Groups;
-			sourceTree = "<group>";
-		};
-		ADBB1B0E1EA52B36003CA9DD /* 01_CreateGroup */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B0F1EA52B36003CA9DD /* CreateGroupView.h */,
-				ADBB1B101EA52B36003CA9DD /* CreateGroupView.m */,
-				ADBB1B111EA52B36003CA9DD /* CreateGroupView.xib */,
-			);
-			path = 01_CreateGroup;
-			sourceTree = "<group>";
-		};
 		ADBB1B181EA52B36003CA9DD /* 05_Settings */ = {
 			isa = PBXGroup;
 			children = (
-				ADBB1B191EA52B36003CA9DD /* 01_EditProfile */,
-				ADBB1B211EA52B36003CA9DD /* 02_Password */,
-				ADBB1B251EA52B36003CA9DD /* 03_Status */,
 				ADBB1B2D1EA52B36003CA9DD /* 05_Archive */,
 				ADBB1B341EA52B36003CA9DD /* 06_Cache */,
 				ADBB1B3C1EA52B36003CA9DD /* 07_Media */,
 				ADBB1B441EA52B36003CA9DD /* 08_Wallpapers */,
-				ADBB1B4B1EA52B36003CA9DD /* 09_Privacy */,
-				ADBB1B4F1EA52B36003CA9DD /* 10_Terms */,
-				ADBB1B531EA52B36003CA9DD /* 11_AddAccount */,
-				ADBB1B571EA52B36003CA9DD /* 12_SwitchAccount */,
-				ADBB1B5E1EA52B36003CA9DD /* SettingsView.h */,
-				ADBB1B5F1EA52B36003CA9DD /* SettingsView.m */,
-				ADBB1B601EA52B36003CA9DD /* SettingsView.xib */,
 			);
 			path = 05_Settings;
-			sourceTree = "<group>";
-		};
-		ADBB1B191EA52B36003CA9DD /* 01_EditProfile */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B1A1EA52B36003CA9DD /* 01_Countries */,
-				ADBB1B1E1EA52B36003CA9DD /* EditProfileView.h */,
-				ADBB1B1F1EA52B36003CA9DD /* EditProfileView.m */,
-				ADBB1B201EA52B36003CA9DD /* EditProfileView.xib */,
-			);
-			path = 01_EditProfile;
-			sourceTree = "<group>";
-		};
-		ADBB1B1A1EA52B36003CA9DD /* 01_Countries */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B1B1EA52B36003CA9DD /* CountriesView.h */,
-				ADBB1B1C1EA52B36003CA9DD /* CountriesView.m */,
-				ADBB1B1D1EA52B36003CA9DD /* CountriesView.xib */,
-			);
-			path = 01_Countries;
-			sourceTree = "<group>";
-		};
-		ADBB1B211EA52B36003CA9DD /* 02_Password */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B221EA52B36003CA9DD /* PasswordView.h */,
-				ADBB1B231EA52B36003CA9DD /* PasswordView.m */,
-				ADBB1B241EA52B36003CA9DD /* PasswordView.xib */,
-			);
-			path = 02_Password;
-			sourceTree = "<group>";
-		};
-		ADBB1B251EA52B36003CA9DD /* 03_Status */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B261EA52B36003CA9DD /* 01_CustomStatus */,
-				ADBB1B2A1EA52B36003CA9DD /* StatusView.h */,
-				ADBB1B2B1EA52B36003CA9DD /* StatusView.m */,
-				ADBB1B2C1EA52B36003CA9DD /* StatusView.xib */,
-			);
-			path = 03_Status;
-			sourceTree = "<group>";
-		};
-		ADBB1B261EA52B36003CA9DD /* 01_CustomStatus */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B271EA52B36003CA9DD /* CustomStatusView.h */,
-				ADBB1B281EA52B36003CA9DD /* CustomStatusView.m */,
-				ADBB1B291EA52B36003CA9DD /* CustomStatusView.xib */,
-			);
-			path = 01_CustomStatus;
 			sourceTree = "<group>";
 		};
 		ADBB1B2D1EA52B36003CA9DD /* 05_Archive */ = {
@@ -2896,53 +2530,9 @@
 			path = 08_Wallpapers;
 			sourceTree = "<group>";
 		};
-		ADBB1B4B1EA52B36003CA9DD /* 09_Privacy */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B4C1EA52B36003CA9DD /* PrivacyView.h */,
-				ADBB1B4D1EA52B36003CA9DD /* PrivacyView.m */,
-				ADBB1B4E1EA52B36003CA9DD /* PrivacyView.xib */,
-			);
-			path = 09_Privacy;
-			sourceTree = "<group>";
-		};
-		ADBB1B4F1EA52B36003CA9DD /* 10_Terms */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B501EA52B36003CA9DD /* TermsView.h */,
-				ADBB1B511EA52B36003CA9DD /* TermsView.m */,
-				ADBB1B521EA52B36003CA9DD /* TermsView.xib */,
-			);
-			path = 10_Terms;
-			sourceTree = "<group>";
-		};
-		ADBB1B531EA52B36003CA9DD /* 11_AddAccount */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B541EA52B36003CA9DD /* AddAccountView.h */,
-				ADBB1B551EA52B36003CA9DD /* AddAccountView.m */,
-				ADBB1B561EA52B36003CA9DD /* AddAccountView.xib */,
-			);
-			path = 11_AddAccount;
-			sourceTree = "<group>";
-		};
-		ADBB1B571EA52B36003CA9DD /* 12_SwitchAccount */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B581EA52B36003CA9DD /* SwitchAccountCell.h */,
-				ADBB1B591EA52B36003CA9DD /* SwitchAccountCell.m */,
-				ADBB1B5A1EA52B36003CA9DD /* SwitchAccountCell.xib */,
-				ADBB1B5B1EA52B36003CA9DD /* SwitchAccountView.h */,
-				ADBB1B5C1EA52B36003CA9DD /* SwitchAccountView.m */,
-				ADBB1B5D1EA52B36003CA9DD /* SwitchAccountView.xib */,
-			);
-			path = 12_SwitchAccount;
-			sourceTree = "<group>";
-		};
 		ADBB1B611EA52B36003CA9DD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				ADBB1B621EA52B36003CA9DD /* advert */,
 				ADBB1B681EA52B36003CA9DD /* backend1 */,
 				ADBB1B711EA52B36003CA9DD /* backend2 */,
 				ADBB1B7E1EA52B36003CA9DD /* backend3 */,
@@ -2958,18 +2548,6 @@
 				ADBB1BE21EA52B36003CA9DD /* utilities.h */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		ADBB1B621EA52B36003CA9DD /* advert */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1B631EA52B36003CA9DD /* premium.h */,
-				ADBB1B641EA52B36003CA9DD /* premium.m */,
-				ADBB1B651EA52B36003CA9DD /* PremiumView.h */,
-				ADBB1B661EA52B36003CA9DD /* PremiumView.m */,
-				ADBB1B671EA52B36003CA9DD /* PremiumView.xib */,
-			);
-			path = advert;
 			sourceTree = "<group>";
 		};
 		ADBB1B681EA52B36003CA9DD /* backend1 */ = {
@@ -3166,49 +2744,6 @@
 			path = realm;
 			sourceTree = "<group>";
 		};
-		ADBB1BE31EA52B36003CA9DD /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1BE41EA52B36003CA9DD /* LoginEmail */,
-				ADBB1BE81EA52B36003CA9DD /* LoginGoogle */,
-				ADBB1BEC1EA52B36003CA9DD /* RegisterEmail */,
-				ADBB1BF01EA52B36003CA9DD /* WelcomeView.h */,
-				ADBB1BF11EA52B36003CA9DD /* WelcomeView.m */,
-				ADBB1BF21EA52B36003CA9DD /* WelcomeView.xib */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
-		ADBB1BE41EA52B36003CA9DD /* LoginEmail */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1BE51EA52B36003CA9DD /* LoginEmailView.h */,
-				ADBB1BE61EA52B36003CA9DD /* LoginEmailView.m */,
-				ADBB1BE71EA52B36003CA9DD /* LoginEmailView.xib */,
-			);
-			path = LoginEmail;
-			sourceTree = "<group>";
-		};
-		ADBB1BE81EA52B36003CA9DD /* LoginGoogle */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1BE91EA52B36003CA9DD /* LoginGoogleView.h */,
-				ADBB1BEA1EA52B36003CA9DD /* LoginGoogleView.m */,
-				ADBB1BEB1EA52B36003CA9DD /* LoginGoogleView.xib */,
-			);
-			path = LoginGoogle;
-			sourceTree = "<group>";
-		};
-		ADBB1BEC1EA52B36003CA9DD /* RegisterEmail */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1BED1EA52B36003CA9DD /* RegisterEmailView.h */,
-				ADBB1BEE1EA52B36003CA9DD /* RegisterEmailView.m */,
-				ADBB1BEF1EA52B36003CA9DD /* RegisterEmailView.xib */,
-			);
-			path = RegisterEmail;
-			sourceTree = "<group>";
-		};
 		ADBB1BF41EA52B36003CA9DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3218,7 +2753,6 @@
 				ADBB1C581EA52B36003CA9DD /* Stickers1 */,
 				ADBB1CA71EA52B36003CA9DD /* Stickers2 */,
 				ADBB1CF61EA52B36003CA9DD /* Wallpapers */,
-				ADBB1D011EA52B36003CA9DD /* Web */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3716,15 +3250,6 @@
 			path = Wallpapers;
 			sourceTree = "<group>";
 		};
-		ADBB1D011EA52B36003CA9DD /* Web */ = {
-			isa = PBXGroup;
-			children = (
-				ADBB1D021EA52B36003CA9DD /* privacy.html */,
-				ADBB1D031EA52B36003CA9DD /* terms.html */,
-			);
-			path = Web;
-			sourceTree = "<group>";
-		};
 		ADBB1D041EA52B36003CA9DD /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
@@ -4004,7 +3529,6 @@
 				ADBB1E9E1EA52B37003CA9DD /* stickersend58@2x.png in Resources */,
 				ADBB1E771EA52B37003CA9DD /* stickersend19@2x.png in Resources */,
 				AD7E36CB1E9D4B95004B1215 /* Contacts.json in Resources */,
-				ADBB1D6A1EA52B37003CA9DD /* CountriesView.xib in Resources */,
 				ADBB1DD91EA52B37003CA9DD /* callaudio_mute1@2x.png in Resources */,
 				ADBB1E1D1EA52B37003CA9DD /* stickerlocal07@2x.png in Resources */,
 				ADBB1DF31EA52B37003CA9DD /* launchscreen_logo@2x.png in Resources */,
@@ -4027,7 +3551,6 @@
 				ADBB1E3B1EA52B37003CA9DD /* stickerlocal37@2x.png in Resources */,
 				ADBB1E5E1EA52B37003CA9DD /* stickerlocal72@2x.png in Resources */,
 				AD888F501EFC4C5900FE4C43 /* diners.png in Resources */,
-				ADBB1D391EA52B37003CA9DD /* ProfileView.xib in Resources */,
 				ADBB1DF51EA52B37003CA9DD /* audiomediaitem_download@2x.png in Resources */,
 				ADBB1DDC1EA52B37003CA9DD /* callaudio_speaker2@2x.png in Resources */,
 				ADBB1DD51EA52B37003CA9DD /* archive_blank@2x.png in Resources */,
@@ -4060,14 +3583,10 @@
 				ADBB1EA71EA52B37003CA9DD /* stickersend67@2x.png in Resources */,
 				ADB2C2471FC9461400B158A4 /* LinkedinSignupCell.xib in Resources */,
 				ADBB1DF81EA52B37003CA9DD /* people_blank@2x.png in Resources */,
-				ADBB1EBE1EA52B37003CA9DD /* terms.html in Resources */,
-				ADBB1DCE1EA52B37003CA9DD /* RegisterEmailView.xib in Resources */,
 				AD93F75A1E87FD78008488B9 /* admin-logo.png in Resources */,
-				ADBB1D6E1EA52B37003CA9DD /* PasswordView.xib in Resources */,
 				AD84F3901E92BB0300FB1D1D /* Screen Shot 2017-04-03 at 10.45.57 PM.png in Resources */,
 				AD1F155E1E8C36AE00DD9529 /* ContactsTableViewCell.xib in Resources */,
 				AD53493A1EA2820E005DF686 /* LikeSelectedImage.png in Resources */,
-				ADBB1D4E1EA52B37003CA9DD /* SelectGroupCell.xib in Resources */,
 				AD888F591EFC4C5900FE4C43 /* placeholder@2x.png in Resources */,
 				ADBB1E741EA52B37003CA9DD /* stickersend16@2x.png in Resources */,
 				ADBB1E391EA52B37003CA9DD /* stickerlocal35@2x.png in Resources */,
@@ -4077,15 +3596,11 @@
 				ADBB1E0A1EA52B37003CA9DD /* settings_blank@2x.png in Resources */,
 				ADBB1E4E1EA52B37003CA9DD /* stickerlocal56@2x.png in Resources */,
 				ADBB1DE91EA52B37003CA9DD /* chat_location@2x.png in Resources */,
-				ADBB1D6C1EA52B37003CA9DD /* EditProfileView.xib in Resources */,
 				ADEAE0351E89925A00D36B55 /* 1220-128.png in Resources */,
 				ADBB1E421EA52B37003CA9DD /* stickerlocal44@2x.png in Resources */,
-				ADBB1D8A1EA52B37003CA9DD /* SwitchAccountCell.xib in Resources */,
-				ADBB1D501EA52B37003CA9DD /* SelectGroupView.xib in Resources */,
 				ADBB1E361EA52B37003CA9DD /* stickerlocal32@2x.png in Resources */,
 				ADBB1D451EA52B37003CA9DD /* VideoView.xib in Resources */,
 				ADBB1E321EA52B37003CA9DD /* stickerlocal28@2x.png in Resources */,
-				ADBB1D3D1EA52B37003CA9DD /* MultipleView.xib in Resources */,
 				ADBB1E2E1EA52B37003CA9DD /* stickerlocal24@2x.png in Resources */,
 				ADBB1DED1EA52B37003CA9DD /* chats_blank@2x.png in Resources */,
 				ADBB1E241EA52B37003CA9DD /* stickerlocal14@2x.png in Resources */,
@@ -4094,7 +3609,6 @@
 				ADDF35BA1F17DC3F00A240E0 /* InternetErrorImage.png in Resources */,
 				ADBB1E971EA52B37003CA9DD /* stickersend51@2x.png in Resources */,
 				ADBB1E6B1EA52B37003CA9DD /* stickersend07@2x.png in Resources */,
-				ADBB1D3B1EA52B37003CA9DD /* GroupView.xib in Resources */,
 				ADBB1E5A1EA52B37003CA9DD /* stickerlocal68@2x.png in Resources */,
 				ADBB1EA61EA52B37003CA9DD /* stickersend66@2x.png in Resources */,
 				ADBB1EB71EA52B37003CA9DD /* wallpapers05@2x.jpg in Resources */,
@@ -4104,10 +3618,8 @@
 				ADBB1E2C1EA52B37003CA9DD /* stickerlocal22@2x.png in Resources */,
 				ADBB1E7A1EA52B37003CA9DD /* stickersend22@2x.png in Resources */,
 				ADBB1E011EA52B37003CA9DD /* premium08@2x.png in Resources */,
-				ADBB1D661EA52B37003CA9DD /* GroupsCell.xib in Resources */,
 				ADBB1E3D1EA52B37003CA9DD /* stickerlocal39@2x.png in Resources */,
 				ADBB1E611EA52B37003CA9DD /* stickerlocal75@2x.png in Resources */,
-				ADBB1D721EA52B37003CA9DD /* StatusView.xib in Resources */,
 				ADBB1DF21EA52B37003CA9DD /* groups_blank@2x.png in Resources */,
 				ADBB1D5C1EA52B37003CA9DD /* ChatsView.xib in Resources */,
 				ADBB1E5C1EA52B37003CA9DD /* stickerlocal70@2x.png in Resources */,
@@ -4117,20 +3629,16 @@
 				ADBB1D761EA52B37003CA9DD /* ArchiveView.xib in Resources */,
 				ADBB1E3C1EA52B37003CA9DD /* stickerlocal38@2x.png in Resources */,
 				ADBB1E201EA52B37003CA9DD /* stickerlocal10@2x.png in Resources */,
-				ADBB1D841EA52B37003CA9DD /* PrivacyView.xib in Resources */,
 				ADBB1E701EA52B37003CA9DD /* stickersend12@2x.png in Resources */,
 				ADBB1E291EA52B37003CA9DD /* stickerlocal19@2x.png in Resources */,
 				ADBB1EA41EA52B37003CA9DD /* stickersend64@2x.png in Resources */,
-				ADBB1EBD1EA52B37003CA9DD /* privacy.html in Resources */,
 				ADBB1E631EA52B37003CA9DD /* stickerlocal77@2x.png in Resources */,
 				ADBB1E331EA52B37003CA9DD /* stickerlocal29@2x.png in Resources */,
 				ADBB1DFA1EA52B37003CA9DD /* premium01@2x.png in Resources */,
 				ADBB1E691EA52B37003CA9DD /* stickersend05@2x.png in Resources */,
 				ADBB1DE41EA52B37003CA9DD /* chat_audio@2x.png in Resources */,
 				ADBB1DF41EA52B37003CA9DD /* login_logo@2x.png in Resources */,
-				ADBB1D881EA52B37003CA9DD /* AddAccountView.xib in Resources */,
 				ADBB1E941EA52B37003CA9DD /* stickersend48@2x.png in Resources */,
-				ADBB1D911EA52B37003CA9DD /* PremiumView.xib in Resources */,
 				ADBB1E7F1EA52B37003CA9DD /* stickersend27@2x.png in Resources */,
 				AD888F511EFC4C5900FE4C43 /* diners@2x.png in Resources */,
 				ADBB1E8C1EA52B37003CA9DD /* stickersend40@2x.png in Resources */,
@@ -4145,7 +3653,6 @@
 				ADBB1E681EA52B37003CA9DD /* stickersend04@2x.png in Resources */,
 				ADBB1E081EA52B37003CA9DD /* register_logo@2x.png in Resources */,
 				ADEAE03D1E89979600D36B55 /* friends-128.png in Resources */,
-				ADBB1D861EA52B37003CA9DD /* TermsView.xib in Resources */,
 				ADBB1E3E1EA52B37003CA9DD /* stickerlocal40@2x.png in Resources */,
 				ADBB1E1C1EA52B37003CA9DD /* stickerlocal06@2x.png in Resources */,
 				ADBB1E441EA52B37003CA9DD /* stickerlocal46@2x.png in Resources */,
@@ -4169,12 +3676,10 @@
 				ADBB1D741EA52B37003CA9DD /* ArchiveCell.xib in Resources */,
 				ADBB1EB31EA52B37003CA9DD /* wallpapers01@2x.jpg in Resources */,
 				ADBB1E2D1EA52B37003CA9DD /* stickerlocal23@2x.png in Resources */,
-				ADBB1D4A1EA52B37003CA9DD /* CallAudioView.xib in Resources */,
 				ADBB1DD21EA52B37003CA9DD /* addaccount_logo@2x.png in Resources */,
 				ADBB1E231EA52B37003CA9DD /* stickerlocal13@2x.png in Resources */,
 				AD7A5DDB1E86DADB00C3B4B6 /* LaunchScreen.storyboard in Resources */,
 				ADBB1DE81EA52B37003CA9DD /* chat_camera@2x.png in Resources */,
-				ADBB1D521EA52B37003CA9DD /* SelectMultipleView.xib in Resources */,
 				ADBB1E311EA52B37003CA9DD /* stickerlocal27@2x.png in Resources */,
 				ADD1D1761E94122E00C3D59D /* ic_1491340365_user_male4.png in Resources */,
 				ADBB1E6C1EA52B37003CA9DD /* stickersend08@2x.png in Resources */,
@@ -4212,10 +3717,8 @@
 				ADBB1E831EA52B37003CA9DD /* stickersend31@2x.png in Resources */,
 				ADEAE03B1E89931600D36B55 /* male-circle-128.png in Resources */,
 				AD7E36D11E9D5601004B1215 /* NavigationBarImage.png in Resources */,
-				ADBB1D5E1EA52B37003CA9DD /* CallsView.xib in Resources */,
 				ADBB1D431EA52B37003CA9DD /* PictureView.xib in Resources */,
 				ADBB1DFE1EA52B37003CA9DD /* premium05@2x.png in Resources */,
-				ADBB1D4C1EA52B37003CA9DD /* CallVideoView.xib in Resources */,
 				ADBB1E581EA52B37003CA9DD /* stickerlocal66@2x.png in Resources */,
 				ADBB1EAE1EA52B37003CA9DD /* stickersend74@2x.png in Resources */,
 				ADBB1DE21EA52B37003CA9DD /* callvideo_mute1@2x.png in Resources */,
@@ -4225,14 +3728,12 @@
 				ADBB1EB41EA52B37003CA9DD /* wallpapers02@2x.jpg in Resources */,
 				ADBB1E991EA52B37003CA9DD /* stickersend53@2x.png in Resources */,
 				AD888F5D1EFC4C5900FE4C43 /* textfield.png in Resources */,
-				ADBB1D681EA52B37003CA9DD /* GroupsView.xib in Resources */,
 				ADBB1EB91EA52B37003CA9DD /* wallpapers07@2x.jpg in Resources */,
 				ADBB1E001EA52B37003CA9DD /* premium07@2x.png in Resources */,
 				ADBB1D7C1EA52B37003CA9DD /* NetworkView.xib in Resources */,
 				ADBB1E4D1EA52B37003CA9DD /* stickerlocal55@2x.png in Resources */,
 				ADEAE0341E89925A00D36B55 /* 020_mail_email_envelope_message-128.png in Resources */,
 				ADBB1DD71EA52B37003CA9DD /* callaudio_blank@2x.png in Resources */,
-				ADBB1D641EA52B37003CA9DD /* CreateGroupView.xib in Resources */,
 				ADBB1D561EA52B37003CA9DD /* StickersCell.xib in Resources */,
 				ADBB1E8B1EA52B37003CA9DD /* stickersend39@2x.png in Resources */,
 				ADBB1E901EA52B37003CA9DD /* stickersend44@2x.png in Resources */,
@@ -4251,13 +3752,11 @@
 				AD0D6D8F1F041FA10064CA76 /* ProgressHUD.bundle in Resources */,
 				ADBB1EAF1EA52B37003CA9DD /* stickersend75@2x.png in Resources */,
 				ADBB1EB21EA52B37003CA9DD /* stickersend78@2x.png in Resources */,
-				ADBB1D541EA52B37003CA9DD /* SelectSingleView.xib in Resources */,
 				ADBB1E261EA52B37003CA9DD /* stickerlocal16@2x.png in Resources */,
 				ADBB1EA51EA52B37003CA9DD /* stickersend65@2x.png in Resources */,
 				ADBB1DDA1EA52B37003CA9DD /* callaudio_mute2@2x.png in Resources */,
 				ADBB1E671EA52B37003CA9DD /* stickersend03@2x.png in Resources */,
 				ADBB1E021EA52B37003CA9DD /* premium09@2x.png in Resources */,
-				ADBB1D601EA52B37003CA9DD /* PeopleCell.xib in Resources */,
 				ADBB1E111EA52B37003CA9DD /* tab_settings@2x.png in Resources */,
 				ADBB1E981EA52B37003CA9DD /* stickersend52@2x.png in Resources */,
 				ADBB1EBB1EA52B37003CA9DD /* wallpapers09@2x.jpg in Resources */,
@@ -4265,12 +3764,10 @@
 				ADBB1EA01EA52B37003CA9DD /* stickersend60@2x.png in Resources */,
 				ADBB1E721EA52B37003CA9DD /* stickersend14@2x.png in Resources */,
 				ADBB1E561EA52B37003CA9DD /* stickerlocal64@2x.png in Resources */,
-				ADBB1D701EA52B37003CA9DD /* CustomStatusView.xib in Resources */,
 				ADBB1E921EA52B37003CA9DD /* stickersend46@2x.png in Resources */,
 				ADBB1E2B1EA52B37003CA9DD /* stickerlocal21@2x.png in Resources */,
 				ADBB1E501EA52B37003CA9DD /* stickerlocal58@2x.png in Resources */,
 				ADBB1D471EA52B37003CA9DD /* MapView.xib in Resources */,
-				ADBB1D621EA52B37003CA9DD /* PeopleView.xib in Resources */,
 				ADBB1DDE1EA52B37003CA9DD /* callaudio_video2@2x.png in Resources */,
 				ADBB1E461EA52B37003CA9DD /* stickerlocal48@2x.png in Resources */,
 				ADBB1DD11EA52B37003CA9DD /* GoogleService-Info.plist in Resources */,
@@ -4287,7 +3784,6 @@
 				ADBB1DDB1EA52B37003CA9DD /* callaudio_speaker1@2x.png in Resources */,
 				ADBB1E371EA52B37003CA9DD /* stickerlocal33@2x.png in Resources */,
 				ADBB1DFD1EA52B37003CA9DD /* premium04@2x.png in Resources */,
-				ADBB1DCA1EA52B37003CA9DD /* LoginEmailView.xib in Resources */,
 				ADBB1D371EA52B37003CA9DD /* ChatView.xib in Resources */,
 				ADBB1E8F1EA52B37003CA9DD /* stickersend43@2x.png in Resources */,
 				ADBB1E161EA52B37003CA9DD /* call_ringback.wav in Resources */,
@@ -4296,15 +3792,12 @@
 				ADBB1E1B1EA52B37003CA9DD /* stickerlocal05@2x.png in Resources */,
 				ADBB1E101EA52B37003CA9DD /* tab_people@2x.png in Resources */,
 				ADBB1E811EA52B37003CA9DD /* stickersend29@2x.png in Resources */,
-				ADBB1DCC1EA52B37003CA9DD /* LoginGoogleView.xib in Resources */,
 				ADBB1E0D1EA52B37003CA9DD /* tab_calls@2x.png in Resources */,
 				ADCED87F1E8ADFAD00B9A06A /* CountryList.json in Resources */,
-				ADBB1D8E1EA52B37003CA9DD /* SettingsView.xib in Resources */,
 				ADBB1E621EA52B37003CA9DD /* stickerlocal76@2x.png in Resources */,
 				ADBB1E761EA52B37003CA9DD /* stickersend18@2x.png in Resources */,
 				ADBB1DF01EA52B37003CA9DD /* group_blank@2x.png in Resources */,
 				ADBB1E121EA52B37003CA9DD /* wallpaper_selected@2x.png in Resources */,
-				ADBB1DD01EA52B37003CA9DD /* WelcomeView.xib in Resources */,
 				ADBB1DEF1EA52B37003CA9DD /* editprofile_blank@2x.png in Resources */,
 				ADBB1EB01EA52B37003CA9DD /* stickersend76@2x.png in Resources */,
 				ADBB1EAD1EA52B37003CA9DD /* stickersend73@2x.png in Resources */,
@@ -4338,7 +3831,6 @@
 				ADBB1DEA1EA52B37003CA9DD /* chat_picture@2x.png in Resources */,
 				ADBB1DF71EA52B37003CA9DD /* videomediaitem_download@2x.png in Resources */,
 				ADBB1E7B1EA52B37003CA9DD /* stickersend23@2x.png in Resources */,
-				ADBB1D8C1EA52B37003CA9DD /* SwitchAccountView.xib in Resources */,
 				AD888F4E1EFC4C5900FE4C43 /* cvc.png in Resources */,
 				ADBB1E171EA52B37003CA9DD /* stickerlocal01@2x.png in Resources */,
 				ADBB1DF91EA52B37003CA9DD /* picture_done@2x.png in Resources */,
@@ -4523,7 +4015,6 @@
 				ADBB1D9A1EA52B37003CA9DD /* Users.m in Sources */,
 				ADB3EE001EC8857B001DEC69 /* PJXFlipRightTransitionItemAnimations.m in Sources */,
 				AD933A431E9E8093002FE9FF /* AFNetworkActivityIndicatorManager.m in Sources */,
-				ADBB1D4D1EA52B37003CA9DD /* SelectGroupCell.m in Sources */,
 				AD933A461E9E8093002FE9FF /* UIImageView+AFNetworking.m in Sources */,
 				AD9344F31E897CDA00E60A4B /* HomeScreenViewController.m in Sources */,
 				ADBB1D7F1EA52B37003CA9DD /* WallpapersCell.m in Sources */,
@@ -4534,7 +4025,6 @@
 				ADBB1DC31EA52B37003CA9DD /* DBCallHistory.m in Sources */,
 				AD888F411EFC4C5900FE4C43 /* PTKAddressZip.m in Sources */,
 				AD904E2C1E90D59E0096AA4E /* ClosedResverResponce.m in Sources */,
-				ADBB1D511EA52B37003CA9DD /* SelectMultipleView.m in Sources */,
 				AD93F7E01E8823B7008488B9 /* MagicalImportFunctions.m in Sources */,
 				ADBB1D3E1EA52B37003CA9DD /* AllMediaCell.m in Sources */,
 				ADA091C61EA11B09005E9975 /* CommentListViewController.m in Sources */,
@@ -4547,15 +4037,12 @@
 				ADBB1D9E1EA52B37003CA9DD /* Chat.m in Sources */,
 				ADACED6E1E9BFE06001A9F4A /* UIButton+WebCache.m in Sources */,
 				AD9344F01E8979A600E60A4B /* TabBarHandler.m in Sources */,
-				ADBB1D4F1EA52B37003CA9DD /* SelectGroupView.m in Sources */,
 				ADACED691E9BFE06001A9F4A /* SDWebImageDecoder.m in Sources */,
-				ADBB1D871EA52B37003CA9DD /* AddAccountView.m in Sources */,
 				ADBB1DBB1EA52B37003CA9DD /* AudioMediaItem.m in Sources */,
 				ADBB1DC41EA52B37003CA9DD /* DBGroup.m in Sources */,
 				ADBB1DA81EA52B37003CA9DD /* Connection.m in Sources */,
 				AD7A5DD01E86DADB00C3B4B6 /* ViewController.m in Sources */,
 				ADBB1DC01EA52B37003CA9DD /* MessageQueue.m in Sources */,
-				ADBB1DCF1EA52B37003CA9DD /* WelcomeView.m in Sources */,
 				ADBB1D7D1EA52B37003CA9DD /* MediaView.m in Sources */,
 				AD93F78F1E880E16008488B9 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				AD93F7891E880E16008488B9 /* IQUIScrollView+Additions.m in Sources */,
@@ -4568,7 +4055,6 @@
 				ADBB1EC11EA52B37003CA9DD /* SINService.m in Sources */,
 				AD93F7F01E8823B7008488B9 /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				ADCED8751E8AD4D200B9A06A /* EditProfileTableViewCell.m in Sources */,
-				ADBB1DCD1EA52B37003CA9DD /* RegisterEmailView.m in Sources */,
 				AD888F431EFC4C5900FE4C43 /* PTKCardCVC.m in Sources */,
 				ADB3EDFC1EC8857B001DEC69 /* PJXRightRotationAnimation.m in Sources */,
 				ADB3EDF91EC8857B001DEC69 /* PJXFrameItemAnimation.m in Sources */,
@@ -4582,9 +4068,7 @@
 				ADB3EE051EC8857B001DEC69 /* PJXAnimatedTabBarItem.m in Sources */,
 				AD93F78D1E880E16008488B9 /* IQUIWindow+Hierarchy.m in Sources */,
 				AD9344FF1E897D4700E60A4B /* SettingsViewController.m in Sources */,
-				ADBB1D651EA52B37003CA9DD /* GroupsCell.m in Sources */,
 				ADCED87C1E8ADDA400B9A06A /* ListViewCell.m in Sources */,
-				ADBB1D3C1EA52B37003CA9DD /* MultipleView.m in Sources */,
 				ADACED6F1E9BFE06001A9F4A /* UIImage+GIF.m in Sources */,
 				AD3637DE1EC76C8F00D4AAB9 /* AddFreindsCell.m in Sources */,
 				ADB3EDFD1EC8857B001DEC69 /* PJXRotationAnimation.m in Sources */,
@@ -4593,28 +4077,23 @@
 				ADBB1DAF1EA52B37003CA9DD /* File.m in Sources */,
 				ADB3EE071EC8857B001DEC69 /* PJXIconView.m in Sources */,
 				AD93F7F61E8823B7008488B9 /* MagicalRecord+iCloud.m in Sources */,
-				ADBB1D711EA52B37003CA9DD /* StatusView.m in Sources */,
 				ADBE701D1F00375400DD919E /* GetMailDictionary.m in Sources */,
 				ADCED8781E8ADC3F00B9A06A /* CustomListViewController.m in Sources */,
 				ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */,
 				ADBB1D931EA52B37003CA9DD /* FUser+Util.m in Sources */,
-				ADBB1D6D1EA52B37003CA9DD /* PasswordView.m in Sources */,
 				AD7DEDAC1F91E69600CB42E1 /* GTMNSString+HTML.m in Sources */,
 				ADBB1D981EA52B37003CA9DD /* Messages.m in Sources */,
 				ADBB1D9C1EA52B37003CA9DD /* Account.m in Sources */,
 				ADBB1EC71EA52B37003CA9DD /* SINSServicePersistence.m in Sources */,
 				ADACED671E9BFE06001A9F4A /* SDImageCache.m in Sources */,
-				ADBB1D491EA52B37003CA9DD /* CallAudioView.m in Sources */,
 				AD933A421E9E8093002FE9FF /* AFImageDownloader.m in Sources */,
 				ADA6DCB61EE5A00400AE57F6 /* UserDetails+CoreDataProperties.m in Sources */,
 				ADBB1D991EA52B37003CA9DD /* Recents.m in Sources */,
 				ADCB0FA91E92A96B00170289 /* MKNumberBadgeView.m in Sources */,
 				ADBB1EC21EA52B37003CA9DD /* SINServiceError.m in Sources */,
-				ADBB1D5F1EA52B37003CA9DD /* PeopleCell.m in Sources */,
 				ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */,
 				ADBB1DA61EA52B37003CA9DD /* NSDictionary+Util.m in Sources */,
 				ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */,
-				ADBB1DC91EA52B37003CA9DD /* LoginEmailView.m in Sources */,
 				AD93F7F81E8823B7008488B9 /* MagicalRecord+Setup.m in Sources */,
 				AD93F79C1E881110008488B9 /* SignupViewController.m in Sources */,
 				ADACED701E9BFE06001A9F4A /* UIImage+MultiFormat.m in Sources */,
@@ -4624,19 +4103,14 @@
 				ADBB1DBA1EA52B37003CA9DD /* RealmManager.m in Sources */,
 				AD9344EC1E89770700E60A4B /* NJKWebViewProgress.m in Sources */,
 				AD93F7E11E8823B7008488B9 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
-				ADBB1D671EA52B37003CA9DD /* GroupsView.m in Sources */,
 				AD93F7911E880E16008488B9 /* IQBarButtonItem.m in Sources */,
 				AD7277831ECE2DE7003116E4 /* ContactsListViewController.swift in Sources */,
 				ADCED86E1E8AC2AA00B9A06A /* SettingsTableViewCell.m in Sources */,
-				ADBB1D831EA52B37003CA9DD /* PrivacyView.m in Sources */,
-				ADBB1D851EA52B37003CA9DD /* TermsView.m in Sources */,
-				ADBB1D901EA52B37003CA9DD /* PremiumView.m in Sources */,
 				ADA900521EA92B2E00EAC538 /* FreindsCell.m in Sources */,
 				ADBB1D571EA52B37003CA9DD /* StickersView.m in Sources */,
 				ADBB1DB91EA52B37003CA9DD /* MediaManager.m in Sources */,
 				AD93F7F21E8823B7008488B9 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				ADBB1DB11EA52B37003CA9DD /* Password.m in Sources */,
-				ADBB1D4B1EA52B37003CA9DD /* CallVideoView.m in Sources */,
 				ADBB1EC41EA52B37003CA9DD /* SINSLazyCallClient.m in Sources */,
 				ADB3EE061EC8857B001DEC69 /* PJXBadge.m in Sources */,
 				ADBB1D941EA52B37003CA9DD /* FUser.m in Sources */,
@@ -4648,13 +4122,10 @@
 				AD933A3F1E9E8093002FE9FF /* AFURLResponseSerialization.m in Sources */,
 				ADBB1DBD1EA52B37003CA9DD /* PhotoMediaItem.m in Sources */,
 				ADBB1D461EA52B37003CA9DD /* MapView.m in Sources */,
-				ADBB1D611EA52B37003CA9DD /* PeopleView.m in Sources */,
 				AD0D6D901F041FA10064CA76 /* ProgressHUD.m in Sources */,
 				ADCE92D01EB0F9AC0018FD25 /* NZTourTip.m in Sources */,
-				ADBB1D631EA52B37003CA9DD /* CreateGroupView.m in Sources */,
 				AD933A411E9E8093002FE9FF /* AFAutoPurgingImageCache.m in Sources */,
 				AD933A541E9EA3A4002FE9FF /* ProfileDetailsCell.m in Sources */,
-				ADBB1D3A1EA52B37003CA9DD /* GroupView.m in Sources */,
 				AD93F7EF1E8823B7008488B9 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				AD888F441EFC4C5900FE4C43 /* PTKCardExpiry.m in Sources */,
 				ADBB1EBF1EA52B37003CA9DD /* SinchService.m in Sources */,
@@ -4670,9 +4141,7 @@
 				AD7DEDB11F91E92C00CB42E1 /* HTMLLabel.m in Sources */,
 				ADBB1EC81EA52B37003CA9DD /* SINSLazyVideoController.m in Sources */,
 				ADACED651E9BFE06001A9F4A /* NSData+Base64.m in Sources */,
-				ADBB1D5D1EA52B37003CA9DD /* CallsView.m in Sources */,
 				ADBB1DB71EA52B37003CA9DD /* CacheManager.m in Sources */,
-				ADBB1D8D1EA52B37003CA9DD /* SettingsView.m in Sources */,
 				ADBB1D971EA52B37003CA9DD /* Groups.m in Sources */,
 				AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */,
 				ADBB1DB61EA52B37003CA9DD /* AlbumManager.m in Sources */,
@@ -4695,7 +4164,6 @@
 				ADBB1D7B1EA52B37003CA9DD /* NetworkView.m in Sources */,
 				ADACED6B1E9BFE06001A9F4A /* SDWebImageDownloaderOperation.m in Sources */,
 				ADB3EE031EC8857B001DEC69 /* NSArray+Extension.m in Sources */,
-				ADBB1D891EA52B37003CA9DD /* SwitchAccountCell.m in Sources */,
 				ADBB1DA01EA52B37003CA9DD /* Message.m in Sources */,
 				ADEB55691EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m in Sources */,
 				AD9344E61E89665800E60A4B /* SignupTableViewCell.m in Sources */,
@@ -4711,7 +4179,6 @@
 				ADBB1D9B1EA52B37003CA9DD /* UserStatuses.m in Sources */,
 				ADBB1D951EA52B37003CA9DD /* NSError+Util.m in Sources */,
 				AD93F7E91E8823B7008488B9 /* NSManagedObject+MagicalFinders.m in Sources */,
-				ADBB1D691EA52B37003CA9DD /* CountriesView.m in Sources */,
 				ADBE898C1E9FF95900B8D05F /* ProfileCell.m in Sources */,
 				AD93F7981E880E16008488B9 /* JVFloatLabeledTextView.m in Sources */,
 				ADBB1DBF1EA52B37003CA9DD /* Incoming.m in Sources */,
@@ -4731,7 +4198,6 @@
 				ADBB1DA71EA52B37003CA9DD /* UserDefaults.m in Sources */,
 				ADBB1DC61EA52B37003CA9DD /* DBRecent.m in Sources */,
 				AD93F7F51E8823B7008488B9 /* MagicalRecord+ErrorHandling.m in Sources */,
-				ADBB1D6B1EA52B37003CA9DD /* EditProfileView.m in Sources */,
 				ADE604291EC4DDDC00C1B93C /* JobProfileCell.m in Sources */,
 				AD93F7E71E8823B7008488B9 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				ADBB1D791EA52B37003CA9DD /* CacheView.m in Sources */,
@@ -4755,24 +4221,20 @@
 				AD93F7941E880E16008488B9 /* IQToolbar.m in Sources */,
 				ADB3EDFB1EC8857B001DEC69 /* PJXLeftRotationAnimation.m in Sources */,
 				ADFFF03E1F10EE2D007E811F /* JobProfile+CoreDataProperties.m in Sources */,
-				ADBB1D8F1EA52B37003CA9DD /* premium.m in Sources */,
 				AD93EC861ECCAE7F00609738 /* OpenAdressBook.swift in Sources */,
 				ADBB1D441EA52B37003CA9DD /* VideoView.m in Sources */,
 				ADB3EE021EC8857B001DEC69 /* PJXTransitionItemAnimations.m in Sources */,
 				AD93F7F71E8823B7008488B9 /* MagicalRecord+Options.m in Sources */,
 				AD93F7EE1E8823B7008488B9 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
-				ADBB1D6F1EA52B37003CA9DD /* CustomStatusView.m in Sources */,
 				AD93EC851ECCAE7F00609738 /* GlobalConstant.swift in Sources */,
 				ADBB1DAA1EA52B37003CA9DD /* Audio.m in Sources */,
 				ADBB1D771EA52B37003CA9DD /* KeepMediaView.m in Sources */,
-				ADBB1D8B1EA52B37003CA9DD /* SwitchAccountView.m in Sources */,
 				AD9344F61E897D1C00E60A4B /* ContactsViewController.m in Sources */,
 				AD93F7931E880E16008488B9 /* IQTitleBarButtonItem.m in Sources */,
 				ADBB1D421EA52B37003CA9DD /* PictureView.m in Sources */,
 				ADBB1D481EA52B37003CA9DD /* NavigationController.m in Sources */,
 				AD93F7551E87F717008488B9 /* LoginViewController.m in Sources */,
 				AD93F7E41E8823B7008488B9 /* NSObject+MagicalDataImport.m in Sources */,
-				ADBB1D381EA52B37003CA9DD /* ProfileView.m in Sources */,
 				AD93F7901E880E16008488B9 /* IQTextView.m in Sources */,
 				AD933A3B1E9E8093002FE9FF /* AFHTTPSessionManager.m in Sources */,
 				ADB3EDFE1EC8857B001DEC69 /* PJXFlipBottomTransitionItemAnimations.m in Sources */,
@@ -4789,10 +4251,8 @@
 				AD93F7971E880E16008488B9 /* JVFloatLabeledTextField.m in Sources */,
 				AD7A5DD61E86DADB00C3B4B6 /* Closed1.xcdatamodeld in Sources */,
 				AD93F7EB1E8823B7008488B9 /* NSManagedObject+MagicalRequests.m in Sources */,
-				ADBB1DCB1EA52B37003CA9DD /* LoginGoogleView.m in Sources */,
 				AD888F451EFC4C5900FE4C43 /* PTKCardNumber.m in Sources */,
 				AD888F481EFC4C5900FE4C43 /* PTKUSAddressZip.m in Sources */,
-				ADBB1D531EA52B37003CA9DD /* SelectSingleView.m in Sources */,
 				ADBB1D551EA52B37003CA9DD /* StickersCell.m in Sources */,
 				ADBB1DB01EA52B37003CA9DD /* Image.m in Sources */,
 				AD9344FC1E897D3C00E60A4B /* ShareViewController.m in Sources */,
