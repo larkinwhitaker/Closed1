@@ -171,6 +171,9 @@
 		ADA9004F1EA9261900EAC538 /* FreindRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA9004E1EA9261900EAC538 /* FreindRequestViewController.m */; };
 		ADA900521EA92B2E00EAC538 /* FreindsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA900511EA92B2E00EAC538 /* FreindsCell.m */; };
 		ADA900541EA93DE600EAC538 /* FreinfReuest.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA900531EA93DE500EAC538 /* FreinfReuest.png */; };
+		ADA919771FE42175000D8B49 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA919751FE42175000D8B49 /* ProfileView.m */; };
+		ADA919781FE42175000D8B49 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA919761FE42175000D8B49 /* ProfileView.xib */; };
+		ADA9197B1FE428B1000D8B49 /* CountryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA9197A1FE428B1000D8B49 /* CountryListViewController.m */; };
 		ADACED651E9BFE06001A9F4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED471E9BFE06001A9F4A /* NSData+Base64.m */; };
 		ADACED661E9BFE06001A9F4A /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED491E9BFE06001A9F4A /* NSData+ImageContentType.m */; };
 		ADACED671E9BFE06001A9F4A /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED4B1E9BFE06001A9F4A /* SDImageCache.m */; };
@@ -559,7 +562,6 @@
 		ADCED86E1E8AC2AA00B9A06A /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED86D1E8AC2AA00B9A06A /* SettingsTableViewCell.m */; };
 		ADCED8721E8ACFC700B9A06A /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED8711E8ACFC700B9A06A /* EditProfileViewController.m */; };
 		ADCED8751E8AD4D200B9A06A /* EditProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED8741E8AD4D200B9A06A /* EditProfileTableViewCell.m */; };
-		ADCED8781E8ADC3F00B9A06A /* CustomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED8771E8ADC3F00B9A06A /* CustomListViewController.m */; };
 		ADCED87C1E8ADDA400B9A06A /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED87A1E8ADDA400B9A06A /* ListViewCell.m */; };
 		ADCED87D1E8ADDA400B9A06A /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCED87B1E8ADDA400B9A06A /* ListViewCell.xib */; };
 		ADCED87F1E8ADFAD00B9A06A /* CountryList.json in Resources */ = {isa = PBXBuildFile; fileRef = ADCED87E1E8ADFAD00B9A06A /* CountryList.json */; };
@@ -910,6 +912,11 @@
 		ADA900501EA92B2E00EAC538 /* FreindsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreindsCell.h; sourceTree = "<group>"; };
 		ADA900511EA92B2E00EAC538 /* FreindsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreindsCell.m; sourceTree = "<group>"; };
 		ADA900531EA93DE500EAC538 /* FreinfReuest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FreinfReuest.png; sourceTree = "<group>"; };
+		ADA919741FE42175000D8B49 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		ADA919751FE42175000D8B49 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		ADA919761FE42175000D8B49 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		ADA919791FE428B1000D8B49 /* CountryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryListViewController.h; sourceTree = "<group>"; };
+		ADA9197A1FE428B1000D8B49 /* CountryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryListViewController.m; sourceTree = "<group>"; };
 		ADACED461E9BFE06001A9F4A /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		ADACED471E9BFE06001A9F4A /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		ADACED481E9BFE06001A9F4A /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -1459,8 +1466,6 @@
 		ADCED8711E8ACFC700B9A06A /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		ADCED8731E8AD4D200B9A06A /* EditProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileTableViewCell.h; sourceTree = "<group>"; };
 		ADCED8741E8AD4D200B9A06A /* EditProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileTableViewCell.m; sourceTree = "<group>"; };
-		ADCED8761E8ADC3F00B9A06A /* CustomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomListViewController.h; sourceTree = "<group>"; };
-		ADCED8771E8ADC3F00B9A06A /* CustomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomListViewController.m; sourceTree = "<group>"; };
 		ADCED8791E8ADDA400B9A06A /* ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewCell.h; sourceTree = "<group>"; };
 		ADCED87A1E8ADDA400B9A06A /* ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewCell.m; sourceTree = "<group>"; };
 		ADCED87B1E8ADDA400B9A06A /* ListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewCell.xib; sourceTree = "<group>"; };
@@ -1823,8 +1828,6 @@
 				AD93EC811ECCAE7F00609738 /* AdressBookAscStatus.swift */,
 				AD93EC821ECCAE7F00609738 /* GlobalConstant.swift */,
 				AD93EC831ECCAE7F00609738 /* OpenAdressBook.swift */,
-				ADCED8761E8ADC3F00B9A06A /* CustomListViewController.h */,
-				ADCED8771E8ADC3F00B9A06A /* CustomListViewController.m */,
 				ADA5CAC91E879E94000DF38D /* WebViewController.h */,
 				ADA5CACA1E879E94000DF38D /* WebViewController.m */,
 				AD93F7541E87F717008488B9 /* LoginViewController.m */,
@@ -2167,6 +2170,16 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		ADA919731FE42175000D8B49 /* 01_Profile */ = {
+			isa = PBXGroup;
+			children = (
+				ADA919741FE42175000D8B49 /* ProfileView.h */,
+				ADA919751FE42175000D8B49 /* ProfileView.m */,
+				ADA919761FE42175000D8B49 /* ProfileView.xib */,
+			);
+			path = 01_Profile;
+			sourceTree = "<group>";
+		};
 		ADACED451E9BFE06001A9F4A /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2347,6 +2360,7 @@
 		ADBB1AB81EA52B35003CA9DD /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				ADA919731FE42175000D8B49 /* 01_Profile */,
 				ADBB1AC51EA52B35003CA9DD /* 04_AllMedia */,
 				ADBB1ACC1EA52B35003CA9DD /* 05_Picture */,
 				ADBB1AD01EA52B35003CA9DD /* 06_Video */,
@@ -3361,6 +3375,8 @@
 		ADD1D16F1E940E7E00C3D59D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ADA919791FE428B1000D8B49 /* CountryListViewController.h */,
+				ADA9197A1FE428B1000D8B49 /* CountryListViewController.m */,
 				ADACED741E9C09CA001A9F4A /* FlightClassSelectionViewController.h */,
 				ADACED751E9C09CA001A9F4A /* FlightClassSelectionViewController.m */,
 				ADD1D1701E940E7F00C3D59D /* CardView.h */,
@@ -3602,6 +3618,7 @@
 				ADBB1D451EA52B37003CA9DD /* VideoView.xib in Resources */,
 				ADBB1E321EA52B37003CA9DD /* stickerlocal28@2x.png in Resources */,
 				ADBB1E2E1EA52B37003CA9DD /* stickerlocal24@2x.png in Resources */,
+				ADA919781FE42175000D8B49 /* ProfileView.xib in Resources */,
 				ADBB1DED1EA52B37003CA9DD /* chats_blank@2x.png in Resources */,
 				ADBB1E241EA52B37003CA9DD /* stickerlocal14@2x.png in Resources */,
 				ADBB1E251EA52B37003CA9DD /* stickerlocal15@2x.png in Resources */,
@@ -4060,6 +4077,7 @@
 				ADB3EDF91EC8857B001DEC69 /* PJXFrameItemAnimation.m in Sources */,
 				AD933A471E9E8093002FE9FF /* UIProgressView+AFNetworking.m in Sources */,
 				AD93F7F11E8823B7008488B9 /* NSManagedObjectModel+MagicalRecord.m in Sources */,
+				ADA9197B1FE428B1000D8B49 /* CountryListViewController.m in Sources */,
 				ADB3EDFF1EC8857B001DEC69 /* PJXFlipLeftTransitionItemAniamtions.m in Sources */,
 				ADBB1D361EA52B37003CA9DD /* ChatView.m in Sources */,
 				ADD1D1721E940E7F00C3D59D /* CardView.m in Sources */,
@@ -4078,7 +4096,6 @@
 				ADB3EE071EC8857B001DEC69 /* PJXIconView.m in Sources */,
 				AD93F7F61E8823B7008488B9 /* MagicalRecord+iCloud.m in Sources */,
 				ADBE701D1F00375400DD919E /* GetMailDictionary.m in Sources */,
-				ADCED8781E8ADC3F00B9A06A /* CustomListViewController.m in Sources */,
 				ADA806DA1E90053B009C0B38 /* UIImage+animatedGIF.m in Sources */,
 				ADBB1D931EA52B37003CA9DD /* FUser+Util.m in Sources */,
 				AD7DEDAC1F91E69600CB42E1 /* GTMNSString+HTML.m in Sources */,
@@ -4210,6 +4227,7 @@
 				ADB3EE041EC8857B001DEC69 /* PJXAnimatedTabBarController.m in Sources */,
 				ADBB1DAB1EA52B37003CA9DD /* Checksum.m in Sources */,
 				AD888F461EFC4C5900FE4C43 /* PTKComponent.m in Sources */,
+				ADA919771FE42175000D8B49 /* ProfileView.m in Sources */,
 				AD888F491EFC4C5900FE4C43 /* PTKView.m in Sources */,
 				ADB3EE081EC8857B001DEC69 /* PJXItemAnimation.m in Sources */,
 				AD933A441E9E8093002FE9FF /* UIActivityIndicatorView+AFNetworking.m in Sources */,

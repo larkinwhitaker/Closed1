@@ -15,6 +15,7 @@
 #import "MapView.h"
 #import "StickersView.h"
 #import "NavigationController.h"
+#import "ProfileView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -557,7 +558,15 @@
 		   atIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	
+    DBMessage *dbmessage = [self dbmessage:indexPath];
+    NSString *userId = dbmessage.senderId;
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    if ([userId isEqualToString:[FUser currentId]] == NO)
+    {
+        ProfileView *profileView = [[ProfileView alloc] initWith:userId Chat:NO];
+        [self.navigationController pushViewController:profileView animated:YES];
+    }
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

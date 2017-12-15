@@ -10,7 +10,7 @@
 #import "SignupTableViewCell.h"
 #import "MBProgressHUD.h"
 #import "TabBarHandler.h"
-#import "CustomListViewController.h"
+#import "CountryListViewController.h"
 #import "ClosedResverResponce.h"
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
@@ -19,7 +19,7 @@
 #import "PTKView.h"
 #import "CardDetails+CoreDataProperties.h"
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedCountryDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate, CreditCardDelegate, PTKViewDelegate>
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, CountryListDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate, CreditCardDelegate, PTKViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 @property(nonatomic) NSString *imageURL;
@@ -206,10 +206,9 @@
 
 -(void)openCountrySelectionScreen
 {
-    CustomListViewController  *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomListViewController"];
+    
+    CountryListViewController  *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CountryListViewController"];
     listViewController.delegate = self;
-    listViewController.heightOFRow = 40.0;
-    listViewController.title = @"Search Country";
     NSArray *countryList = [self getDataFromJsonFile:@"CountryList"];
     countryList = [countryList valueForKey:@"data"];
     
@@ -220,7 +219,7 @@
         [countryListArray addObject:[[countryList objectAtIndex:i] valueForKey:@"Country"]];
     }
     
-    listViewController.listArray = [[NSMutableArray alloc]initWithObjects:countryListArray, nil];
+    listViewController.countrListArray = countryListArray;
     [self presentViewController:listViewController animated:YES completion:nil];
 }
 
@@ -560,10 +559,10 @@
 
 #pragma mark - Country Selected Delegate
 
--(void)getSelectedIndex:(NSInteger)selectedIndex SelectedProgram:(NSString *)selectedProgram
+-(void)selectedCountry:(NSString *)countryName
 {
-    NSLog(@"%@", selectedProgram);
-    [_signupCell.countrySelectionButton setTitle:selectedProgram forState:UIControlStateNormal];
+    NSLog(@"%@", countryName);
+    [_signupCell.countrySelectionButton setTitle:countryName forState:UIControlStateNormal];
     [_signupCell.countrySelectionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 

@@ -9,7 +9,7 @@
 #import "EditProfileViewController.h"
 #import "EditProfileTableViewCell.h"
 #import "MBProgressHUD.h"
-#import "CustomListViewController.h"
+#import "CountryListViewController.h"
 #import "TabBarHandler.h"
 #import "MagicalRecord.h"
 #import "UserDetails+CoreDataClass.h"
@@ -27,7 +27,7 @@
 #define kisCurrentPosition @"current_position"
 
 
-@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,SelectedCountryDelegate, ServerFailedDelegate, UITextFieldDelegate, CreditCardDelegate>
+@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,CountryListDelegate, ServerFailedDelegate, UITextFieldDelegate, CreditCardDelegate>
 {
     EditProfileTableViewCell *editProfileCell;
     NSInteger rowCount;
@@ -413,13 +413,11 @@
 
 -(void)openCountrySelectionScreen
 {
-    CustomListViewController  *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomListViewController"];
+
+    CountryListViewController  *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CountryListViewController"];
     listViewController.delegate = self;
-    listViewController.heightOFRow = 40.0;
-    listViewController.title = @"Search Country";
     NSArray *countryList = [self getDataFromJsonFile:@"CountryList"];
     countryList = [countryList valueForKey:@"data"];
-    
     NSMutableArray *countryListArray = [[NSMutableArray alloc]init];
     
     for (NSInteger i =0; i<countryList.count; i++) {
@@ -427,7 +425,7 @@
         [countryListArray addObject:[[countryList objectAtIndex:i] valueForKey:@"Country"]];
     }
     
-    listViewController.listArray = [[NSMutableArray alloc]initWithObjects:countryListArray, nil];
+    listViewController.countrListArray = countryListArray;
     [self presentViewController:listViewController animated:YES completion:nil];
 }
 
@@ -697,11 +695,11 @@
 
 #pragma mark - Country Selected Delegate
 
--(void)getSelectedIndex:(NSInteger)selectedIndex SelectedProgram:(NSString *)selectedProgram
+-(void)selectedCountry:(NSString *)countryName
 {
-    
-    editProfileCell.countryTextField.text = selectedProgram;
-    [self.userProfiledetails setValue:selectedProgram forKey:@"country"];
+    editProfileCell.countryTextField.text = countryName;
+    [self.userProfiledetails setValue:countryName forKey:@"country"];
+
 }
 
 -(void)serverFailedWithTitle:(NSString *)title SubtitleString:(NSString *)subtitle
