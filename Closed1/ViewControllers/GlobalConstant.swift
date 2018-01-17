@@ -19,4 +19,5 @@ struct GlobalConstant
     static let calendarAccessPermissionAlertActionButton = "Allow"
     static let calendarDeniedPermissionAlertActionButton = "Don't Allow"
     static  let COLOR_PLACEHOLDER_TEXT = UIColor(red: 0.0/255.0, green: 96.0/255.0, blue: 100.0/255.0, alpha: 1)
+    
 }

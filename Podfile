@@ -26,6 +26,7 @@ pod 'ProgressHUD'
 pod 'Reachability'
 pod 'RNCryptor', '3.0.1'
 pod 'RNGridMenu'
+pod 'OpenSSL-for-iOS', '1.0.2.d.1'
 
   # Pods for Closed1
 

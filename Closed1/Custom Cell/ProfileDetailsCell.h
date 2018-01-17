@@ -17,5 +17,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet HTMLLabel *terrotoryTextfield;
 @property (weak, nonatomic) IBOutlet HTMLLabel *targetBuyersTextFiled;
+@property (weak, nonatomic) IBOutlet UIButton *userBlockButton;
+@property (weak, nonatomic) IBOutlet UIButton *unfreindUserButton;
+@property (weak, nonatomic) IBOutlet UIView *blockView;
 
 @end

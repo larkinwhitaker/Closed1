@@ -13,6 +13,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.userBlockButton.layer.cornerRadius = 5.0;
+    self.userBlockButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.userBlockButton.layer.borderWidth = 1.0;
+    
+    self.unfreindUserButton.layer.cornerRadius = 5.0;
+    self.unfreindUserButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.unfreindUserButton.layer.borderWidth = 1.0;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

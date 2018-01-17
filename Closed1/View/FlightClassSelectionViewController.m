@@ -14,8 +14,6 @@
 @end
 @implementation FlightClassSelectionViewController
 
-
-static NSInteger const  totalNumberOfPassenger = 9;
 static NSString * const cellIdentifier = @"PassengerViewCell";
 
 

@@ -19,6 +19,8 @@
 #import "ChatView.h"
 #import "NavigationController.h"
 #import "GetMailDictionary.h"
+#import "UserDetails+CoreDataProperties.h"
+#import "MagicalRecord.h"
 
 @interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate, ServerFailedDelegate, MailSendDelegates>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -27,7 +29,7 @@
 @property(nonatomic) ProfileDetailsCell *profileDetails;
 @property(nonatomic) NSMutableArray *feedsArray;
 @property(nonatomic) NSDictionary *userDetails;
-
+@property(nonatomic) BOOL isCurrentUser;
 
 @end
 
@@ -43,13 +45,20 @@
     
     if (_shouldNOTDisplayProfile) {
         
-        
         self.segmentedControl.hidden = YES;
         
     }else{
         
         self.segmentedControl.hidden = NO;
     }
+    
+    UserDetails *user = [UserDetails MR_findFirst];
+    
+    if(user.userID == self.userid){
+        
+        self.isCurrentUser = YES;
+    }
+
     
     
     [ClosedResverResponce sharedInstance].delegate = self;
@@ -65,6 +74,7 @@
                 if ([[serverREsponce valueForKey:@"success"] integerValue] == 1) {
                     self.tableView.hidden = NO;
                     self.userDetails = [serverREsponce valueForKey:@"data"];
+                    
                 }else{
                     
                     [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"We are unable to process your request at this time. Please try again later." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
@@ -161,8 +171,10 @@
             heightOfText += [HomeScreenViewController findHeightForText:[_userDetails valueForKey:@"territory"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
         }
        
+        CGFloat defaultHeight = 353;
+        if(self.isCurrentUser == YES) defaultHeight = 313;
         
-        return 313 + heightOfText;
+        return defaultHeight + heightOfText;
         
     }else{
         CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[[self.feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
@@ -182,6 +194,17 @@
         _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
         
         [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile Image"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+        
+       if(self.isCurrentUser == YES){
+            
+            _profileDetails.blockView.hidden = YES;
+        }else{
+            
+            _profileDetails.blockView.hidden = NO;
+            [_profileDetails.userBlockButton addTarget:self action:@selector(blockuserButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+            [_profileDetails.unfreindUserButton addTarget:self action:@selector(UnfreindUserButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
         _profileDetails.userName.text = [self.userDetails valueForKey:@"fullname"];
         [_profileDetails.messageButton addTarget:self action:@selector(messageButtonTapped:)   forControlEvents:UIControlEventTouchUpInside];
         [_profileDetails.callButton addTarget:self action:@selector(callButttonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -215,7 +238,6 @@
             _profileDetails.terrotoryTextfield.text = [NSString stringWithFormat:@"Territory: %@", [_userDetails valueForKey:@"territory "]];
 
         }
-        
         
         
         
@@ -617,6 +639,100 @@
         
         [self presentViewController:alert animated:YES completion:nil];
     });
+}
+
+
+#pragma mark:- New Code
+
+-(void)blockuserButtonTapped
+{
+    
+    
+    if(self.isCurrentUser == YES){
+        
+        [ProgressHUD showSuccess:@"This is you!"];
+        
+    }else{
+    
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to block this user?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        [self callAPiForBlockingtheUser];
+        
+    }]];
+    
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+-(void)UnfreindUserButtonTapped
+{
+    
+}
+
+-(void)callAPiForBlockingtheUser{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Please wait..";
+    hud.detailsLabelText = @"Blocking user";
+    
+    UserDetails *user = [UserDetails MR_findFirst];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *apiName = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=block_user&initiator_user_id=%@&friend_user_id=%zd", [self.userDetails valueForKey:@"ID"], user.userID];
+        
+        NSArray *serverresponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:apiName DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            
+            if (![[serverresponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                
+                if ([[serverresponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"BlockingUserNotification" object:nil];
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You have sucessfully blocked the user" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }]];
+                    
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                   
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to Block the user" message:@"Currently we are unable to process you request. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                }
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to Block the user" message:@"Currently we are unable to process you request. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+            }
+            
+           
+
+        });
+        
+       
+        
+    });
+    
+    
+
+    
+    
 }
 
 

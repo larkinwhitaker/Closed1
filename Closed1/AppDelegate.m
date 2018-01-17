@@ -13,6 +13,7 @@
 #import "MagicalRecord.h"
 #import "Harpy.h"
 
+
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
@@ -21,6 +22,7 @@
 @import UserNotifications;
 
 @interface AppDelegate ()<SINServiceDelegate, SINCallClientDelegate,UNUserNotificationCenterDelegate>
+
 
 @end
 
@@ -32,6 +34,8 @@
     
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [Fabric with:@[[Crashlytics class]]];
+    
+    //[self configureStore];
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Closed1"];
     
@@ -136,6 +140,8 @@
     
     return YES;
 }
+
+
 
 
 -(void)tokenRefreshNotification: (NSNotification *)notification

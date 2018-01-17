@@ -18,7 +18,17 @@
 #import "AFNetworking.h"
 #import <linkedin-sdk/LISDK.h>
 #import "JobProfile+CoreDataProperties.h"
-#import "CreditCardViewController.h"
+#import "RMStore.h"
+#import "RMAppReceipt.h"
+#import "RMStoreKeychainPersistence.h"
+#import "RMStoreAppReceiptVerifier.h"
+#import "RMStore.h"
+#import "RMStoreTransactionReceiptVerifier.h"
+#import "RMStoreAppReceiptVerifier.h"
+#import "RMStoreKeychainPersistence.h"
+
+#define kAutorenewableSubscriptionKey @"com.Closed1LLC.Closed1.AutoRenewableSubscription"
+#define kAutoRenewableGroupSignup @"com.Closed1LLC.Closed1.AutoRenewableSubscriptionsignup"
 
 #define kTitle @"title"
 #define kCopmpany @"company"
@@ -27,6 +37,13 @@
 #define kisCurrentPosition @"current_position"
 
 @interface LoginViewController ()<LinkedInLoginDelegate,ServerFailedDelegate, UITextFieldDelegate>
+{
+    id<RMStoreReceiptVerifier> _receiptVerifier;
+    RMStoreKeychainPersistence *_persistence;
+}
+
+
+
 @property (strong, nonatomic) IBOutlet UIButton *linkedinButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailtextField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *passwordTextField;
@@ -42,10 +59,6 @@
     [super viewDidLoad];
     
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"FreindRequestCount"];
-#pragma mark - Remove Code
-    
-//    [UserDetails MR_truncateAll];
-//    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     _imageURL = @"";
     self.loginView.layer.cornerRadius = 5;
@@ -60,15 +73,132 @@
     self.loginView.layer.shadowOpacity = 0.5;
     self.loginView.layer.shadowPath = shadowPath.CGPath;
     
-  [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     
     [self checkUserLoginStataus];
     
-#pragma mark - Demo Login Code
-//    NSArray *userData = @[@{@"success":[NSNumber numberWithInteger:1],@"data":@{@"ID":[NSNumber numberWithInteger:4],@"user_login":@"muzammil",@"user_email":@"muzammil.alkurn@gmail.com",@"first_name":@"Muzammil",@"last_name":@"Alkurn",@"title":@"HTML Developer",@"company":@"Alkurn Technologies",@"city":@"Nagpur",@"country":@"India",@"territory ":@"Nagpur",@"fullname":@"Muzammil Alkurn",@"secondary @email":@"muza@rediffmail.com",@"profile Image":@"http://0.gravatar.com/avatar/62b33a60cd80b124ce316743f333a25d?s=96&d=mm&r=g"}}];
+    //NSArray *_products = @[@"com.Closed1LLC.Closed1.AutoRenewable",
+                        //   @"com.Closed1LLC.Closed.AppPuchase1"];
     
-//    [self saveUserDetails:[userData firstObject]];
     
+    /*
+    
+   
+    
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:_products] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        
+        
+        
+        
+    } failure:^(NSError *error) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+
+    
+    
+    
+    
+    
+    
+    [[RMStore defaultStore] restoreTransactions];
+    [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
+        
+        if (transactions.count>0) {
+            
+            RMStore *store = [RMStore defaultStore];
+            RMStoreKeychainPersistence *_persistence = store.transactionPersistor;
+            NSArray* _productIdentifiers = _persistence.purchasedProductIdentifiers.allObjects;
+            
+            NSLog(@"%@", _productIdentifiers);
+            
+            [[RMStore defaultStore] refreshReceiptOnSuccess:^{
+                
+            }failure:^(NSError *error){
+                
+            }];
+            
+            [[RMStore defaultStore] refreshReceipt];
+
+            
+            BOOL isActive = false;
+            RMAppReceipt *appReceipt = [RMAppReceipt bundleReceipt];
+            if (appReceipt) {
+                isActive =  [appReceipt containsActiveAutoRenewableSubscriptionOfProductIdentifier:@"com.Closed1LLC.Closed1.AutoRenewable" forDate:[NSDate date]];
+            }
+            if (isActive) {
+                // Enable Premium Features
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Puchase is activated", @"")
+                                            message:nil
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                  otherButtonTitles:nil] show];
+            }
+            else {
+                // Disable Premium Features
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NO Puchases are availabe", @"")
+                                            message:nil
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                  otherButtonTitles:nil] show];
+                
+                
+                NSString *productID = _products[0];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    
+                    
+                    
+                    
+                } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                                       message:error.localizedDescription
+                                                                      delegate:nil
+                                                             cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                             otherButtonTitles:nil];
+                    [alerView show];
+                }];
+
+                
+            }
+            
+        }
+        
+    }failure:^(NSError *error) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Restore Transactions Failed", @"")
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+        
+        
+        
+        
+        
+    }];
+    
+     */
+    
+    
+    
+    
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -77,6 +207,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     self.emailtextField.text = nil;
     self.passwordTextField.text = nil;
+    
 
 }
 -(void)checkUserLoginStataus
@@ -233,17 +364,27 @@ errorBlock:^(NSError *error) {
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
-                    [self saveUserDetails:serverResponce];
-
-                    if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                    
+                    if (![[[serverResponce valueForKey:@"data"] valueForKey:@"device_id"] isEqual:@""] && ![[[serverResponce valueForKey:@"data"]  valueForKey:@"device_id"] isEqual:[NSNull null]]) {
                         
-                        [self openHomeScreen];
+                        //Device is registered form app
+                        [self checkForAppStoreSubscription:serverResponce];
+                        
                         
                     }else{
                         
-                        [self openCreditCardScreen];
+                        if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                            
+                            [self saveUserDetails:serverResponce];
+                            [self openHomeScreen];
+                            [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
+                        }else{
+                            
+                            [[[UIAlertView alloc]initWithTitle:@"Failed to login" message:@"It seems that user doesn't have active subscription plan. Please visit closed1app.com" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                        }
                         
                     }
+                    
                     
                 }else{
                     [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"Please check your email and password."];
@@ -265,22 +406,149 @@ errorBlock:^(NSError *error) {
     
 }
 
-
--(void)openCreditCardScreen
+-(void)checkForAppStoreSubscription: (NSArray *)serverResponce
 {
-    CreditCardViewController *creditcardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
-    creditcardVC.shouldOpenHomeScreen = YES;
-    creditcardVC.creditCardDetails = [[NSMutableDictionary alloc]init];
-    [self.navigationController pushViewController:creditcardVC animated:YES];
+    //[self configureStore];
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Connecting to iTunes";
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:[NSArray arrayWithObjects:kAutorenewableSubscriptionKey, kAutoRenewableGroupSignup, nil]] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"Checking Subscription details";
+        
+        
+        [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions){
+            
+            [[RMStore defaultStore] refreshReceiptOnSuccess:^{
+                
+                BOOL isActive = NO;
+                BOOL isSignupReciept = NO;
+
+                RMAppReceipt *appReceipt = [RMAppReceipt bundleReceipt];
+                
+                if (appReceipt) {
+                    isActive =  [appReceipt containsActiveAutoRenewableSubscriptionOfProductIdentifier: kAutorenewableSubscriptionKey forDate:[NSDate date]];
+                    
+                    if (!isActive) {
+                        
+                        isSignupReciept = [appReceipt containsActiveAutoRenewableSubscriptionOfProductIdentifier: kAutoRenewableGroupSignup forDate:[NSDate date]];
+                        
+                    }
+                }
+                
+                
+                if(isActive || isSignupReciept){
+                    
+                    
+//                    for(SKPaymentTransaction *transaction in transactions){
+//
+//                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//
+//                    }
+                    
+                    [self saveUserDetails:serverResponce];
+                    [self openHomeScreen];
+                    [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
+                    
+
+                }else{
+                    
+                    //Check for other receipt sucess
+                    
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.dimBackground = YES;
+                    hud.labelText = @"Checking Active Subscription";
+                    
+                    if ([RMStore canMakePayments]){
+                        
+                        NSString *productID = kAutorenewableSubscriptionKey;
+                        
+                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+                            
+                            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
+                                
+                                [self saveUserDetails:serverResponce];
+                                [self openHomeScreen];
+                                [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
+                               // [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+
+
+                            }
+                            
+                            
+                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                                               message:error.localizedDescription
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                                     otherButtonTitles:nil];
+                            [alerView show];
+                            
+                        }];
+                    }
+                }
+                
+                
+            }failure:^(NSError *error){
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+                [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                
+            }];
+            
+            
+        }failure:^(NSError *error){
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+            [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        }];
+        
+
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Purchase Request Failed", @"")
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+    
     
 }
 
+- (void)configureStore
+{
+    
+    const BOOL iOS7OrHigher = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1;
+    _receiptVerifier = iOS7OrHigher ? [[RMStoreAppReceiptVerifier alloc] init] : [[RMStoreTransactionReceiptVerifier alloc] init];
+    [RMStore defaultStore].receiptVerifier = _receiptVerifier;
+    
+    _persistence = [[RMStoreKeychainPersistence alloc] init];
+    [RMStore defaultStore].transactionPersistor = _persistence;
+}
+
+
 -(void)openHomeScreen
 {
+    
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     self.emailtextField.text = @"";
     self.passwordTextField.text = @"";
-    
     
     TabBarHandler *tabBarScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarHandler"];
     
@@ -292,9 +560,21 @@ errorBlock:^(NSError *error) {
                     }
                     completion:nil];
     
-    [LoginViewController getFreindListCount];
+    [[[LoginViewController alloc]init] getFreindListCount];
     
 }
+
+- (NSUInteger)numberOfDaysElapsedBetweenLastloginCheck: (NSDate *)lastDate
+{
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [currentCalendar components:NSCalendarUnitDay
+                                                      fromDate:lastDate
+                                                        toDate:[NSDate date]
+                                                       options:0];
+    
+    return [components day];
+}
+
 
 
 -(void)getUpdatedUserDetails
@@ -322,17 +602,55 @@ errorBlock:^(NSError *error) {
                     
                     if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                         
-                        if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                        
+                        if (![[[serverResponce valueForKey:@"data"] valueForKey:@"device_id"] isEqual:@""] && ![[[serverResponce valueForKey:@"data"]  valueForKey:@"device_id"] isEqual:[NSNull null]]) {
                             
-                            [self saveUserDetails:serverResponce];
-                            [self openHomeScreen];
+                            //Device is registered form app
+                            
+                            NSDate *loginDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"LginInAppDate"];
+                            
+                            if(![[NSUserDefaults standardUserDefaults] objectForKey:@"LginInAppDate"]){
+
+                                [self checkForAppStoreSubscription:serverResponce];
+
+                            }else{
+                                
+                                NSInteger numberofDays = [self numberOfDaysElapsedBetweenLastloginCheck:loginDate];
+                                
+                                if (numberofDays<1) {
+                                    
+                                    [self saveUserDetails:serverResponce];
+                                    [self openHomeScreen];
+                                    
+                                    //[self checkForAppStoreSubscription:serverResponce];
+
+                                    
+                                }else{
+                                    
+                                    [self checkForAppStoreSubscription:serverResponce];
+
+                                    
+                                }
+                            }
                             
                         }else{
-                            
-                            [self openCreditCardScreen];
+                           
+                            if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                                
+                                [self saveUserDetails:serverResponce];
+                                [self openHomeScreen];
+                            }else{
+                                
+                                [[[UIAlertView alloc]initWithTitle:@"Failed to login" message:@"It seems that user doesn't have active subscription plan. Please visit closed1app.com" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                            }
                             
                         }
                         
+                        
+                        
+                        
+                        
+
                     }
                 }
             }
@@ -342,7 +660,7 @@ errorBlock:^(NSError *error) {
     });
 }
 
-+(void)getFreindListCount
+-(void)getFreindListCount
 {
     
     UserDetails *_userdDetails = [UserDetails MR_findFirst];
@@ -359,6 +677,9 @@ errorBlock:^(NSError *error) {
                     
                     NSArray *freinListCOunt = [servreResponce valueForKey:@"data"];
                     [[NSUserDefaults standardUserDefaults] setInteger:freinListCOunt.count forKey:@"FreindRequestCount"];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"FreindRequestCountNotification" object:nil];
+                    
                 }else{
                     [[NSUserDefaults standardUserDefaults] setInteger: 0 forKey:@"FreindRequestCount"];
                 }
@@ -559,17 +880,29 @@ errorBlock:^(NSError *error) {
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
-                    [self saveUserDetails:serverResponce];
-
-                    if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                    if (![[[serverResponce valueForKey:@"data"] valueForKey:@"device_id"] isEqual:@""] && ![[[serverResponce valueForKey:@"data"]  valueForKey:@"device_id"] isEqual:[NSNull null]] ) {
                         
-                        [self openHomeScreen];
+                        //Device is registered form app
+                        [self checkForAppStoreSubscription:serverResponce];
+                        
                         
                     }else{
                         
-                        [self openCreditCardScreen];
+                        if ([[[serverResponce valueForKey:@"data"] valueForKey:@"isSubscribed"] boolValue] == YES) {
+                            
+                            [self saveUserDetails:serverResponce];
+                            [self openHomeScreen];
+                        }else{
+                            
+                            [[[UIAlertView alloc]initWithTitle:@"Failed to login" message:@"It seems that user doesn't have active subscription plan. Please visit closed1app.com" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                        }
                         
                     }
+                    
+                    
+                    
+                    
+                    
                     
                 }else{
                     [self serverFailedWithTitle:@"Login Failed" SubtitleString:@"It seems that your Email Id does not exist with us. Please proceed to the registration page to sign up. If you believe you received this message in error, please contact info@closed1app.com"];

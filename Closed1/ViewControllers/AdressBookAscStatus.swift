@@ -258,7 +258,7 @@ class AdressBookAscStatus{
             let contact = allContacts[count]
             let firstNameOfContact = AdressBookAscStatus.getNameOfPersonForContactsTable(contact as ABRecord).fristName
             let lastNameOfContact = AdressBookAscStatus.getNameOfPersonForContactsTable(contact as ABRecord).lastName
-            let emailOfContact = AdressBookAscStatus.getAllEmailsOfContacts(contact as ABRecord)
+            _ = AdressBookAscStatus.getAllEmailsOfContacts(contact as ABRecord)
             let numberOfContact = AdressBookAscStatus.getAllNumbersOfContact(contact as ABRecord)
             
             let fullname = firstNameOfContact + lastNameOfContact

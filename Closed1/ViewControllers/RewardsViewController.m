@@ -67,6 +67,8 @@
                     
                     [[[UIAlertView alloc]initWithTitle:[serverResponce valueForKey:@"message"] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
                     
+                    [[NSUserDefaults standardUserDefaults] setValue: @"" forKey:@"UserClaimReward"];
+                    
                 }else{
                     [[[UIAlertView alloc]initWithTitle:@"Failed to get Rewards Details" message:@"Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
                 }

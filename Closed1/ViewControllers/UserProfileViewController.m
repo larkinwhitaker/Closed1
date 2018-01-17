@@ -15,7 +15,6 @@
 #import "ClosedResverResponce.h"
 #import "utilities.h"
 #import "JobProfile+CoreDataProperties.h"
-#import "CardDetails+CoreDataProperties.h"
 #import "AFNetworking.h"
 
 @interface UserProfileViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ServerFailedDelegate>
@@ -150,7 +149,6 @@
         [UserDetails MR_truncateAll];
         [JobProfile MR_truncateAll];
         LogoutUser(DEL_ACCOUNT_ALL);
-        [CardDetails MR_truncateAll];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceHome"];
 
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FirstTimeExperienceContacts"];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
-+(void)getFreindListCount;
+-(void)getFreindListCount;
 
 
 @end

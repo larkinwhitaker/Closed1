@@ -96,6 +96,11 @@ ShareViewController *shareDeal = [self.storyboard instantiateViewControllerWithI
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 -(void)profileUpdatedSucessFully
 {
     self.selectedIndex = 0;

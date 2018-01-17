@@ -84,7 +84,7 @@
         
     }
     
-    NSString *string = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+   // NSString *string = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
 #if DEBUG
     //    NSLog(@"JSON OBJECT IS: %@", string);
 #endif

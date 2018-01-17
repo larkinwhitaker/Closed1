@@ -20,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *countryButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneNumberTextField;
 @property (strong, nonatomic) IBOutlet UIView *editProfileView;
-@property (weak, nonatomic) IBOutlet UIButton *showCardButton;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *countryTextField;
 
 @end

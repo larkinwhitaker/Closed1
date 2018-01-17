@@ -31,7 +31,8 @@
     
     self.commentTextView.textContainer.lineFragmentPadding = 5.0;
     self.nametextView.textContainer.lineFragmentPadding = 5.0;
-    self.nametextView.text = [self.singlefeedsDetails valueForKey:@"closed"];
+    if(![[self.singlefeedsDetails valueForKey:@"closed"] isEqual:[NSNull null]])     self.nametextView.text = [self.singlefeedsDetails valueForKey:@"closed"];
+
     self.commentTextView.text = [self.singlefeedsDetails valueForKey:@"content"];
 }
 
@@ -62,25 +63,34 @@
     
     if ([[self.nametextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         
+        [self animateView:self.nametextView];
         
     }else if ([[self.commentTextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0){
         
+        [self animateView:self.commentTextView];
+
     }else{
         
         [self submitDatatToServer];
     }
 }
 
--(void)submitDatatToServer
+-(void)animateView: (UIView *)textField
 {
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = 0.07;
+    animation.repeatCount = 4;
+    animation.autoreverses = YES;
+    animation.fromValue = [NSValue valueWithCGPoint:CGPointMake(textField.center.x - 10, textField.center.y)];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(textField.center.x + 10, textField.center.y)];
+    [textField.layer addAnimation:animation forKey:@"position"];
     
-    NSDate *currentDate = [NSDate date];
-    NSString *dateString = [formatter stringFromDate:currentDate];
-    
-    NSLog(@"%@", dateString);
+}
+
+
+-(void)submitDatatToServer
+{
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
@@ -92,7 +102,11 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=sharedeal&user_id=%zd&closed=%@&comment=%@&date_recorded=%@", userDetails.userID, self.nametextView.text, self.commentTextView.text, dateString] DictionartyToServer:@{} IsEncodingRequires:NO];
+        NSString *url = [NSString stringWithFormat: @"https://closed1app.com/api-mobile/?function=activity_update_content&user_id=%zd&activityid=%@&content=%@&title=%@", userDetails.userID, [_singlefeedsDetails valueForKey:@"activity_id"],self.commentTextView.text, self.nametextView.text];
+        
+        NSLog(@"%@", url);
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: url DictionartyToServer:@{} IsEncodingRequires:NO];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,11 +121,11 @@
                     self.nametextView.text = @"";
                     
                     [self.tabBarController setSelectedIndex:0];
-                    
+                    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
                 }else{
                     
-                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:[serverResponce valueForKey:@"data"]];
+                    [self serverFailedWithTitle:@"Oops!!" SubtitleString:@"Failed to update deal. Please try again later."];
                     
                 }
             }else{

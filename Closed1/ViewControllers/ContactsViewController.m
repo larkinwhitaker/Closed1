@@ -470,7 +470,7 @@
 #pragma mark - Add New Code For Email Sending
 
     
-    NSMutableDictionary *dictionaryToserver = [[NSMutableDictionary alloc]init];
+   // NSMutableDictionary *dictionaryToserver = [[NSMutableDictionary alloc]init];
     
     
     

@@ -73,8 +73,12 @@
     
     if ([[self.nametextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         
+        [self animateView:self.nametextView];
         
     }else if ([[self.commentTextView.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length] == 0){
+        
+        [self animateView:self.commentTextView];
+
         
     }else{
         
@@ -166,5 +170,19 @@
     });
     
 }
+
+-(void)animateView: (UIView *)textField
+{
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = 0.07;
+    animation.repeatCount = 4;
+    animation.autoreverses = YES;
+    animation.fromValue = [NSValue valueWithCGPoint:CGPointMake(textField.center.x - 10, textField.center.y)];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(textField.center.x + 10, textField.center.y)];
+    [textField.layer addAnimation:animation forKey:@"position"];
+    
+}
+
 
 @end

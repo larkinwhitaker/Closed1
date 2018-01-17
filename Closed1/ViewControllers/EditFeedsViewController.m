@@ -19,12 +19,30 @@
 
 @implementation EditFeedsCell
 
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.deleteFeedsButton.layer.cornerRadius = 5.0;
+    self.deleteFeedsButton.layer.borderWidth = 1.0;
+    self.editFeedsButton.layer.cornerRadius = 5.0;
+    self.editFeedsButton.layer.borderWidth = 1.0;
+    self.deleteFeedsButton.layer.shadowColor = [[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0] CGColor];
+    self.deleteFeedsButton.layer.shadowOffset = CGSizeMake(3, 3);
+    self.deleteFeedsButton.layer.shadowOpacity = 0.5;
+    self.editFeedsButton.layer.shadowColor = [[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0] CGColor];
+    self.editFeedsButton.layer.shadowOffset = CGSizeMake(3, 3);
+    self.editFeedsButton.layer.shadowOpacity = 0.5;
+    
+}
+
 @end
 
 @interface EditFeedsViewController ()
 
 @property(nonatomic) NSMutableArray *userFeedsArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) BOOL shouldDisplayEditView;
+@property(nonatomic) BOOL currentIndexTapfeeds;
 
 @end
 
@@ -99,7 +117,8 @@
                 [feedDictionary setValue:[singleFeed valueForKey:@"company"] forKey:@"company"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"closed"] forKey:@"closed"];
                 [feedDictionary setValue:[singleFeed valueForKey:@"content"] forKey:@"content"];
-
+                [feedDictionary setValue:[singleFeed valueForKey:@"activity_id"] forKey:@"activity_id"];
+                
                 [self.userFeedsArray addObject:feedDictionary];
                 
             }
@@ -135,7 +154,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat heightOfText = [HomeScreenViewController findHeightForText:[[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"content"] havingWidth:self.view.frame.size.width-16 andFont:[UIFont systemFontOfSize:18.0]];
-    return heightOfText+270;
+    return heightOfText+230;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,6 +172,18 @@
     editFeedsCell.closed1Title.text = [NSString stringWithFormat:@"%@",[[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"closed"]];
     editFeedsCell.editFeedsButton.tag  = indexPath.row;
     editFeedsCell.deleteFeedsButton.tag = indexPath.row;
+    editFeedsCell.editOptionsButton.tag = indexPath.row;
+    editFeedsCell.reportPostButton.tag = indexPath.row;
+    editFeedsCell.editOptionView.hidden = YES;
+    
+    [editFeedsCell.editOptionsButton addTarget:self action:@selector(displayEditOptionView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if(self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayEditView)
+    {
+        editFeedsCell.editOptionView.hidden = NO;
+
+    }
+    
     editFeedsCell.timingLabel.text = [[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"FeedTime"];
     editFeedsCell.userProfileCOmmnet.text = [[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"content"];
     NSInteger messageCount = [[[self.userFeedsArray objectAtIndex:indexPath.row] valueForKey:@"message_count"] integerValue];
@@ -166,10 +197,23 @@
     [editFeedsCell.likeButtonView setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [editFeedsCell.editFeedsButton addTarget:self action:@selector(editFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [editFeedsCell.deleteFeedsButton addTarget:self action:@selector(deleteFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
     
     return editFeedsCell;
 
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.shouldDisplayEditView = NO;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow: indexPath.row inSection: indexPath.section]] withRowAnimation: UITableViewRowAnimationNone];
+
+}
+
+-(void)displayEditOptionView: (UIButton *)sender
+{
+    self.shouldDisplayEditView = !self.shouldDisplayEditView;
+    self.currentIndexTapfeeds = sender.tag;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
 }
 
 
@@ -215,7 +259,56 @@
 
 -(void)deleteuserFeedsFromServerWithIndex: (NSInteger)index
 {
+    NSLog(@"Feeds Details are:------>%@", [self.userFeedsArray objectAtIndex: index]);
     
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    NSDictionary *singlefeed = [self.userFeedsArray objectAtIndex:index];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Deleting feed";
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=activity_delete&user_id=%zd&activityid=%@", userDetails.userID, [singlefeed valueForKey:@"activity_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", serverResponce);
+       
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Sucessfully Deleted feed" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+
+                }
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            }
+            
+            
+        });
+        
+    });
+    
+    
+    
+
 }
 
 

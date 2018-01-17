@@ -42,6 +42,8 @@ extension String {
     var filterednameSecarh =  Array<[String:AnyObject]>()
     var titleForTableView = Array<String>()
     var countForSection = Array<Int>()
+    var refreshControl: UIRefreshControl!
+
     
     @IBOutlet weak var  freindRequest: UIButton!
     @IBOutlet weak var  invitesButton: UIButton!
@@ -60,6 +62,15 @@ extension String {
         let nib2 = UINib(nibName: "ContactsTableViewCell", bundle: nil)
         tableView.register(nib2, forCellReuseIdentifier: "ContactsTableViewCell")
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.getFriendListFromServer),
+            name: NSNotification.Name(rawValue: "BlockingUserNotification"),
+            object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(FreindRequestCountRecivedFromServer), name: NSNotification.Name(rawValue: ""), object: nil)
+        
+        
         
         if(self.iscameFromChatScreen){
 
@@ -69,7 +80,55 @@ extension String {
 
         }
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.getFriendListFromServer), for: UIControlEvents.valueChanged)
+        self.tableView.addSubview(self.refreshControl) // not required when using UITableViewController
+        
         getFriendListFromServer()
+    }
+    
+    
+    func FreindRequestCountRecivedFromServer() -> Void {
+        
+        if(iscameFromChatScreen){
+            
+            self.freindRequest.isHidden = true;
+            self.freindRequestCountView.isHidden = true;
+            self.addFreinds.isHidden = true;
+            self.invitesButton.isHidden = true;
+            self.canceButton.isHidden = false;
+            
+        }else{
+            createCustumNavigationBar()
+            self.freindRequest.isHidden = false;
+            self.freindRequestCountView.isHidden = false;
+            self.addFreinds.isHidden = false;
+            self.invitesButton.isHidden = false;
+            self.canceButton.isHidden = true;
+            
+            let freingRequestCount = UserDefaults.standard.integer(forKey: "FreindRequestCount")
+            
+            
+            if freingRequestCount>0 {
+                
+                self.freinfReeustCountLabel.text = "\(freingRequestCount)";
+                self.freindRequestCountView.isHidden = false;
+                self.freinfReeustCountLabel.isHidden = false;
+                self.tabBarItem.badgeValue = "\(freingRequestCount)";
+                
+            }else{
+                
+                self.freindRequestCountView.isHidden = true;
+                self.freinfReeustCountLabel.isHidden = true;
+                self.tabBarItem.badgeValue = nil;
+                
+                
+            }
+            
+            UIApplication.shared.applicationIconBadgeNumber = freingRequestCount;
+        }
+        
     }
     
     
@@ -81,6 +140,8 @@ extension String {
     
    func getFriendListFromServer()
     {
+        self.contactDictionary.removeAll();
+        
         let hud: MBProgressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.dimBackground = true;
         hud.labelText = "Fetching Contacts";
@@ -146,6 +207,8 @@ extension String {
                             }
                             
                         }
+                        
+                        self.hidereshControl();
                     }
                     
                 }else{
@@ -154,6 +217,7 @@ extension String {
                         MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
 
                         UIAlertView(title: "It seems there are no contacts in your list", message: "", delegate: nil, cancelButtonTitle: "Okay").show()
+                        self.hidereshControl();
 
                     }
                 }
@@ -161,54 +225,28 @@ extension String {
                 DispatchQueue.main.async() {
                     MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     UIAlertView(title: "It seems there are no contacts in your list", message: "", delegate: nil, cancelButtonTitle: "Okay").show()
-
+                    
+                    self.hidereshControl();
                     
                 }
             }
         }
     }
     
+    func hidereshControl() -> Void {
+        
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "MMM d, h:mm a";
+        let titleOfRefresh: String = String(format: "Last update: %@", dateFormatter.string(from: Date()));
+        self.refreshControl.attributedTitle = NSAttributedString(string: titleOfRefresh)
+        self.refreshControl.endRefreshing()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
-        LoginViewController.getFreindListCount()
-        
-        if(iscameFromChatScreen){
-            
-            self.freindRequest.isHidden = true;
-            self.freindRequestCountView.isHidden = true;
-            self.addFreinds.isHidden = true;
-            self.invitesButton.isHidden = true;
-            self.canceButton.isHidden = false;
-            
-        }else{
-            createCustumNavigationBar()
-            self.freindRequest.isHidden = false;
-            self.freindRequestCountView.isHidden = false;
-            self.addFreinds.isHidden = false;
-            self.invitesButton.isHidden = false;
-            self.canceButton.isHidden = true;
-            
-            let freingRequestCount = UserDefaults.standard.integer(forKey: "FreindRequestCount")
-           
-
-            if freingRequestCount>0 {
-                
-                self.freinfReeustCountLabel.text = "\(freingRequestCount)";
-                self.freindRequestCountView.isHidden = false;
-                self.freinfReeustCountLabel.isHidden = false;
-                self.tabBarItem.badgeValue = "\(freingRequestCount)";
-
-            }else{
-                
-                self.freindRequestCountView.isHidden = true;
-                self.freinfReeustCountLabel.isHidden = true;
-                self.tabBarItem.badgeValue = nil;
-
-                
-            }
-            
-            UIApplication.shared.applicationIconBadgeNumber = freingRequestCount;
-        }
+        LoginViewController().getFreindListCount()
+        FreindRequestCountRecivedFromServer()
         
     }
     

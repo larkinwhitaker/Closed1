@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HTMLLabel.h"
 
+
+
 @interface EditFeedsCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -24,9 +26,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *editFeedsButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteFeedsButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButtonView;
+@property (weak, nonatomic) IBOutlet UIButton *editOptionsButton;
+@property (weak, nonatomic) IBOutlet UIView *editOptionView;
+@property (weak, nonatomic) IBOutlet UIButton *reportPostButton;
 
 @end
 
 @interface EditFeedsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 
 @end

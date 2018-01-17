@@ -15,16 +15,19 @@
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
 #import "WebViewController.h"
-#import "CreditCardViewController.h"
-#import "PTKView.h"
-#import "CardDetails+CoreDataProperties.h"
+#import "RMStore.h"
+#import "RMAppReceipt.h"
+#import "RMStoreKeychainPersistence.h"
+#import "RMStoreAppReceiptVerifier.h"
 
-@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, CountryListDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate, CreditCardDelegate, PTKViewDelegate>
+#define kAutorenewableSubscriptionKey @"com.Closed1LLC.Closed1.AutoRenewableSubscription"
+#define kAutoRenewableGroupSignup @"com.Closed1LLC.Closed1.AutoRenewableSubscriptionsignup"
+
+@interface SignupViewController ()<UITableViewDelegate, UITableViewDataSource, CountryListDelegate, ServerFailedDelegate,LinkedInLoginDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 @property(nonatomic) NSString *imageURL;
 @property(nonatomic) BOOL isCardValid;
-@property(nonatomic) NSMutableDictionary *creditCardDictionary;
 
 @end
 
@@ -39,17 +42,7 @@
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
     _imageURL = @"";
-
-    self.creditCardDictionary = [[NSMutableDictionary alloc]init];
-    [self.creditCardDictionary setValue:@"" forKey:@"cardnumber"];
-    [self.creditCardDictionary setValue:@"" forKey:@"cardexpirydate"];
-    [self.creditCardDictionary setValue:@"" forKey:@"CreditCardCVV"];
-    [self.creditCardDictionary setValue:@"" forKey:@"cardname"];
-    [self.creditCardDictionary setValue:@"placeholder" forKey:@"cardimagename"];
-
-    [self.creditCardDictionary setValue:@"" forKey:@"cardencryptedtext"];
-    [self.creditCardDictionary setValue:@"cvc" forKey:@"creditcardCVVImage"];
-
+ 
 }
 
 
@@ -76,90 +69,11 @@
     
     navItem.leftBarButtonItem = backButton;
 
-    UIButton *addFreinds = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [addFreinds setImage:[UIImage imageNamed:@"CreditcardDefaultImage.png"] forState:UIControlStateNormal];
-    [addFreinds addTarget:self action:@selector(openCreditCardScreen) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithCustomView:addFreinds];
-    navItem.rightBarButtonItem = cardButton;
-    
     [navBar setTintColor:[UIColor whiteColor]];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [navItem setTitle:@"Sign up"];
     [self.view addSubview:navBar];
     
-}
-
-#pragma mark - First card Delegate
-
--(void)openCreditCardScreen
-{
-    CreditCardViewController *creditcardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
-    creditcardVC.delegate = self;
-    creditcardVC.isComeFromSignup = YES;
-    creditcardVC.creditCardDetails = self.creditCardDictionary;
-    [self.navigationController pushViewController:creditcardVC animated:YES];
-    
-}
-
--(void)selectedCreditCardDetails:(NSMutableDictionary *)creditCardDetailsDictionary
-{
-    NSLog(@"%@", creditCardDetailsDictionary);
-    [self.signupCell.addCardButton setTitle:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
-    [CardDetails MR_truncateAll];
-    
-    
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardnumber"] forKey:@"cardnumber"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardexpirydate"] forKey:@"cardexpirydate"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"CreditCardCVV"] forKey:@"CreditCardCVV"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardname"] forKey:@"cardname"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardimagename"] forKey:@"cardimagename"];
-    
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forKey:@"cardencryptedtext"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"] forKey:@"creditcardCVVImage"];
-
-    
-    
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext){
-
-        CardDetails *cardDetails = [CardDetails MR_createEntityInContext:localContext];
-        
-        cardDetails.cardname = [creditCardDetailsDictionary valueForKey:@"cardname"];
-        cardDetails.cardencryptedtext = [creditCardDetailsDictionary valueForKey:@"cardencryptedtext"];
-        cardDetails.cardexpirydate = [creditCardDetailsDictionary valueForKey:@"cardexpirydate"];
-        cardDetails.cardimagename = [creditCardDetailsDictionary valueForKey:@"cardimagename"];
-        cardDetails.cardnumber = [creditCardDetailsDictionary valueForKey:@"cardnumber"];
-        cardDetails.cvvtext = [creditCardDetailsDictionary valueForKey:@"CreditCardCVV"];
-        cardDetails.cvvimageName = [creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"];
-
-        [localContext MR_saveToPersistentStoreAndWait];
-    }];
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
-}
-
-
-#pragma mark - 2nd Card Delegdate
-- (void) paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid
-{
-    _isCardValid = valid;
-}
-
--(void)saveCardDetails
-
-{
-    PTKCard* card = _signupCell.cardView.card;
-
-    NSLog(@"Card Number: %@", card.number);
-    NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
-    NSLog(@"Card cvc: %@", card.cvc);
-    
-    [[NSUserDefaults standardUserDefaults] setValue:card.last4 forKey:@"card.last4"];
-
 }
 
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
@@ -175,7 +89,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1100;
+    return 1050;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,8 +97,6 @@
     _signupCell= [tableView dequeueReusableCellWithIdentifier:@"SignupTableViewCell"];
     
     [_signupCell.signupButton addTarget:self action:@selector(signupButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    _signupCell.cardView.delegate = self;
-    [_signupCell.addCardButton addTarget:self action:@selector(openCreditCardScreen) forControlEvents:UIControlEventTouchUpInside];
     
     [_signupCell.countrySelectionButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
     
@@ -320,14 +232,8 @@
             
             if ([_signupCell.passwordTextField.text isEqualToString:_signupCell.confirmPasswordTextField.text]) {
                 
-                if ([self.signupCell.addCardButton.titleLabel.text isEqualToString:@"Add card"]) {
-                    [[[UIAlertView alloc]initWithTitle:@"Credit card details missing" message:@"Please enter your credit card details to move ahead" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
-
-                }else{
-                    
-                    [self submitDataToServer];
-                }
-
+                [self checkUserandEmailExitances];
+                
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Password not matched" message:@"Please re-enter the password. Both password must be same" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
@@ -413,6 +319,47 @@
     }
 }
 
+
+-(void)checkUserandEmailExitances
+{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Hang on,";
+    hud.detailsLabelText = @"Checking user";
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer: [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=check_email_username_exists&username=%@&email=%@", self.signupCell.usenameTextField.text, self.signupCell.emailtextField.text] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+        if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+            
+            if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                
+                [self checkForAppStoreSubscription:serverResponce];
+
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to sign up" message:@"It seems that user id and email already exists. Please try with different Email ID or get login with us" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+            }
+        }else{
+            
+            [[[UIAlertView alloc]initWithTitle:@"Failed to sign up" message:@"It seems that user id and email already exists. Please try with different Email ID or get login with us" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        }
+        
+        });
+
+        
+
+    });
+}
+
+
+
 -(void)submitDataToServer
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -420,7 +367,7 @@
     hud.labelText = @"Hang on,";
     hud.detailsLabelText = @"Signing you up";
     
-    NSString *deviceID = @"";
+    NSString *deviceID = [NSString stringWithFormat:@"%d",rand()];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"FCMToken"]) {
         
         deviceID = [[NSUserDefaults standardUserDefaults] valueForKey:@"FCMToken"];
@@ -433,9 +380,7 @@
 //       NSString *reuestURL = [NSString stringWithFormat:@"http://socialmedia.alkurn.info/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&secondary_email=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@&number=%@&exp_month=%@&exp_year=%@&cvc=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.secondaryEmailTextFiled.text, _signupCell.secondaryEmailTextFiled.text, deviceID, _imageURL, [self.creditCardDictionary valueForKey:@"cardnumber"], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] firstObject], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] lastObject], [self.creditCardDictionary valueForKey:@"CreditCardCVV"]];
         
         
-        NSString *reuestURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@&number=%@&exp_month=%@&exp_year=%@&cvc=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.targetBuyersTextFiled.text, deviceID, _imageURL, [self.creditCardDictionary valueForKey:@"cardnumber"], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] firstObject], [[[self.creditCardDictionary valueForKey:@"cardexpirydate"] componentsSeparatedByString:@"/"] lastObject], [self.creditCardDictionary valueForKey:@"CreditCardCVV"]];
-        
-        
+        NSString *reuestURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=userRegistration&username=%@&email=%@&password=%@&fullname=%@&city=%@&state=%@&country=%@&phone=%@&title=%@&company=%@&territory=%@&target_buyer=%@&device_id=%@&user_avatar_urls=%@", _signupCell.usenameTextField.text, _signupCell.emailtextField.text, _signupCell.passwordTextField.text, _signupCell.fullNameTextField.text, _signupCell.cityTextField.text, _signupCell.stateTextField.text, _signupCell.countrySelectionButton.titleLabel.text, _signupCell.phoneNumberTextField.text, _signupCell.titletextField.text, _signupCell.companyTextField.text, _signupCell.territoryTextFiled.text, _signupCell.targetBuyersTextFiled.text, deviceID, _imageURL];
         
         
         NSLog(@"%@", reuestURL);
@@ -455,8 +400,8 @@
                     
                     if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                         
-                            [self saveUserDetails:serverResponce];
-                            [self openHomeScreen];
+                        [self saveUserDetails:serverResponce];
+                        [self openHomeScreen];
                         
                     }else{
                         [self serverFailedWithTitle:@"Signup Failed" SubtitleString:[serverResponce valueForKey:@"data"]];
@@ -477,6 +422,206 @@
     });
     
 }
+
+-(void)checkForAppStoreSubscription: (NSArray *)serverResponce
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Connecting to iTunes";
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:[NSArray arrayWithObjects:kAutorenewableSubscriptionKey, kAutoRenewableGroupSignup, nil]] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"Checking Subscription details";
+        
+        
+        [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions){
+            
+            [[RMStore defaultStore] refreshReceiptOnSuccess:^{
+                
+                BOOL isActive = NO;
+                
+                RMAppReceipt *appReceipt = [RMAppReceipt bundleReceipt];
+                
+                if (appReceipt) {
+                    isActive =  [appReceipt containsActiveAutoRenewableSubscriptionOfProductIdentifier: kAutorenewableSubscriptionKey forDate:[NSDate date]];
+                }
+                
+                if(isActive){
+                    
+                    
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.dimBackground = YES;
+                    hud.labelText = @"Checking Active Subscription";
+                    
+                    if ([RMStore canMakePayments]){
+                        
+                        NSString *productID = kAutoRenewableGroupSignup;
+                        
+                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+                            
+                            if ([transaction.payment.productIdentifier isEqualToString:kAutoRenewableGroupSignup]) {
+                                
+                                [self submitDataToServer];
+                                
+                                
+                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                                    
+
+                            }
+                            
+                            
+                            
+                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                                               message:error.localizedDescription
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                                     otherButtonTitles:nil];
+                            [alerView show];
+                            
+                        }];
+                    }else{
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        [[[UIAlertView alloc]initWithTitle:@"Failed to Make paymnet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+                    }
+
+                    
+                }else{
+                    
+                    //Check for other receipt sucess
+                    
+                    
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.dimBackground = YES;
+                    hud.labelText = @"Checking Active Subscription";
+                    
+                    if ([RMStore canMakePayments]){
+                        
+                        NSString *productID = kAutorenewableSubscriptionKey;
+                        
+                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+                            
+                            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
+                                
+                                    [self submitDataToServer];
+                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+
+                            }
+                            
+                            
+                            
+                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                                               message:error.localizedDescription
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                                     otherButtonTitles:nil];
+                            [alerView show];
+                            
+                        }];
+                    }else{
+                        
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        [[[UIAlertView alloc]initWithTitle:@"Failed to Make paymnet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+                    }
+                }
+                
+                
+            }failure:^(NSError *error){
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                
+            }];
+            
+            
+        }failure:^(NSError *error){
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        }];
+        
+        
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Purchase Request Failed", @"")
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+    
+    
+}
+
+
+-(void)checkForAppStoreSubscription2: (NSArray *)serverResponce
+{
+ 
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Checking Paymnet details";
+    
+    
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:[NSArray arrayWithObject:kAutorenewableSubscriptionKey]] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+
+    if ([RMStore canMakePayments]){
+        
+        NSString *productID = kAutorenewableSubscriptionKey;
+        
+        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+            
+            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
+                
+                [self submitDataToServer];
+            }
+            
+            NSLog(@"%@", transaction);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            
+        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                               message:error.localizedDescription
+                                                              delegate:nil
+                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                     otherButtonTitles:nil];
+            [alerView show];
+            
+        }];
+    }
+    
+    }failure:^(NSError *error){
+       
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                           message:error.localizedDescription
+                                                          delegate:nil
+                                                 cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                 otherButtonTitles:nil];
+        [alerView show];
+        
+    }];
+   
+}
+
 
 
 -(void)saveUserDetails: (NSArray *)userData{
@@ -577,6 +722,7 @@
         [[[UIAlertView alloc]initWithTitle:title message:subtitle delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     });
 }
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

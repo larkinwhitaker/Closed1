@@ -62,6 +62,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFeedsArray) name:@"NewFeedsAvilable" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(setContactListBadgeCount) name:@"FreindRequestCountNotification" object:nil];
+    
     self.tablView.estimatedRowHeight = 175;
     self.tablView.rowHeight = UITableViewAutomaticDimension;
     
@@ -535,12 +537,36 @@
 }
 
 
+-(void)setContactListBadgeCount
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSInteger freindRequestCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"FreindRequestCount"];
+        
+        TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
+        
+        UITabBarItem *item2 = tabBarHandler.tabBar.items[1];
+        item2.badgeValue = (freindRequestCount != 0) ? [NSString stringWithFormat:@"%ld", (long) freindRequestCount] : nil;
+        
+        UIUserNotificationSettings *currentUserNotificationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (currentUserNotificationSettings.types & UIUserNotificationTypeBadge)
+            [UIApplication sharedApplication].applicationIconBadgeNumber = freindRequestCount;
+
+    });
+    
+    
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController setNavigationBarHidden:YES];
-//
-//    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //[self setContactListBadgeCount];
+    
+    
+    //    //---------------------------------------------------------------------------------------------------------------------------------------------
 //    
 //    if (total != 0) {
 //        self.messageCountLabel.hidden = NO;
@@ -571,6 +597,7 @@
     
     UITabBarItem *item = tabBarHandler.tabBar.items[0];
     item.badgeValue = (total != 0) ? [NSString stringWithFormat:@"%ld", (long) total] : nil;
+    
     UIUserNotificationSettings *currentUserNotificationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
     if (currentUserNotificationSettings.types & UIUserNotificationTypeBadge)
         [UIApplication sharedApplication].applicationIconBadgeNumber = total;
@@ -802,5 +829,6 @@
     }
     return result;
 }
+
 
 @end

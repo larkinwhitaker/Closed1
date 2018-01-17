@@ -17,8 +17,6 @@
 #import "EditProfileViewController.h"
 #import "JobProfileCell.h"
 #import "JobProfile+CoreDataProperties.h"
-#import "CreditCardViewController.h"
-#import "CardDetails+CoreDataProperties.h"
 
 #define kTitle @"title"
 #define kCopmpany @"company"
@@ -27,14 +25,13 @@
 #define kisCurrentPosition @"current_position"
 
 
-@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,CountryListDelegate, ServerFailedDelegate, UITextFieldDelegate, CreditCardDelegate>
+@interface EditProfileViewController ()<UITableViewDelegate, UITableViewDataSource,CountryListDelegate, ServerFailedDelegate, UITextFieldDelegate>
 {
     EditProfileTableViewCell *editProfileCell;
     NSInteger rowCount;
     
 }
 @property(nonatomic) NSMutableArray *flightDetailsArray;
-@property(nonatomic) NSMutableDictionary *creditCardDictionary;
 @property(nonatomic) NSMutableDictionary *userProfiledetails;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -47,19 +44,6 @@
     [super viewDidLoad];
     
     _flightDetailsArray = [[NSMutableArray alloc]init];
-    
-    
-    CardDetails *cardDetails = [CardDetails MR_findFirst];
-    
-    self.creditCardDictionary = [[NSMutableDictionary alloc]init];
-    [self.creditCardDictionary setValue:cardDetails.cardnumber forKey:@"cardnumber"];
-    [self.creditCardDictionary setValue:cardDetails.cardexpirydate forKey:@"cardexpirydate"];
-    [self.creditCardDictionary setValue:cardDetails.cvvtext forKey:@"CreditCardCVV"];
-    [self.creditCardDictionary setValue:cardDetails.cardname forKey:@"cardname"];
-    [self.creditCardDictionary setValue:cardDetails.cardimagename forKey:@"cardimagename"];
-    
-    [self.creditCardDictionary setValue:cardDetails.cardencryptedtext forKey:@"cardencryptedtext"];
-    [self.creditCardDictionary setValue:cardDetails.cvvimageName forKey:@"creditcardCVVImage"];
     
     UserDetails *userDetails = [UserDetails MR_findFirst];
     
@@ -188,30 +172,6 @@
     
 }
 
--(void)openCardScreen
-{
-    CreditCardViewController *creditCardScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditCardViewController"];
-    creditCardScreen.delegate = self;
-    creditCardScreen.creditCardDetails = self.creditCardDictionary;
-    [self.navigationController pushViewController:creditCardScreen animated:YES];
-}
-
--(void)selectedCreditCardDetails:(NSMutableDictionary *)creditCardDetailsDictionary
-{
-    NSLog(@"%@", creditCardDetailsDictionary);
-    [editProfileCell.showCardButton setTitle:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
-    
-    
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardnumber"] forKey:@"cardnumber"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardexpirydate"] forKey:@"cardexpirydate"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"CreditCardCVV"] forKey:@"CreditCardCVV"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardname"] forKey:@"cardname"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardimagename"] forKey:@"cardimagename"];
-    
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"cardencryptedtext"] forKey:@"cardencryptedtext"];
-    [self.creditCardDictionary setValue:[creditCardDetailsDictionary valueForKey:@"creditcardCVVImage"] forKey:@"creditcardCVVImage"];
-}
-
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
 
 {
@@ -233,7 +193,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) return 513;
+    if(indexPath.section == 0) return 400;
     else return 360;
 }
 
@@ -245,20 +205,12 @@
         
         [editProfileCell.countryButton addTarget:self action:@selector(openCountrySelectionScreen) forControlEvents:UIControlEventTouchUpInside];
         
-        
-        
         editProfileCell.emailTextField.text = [self.userProfiledetails valueForKey:@"userEmail"];
         editProfileCell.fullNameTextField.text = [NSString stringWithFormat:@"%@", [self.userProfiledetails valueForKey:@"firstName"]];
         editProfileCell.citytextField.text = [self.userProfiledetails valueForKey:@"city"];
         editProfileCell.stateTextField.text = [self.userProfiledetails valueForKey:@"state"];
         editProfileCell.phoneNumberTextField.text = [self.userProfiledetails valueForKey:@"phoneNumber"];
         editProfileCell.countryTextField.text = [self.userProfiledetails valueForKey:@"country"];
-        
-         if([self.creditCardDictionary valueForKey:@"cardencryptedtext"] != nil){
-             [editProfileCell.showCardButton setTitle:[self.creditCardDictionary valueForKey:@"cardencryptedtext"] forState:UIControlStateNormal];
-
-         }
-        [editProfileCell.showCardButton addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
         
         return editProfileCell;
     }else{
