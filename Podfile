@@ -3,7 +3,7 @@
 
 target 'Closed1' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+  #use_frameworks!
 
 pod 'Fabric'
 pod 'Crashlytics'
@@ -13,7 +13,7 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'GoogleSignIn'
 pod 'OneSignal'
-pod 'Realm', '2.1.2'
+pod 'Realm'
 pod 'SinchRTC'
 pod 'Firebase/Messaging'
 pod 'Harpy'
@@ -24,7 +24,7 @@ pod 'MBProgressHUD'
 pod 'MGSwipeTableCell'
 pod 'ProgressHUD'
 pod 'Reachability'
-pod 'RNCryptor', '3.0.1'
+pod 'RNCryptor','3.0.1'
 pod 'RNGridMenu'
 pod 'OpenSSL-for-iOS', '1.0.2.d.1'
 
