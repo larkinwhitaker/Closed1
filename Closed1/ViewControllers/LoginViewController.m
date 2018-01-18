@@ -447,11 +447,11 @@ errorBlock:^(NSError *error) {
                 if(isActive || isSignupReciept){
                     
                     
-//                    for(SKPaymentTransaction *transaction in transactions){
-//
-//                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-//
-//                    }
+                    for(SKPaymentTransaction *transaction in transactions){
+
+                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+
+                    }
                     
                     [self saveUserDetails:serverResponce];
                     [self openHomeScreen];
@@ -479,7 +479,7 @@ errorBlock:^(NSError *error) {
                                 [self saveUserDetails:serverResponce];
                                 [self openHomeScreen];
                                 [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
-                               // [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 
 
                             }
@@ -505,6 +505,36 @@ errorBlock:^(NSError *error) {
 
                 [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
                 
+                
+                
+                NSString *productID = kAutorenewableSubscriptionKey;
+                
+                [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+                    
+                    if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
+                        
+                        [self saveUserDetails:serverResponce];
+                        [self openHomeScreen];
+                        [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
+                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                        
+                        
+                    }
+                    
+                    
+                } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                                       message:error.localizedDescription
+                                                                      delegate:nil
+                                                             cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                             otherButtonTitles:nil];
+                    [alerView show];
+                    
+                }];
+            
+
+             
             }];
             
             
@@ -619,10 +649,10 @@ errorBlock:^(NSError *error) {
                                 
                                 if (numberofDays<1) {
                                     
-                                    [self saveUserDetails:serverResponce];
-                                    [self openHomeScreen];
+                                    //[self saveUserDetails:serverResponce];
+                                   // [self openHomeScreen];
                                     
-                                    //[self checkForAppStoreSubscription:serverResponce];
+                                    [self checkForAppStoreSubscription:serverResponce];
 
                                     
                                 }else{
