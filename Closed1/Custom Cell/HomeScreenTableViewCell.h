@@ -24,4 +24,11 @@
 @property (strong, nonatomic) IBOutlet UIView *messageView;
 @property (strong, nonatomic) IBOutlet UIButton *likeButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *editOptionButton;
+@property (weak, nonatomic) IBOutlet UIView *editOptionView;
+@property (weak, nonatomic) IBOutlet UIImageView *editOptionImageView;
+@property (weak, nonatomic) IBOutlet UIButton *editFeedsButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteFeedsButton;
+
+
 @end

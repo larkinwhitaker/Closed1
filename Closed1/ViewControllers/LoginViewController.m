@@ -649,10 +649,10 @@ errorBlock:^(NSError *error) {
                                 
                                 if (numberofDays<1) {
                                     
-                                    //[self saveUserDetails:serverResponce];
-                                   // [self openHomeScreen];
+                                    [self saveUserDetails:serverResponce];
+                                    [self openHomeScreen];
                                     
-                                    [self checkForAppStoreSubscription:serverResponce];
+                                    //[self checkForAppStoreSubscription:serverResponce];
 
                                     
                                 }else{

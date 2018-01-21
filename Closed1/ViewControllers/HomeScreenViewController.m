@@ -34,6 +34,7 @@
 #import <Realm/Realm.h>
 #import "utilities.h"
 #import "EditFeedsViewController.h"
+#import "EditedFeedsShareViewController.h"
 
 @interface HomeScreenViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -48,7 +49,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageCountLabel;
 @property(nonatomic) NSMutableArray *feedsArray;
 @property(nonatomic) UIRefreshControl *refreshControl;
-
+@property(nonatomic) NSInteger currentUserID;
+@property(nonatomic) BOOL shouldDisplayEditView;
+@property(nonatomic) NSInteger currentIndexTapfeeds;
 
 @end
 
@@ -73,6 +76,8 @@
     
 #pragma mark - Uncommnet this Method
    [self getLoginWithChattingView];
+    
+   // [self setContactListBadgeCount];
     
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
 //    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
@@ -423,8 +428,10 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Getting Feed";
+    self.shouldDisplayEditView = NO;
     
     UserDetails *user = [UserDetails MR_findFirst];
+    self.currentUserID = user.userID;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -589,7 +596,7 @@
 {
     NSInteger total = 0;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
-    RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
+    RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingKeyPath:FRECENT_LASTMESSAGEDATE ascending:NO];
     TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
 
     for (DBRecent *dbrecent in dbrecents)
@@ -745,10 +752,135 @@
     }
     
     
+    //For Edit/Delete feeds
+    NSInteger feedsID = 0;
+    
+    if (![[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_id"] isEqual:[NSNull null]]) {
+        feedsID = [[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
+    }
+    
+    if (feedsID == self.currentUserID) {
+        
+        homeCell.editFeedsButton.tag = indexPath.row;
+        homeCell.deleteFeedsButton.tag = indexPath.row;
+        homeCell.editOptionButton.tag = indexPath.row;
+        homeCell.editOptionView.hidden = YES;
+        homeCell.editOptionImageView.hidden = NO;
+        homeCell.editOptionButton.hidden = NO;
+        homeCell.editOptionView.hidden = YES;
+
+        if(self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayEditView)
+        {
+            homeCell.editOptionView.hidden = NO;
+        }
+        
+        [homeCell.editOptionButton addTarget:self action:@selector(editOptionVieewTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [homeCell.editFeedsButton addTarget:self action:@selector(editFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [homeCell.deleteFeedsButton addTarget:self action:@selector(deleteFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }else{
+        
+        homeCell.editOptionView.hidden = YES;
+        homeCell.editOptionImageView.hidden = YES;
+        homeCell.editOptionButton.hidden = YES;
+    }
+
     
     return homeCell;
 }
 
+
+-(void)editOptionVieewTapped: (UIButton *) sender
+{
+    self.shouldDisplayEditView = !self.shouldDisplayEditView;
+    self.currentIndexTapfeeds = sender.tag;
+    [self.tablView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
+}
+
+-(void)editFeedsButtonTapped: (UIButton *)sender
+{
+    EditedFeedsShareViewController *editFeedsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EditedFeedsShareViewController"];
+    editFeedsViewController.singlefeedsDetails = [[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"];
+    [self.navigationController pushViewController:editFeedsViewController animated:YES];
+}
+
+-(void)deleteFeedsButtonTapped: (UIButton *)sender
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure want to delete this feed?" message:@"This action cannot be Reversible" preferredStyle: UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style: UIAlertActionStyleDestructive handler:nil]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *ACTION){
+        
+        [self deleteuserFeedsFromServerWithIndex:sender.tag];
+        
+    }]];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+-(void)deleteuserFeedsFromServerWithIndex: (NSInteger)index
+{
+    
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    
+    NSDictionary *singlefeed = [[_feedsArray objectAtIndex: index] valueForKey:@"Feeds"];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Deleting feed";
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=activity_delete&user_id=%zd&activityid=%@", userDetails.userID, [singlefeed valueForKey:@"activity_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", serverResponce);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]) {
+                
+                
+                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Sucessfully Deleted feed" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                    
+                    [self getFeedsArray];
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                    
+                }
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            }
+            
+            
+        });
+        
+    });
+    
+    
+    
+    
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.shouldDisplayEditView = NO;
+    [self.tablView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow: indexPath.row inSection: indexPath.section]] withRowAnimation: UITableViewRowAnimationNone];
+    
+}
 
 -(void)messageButonTapped: (UIButton *)sender
 {
