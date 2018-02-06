@@ -596,7 +596,7 @@
 {
     NSInteger total = 0;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
-    RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingKeyPath:FRECENT_LASTMESSAGEDATE ascending:NO];
+    RLMResults *dbrecents = [[DBRecent objectsWithPredicate:predicate] sortedResultsUsingProperty:FRECENT_LASTMESSAGEDATE ascending:NO];
     TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
 
     for (DBRecent *dbrecent in dbrecents)

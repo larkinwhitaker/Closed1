@@ -29,15 +29,9 @@
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
     self.navigationItem.leftBarButtonItem = backButton;
+    self.title = @"Rewards";
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(getRewardsDetailsfromServer)];
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
-//    [self createCustumNavigationBar];
     [self getRewardsDetailsfromServer];
-    self.claimrewardButton.hidden = YES;
-    
     [self.navigationController configureNavigationBar:self];
 }
 - (IBAction)claimRewardtapped:(id)sender {
@@ -83,56 +77,14 @@
 
 -(void)getRewardsDetailsfromServer
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Hang on,";
-    hud.detailsLabelText = @"Getting Rewards";
-    
     UserDetails *user = [UserDetails MR_findFirst];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSString *apiName = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=claim_reward&user_id=%zd", user.userID];
-        
-        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:apiName DictionartyToServer:@{} IsEncodingRequires:nil];
-        
-        NSLog(@"%@", serverResponce);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-           
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            
-            if(![[serverResponce valueForKey:@"success"] isEqual:[NSNull null]]){
-                
-                if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
-                    
-                    if (![[serverResponce valueForKey:@"message"] isEqual:[NSNull null]]) {
-                        
-                        self.rewardsLabel.text = [serverResponce valueForKey:@"message"];
-                        [self.navigationItem.rightBarButtonItem setEnabled:YES];
-
-                        if ([[serverResponce valueForKey:@"count"] integerValue] > 2) {
-                            
-                            self.claimrewardButton.hidden = NO;
-                        }else{
-                            self.claimrewardButton.hidden = YES;
-                        }
-                        
-                    }else{
-                        
-                        [[[UIAlertView alloc]initWithTitle:@"Failed to get Rewards Details" message:@"Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-                    }
-                }else{
-                    [[[UIAlertView alloc]initWithTitle:@"Failed to get Rewards Details" message:@"Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-                }
-            }else{
-                [[[UIAlertView alloc]initWithTitle:@"Failed to get Rewards Details" message:@"Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-            }
-        });
-
-    });
+    self.rewardsLabel.text = [NSString stringWithFormat:@"Earn 1 Free Month for every 3 new users you invite to Closed1 that complete the registration process. You have %zd users left to earn a free month", 3 - user.invitationCount];
     
-    
-
+    if (user.invitationCount > 2) {
+        self.claimrewardButton.hidden = NO;
+    }else{
+        self.claimrewardButton.hidden = YES;
+    }
 }
 
 - (void)createCustumNavigationBar

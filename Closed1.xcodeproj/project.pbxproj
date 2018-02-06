@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10A66D4FFBB9D5809F137A41 /* Pods_Closed1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */; };
-		878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */; };
+		12737C2FEF965D79E9D1AAFC /* libPods-Closed1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D4114764EFEE4BABA4D75E /* libPods-Closed1.a */; };
+		411BE5202DAD307530B09671 /* libPods-Closed1UITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC60F2B6362DE9EFEC6C66C /* libPods-Closed1UITests.a */; };
+		7C5C8CC27C347E6EBCF56833 /* libPods-Closed1Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DD9ABA48CE3AA51C88EF43 /* libPods-Closed1Tests.a */; };
 		AD03A16D1E8EC8DA00852776 /* ProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */; };
-		AD0D6D8F1F041FA10064CA76 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */; };
-		AD0D6D901F041FA10064CA76 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */; };
 		AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */; };
 		AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1F15501E8C062E00DD9529 /* MessageUI.framework */; };
 		AD1F155D1E8C36AE00DD9529 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1F155B1E8C36AE00DD9529 /* ContactsTableViewCell.m */; };
@@ -137,7 +136,6 @@
 		AD93F7F81E8823B7008488B9 /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D41E8823B7008488B9 /* MagicalRecord+Setup.m */; };
 		AD93F7F91E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D61E8823B7008488B9 /* MagicalRecord+ShorthandMethods.m */; };
 		AD93F7FA1E8823B7008488B9 /* MagicalRecordInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7D91E8823B7008488B9 /* MagicalRecordInternal.m */; };
-		AD93F7FB1E8823B7008488B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */; };
 		AD9D9F881F93749E009058D0 /* RewardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9D9F871F93749E009058D0 /* RewardsViewController.m */; };
 		ADA091C61EA11B09005E9975 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA091C51EA11B09005E9975 /* CommentListViewController.m */; };
 		ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5CACA1E879E94000DF38D /* WebViewController.m */; };
@@ -551,7 +549,6 @@
 		ADD1D1741E94119500C3D59D /* ic_1491339527_letter.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */; };
 		ADD1D1761E94122E00C3D59D /* ic_1491340365_user_male4.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */; };
 		ADDF35BA1F17DC3F00A240E0 /* InternetErrorImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */; };
-		ADDF35BD1F17DD5F00A240E0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDF35BC1F17DD5F00A240E0 /* Reachability.m */; };
 		ADDF35C01F17DD6B00A240E0 /* NetworkErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDF35BF1F17DD6B00A240E0 /* NetworkErrorViewController.m */; };
 		ADE0426C1FE82A7A003AC76D /* EdirProfileThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = ADE0426B1FE82A7A003AC76D /* EdirProfileThreeDots.png */; };
 		ADE604291EC4DDDC00C1B93C /* JobProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE604271EC4DDDC00C1B93C /* JobProfileCell.m */; };
@@ -564,7 +561,6 @@
 		ADEAE03D1E89979600D36B55 /* friends-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADEAE03C1E89979600D36B55 /* friends-128.png */; };
 		ADEB55691EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB55671EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m */; };
 		ADFFF03E1F10EE2D007E811F /* JobProfile+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFFF03C1F10EE2D007E811F /* JobProfile+CoreDataProperties.m */; };
-		CD4BA8942C45B23CA4F7CA73 /* Pods_Closed1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -601,17 +597,15 @@
 		02B8EF9269649D9DE37945C5 /* Pods-Closed1-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1-OneSignalNotificationServiceExtension/Pods-Closed1-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		163C2FD7DFD47CB6C4B66EF2 /* Pods-Closed1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1UITests/Pods-Closed1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CCF21B84597F90DF3E3ED1C /* Pods-Closed1-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1-OneSignalNotificationServiceExtension/Pods-Closed1-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		33D4114764EFEE4BABA4D75E /* libPods-Closed1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Closed1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A792F364352342C225F3F2 /* Pods-Closed1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4CBDA988434A76CC826310B1 /* Pods-Closed1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1/Pods-Closed1.debug.xcconfig"; sourceTree = "<group>"; };
+		58DD9ABA48CE3AA51C88EF43 /* libPods-Closed1Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Closed1Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		642157FED49F5A961D5BE454 /* Pods-Closed1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1UITests/Pods-Closed1UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6765D7B468AE86EF187AB759 /* Pods-Closed1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1/Pods-Closed1.release.xcconfig"; sourceTree = "<group>"; };
-		728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BC64B6BDBE8FE74C43CABD /* Pods-Closed1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Closed1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Closed1Tests/Pods-Closed1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AD03A16B1E8EC8DA00852776 /* ProfileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetailViewController.h; sourceTree = "<group>"; };
 		AD03A16C1E8EC8DA00852776 /* ProfileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetailViewController.m; sourceTree = "<group>"; };
-		AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
-		AD0D6D8D1F041FA10064CA76 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
-		AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		AD11C5151E8D60D500219196 /* ic_itunesartwork3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_itunesartwork3x.png; sourceTree = "<group>"; };
 		AD1F15501E8C062E00DD9529 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AD1F155A1E8C36AE00DD9529 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
@@ -841,8 +835,6 @@
 		AD93F7DA1E8823B7008488B9 /* MagicalRecordLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordLogging.h; sourceTree = "<group>"; };
 		AD93F7DB1E8823B7008488B9 /* MagicalRecordXcode7CompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordXcode7CompatibilityMacros.h; sourceTree = "<group>"; };
 		AD93F7DC1E8823B7008488B9 /* MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecord.h; sourceTree = "<group>"; };
-		AD93F7DE1E8823B7008488B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		AD9D9F861F93749E009058D0 /* RewardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardsViewController.h; sourceTree = "<group>"; };
 		AD9D9F871F93749E009058D0 /* RewardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardsViewController.m; sourceTree = "<group>"; };
 		ADA091C41EA11B09005E9975 /* CommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListViewController.h; sourceTree = "<group>"; };
@@ -1435,8 +1427,6 @@
 		ADD1D1731E94119500C3D59D /* ic_1491339527_letter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491339527_letter.png; sourceTree = "<group>"; };
 		ADD1D1751E94122E00C3D59D /* ic_1491340365_user_male4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_1491340365_user_male4.png; sourceTree = "<group>"; };
 		ADDF35B91F17DC3F00A240E0 /* InternetErrorImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InternetErrorImage.png; sourceTree = "<group>"; };
-		ADDF35BB1F17DD5F00A240E0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		ADDF35BC1F17DD5F00A240E0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		ADDF35BE1F17DD6B00A240E0 /* NetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkErrorViewController.h; sourceTree = "<group>"; };
 		ADDF35BF1F17DD6B00A240E0 /* NetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkErrorViewController.m; sourceTree = "<group>"; };
 		ADE0426B1FE82A7A003AC76D /* EdirProfileThreeDots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EdirProfileThreeDots.png; sourceTree = "<group>"; };
@@ -1454,8 +1444,7 @@
 		ADEB55671EDF3C2500B87733 /* ContactDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ADFFF03B1F10EE2D007E811F /* JobProfile+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobProfile+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ADFFF03C1F10EE2D007E811F /* JobProfile+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JobProfile+CoreDataProperties.m"; sourceTree = "<group>"; };
-		BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC60F2B6362DE9EFEC6C66C /* libPods-Closed1UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Closed1UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11BCAF9CFB0D8C9E0356C51 /* Pods_Closed1_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Closed1_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1471,7 +1460,7 @@
 				AD77D05E1FEAD630005AC458 /* UIKit.framework in Frameworks */,
 				AD1F15511E8C062E00DD9529 /* MessageUI.framework in Frameworks */,
 				AD7A5DFF1E86DB0D00C3B4B6 /* linkedin-sdk.framework in Frameworks */,
-				878262A1D9310C694F822448 /* Pods_Closed1.framework in Frameworks */,
+				12737C2FEF965D79E9D1AAFC /* libPods-Closed1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,7 +1468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10A66D4FFBB9D5809F137A41 /* Pods_Closed1Tests.framework in Frameworks */,
+				7C5C8CC27C347E6EBCF56833 /* libPods-Closed1Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,7 +1476,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4BA8942C45B23CA4F7CA73 /* Pods_Closed1UITests.framework in Frameworks */,
+				411BE5202DAD307530B09671 /* libPods-Closed1UITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,22 +1492,12 @@
 				AD77D05D1FEAD630005AC458 /* UIKit.framework */,
 				AD59C39E1FE58CF2002A9846 /* StoreKit.framework */,
 				AD1F15501E8C062E00DD9529 /* MessageUI.framework */,
-				BB5CD6B927F38A1DAB9F5D8B /* Pods_Closed1.framework */,
-				728B794A235A42543D4FB024 /* Pods_Closed1Tests.framework */,
-				D87B7AFFF7D6C64E65075953 /* Pods_Closed1UITests.framework */,
 				F11BCAF9CFB0D8C9E0356C51 /* Pods_Closed1_OneSignalNotificationServiceExtension.framework */,
+				33D4114764EFEE4BABA4D75E /* libPods-Closed1.a */,
+				58DD9ABA48CE3AA51C88EF43 /* libPods-Closed1Tests.a */,
+				CEC60F2B6362DE9EFEC6C66C /* libPods-Closed1UITests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AD0D6D8B1F041FA10064CA76 /* ProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				AD0D6D8C1F041FA10064CA76 /* ProgressHUD.bundle */,
-				AD0D6D8D1F041FA10064CA76 /* ProgressHUD.h */,
-				AD0D6D8E1F041FA10064CA76 /* ProgressHUD.m */,
-			);
-			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
 		AD77D1EF1FEAE274005AC458 /* RMStore */ = {
@@ -1850,9 +1829,6 @@
 			children = (
 				AD77D1EF1FEAE274005AC458 /* RMStore */,
 				AD7DEDAE1F91E92C00CB42E1 /* HTMLLabel */,
-				ADDF35BB1F17DD5F00A240E0 /* Reachability.h */,
-				ADDF35BC1F17DD5F00A240E0 /* Reachability.m */,
-				AD0D6D8B1F041FA10064CA76 /* ProgressHUD */,
 				ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */,
 				ADCE92CA1EB0F9AC0018FD25 /* Tour Tip */,
 				ADBB1AB11EA52B35003CA9DD /* Chatting */,
@@ -1863,7 +1839,6 @@
 				ADCED75D1E8AAAA600B9A06A /* utilities.h */,
 				AD9344E71E89770700E60A4B /* NJKWebViewProgress */,
 				AD93F79D1E8823B7008488B9 /* MagicalRecord */,
-				AD93F7DD1E8823B7008488B9 /* MBProgressHud */,
 				AD93F75C1E880E16008488B9 /* IQKeyboardManager */,
 				AD93F7811E880E16008488B9 /* JVFloatLabeledTextField */,
 			);
@@ -2064,15 +2039,6 @@
 				AD93F7DB1E8823B7008488B9 /* MagicalRecordXcode7CompatibilityMacros.h */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		AD93F7DD1E8823B7008488B9 /* MBProgressHud */ = {
-			isa = PBXGroup;
-			children = (
-				AD93F7DE1E8823B7008488B9 /* MBProgressHUD.h */,
-				AD93F7DF1E8823B7008488B9 /* MBProgressHUD.m */,
-			);
-			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		ADA0C5DF1E969F020060A0B1 /* CoreDataClasses */ = {
@@ -3684,7 +3650,6 @@
 				ADBB1DE71EA52B37003CA9DD /* chat_callvideo@2x.png in Resources */,
 				AD11C5161E8D60D500219196 /* ic_itunesartwork3x.png in Resources */,
 				ADBB1E781EA52B37003CA9DD /* stickersend20@2x.png in Resources */,
-				AD0D6D8F1F041FA10064CA76 /* ProgressHUD.bundle in Resources */,
 				ADBB1EAF1EA52B37003CA9DD /* stickersend75@2x.png in Resources */,
 				ADBB1EB21EA52B37003CA9DD /* stickersend78@2x.png in Resources */,
 				ADBB1E261EA52B37003CA9DD /* stickerlocal16@2x.png in Resources */,
@@ -3811,7 +3776,32 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Closed1/Pods-Closed1-resources.sh",
+				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Harpy/Harpy/Harpy.bundle",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/audio_record.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/audio_record@2x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/audio_record@3x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/microphone_access.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/microphone_access@2x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/microphone_access@3x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/scissor.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/scissor@2x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/scissor@3x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_playing.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_playing@2x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_playing@3x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_recording.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_recording@2x.png",
+				"${PODS_ROOT}/IQAudioRecorderController/IQAudioRecorderController/Resources/stop_recording@3x.png",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellOutgoing.xib",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesLoadEarlierHeaderView.xib",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesToolbarContentView.xib",
+				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesTypingIndicatorFooterView.xib",
+				"${PODS_ROOT}/ProgressHUD/ProgressHUD/ProgressHUD/ProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -4101,7 +4091,6 @@
 				AD933A3F1E9E8093002FE9FF /* AFURLResponseSerialization.m in Sources */,
 				ADBB1DBD1EA52B37003CA9DD /* PhotoMediaItem.m in Sources */,
 				ADBB1D461EA52B37003CA9DD /* MapView.m in Sources */,
-				AD0D6D901F041FA10064CA76 /* ProgressHUD.m in Sources */,
 				ADCE92D01EB0F9AC0018FD25 /* NZTourTip.m in Sources */,
 				AD933A411E9E8093002FE9FF /* AFAutoPurgingImageCache.m in Sources */,
 				AD933A541E9EA3A4002FE9FF /* ProfileDetailsCell.m in Sources */,
@@ -4148,7 +4137,6 @@
 				ADACED731E9BFE06001A9F4A /* UIView+WebCacheOperation.m in Sources */,
 				ADA9004F1EA9261900EAC538 /* FreindRequestViewController.m in Sources */,
 				AD93F7951E880E16008488B9 /* IQUIView+IQKeyboardToolbar.m in Sources */,
-				ADDF35BD1F17DD5F00A240E0 /* Reachability.m in Sources */,
 				ADBB1DB81EA52B37003CA9DD /* DownloadManager.m in Sources */,
 				ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */,
 				ADB3EE011EC8857B001DEC69 /* PJXFlipTopTransitionItemAnimations.m in Sources */,
@@ -4169,7 +4157,6 @@
 				AD9344ED1E89770700E60A4B /* NJKWebViewProgressView.m in Sources */,
 				AD93F7E31E8823B7008488B9 /* NSNumber+MagicalDataImport.m in Sources */,
 				ADBB1D731EA52B37003CA9DD /* ArchiveCell.m in Sources */,
-				AD93F7FB1E8823B7008488B9 /* MBProgressHUD.m in Sources */,
 				ADBB1DB51EA52B37003CA9DD /* converter.m in Sources */,
 				ADBB1EC01EA52B37003CA9DD /* SINSClientsObserver.m in Sources */,
 				ADBB1DA71EA52B37003CA9DD /* UserDefaults.m in Sources */,
@@ -4396,19 +4383,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Closed1",
-					"//",
-					"//",
 					RMAppReceipt.m,
-					"//",
 					RMStore,
-					"//",
-					"//",
 					Created,
 					by,
 					Hermes,
 					on,
 					10/12/13.,
-					"//",
 					Copyright,
 					"(c)",
 					2013,
@@ -4417,8 +4398,6 @@
 					All,
 					rights,
 					reserved.,
-					"//",
-					"//",
 					Licensed,
 					under,
 					the,
@@ -4428,7 +4407,6 @@
 					2.0,
 					"(the",
 					"\"License\");",
-					"//",
 					you,
 					may,
 					not,
@@ -4441,7 +4419,6 @@
 					with,
 					the,
 					License.,
-					"//",
 					You,
 					may,
 					obtain,
@@ -4451,11 +4428,7 @@
 					the,
 					License,
 					at,
-					"//",
-					"//",
 					"http://www.apache.org/licenses/LICENSE-2.0",
-					"//",
-					"//",
 					Unless,
 					required,
 					by,
@@ -4467,7 +4440,6 @@
 					in,
 					"writing,",
 					software,
-					"//",
 					distributed,
 					under,
 					the,
@@ -4478,7 +4450,6 @@
 					an,
 					"\"AS IS\"",
 					"BASIS,",
-					"//",
 					WITHOUT,
 					WARRANTIES,
 					OR,
@@ -4490,7 +4461,6 @@
 					express,
 					or,
 					implied.,
-					"//",
 					See,
 					the,
 					License,
@@ -4501,12 +4471,10 @@
 					governing,
 					permissions,
 					and,
-					"//",
 					limitations,
 					under,
 					the,
 					License.,
-					"//",
 					"#import",
 					"\"RMAppReceipt.h\"",
 					"#import",
@@ -4519,7 +4487,6 @@
 					"<openssl/sha.h>",
 					"#import",
 					"<openssl/x509.h>",
-					"//",
 					From,
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1",
 					NSInteger,
@@ -4791,7 +4758,6 @@
 					"=",
 					"[NSMutableArray",
 					"array];",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -4953,7 +4919,6 @@
 					"-",
 					"(BOOL)verifyReceiptHash",
 					"{",
-					"//",
 					"TODO:",
 					Getting,
 					the,
@@ -4974,7 +4939,6 @@
 					"uuidBytes[16];",
 					"[uuid",
 					"getUUIDBytes:uuidBytes];",
-					"//",
 					Order,
 					taken,
 					"from:",
@@ -5000,7 +4964,6 @@
 					"uint8_t*)data.bytes,",
 					"data.length,",
 					"(uint8_t*)expectedHash.mutableBytes);",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -5145,7 +5108,6 @@
 					"(BOOL)verifyPCKS7:(PKCS7*)container",
 					"withCertificateData:(NSData*)certificateData",
 					"{",
-					"//",
 					Based,
 					"on:",
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html#//apple_ref/doc/uid/TP40010573-CH1-SW17",
@@ -5159,7 +5121,6 @@
 					"=",
 					"0;",
 					"OpenSSL_add_all_digests();",
-					"//",
 					Required,
 					for,
 					PKCS7_verify,
@@ -5207,7 +5168,6 @@
 					"}",
 					"X509_STORE_free(store);",
 					"EVP_cleanup();",
-					"//",
 					Balances,
 					OpenSSL_add_all_digests,
 					"(),",
@@ -5292,7 +5252,6 @@
 					sequenceEnd,
 					"-",
 					"p);",
-					"//",
 					Consume,
 					attribute,
 					version,
@@ -5314,7 +5273,6 @@
 					"<",
 					"sequenceEnd)",
 					"{",
-					"//",
 					Skip,
 					remaining,
 					fields,
@@ -5376,7 +5334,6 @@
 					"[super",
 					"init])",
 					"{",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -5530,19 +5487,13 @@
 					"NSOrderedDescending;",
 					"}",
 					"@end",
-					"//",
-					"//",
 					RMAppReceipt.m,
-					"//",
 					RMStore,
-					"//",
-					"//",
 					Created,
 					by,
 					Hermes,
 					on,
 					10/12/13.,
-					"//",
 					Copyright,
 					"(c)",
 					2013,
@@ -5551,8 +5502,6 @@
 					All,
 					rights,
 					reserved.,
-					"//",
-					"//",
 					Licensed,
 					under,
 					the,
@@ -5562,7 +5511,6 @@
 					2.0,
 					"(the",
 					"\"License\");",
-					"//",
 					you,
 					may,
 					not,
@@ -5575,7 +5523,6 @@
 					with,
 					the,
 					License.,
-					"//",
 					You,
 					may,
 					obtain,
@@ -5585,11 +5532,7 @@
 					the,
 					License,
 					at,
-					"//",
-					"//",
 					"http://www.apache.org/licenses/LICENSE-2.0",
-					"//",
-					"//",
 					Unless,
 					required,
 					by,
@@ -5601,7 +5544,6 @@
 					in,
 					"writing,",
 					software,
-					"//",
 					distributed,
 					under,
 					the,
@@ -5612,7 +5554,6 @@
 					an,
 					"\"AS IS\"",
 					"BASIS,",
-					"//",
 					WITHOUT,
 					WARRANTIES,
 					OR,
@@ -5624,7 +5565,6 @@
 					express,
 					or,
 					implied.,
-					"//",
 					See,
 					the,
 					License,
@@ -5635,12 +5575,10 @@
 					governing,
 					permissions,
 					and,
-					"//",
 					limitations,
 					under,
 					the,
 					License.,
-					"//",
 					"#import",
 					"\"RMAppReceipt.h\"",
 					"#import",
@@ -5653,7 +5591,6 @@
 					"<openssl/sha.h>",
 					"#import",
 					"<openssl/x509.h>",
-					"//",
 					From,
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1",
 					NSInteger,
@@ -5925,7 +5862,6 @@
 					"=",
 					"[NSMutableArray",
 					"array];",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -6087,7 +6023,6 @@
 					"-",
 					"(BOOL)verifyReceiptHash",
 					"{",
-					"//",
 					"TODO:",
 					Getting,
 					the,
@@ -6108,7 +6043,6 @@
 					"uuidBytes[16];",
 					"[uuid",
 					"getUUIDBytes:uuidBytes];",
-					"//",
 					Order,
 					taken,
 					"from:",
@@ -6134,7 +6068,6 @@
 					"uint8_t*)data.bytes,",
 					"data.length,",
 					"(uint8_t*)expectedHash.mutableBytes);",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -6279,7 +6212,6 @@
 					"(BOOL)verifyPCKS7:(PKCS7*)container",
 					"withCertificateData:(NSData*)certificateData",
 					"{",
-					"//",
 					Based,
 					"on:",
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html#//apple_ref/doc/uid/TP40010573-CH1-SW17",
@@ -6293,7 +6225,6 @@
 					"=",
 					"0;",
 					"OpenSSL_add_all_digests();",
-					"//",
 					Required,
 					for,
 					PKCS7_verify,
@@ -6341,7 +6272,6 @@
 					"}",
 					"X509_STORE_free(store);",
 					"EVP_cleanup();",
-					"//",
 					Balances,
 					OpenSSL_add_all_digests,
 					"(),",
@@ -6426,7 +6356,6 @@
 					sequenceEnd,
 					"-",
 					"p);",
-					"//",
 					Consume,
 					attribute,
 					version,
@@ -6448,7 +6377,6 @@
 					"<",
 					"sequenceEnd)",
 					"{",
-					"//",
 					Skip,
 					remaining,
 					fields,
@@ -6510,7 +6438,6 @@
 					"[super",
 					"init])",
 					"{",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -6713,19 +6640,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Closed1",
-					"//",
-					"//",
 					RMAppReceipt.m,
-					"//",
 					RMStore,
-					"//",
-					"//",
 					Created,
 					by,
 					Hermes,
 					on,
 					10/12/13.,
-					"//",
 					Copyright,
 					"(c)",
 					2013,
@@ -6734,8 +6655,6 @@
 					All,
 					rights,
 					reserved.,
-					"//",
-					"//",
 					Licensed,
 					under,
 					the,
@@ -6745,7 +6664,6 @@
 					2.0,
 					"(the",
 					"\"License\");",
-					"//",
 					you,
 					may,
 					not,
@@ -6758,7 +6676,6 @@
 					with,
 					the,
 					License.,
-					"//",
 					You,
 					may,
 					obtain,
@@ -6768,11 +6685,7 @@
 					the,
 					License,
 					at,
-					"//",
-					"//",
 					"http://www.apache.org/licenses/LICENSE-2.0",
-					"//",
-					"//",
 					Unless,
 					required,
 					by,
@@ -6784,7 +6697,6 @@
 					in,
 					"writing,",
 					software,
-					"//",
 					distributed,
 					under,
 					the,
@@ -6795,7 +6707,6 @@
 					an,
 					"\"AS IS\"",
 					"BASIS,",
-					"//",
 					WITHOUT,
 					WARRANTIES,
 					OR,
@@ -6807,7 +6718,6 @@
 					express,
 					or,
 					implied.,
-					"//",
 					See,
 					the,
 					License,
@@ -6818,12 +6728,10 @@
 					governing,
 					permissions,
 					and,
-					"//",
 					limitations,
 					under,
 					the,
 					License.,
-					"//",
 					"#import",
 					"\"RMAppReceipt.h\"",
 					"#import",
@@ -6836,7 +6744,6 @@
 					"<openssl/sha.h>",
 					"#import",
 					"<openssl/x509.h>",
-					"//",
 					From,
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1",
 					NSInteger,
@@ -7108,7 +7015,6 @@
 					"=",
 					"[NSMutableArray",
 					"array];",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -7270,7 +7176,6 @@
 					"-",
 					"(BOOL)verifyReceiptHash",
 					"{",
-					"//",
 					"TODO:",
 					Getting,
 					the,
@@ -7291,7 +7196,6 @@
 					"uuidBytes[16];",
 					"[uuid",
 					"getUUIDBytes:uuidBytes];",
-					"//",
 					Order,
 					taken,
 					"from:",
@@ -7317,7 +7221,6 @@
 					"uint8_t*)data.bytes,",
 					"data.length,",
 					"(uint8_t*)expectedHash.mutableBytes);",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -7462,7 +7365,6 @@
 					"(BOOL)verifyPCKS7:(PKCS7*)container",
 					"withCertificateData:(NSData*)certificateData",
 					"{",
-					"//",
 					Based,
 					"on:",
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html#//apple_ref/doc/uid/TP40010573-CH1-SW17",
@@ -7476,7 +7378,6 @@
 					"=",
 					"0;",
 					"OpenSSL_add_all_digests();",
-					"//",
 					Required,
 					for,
 					PKCS7_verify,
@@ -7524,7 +7425,6 @@
 					"}",
 					"X509_STORE_free(store);",
 					"EVP_cleanup();",
-					"//",
 					Balances,
 					OpenSSL_add_all_digests,
 					"(),",
@@ -7609,7 +7509,6 @@
 					sequenceEnd,
 					"-",
 					"p);",
-					"//",
 					Consume,
 					attribute,
 					version,
@@ -7631,7 +7530,6 @@
 					"<",
 					"sequenceEnd)",
 					"{",
-					"//",
 					Skip,
 					remaining,
 					fields,
@@ -7693,7 +7591,6 @@
 					"[super",
 					"init])",
 					"{",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -7847,19 +7744,13 @@
 					"NSOrderedDescending;",
 					"}",
 					"@end",
-					"//",
-					"//",
 					RMAppReceipt.m,
-					"//",
 					RMStore,
-					"//",
-					"//",
 					Created,
 					by,
 					Hermes,
 					on,
 					10/12/13.,
-					"//",
 					Copyright,
 					"(c)",
 					2013,
@@ -7868,8 +7759,6 @@
 					All,
 					rights,
 					reserved.,
-					"//",
-					"//",
 					Licensed,
 					under,
 					the,
@@ -7879,7 +7768,6 @@
 					2.0,
 					"(the",
 					"\"License\");",
-					"//",
 					you,
 					may,
 					not,
@@ -7892,7 +7780,6 @@
 					with,
 					the,
 					License.,
-					"//",
 					You,
 					may,
 					obtain,
@@ -7902,11 +7789,7 @@
 					the,
 					License,
 					at,
-					"//",
-					"//",
 					"http://www.apache.org/licenses/LICENSE-2.0",
-					"//",
-					"//",
 					Unless,
 					required,
 					by,
@@ -7918,7 +7801,6 @@
 					in,
 					"writing,",
 					software,
-					"//",
 					distributed,
 					under,
 					the,
@@ -7929,7 +7811,6 @@
 					an,
 					"\"AS IS\"",
 					"BASIS,",
-					"//",
 					WITHOUT,
 					WARRANTIES,
 					OR,
@@ -7941,7 +7822,6 @@
 					express,
 					or,
 					implied.,
-					"//",
 					See,
 					the,
 					License,
@@ -7952,12 +7832,10 @@
 					governing,
 					permissions,
 					and,
-					"//",
 					limitations,
 					under,
 					the,
 					License.,
-					"//",
 					"#import",
 					"\"RMAppReceipt.h\"",
 					"#import",
@@ -7970,7 +7848,6 @@
 					"<openssl/sha.h>",
 					"#import",
 					"<openssl/x509.h>",
-					"//",
 					From,
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1",
 					NSInteger,
@@ -8242,7 +8119,6 @@
 					"=",
 					"[NSMutableArray",
 					"array];",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -8404,7 +8280,6 @@
 					"-",
 					"(BOOL)verifyReceiptHash",
 					"{",
-					"//",
 					"TODO:",
 					Getting,
 					the,
@@ -8425,7 +8300,6 @@
 					"uuidBytes[16];",
 					"[uuid",
 					"getUUIDBytes:uuidBytes];",
-					"//",
 					Order,
 					taken,
 					"from:",
@@ -8451,7 +8325,6 @@
 					"uint8_t*)data.bytes,",
 					"data.length,",
 					"(uint8_t*)expectedHash.mutableBytes);",
-					"//",
 					Explicit,
 					casting,
 					to,
@@ -8596,7 +8469,6 @@
 					"(BOOL)verifyPCKS7:(PKCS7*)container",
 					"withCertificateData:(NSData*)certificateData",
 					"{",
-					"//",
 					Based,
 					"on:",
 					"https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html#//apple_ref/doc/uid/TP40010573-CH1-SW17",
@@ -8610,7 +8482,6 @@
 					"=",
 					"0;",
 					"OpenSSL_add_all_digests();",
-					"//",
 					Required,
 					for,
 					PKCS7_verify,
@@ -8658,7 +8529,6 @@
 					"}",
 					"X509_STORE_free(store);",
 					"EVP_cleanup();",
-					"//",
 					Balances,
 					OpenSSL_add_all_digests,
 					"(),",
@@ -8743,7 +8613,6 @@
 					sequenceEnd,
 					"-",
 					"p);",
-					"//",
 					Consume,
 					attribute,
 					version,
@@ -8765,7 +8634,6 @@
 					"<",
 					"sequenceEnd)",
 					"{",
-					"//",
 					Skip,
 					remaining,
 					fields,
@@ -8827,7 +8695,6 @@
 					"[super",
 					"init])",
 					"{",
-					"//",
 					Explicit,
 					casting,
 					to,

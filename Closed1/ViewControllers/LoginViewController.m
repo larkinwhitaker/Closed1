@@ -746,6 +746,14 @@ errorBlock:^(NSError *error) {
         userDetails.phoneNumber = [userData valueForKey:@"phone"];
         userDetails.state = [userData valueForKey:@"state"];
         
+        NSInteger invitationCount = 0;
+        
+        if (![[userData valueForKey:@"invitation_count"] isEqual:[NSNull null]]) {
+            invitationCount = [[userData valueForKey:@"invitation_count"] integerValue];
+        }
+        
+        userDetails.invitationCount = invitationCount;
+        
         if ([[userData valueForKey:@"profile Image"] isEqual:@""]) {
             
             userDetails.profileImage = _imageURL;

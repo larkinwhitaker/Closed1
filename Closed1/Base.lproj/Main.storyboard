@@ -3073,7 +3073,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavigationBarImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="kCA-zj-W4i">
-                                        <rect key="frame" x="5" y="25" width="274" height="45"/>
+                                        <rect key="frame" x="23" y="25" width="274" height="45"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBb-J4-D4p">
                                         <rect key="frame" x="282" y="42" width="30" height="30"/>
@@ -3120,31 +3120,18 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUJ-zO-ahr">
-                                        <rect key="frame" x="240" y="40" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="18A-0w-tZe"/>
-                                            <constraint firstAttribute="width" constant="30" id="TYp-nk-k1h"/>
-                                        </constraints>
-                                        <state key="normal" image="MyUserfeeds.png"/>
-                                        <connections>
-                                            <action selector="myFeedsButtonTapped:" destination="1KU-AT-MxJ" eventType="touchUpInside" id="CIM-wM-Clr"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="cBb-J4-D4p" firstAttribute="top" secondItem="e1y-fe-VX7" secondAttribute="bottom" constant="-4" id="5iQ-O1-flu"/>
-                                    <constraint firstAttribute="bottom" secondItem="uUJ-zO-ahr" secondAttribute="bottom" constant="5" id="6g6-1k-sJF"/>
                                     <constraint firstAttribute="trailing" secondItem="cBb-J4-D4p" secondAttribute="trailing" constant="8" id="8XS-Dt-YD7"/>
                                     <constraint firstItem="kCA-zj-W4i" firstAttribute="top" secondItem="bzO-v2-8Ow" secondAttribute="top" constant="25" id="8q5-Bu-NGV"/>
-                                    <constraint firstItem="kCA-zj-W4i" firstAttribute="centerX" secondItem="bzO-v2-8Ow" secondAttribute="centerX" constant="-18" id="CZG-Zc-y6Z"/>
+                                    <constraint firstItem="kCA-zj-W4i" firstAttribute="centerX" secondItem="bzO-v2-8Ow" secondAttribute="centerX" id="CZG-Zc-y6Z"/>
                                     <constraint firstItem="f8G-ec-r6B" firstAttribute="leading" secondItem="bzO-v2-8Ow" secondAttribute="leading" constant="8" id="JtQ-FU-66n"/>
                                     <constraint firstAttribute="bottom" secondItem="f8G-ec-r6B" secondAttribute="bottom" constant="3" id="ZoL-YA-ejE"/>
                                     <constraint firstAttribute="bottom" secondItem="cBb-J4-D4p" secondAttribute="bottom" constant="3" id="adz-7w-RLd"/>
                                     <constraint firstAttribute="bottom" secondItem="kCA-zj-W4i" secondAttribute="bottom" constant="5" id="pHo-9I-B7J"/>
                                     <constraint firstAttribute="height" constant="75" id="prr-yz-ALZ"/>
-                                    <constraint firstItem="cBb-J4-D4p" firstAttribute="leading" secondItem="uUJ-zO-ahr" secondAttribute="trailing" constant="12" id="sY5-iB-wow"/>
                                     <constraint firstItem="e1y-fe-VX7" firstAttribute="centerX" secondItem="cBb-J4-D4p" secondAttribute="centerX" id="ver-b4-EXR"/>
                                 </constraints>
                             </view>
@@ -3184,7 +3171,6 @@
                         <outlet property="messageButton" destination="cBb-J4-D4p" id="acq-T7-IvL"/>
                         <outlet property="messageCountLabel" destination="03f-px-PB4" id="5gd-E6-riO"/>
                         <outlet property="messageCountView" destination="e1y-fe-VX7" id="xBc-Kh-HPb"/>
-                        <outlet property="myFeedsButton" destination="uUJ-zO-ahr" id="D5f-GT-YQF"/>
                         <outlet property="profileButton" destination="f8G-ec-r6B" id="4oo-Uh-ZLE"/>
                         <outlet property="tablView" destination="wkH-zl-5Je" id="40e-WS-wrh"/>
                     </connections>
@@ -4709,11 +4695,10 @@
         <image name="CallWhiteImage.png" width="152" height="152"/>
         <image name="ContactsTabBarSelectedImage" width="35" height="35"/>
         <image name="ContactsTbaBarUnSelectedImage" width="40" height="40"/>
-        <image name="EdirProfileThreeDots.png" width="128" height="128"/>
+        <image name="EdirProfileThreeDots.png" width="32" height="32"/>
         <image name="InternetErrorImage.png" width="432" height="432"/>
         <image name="InviteFreinds.png" width="448" height="448"/>
         <image name="MessageWhiteImage" width="64" height="64"/>
-        <image name="MyUserfeeds.png" width="255" height="255"/>
         <image name="NavigationBarImage.png" width="274" height="77"/>
         <image name="Screen Shot 2017-04-29 at 12.26.11 PM.png" width="1007" height="147"/>
         <image name="SearchTabBarSUnSelectedImage" width="40" height="40"/>

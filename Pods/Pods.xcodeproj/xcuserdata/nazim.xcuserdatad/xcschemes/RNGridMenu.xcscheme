@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E681059202AFD9BA5E2452227B50707B'
+               BlueprintIdentifier = '6771B1E564EC4ECA9C7F924136BD6AD4'
                BlueprintName = 'RNGridMenu'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RNGridMenu.framework'>
+               BuildableName = 'libRNGridMenu.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
