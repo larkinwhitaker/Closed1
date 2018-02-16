@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editOptionButton;
 @property (weak, nonatomic) IBOutlet UIView *editOptionView;
+@property (weak, nonatomic) IBOutlet UIButton *reportFeedButton;
 @property (weak, nonatomic) IBOutlet UIImageView *editOptionImageView;
 @property (weak, nonatomic) IBOutlet UIButton *editFeedsButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteFeedsButton;

@@ -33,6 +33,8 @@
 @property(nonatomic) BOOL isCurrentUser;
 @property(nonatomic) NSInteger currentUserID;
 @property(nonatomic) BOOL shouldDisplayEditView;
+@property(nonatomic) BOOL shouldDisplayReportView;
+
 @property(nonatomic) NSInteger currentIndexTapfeeds;
 
 @end
@@ -355,15 +357,16 @@
             feedsID = [[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
         }
         
+        homeCell.editOptionButton.tag = indexPath.row;
+        
         if (feedsID == self.currentUserID) {
             
             homeCell.editFeedsButton.tag = indexPath.row;
             homeCell.deleteFeedsButton.tag = indexPath.row;
-            homeCell.editOptionButton.tag = indexPath.row;
             homeCell.editOptionView.hidden = YES;
-            homeCell.editOptionImageView.hidden = NO;
-            homeCell.editOptionButton.hidden = NO;
-            homeCell.editOptionView.hidden = YES;
+            homeCell.editFeedsButton.hidden = NO;
+            homeCell.deleteFeedsButton.hidden = NO;
+            homeCell.reportFeedButton.hidden = YES;
             
             if(self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayEditView)
             {
@@ -376,17 +379,78 @@
             
         }else{
             
+            homeCell.editFeedsButton.hidden = YES;
+            homeCell.deleteFeedsButton.hidden = YES;
+            homeCell.reportFeedButton.hidden = NO;
+            homeCell.reportFeedButton.tag = indexPath.row;
             homeCell.editOptionView.hidden = YES;
-            homeCell.editOptionImageView.hidden = YES;
-            homeCell.editOptionButton.hidden = YES;
+            
+            [homeCell.editOptionButton addTarget:self action:@selector(reportOptionFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [homeCell.reportFeedButton addTarget:self action:@selector(reportFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if (self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayReportView) {
+                homeCell.editOptionView.hidden = NO;
+            }
         }
-        
-
         
         
         return homeCell;
     }
     
+}
+
+-(void)reportOptionFeedsButtonTapped: (UIButton *)sender
+{
+    self.shouldDisplayReportView = !self.shouldDisplayReportView;
+    self.currentIndexTapfeeds = sender.tag;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)reportFeedsButtonTapped: (UIButton *)sender
+{
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    NSDictionary *singlefeed = [[_feedsArray objectAtIndex: sender.tag] valueForKey:@"Feeds"];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Reporting feed";
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+    NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=report_spam&user_id=%zd&activity_id=%@", userDetails.userID, [singlefeed valueForKey:@"activity_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+    
+    NSLog(@"%@", serverResponce);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
+        if (![[[serverResponce valueForKey: @"data"] valueForKey:@"success"] isEqual:[NSNull null]]) {
+            
+            
+            if ([[[serverResponce valueForKey:@"data"] valueForKey:@"success"] integerValue] == 1) {
+                
+                [[[UIAlertView alloc]initWithTitle:@"Sucessfully Reported feed as Spam" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                self.shouldDisplayReportView = NO;
+                [self getFeedsArray];
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to Report Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                
+            }
+            
+        }else{
+            
+            [[[UIAlertView alloc]initWithTitle:@"Failed to Report Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+        }
+        
+        
+    });
+    
+});
+
+
 }
 
 -(void)editOptionVieewTapped: (UIButton *) sender
@@ -448,6 +512,7 @@
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
+                    self.shouldDisplayEditView = NO;
                     [[[UIAlertView alloc]initWithTitle:@"Sucessfully Deleted feed" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
                     
                     [self getFeedsArray];

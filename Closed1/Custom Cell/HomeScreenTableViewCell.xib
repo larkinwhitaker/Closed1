@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -222,7 +221,7 @@
                                     <color key="titleColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EdirProfileThreeDots.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Kl-LB-NmQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EdirProfileThreeDots.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Kl-LB-NmQ">
                                 <rect key="frame" x="432" y="8" width="50" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Joa-SK-oTT"/>
@@ -233,16 +232,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="482" height="263.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wj-cR-vYf">
-                                        <rect key="frame" x="8" y="97" width="466" height="30"/>
+                                        <rect key="frame" x="8" y="97.5" width="466" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Edit">
                                             <color key="titleColor" red="0.89019607840000003" green="0.70980392160000005" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7RF-h3-Rde">
-                                        <rect key="frame" x="8" y="147" width="466" height="30"/>
+                                        <rect key="frame" x="8" y="147.5" width="466" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Delete">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4o-J9-Coc">
+                                        <rect key="frame" x="8" y="117" width="466" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Report Post">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
@@ -252,12 +261,15 @@
                                     <constraint firstAttribute="trailing" secondItem="7wj-cR-vYf" secondAttribute="trailing" constant="8" id="8Tc-6K-Thb"/>
                                     <constraint firstAttribute="trailing" secondItem="7RF-h3-Rde" secondAttribute="trailing" constant="8" id="9gz-Ar-MXa"/>
                                     <constraint firstItem="7RF-h3-Rde" firstAttribute="leading" secondItem="X9g-rX-uAD" secondAttribute="leading" constant="8" id="OHR-1b-Opd"/>
+                                    <constraint firstItem="R4o-J9-Coc" firstAttribute="leading" secondItem="X9g-rX-uAD" secondAttribute="leading" constant="8" id="X75-AP-ddI"/>
+                                    <constraint firstAttribute="trailing" secondItem="R4o-J9-Coc" secondAttribute="trailing" constant="8" id="Zsu-9B-zjZ"/>
+                                    <constraint firstItem="R4o-J9-Coc" firstAttribute="centerY" secondItem="X9g-rX-uAD" secondAttribute="centerY" id="agu-L3-B96"/>
                                     <constraint firstItem="7wj-cR-vYf" firstAttribute="leading" secondItem="X9g-rX-uAD" secondAttribute="leading" constant="8" id="ivp-6e-FPV"/>
                                     <constraint firstItem="7wj-cR-vYf" firstAttribute="centerY" secondItem="X9g-rX-uAD" secondAttribute="centerY" constant="-20" id="nuf-Ci-ubi"/>
                                     <constraint firstItem="7RF-h3-Rde" firstAttribute="top" secondItem="7wj-cR-vYf" secondAttribute="bottom" constant="20" id="zdf-Hs-sGC"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckP-m0-hgH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckP-m0-hgH">
                                 <rect key="frame" x="382" y="0.0" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="spi-db-ru8"/>
@@ -336,6 +348,7 @@
                 <outlet property="messageCountLabel" destination="l8g-or-KOR" id="i8e-b8-BwB"/>
                 <outlet property="messageView" destination="Wfe-yQ-yMr" id="eOu-XT-Djn"/>
                 <outlet property="profileButton" destination="jFy-8V-bdq" id="1Ta-1g-UtS"/>
+                <outlet property="reportFeedButton" destination="R4o-J9-Coc" id="DpU-3D-EnB"/>
                 <outlet property="timingLabel" destination="3Pc-9R-dQC" id="kWF-75-FmO"/>
                 <outlet property="userNameLabel" destination="pgx-74-NMq" id="Bqn-uj-Cav"/>
                 <outlet property="userProfileCOmmnet" destination="c7V-3X-NdO" id="4Mx-e4-ozG"/>

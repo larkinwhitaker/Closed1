@@ -170,6 +170,9 @@
 		ADACED731E9BFE06001A9F4A /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED641E9BFE06001A9F4A /* UIView+WebCacheOperation.m */; };
 		ADACED761E9C09CA001A9F4A /* FlightClassSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED751E9C09CA001A9F4A /* FlightClassSelectionViewController.m */; };
 		ADACED791E9C0B5A001A9F4A /* LeftAlignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */; };
+		ADAF98BA20320ACF0020DFC1 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAF98B920320ACF0020DFC1 /* SplashScreenViewController.m */; };
+		ADAF98C020320B910020DFC1 /* SKSplashIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAF98BD20320B910020DFC1 /* SKSplashIcon.m */; };
+		ADAF98C120320B910020DFC1 /* SKSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAF98BF20320B910020DFC1 /* SKSplashView.m */; };
 		ADAFAD6C1FDEEA85005D51EF /* EditFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAFAD6B1FDEEA85005D51EF /* EditFeedsViewController.m */; };
 		ADAFAD6F1FDEEFB1005D51EF /* EditedFeedsShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAFAD6E1FDEEFB1005D51EF /* EditedFeedsShareViewController.m */; };
 		ADAFAD711FDF0AFC005D51EF /* MyUserfeeds.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAFAD701FDF0AFB005D51EF /* MyUserfeeds.png */; };
@@ -903,6 +906,12 @@
 		ADACED751E9C09CA001A9F4A /* FlightClassSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightClassSelectionViewController.m; sourceTree = "<group>"; };
 		ADACED771E9C0B5A001A9F4A /* LeftAlignmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftAlignmentCell.h; sourceTree = "<group>"; };
 		ADACED781E9C0B5A001A9F4A /* LeftAlignmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftAlignmentCell.m; sourceTree = "<group>"; };
+		ADAF98B820320ACF0020DFC1 /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
+		ADAF98B920320ACF0020DFC1 /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
+		ADAF98BC20320B910020DFC1 /* SKSplashIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSplashIcon.h; sourceTree = "<group>"; };
+		ADAF98BD20320B910020DFC1 /* SKSplashIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSplashIcon.m; sourceTree = "<group>"; };
+		ADAF98BE20320B910020DFC1 /* SKSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSplashView.h; sourceTree = "<group>"; };
+		ADAF98BF20320B910020DFC1 /* SKSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSplashView.m; sourceTree = "<group>"; };
 		ADAFAD6A1FDEEA85005D51EF /* EditFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFeedsViewController.h; sourceTree = "<group>"; };
 		ADAFAD6B1FDEEA85005D51EF /* EditFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFeedsViewController.m; sourceTree = "<group>"; };
 		ADAFAD6D1FDEEFB1005D51EF /* EditedFeedsShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditedFeedsShareViewController.h; sourceTree = "<group>"; };
@@ -1787,6 +1796,8 @@
 				ADAFAD6E1FDEEFB1005D51EF /* EditedFeedsShareViewController.m */,
 				ADAB9DFD200678DB00415A31 /* BlockuserListViewController.h */,
 				ADAB9DFE200678DB00415A31 /* BlockuserListViewController.m */,
+				ADAF98B820320ACF0020DFC1 /* SplashScreenViewController.h */,
+				ADAF98B920320ACF0020DFC1 /* SplashScreenViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1827,6 +1838,7 @@
 		AD93F75B1E880E16008488B9 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				ADAF98BB20320B910020DFC1 /* SKSplashView */,
 				AD77D1EF1FEAE274005AC458 /* RMStore */,
 				AD7DEDAE1F91E92C00CB42E1 /* HTMLLabel */,
 				ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */,
@@ -2117,6 +2129,17 @@
 				ADACED641E9BFE06001A9F4A /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		ADAF98BB20320B910020DFC1 /* SKSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				ADAF98BC20320B910020DFC1 /* SKSplashIcon.h */,
+				ADAF98BD20320B910020DFC1 /* SKSplashIcon.m */,
+				ADAF98BE20320B910020DFC1 /* SKSplashView.h */,
+				ADAF98BF20320B910020DFC1 /* SKSplashView.m */,
+			);
+			path = SKSplashView;
 			sourceTree = "<group>";
 		};
 		ADB3EDCD1EC8857B001DEC69 /* PJXAnimatedTabBarController */ = {
@@ -4052,6 +4075,7 @@
 				AD77D25E1FEAE275005AC458 /* RMStore.m in Sources */,
 				AD7DEDAC1F91E69600CB42E1 /* GTMNSString+HTML.m in Sources */,
 				ADBB1D981EA52B37003CA9DD /* Messages.m in Sources */,
+				ADAF98C020320B910020DFC1 /* SKSplashIcon.m in Sources */,
 				ADBB1D9C1EA52B37003CA9DD /* Account.m in Sources */,
 				ADBB1EC71EA52B37003CA9DD /* SINSServicePersistence.m in Sources */,
 				ADACED671E9BFE06001A9F4A /* SDImageCache.m in Sources */,
@@ -4063,6 +4087,7 @@
 				ADA5CACB1E879E94000DF38D /* WebViewController.m in Sources */,
 				ADBB1DA61EA52B37003CA9DD /* NSDictionary+Util.m in Sources */,
 				ADA806E41E902593009C0B38 /* EmailSettingsCell.m in Sources */,
+				ADAF98C120320B910020DFC1 /* SKSplashView.m in Sources */,
 				AD93F7F81E8823B7008488B9 /* MagicalRecord+Setup.m in Sources */,
 				AD93F79C1E881110008488B9 /* SignupViewController.m in Sources */,
 				ADACED701E9BFE06001A9F4A /* UIImage+MultiFormat.m in Sources */,
@@ -4156,6 +4181,7 @@
 				ADBB1DA31EA52B37003CA9DD /* user.m in Sources */,
 				AD9344ED1E89770700E60A4B /* NJKWebViewProgressView.m in Sources */,
 				AD93F7E31E8823B7008488B9 /* NSNumber+MagicalDataImport.m in Sources */,
+				ADAF98BA20320ACF0020DFC1 /* SplashScreenViewController.m in Sources */,
 				ADBB1D731EA52B37003CA9DD /* ArchiveCell.m in Sources */,
 				ADBB1DB51EA52B37003CA9DD /* converter.m in Sources */,
 				ADBB1EC01EA52B37003CA9DD /* SINSClientsObserver.m in Sources */,

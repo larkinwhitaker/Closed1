@@ -286,6 +286,7 @@
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
+                    self.shouldDisplayEditView = NO;
                     [[[UIAlertView alloc]initWithTitle:@"Sucessfully Deleted feed" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
                     [self.navigationController popViewControllerAnimated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewFeedsAvilable" object:nil];

@@ -51,6 +51,7 @@
 @property(nonatomic) UIRefreshControl *refreshControl;
 @property(nonatomic) NSInteger currentUserID;
 @property(nonatomic) BOOL shouldDisplayEditView;
+@property(nonatomic) BOOL shouldDisplayReportView;
 @property(nonatomic) NSInteger currentIndexTapfeeds;
 
 @end
@@ -73,34 +74,8 @@
     self.tablView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     
     [self getFeedsArray];
-    
-#pragma mark - Uncommnet this Method
    [self getLoginWithChattingView];
-    
-   // [self setContactListBadgeCount];
-    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@", @"afzaal.alkurn@gmail.com"];
-//    DBUser *dbuser = [[DBUser objectsWithPredicate:predicate] firstObject];
-//    
-//    NSLog(@"%@", dbuser);
 
-    
-//    NSMutableArray *oneSignalIds = [[NSMutableArray alloc] init];
-//    //---------------------------------------------------------------------------------------------------------------------------------------------
-//        if ([dbuser.oneSignalId length] != 0)
-//        [oneSignalIds addObject:dbuser.oneSignalId];
-//    //---------------------------------------------------------------------------------------------------------------------------------------------
-//    //NSLog(@"%@ - %@", oneSignalIds, text);
-//    //---------------------------------------------------------------------------------------------------------------------------------------------
-//    [OneSignal postNotification:@{@"contents":@{@"en":@"Demo Testing"}, @"include_player_ids":oneSignalIds}];
-    
-    
-    
-//    ContactsListViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsListViewController"];
-//    
-//    [self.navigationController pushViewController:userProfile animated:YES];
-    
-    
     self.refreshControl = [[UIRefreshControl alloc]init];
     [_refreshControl addTarget:self action:@selector(refreshButtonTapped:) forControlEvents:UIControlEventValueChanged];
     _refreshControl.backgroundColor = [UIColor clearColor];
@@ -133,11 +108,7 @@
     
 }
 
-
-
-
 - (void)refreshButtonTapped:(id)sender
-
 {
     [self getFeedsArray];
 }
@@ -159,10 +130,7 @@
 
 -(void)getLoginWithChattingView
 {
-    
     UserDetails *userDetails = [UserDetails MR_findFirst];
-    
-    
     if ([FUser currentId] != nil) {
         
         [self configureSinchClient];
@@ -176,15 +144,9 @@
             [self saveUserDetails];
             [self configureSinchClient];
             [ProgressHUD dismiss];
-
         }
         
-        
     }else{
-        
-        
-#pragma mark - Demo Login Code
-        
         
         NSString *email = userDetails.userEmail;
         NSString *password = userDetails.userEmail;
@@ -195,8 +157,6 @@
             email = [NSString stringWithFormat:@"Demo User %zd", rand()];
             password = [NSString stringWithFormat:@"Demo User %zd", rand()];
         }
-        
-        
         
         LogoutUser(DEL_ACCOUNT_NONE);
         [FUser signInWithEmail:email password:password completion:^(FUser *user, NSError *error)
@@ -223,38 +183,21 @@
                       {
                           [Account add:email password:password];
                           UserLoggedIn(LOGIN_EMAIL);
-                          
                           [self saveUserDetails];
                           [ProgressHUD dismiss];
-                          
                           [self configureSinchClient];
-                          
-                          
                       }
-//                      else [ProgressHUD showError:[error description]];
                   }];
-                 
-                 
-                 
              }
          }];
-        
-        
-        
     }
-    
-    
-    
 }
 
 -(void)saveProfileImageOfUserForChatting
 {
-    
     UserDetails *userDetails = [UserDetails MR_findFirst];
-
     SDImageCache *cache = [SDImageCache sharedImageCache];
     UIImage *inMemoryImage = [cache imageFromMemoryCacheForKey: userDetails.profileImage];
-    
     // resolves the SDWebImage issue of image missing
     if (inMemoryImage)
     {
@@ -280,68 +223,51 @@
 
             }
             
-            
         }];
     }
-    
-    
-    
-    
-    
-    
-    
-//    [demoImageView sd_setImageWithURL:[NSURL URLWithString:userDetails.profileImage] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cathceType, NSURL *imageURL){
-//        
-//        if (error == nil) {
-//            
-//            [self saveUserProfileImageForChattingView:image];
-//        }
-//    }];
-
 }
 
 -(void)saveUserDetails{
-
     
-        if ([FUser isOnboardOk])
-        {
-            [self saveProfileImageOfUserForChatting];
-        }
-        else{
-    UserDetails *userDetails = [UserDetails MR_findFirst];
-
-    FUser *user = [FUser currentUser];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    NSString *fullname = @"Demo User";
-    NSString *phone = @"1234567890";
-    NSString *country = @"India";
-            
-    if(userDetails.phoneNumber != nil) phone = userDetails.phoneNumber;
-    if(userDetails.country != nil) country = userDetails.country;
-
-    
-    if(userDetails.firstName != nil) fullname = [NSString stringWithFormat:@"%@", userDetails.firstName];
-    
-    NSString *firstName = @"Demo";
-    NSString *lastName = @"User";
-    NSString *location = @"Not present";
-    
-    if(userDetails.firstName != nil) firstName = [[userDetails.firstName componentsSeparatedByString:@" "] firstObject];
-    if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
-    
-    
-    user[FUSER_FULLNAME] = fullname;
-    user[FUSER_FIRSTNAME] = firstName;
-    user[FUSER_LASTNAME] = lastName;
-    user[FUSER_COUNTRY] = country;
-    user[FUSER_LOCATION] = location;
-    user[FUSER_PHONE] = phone;
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    [user saveInBackground:^(NSError *error)
-     {
-         if (error == nil) [self saveProfileImageOfUserForChatting];
-     }];
-
+    if ([FUser isOnboardOk])
+    {
+        [self saveProfileImageOfUserForChatting];
+    }
+    else{
+        UserDetails *userDetails = [UserDetails MR_findFirst];
+        
+        FUser *user = [FUser currentUser];
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        NSString *fullname = @"Demo User";
+        NSString *phone = @"1234567890";
+        NSString *country = @"India";
+        
+        if(userDetails.phoneNumber != nil) phone = userDetails.phoneNumber;
+        if(userDetails.country != nil) country = userDetails.country;
+        
+        
+        if(userDetails.firstName != nil) fullname = [NSString stringWithFormat:@"%@", userDetails.firstName];
+        
+        NSString *firstName = @"Demo";
+        NSString *lastName = @"User";
+        NSString *location = @"Not present";
+        
+        if(userDetails.firstName != nil) firstName = [[userDetails.firstName componentsSeparatedByString:@" "] firstObject];
+        if(userDetails.firstName != nil ) lastName = [[userDetails.firstName componentsSeparatedByString:@" "] lastObject];
+        
+        
+        user[FUSER_FULLNAME] = fullname;
+        user[FUSER_FIRSTNAME] = firstName;
+        user[FUSER_LASTNAME] = lastName;
+        user[FUSER_COUNTRY] = country;
+        user[FUSER_LOCATION] = location;
+        user[FUSER_PHONE] = phone;
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        [user saveInBackground:^(NSError *error)
+         {
+             if (error == nil) [self saveProfileImageOfUserForChatting];
+         }];
+        
     }
     
     
@@ -350,19 +276,13 @@
 
 -(void)configureSinchClient
 {
-    // Instantiate a Sinch client object
     id<SINClient> sinchClient = [Sinch clientWithApplicationKey:SINCH_KEY
                                               applicationSecret:SINCH_SECRET
                                                 environmentHost:SINCH_HOST
                                                          userId:[FUser currentId]];
-    
     [sinchClient setSupportCalling:YES];
     [sinchClient setSupportMessaging:YES];
     [sinchClient enableManagedPushNotifications];
-    
-    
-    
-    
 }
 
 
@@ -421,7 +341,6 @@
 
 -(void)getFeedsArray
 {
-
     _feedsArray = [[NSMutableArray alloc]init];
     self.tablView.delegate = nil;
     self.tablView.dataSource = nil;
@@ -441,7 +360,6 @@
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_user_feeds&user_id=%zd", user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             
             for (NSDictionary *singleFeed in serverResponce) {
                 
@@ -483,7 +401,6 @@
                 NSLog(@"date = %@", timestamp2);
                 NSDate *outputDate = [dateFormatter2 dateFromString:timestamp2];
                 
-                
                 [feedDictionary setValue:timestamp2 forKey:@"FeedTime"];
                 [feedDictionary setValue:outputDate forKey:@"FeedTimeNsDate"];
                 
@@ -519,7 +436,7 @@
             
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTimeExperienceHome"])
             {
-                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[self.profileButton, self.messageButton, self.myFeedsButton] withMessages:@[@"Tap this to display your profile", @"Tap this to display all the message people send to you", @"Tap this to see your posted Deals"] onScreen:self.view];
+                NZTourTip * jgTourTip = [[NZTourTip alloc]initWithViews:@[self.profileButton, self.messageButton] withMessages:@[@"Tap this to display your profile", @"Tap this to display all the message people send to you"] onScreen:self.view];
                 [jgTourTip showTourTip];
                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTimeExperienceHome"];
             }
@@ -529,20 +446,16 @@
     });
     
     
-    
 }
-
 
 -(void)displayErrorForFeeds
 {
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Welcome to Closed1!" message:@"You don't have any posted deals in your network yet, please proceed to the post a deal page and then invite the rest of your extended sales network. If you believe you received this message in error, please reach out to info@closed1app.com" preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:nil]];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
 
 -(void)setContactListBadgeCount
 {
@@ -561,38 +474,17 @@
 
     });
     
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController setNavigationBarHidden:YES];
-    
-    //[self setContactListBadgeCount];
-    
-    
-    //    //---------------------------------------------------------------------------------------------------------------------------------------------
-//    
-//    if (total != 0) {
-//        self.messageCountLabel.hidden = NO;
-//        self.messageCountView.hidden = NO;
-//        self.messageCountLabel.text = [NSString stringWithFormat:@"%zd", total];
-//        
-//    }else{
-//        self.messageCountLabel.hidden = YES;
-//        self.messageCountView.hidden = YES;
-//    }
-
-    
     [self refreshTabCounter];
-    
 }
 
 
 - (void)refreshTabCounter
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     NSInteger total = 0;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isArchived == NO AND isDeleted == NO AND description CONTAINS[c] %@", @""];
@@ -621,30 +513,20 @@
 }
 
 - (IBAction)messsgaeButtonTapped:(id)sender {
-    
-
     ChatsView *chatsView = [[ChatsView alloc] initWithNibName:@"ChatsView" bundle:nil];
-    
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:chatsView];
-    
     [self presentViewController:navController1 animated:YES completion:nil];
-    
 }
 
 - (IBAction)myFeedsButtonTapped:(id)sender {
     
     EditFeedsViewController *userfeedsScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"EditFeedsViewController"];
     [self.navigationController pushViewController:userfeedsScreen animated:YES];
-
 }
 
 - (IBAction)profileButtonTapped:(id)sender {
-    
-    
     UserProfileViewController *userProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    
     [self.navigationController pushViewController:userProfile animated:YES];
-
 }
 #pragma mark - Tableview delegate
 
@@ -759,16 +641,17 @@
         feedsID = [[[[_feedsArray objectAtIndex:indexPath.row] valueForKey:@"Feeds"] valueForKey:@"user_id"] integerValue];
     }
     
+    homeCell.editOptionButton.tag = indexPath.row;
+
     if (feedsID == self.currentUserID) {
         
         homeCell.editFeedsButton.tag = indexPath.row;
         homeCell.deleteFeedsButton.tag = indexPath.row;
-        homeCell.editOptionButton.tag = indexPath.row;
         homeCell.editOptionView.hidden = YES;
-        homeCell.editOptionImageView.hidden = NO;
-        homeCell.editOptionButton.hidden = NO;
-        homeCell.editOptionView.hidden = YES;
-
+        homeCell.editFeedsButton.hidden = NO;
+        homeCell.deleteFeedsButton.hidden = NO;
+        homeCell.reportFeedButton.hidden = YES;
+        
         if(self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayEditView)
         {
             homeCell.editOptionView.hidden = NO;
@@ -780,15 +663,78 @@
         
     }else{
         
+        homeCell.editFeedsButton.hidden = YES;
+        homeCell.deleteFeedsButton.hidden = YES;
+        homeCell.reportFeedButton.hidden = NO;
+        homeCell.reportFeedButton.tag = indexPath.row;
         homeCell.editOptionView.hidden = YES;
-        homeCell.editOptionImageView.hidden = YES;
-        homeCell.editOptionButton.hidden = YES;
+
+        [homeCell.editOptionButton addTarget:self action:@selector(reportOptionFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [homeCell.reportFeedButton addTarget:self action:@selector(reportFeedsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        if (self.currentIndexTapfeeds == indexPath.row && self.shouldDisplayReportView) {
+            homeCell.editOptionView.hidden = NO;
+        }
     }
 
-    
     return homeCell;
 }
 
+
+-(void)reportOptionFeedsButtonTapped: (UIButton *)sender
+{
+    self.shouldDisplayReportView = !self.shouldDisplayReportView;
+    self.currentIndexTapfeeds = sender.tag;
+    [self.tablView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)reportFeedsButtonTapped: (UIButton *)sender
+{
+    UserDetails *userDetails = [UserDetails MR_findFirst];
+    NSDictionary *singlefeed = [[_feedsArray objectAtIndex: sender.tag] valueForKey:@"Feeds"];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Reporting feed";
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=report_spam&user_id=%zd&activity_id=%@", userDetails.userID, [singlefeed valueForKey:@"activity_id"]] DictionartyToServer:@{} IsEncodingRequires:NO];
+        
+        NSLog(@"%@", serverResponce);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if (![[[serverResponce valueForKey: @"data"] valueForKey:@"success"] isEqual:[NSNull null]]) {
+                
+                
+                if ([[[serverResponce valueForKey: @"data"] valueForKey:@"success"] integerValue] == 1) {
+                    
+                    self.shouldDisplayReportView = NO;
+                    [[[UIAlertView alloc]initWithTitle:@"Sucessfully Reported feed as Spam" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                    
+                    [self getFeedsArray];
+                    
+                }else{
+                    
+                    [[[UIAlertView alloc]initWithTitle:@"Failed to Report Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                    
+                }
+                
+            }else{
+                
+                [[[UIAlertView alloc]initWithTitle:@"Failed to Report Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            }
+            
+            
+        });
+        
+    });
+    
+    
+}
 
 -(void)editOptionVieewTapped: (UIButton *) sender
 {
@@ -816,7 +762,6 @@
         
     }]];
     
-    
     [self presentViewController:alertController animated:YES completion:nil];
 
 }
@@ -825,13 +770,10 @@
 {
     
     UserDetails *userDetails = [UserDetails MR_findFirst];
-    
     NSDictionary *singlefeed = [[_feedsArray objectAtIndex: index] valueForKey:@"Feeds"];
-    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Deleting feed";
-    
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -849,6 +791,7 @@
                 
                 if ([[serverResponce valueForKey:@"success"] integerValue] == 1) {
                     
+                    self.shouldDisplayEditView = NO;
                     [[[UIAlertView alloc]initWithTitle:@"Sucessfully Deleted feed" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
                     
                     [self getFeedsArray];
@@ -856,22 +799,15 @@
                 }else{
                     
                     [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
-                    
                 }
                 
             }else{
                 
                 [[[UIAlertView alloc]initWithTitle:@"Failed to delete Feed" message:@"We are unable to process your request. Please try again later" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
             }
-            
-            
         });
         
     });
-    
-    
-    
-    
 }
 
 

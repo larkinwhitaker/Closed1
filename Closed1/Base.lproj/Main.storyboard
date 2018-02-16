@@ -19,12 +19,42 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="sSa-qM-TlC" kind="relationship" relationship="rootViewController" id="N4x-u4-PnV"/>
+                        <segue destination="OT8-gl-Aji" kind="relationship" relationship="rootViewController" id="DNq-jI-G12"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCs-xO-pox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1678" y="28"/>
+            <point key="canvasLocation" x="-2389" y="26"/>
+        </scene>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="bUm-zB-O7R">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreenViewController" id="OT8-gl-Aji" customClass="SplashScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zOG-hg-8ya"/>
+                        <viewControllerLayoutGuide type="bottom" id="8VX-St-q8u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iI5-68-rje">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup_bgr" translatesAutoresizingMaskIntoConstraints="NO" id="4Xu-Ad-AQN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Xu-Ad-AQN" firstAttribute="top" secondItem="iI5-68-rje" secondAttribute="top" id="B4v-gY-a6B"/>
+                            <constraint firstItem="4Xu-Ad-AQN" firstAttribute="leading" secondItem="iI5-68-rje" secondAttribute="leading" id="PA6-Ww-KWf"/>
+                            <constraint firstItem="8VX-St-q8u" firstAttribute="top" secondItem="4Xu-Ad-AQN" secondAttribute="bottom" id="SqF-9q-2It"/>
+                            <constraint firstAttribute="trailing" secondItem="4Xu-Ad-AQN" secondAttribute="trailing" id="TvS-sv-Sg5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eOS-hS-BPp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knA-Pb-3gx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1691" y="18"/>
         </scene>
         <!--Blockuser List View Controller-->
         <scene sceneID="gcv-k9-E6O">
@@ -325,7 +355,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="1203" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="MT6-43-Cx2">
-                                <rect key="frame" x="0.0" y="104" width="320" height="464"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SignupTableViewCell" rowHeight="1050" id="h6C-yz-EHI" customClass="SignupTableViewCell">

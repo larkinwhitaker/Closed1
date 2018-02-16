@@ -397,7 +397,13 @@
             homeCell.likeCOuntLabel.text = [NSString stringWithFormat:@"%zd", likeCount];
         }
         
-        
+        homeCell.editFeedsButton.hidden = YES;
+        homeCell.deleteFeedsButton.hidden = YES;
+        homeCell.reportFeedButton.hidden = YES;
+        homeCell.editOptionView.hidden = YES;
+        homeCell.editOptionButton.hidden = YES;
+        homeCell.editOptionImageView.hidden = YES;
+
         
         return homeCell;
         
