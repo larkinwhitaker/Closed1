@@ -9,6 +9,7 @@
 #import "ProfileVisibilityViewController.h"
 #import "FlightClassSelectionViewController.h"
 #import "MBProgressHUD.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface ProfileVisibilityViewController ()<UITableViewDelegate, UITableViewDataSource, SelectedClassDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -25,14 +26,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBlurView];
+    [self.navigationController configureNavigationBar:self];
 
     _classListArray = @[@"Full name@Everyone", @"City@Everyone", @"State@Everyone", @"Country@Everyone", @"Phone Number@Everyone", @"Company@Everyone", @"Title@Everyone", @"Territory@Everyone" , @"Secondary Email@Everyone"];
     
     _emailVisibility = @"Secondary Email@Everyone";
     _companyVisibility = @"Company@Everyone";
-    
-    
-    [self createCustumNavigationBar];
 }
 
 -(void)setupBlurView
@@ -50,33 +49,6 @@
     }
     backendImage.image = self.backgrounTableViewImage;
     self.tableView.backgroundView = backendImage;
-    
-}
-
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonTapped:)];
-    
-    navItem.rightBarButtonItem = saveButton;
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Profile Visibility"];
-    [self.view addSubview:navBar];
     
 }
 

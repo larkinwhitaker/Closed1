@@ -43,5 +43,6 @@
 
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *titletextField;
 @property (weak, nonatomic) IBOutlet UIButton *termsButton;
+@property (weak, nonatomic) IBOutlet UIButton *privacyPolicyButton;
 
 @end

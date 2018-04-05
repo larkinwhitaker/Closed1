@@ -19,6 +19,8 @@
 #import "RMAppReceipt.h"
 #import "RMStoreKeychainPersistence.h"
 #import "RMStoreAppReceiptVerifier.h"
+#import "CommonFunction.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 #define kAutorenewableSubscriptionKey @"com.Closed1LLC.Closed1.AutoRenewableSubscription"
 #define kAutoRenewableGroupSignup @"com.Closed1LLC.Closed1.AutoRenewableSubscriptionsignup"
@@ -28,6 +30,10 @@
 @property(strong, nonatomic) SignupTableViewCell *signupCell;
 @property(nonatomic) NSString *imageURL;
 @property(nonatomic) BOOL isCardValid;
+@property (weak, nonatomic) IBOutlet UIView *inappPurchseView;
+@property (weak, nonatomic) IBOutlet UITableView *inappTableView;
+@property(nonatomic)  NSString *subscriptionKey;
+
 
 @end
 
@@ -43,57 +49,74 @@
     
     _imageURL = @"";
  
+    self.inappPurchseView.hidden = YES;
+    self.inappTableView.hidden = YES;
+    
+    [self.navigationController configureNavigationBar:self];
+    self.navigationItem.titleView = [CommonFunction createNavigationView:@"Sign up" withView:self.view];
 }
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createCustumNavigationBar];
-
-}
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Sign up"];
-    [self.view addSubview:navBar];
-    
-}
-
--(IBAction)backButtonTapped:(UIBarButtonItem *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Tableview Delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == self.inappTableView) {
+        
+        return 2;
+    }
+    
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1050;
+    if (tableView == self.inappTableView) {
+        
+        if (indexPath.row == 0) {
+            return  400;
+        }else if (indexPath.row ==1){
+            return 101;
+        }else{
+            return 0;
+        }
+    }
+    
+    return 1100;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.inappTableView) {
+        
+        if(indexPath.row == 0){
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            
+            return cell;
+            
+        }else if (indexPath.row == 1){
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConditionCell"];
+            
+            UIButton *termButton = (UIButton *)[cell viewWithTag:1];
+            [termButton addTarget:self action:@selector(termsButtobnTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIButton *privacyButton = (UIButton *)[cell viewWithTag:2];
+            [privacyButton addTarget:self action:@selector(privacyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            return cell;
+            
+        }else{
+            return [UITableViewCell new];
+        }
+        
+        
+    }
+    
     _signupCell= [tableView dequeueReusableCellWithIdentifier:@"SignupTableViewCell"];
     
     [_signupCell.signupButton addTarget:self action:@selector(signupButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -103,6 +126,8 @@
     [_signupCell.signupLinkedButton addTarget:self action:@selector(signupLinkedInTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_signupCell.termsButton addTarget:self action:@selector(termsButtobnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.signupCell.privacyPolicyButton addTarget:self action:@selector(privacyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     return _signupCell;
 }
 
@@ -111,8 +136,15 @@
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webView.title = @"Terms & Conditions";
     webView.urlString = @"https://closed1app.com/terms-of-service/";
-    [self presentViewController:webView animated:YES completion:nil];
+    [self.navigationController pushViewController:webView animated:YES];
+}
+
+- (void)privacyButtonTapped:(id)sender {
     
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.title = @"Privacy Policy";
+    webView.urlString = @"https://closed1app.com/privacy-policy/";
+    [self.navigationController pushViewController:webView animated:YES];
     
 }
 
@@ -251,7 +283,7 @@
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
     webView.title = @"Sign up";
-    [self presentViewController:webView animated:YES completion:nil];
+    [self.navigationController pushViewController:webView animated:YES];
 
 }
 #pragma mark - Linked Login Sucess Delegate
@@ -453,86 +485,12 @@
                 
                 if(isActive){
                     
-                    
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.dimBackground = YES;
-                    hud.labelText = @"Checking Active Subscription";
-                    
-                    if ([RMStore canMakePayments]){
-                        
-                        NSString *productID = kAutoRenewableGroupSignup;
-                        
-                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-                            
-                            if ([transaction.payment.productIdentifier isEqualToString:kAutoRenewableGroupSignup]) {
-                                
-                                [self submitDataToServer];
-                                
-                                
-                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                                    
-
-                            }
-                            
-                            
-                            
-                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                                               message:error.localizedDescription
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                                     otherButtonTitles:nil];
-                            [alerView show];
-                            
-                        }];
-                    }else{
-                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        [[[UIAlertView alloc]initWithTitle:@"Failed to Make paymnet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
-                    }
-
+                    [self askUserForMakingInAppPurchaseWithSubscriptionID:kAutoRenewableGroupSignup];
                     
                 }else{
                     
                     //Check for other receipt sucess
-                    
-                    
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.dimBackground = YES;
-                    hud.labelText = @"Checking Active Subscription";
-                    
-                    if ([RMStore canMakePayments]){
-                        
-                        NSString *productID = kAutorenewableSubscriptionKey;
-                        
-                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-                            
-                            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
-                                
-                                    [self submitDataToServer];
-                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-
-                            }
-                            
-                            
-                            
-                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                                               message:error.localizedDescription
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                                     otherButtonTitles:nil];
-                            [alerView show];
-                            
-                        }];
-                    }else{
-                        
-                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        [[[UIAlertView alloc]initWithTitle:@"Failed to Make paymnet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
-                    }
+                    [self askUserForMakingInAppPurchaseWithSubscriptionID:kAutorenewableSubscriptionKey];
                 }
                 
                 
@@ -568,48 +526,32 @@
     
 }
 
-
--(void)checkForAppStoreSubscription2: (NSArray *)serverResponce
-{
- 
+- (IBAction)cancelinAppButtonTapped:(id)sender {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.inappPurchseView.hidden = YES;
+    self.inappTableView.hidden = YES;
+}
+
+
+- (IBAction)buyinappButtonTapped:(id)sender {
+    
+    self.inappPurchseView.hidden = YES;
+    self.inappTableView.hidden = YES;
+    
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
-    hud.labelText = @"Checking Paymnet details";
+    hud.labelText = @"Purchasing Subscription";
     
-    
-    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:[NSArray arrayWithObject:kAutorenewableSubscriptionKey]] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
-
-    if ([RMStore canMakePayments]){
+    [[RMStore defaultStore] addPayment:self.subscriptionKey success:^(SKPaymentTransaction *transaction) {
         
-        NSString *productID = kAutorenewableSubscriptionKey;
+        if ([transaction.payment.productIdentifier isEqualToString:self.subscriptionKey]) {
+            
+            [self submitDataToServer];
+            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+        }
         
-        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-            
-            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
-                
-                [self submitDataToServer];
-            }
-            
-            NSLog(@"%@", transaction);
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            
-            
-        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                               message:error.localizedDescription
-                                                              delegate:nil
-                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                     otherButtonTitles:nil];
-            [alerView show];
-            
-        }];
-    }
-    
-    }failure:^(NSError *error){
-       
+    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
                                                            message:error.localizedDescription
@@ -619,10 +561,28 @@
         [alerView show];
         
     }];
-   
+    
 }
 
 
+
+-(void)askUserForMakingInAppPurchaseWithSubscriptionID: (NSString *)subscriptionID
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    
+    if ([RMStore canMakePayments]){
+        
+        self.inappPurchseView.hidden = NO;
+        self.inappTableView.hidden = NO;
+        self.subscriptionKey = subscriptionID;
+        
+    }else{
+        
+        [[[UIAlertView alloc] initWithTitle:@"Ypou cannot make paymnet" message:@"Please try login with different apple aor make paymnet from closed1app.com" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+    }
+    
+}
 
 -(void)saveUserDetails: (NSArray *)userData{
     
@@ -676,6 +636,12 @@
 
 -(void)openHomeScreen
 {
+    
+    self.inappPurchseView.hidden = YES;
+    self.inappTableView.hidden = YES;
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
     TabBarHandler *tabBarScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarHandler"];
     
     [UIView transitionWithView:self.navigationController.view

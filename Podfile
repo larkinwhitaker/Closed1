@@ -13,10 +13,12 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'GoogleSignIn'
 pod 'OneSignal'
-pod 'Realm', '2.1.2'
+pod 'Realm', '2.8.1'
 pod 'SinchRTC'
 pod 'Firebase/Messaging'
 pod 'Harpy'
+pod 'Stripe'
+
 
 pod 'IQAudioRecorderController'
 pod 'JSQMessagesViewController'

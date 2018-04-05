@@ -17,6 +17,8 @@
 #import "EditProfileViewController.h"
 #import "JobProfileCell.h"
 #import "JobProfile+CoreDataProperties.h"
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "CommonFunction.h"
 
 #define kTitle @"title"
 #define kCopmpany @"company"
@@ -115,10 +117,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createCustumNavigationBar];
-
+    [self.navigationController configureNavigationBar:self];
+    self.navigationItem.titleView = [CommonFunction createNavigationView:@"Edit Profile" withView:self.view];
 }
-
 
 -(NSMutableDictionary *)configureFlightDetailsDictionary
 {
@@ -137,39 +138,6 @@
     
 
     return flightDetails;
-}
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-//    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithTitle:@"Show Card" style:UIBarButtonItemStylePlain target:self action:@selector(openCardScreen)];
-
-    UIButton *addFreinds = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [addFreinds setImage:[UIImage imageNamed:@"CreditcardDefaultImage.png"] forState:UIControlStateNormal];
-    [addFreinds addTarget:self action:@selector(openCardScreen) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc]initWithCustomView:addFreinds];
-    
-    navItem.rightBarButtonItem = cardButton;
-    
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Edit Profile"];
-    [self.view addSubview:navBar];
-    
 }
 
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender

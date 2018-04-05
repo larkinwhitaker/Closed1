@@ -26,6 +26,8 @@
 #import "RMStoreTransactionReceiptVerifier.h"
 #import "RMStoreAppReceiptVerifier.h"
 #import "RMStoreKeychainPersistence.h"
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "CommonFunction.h"
 
 #define kAutorenewableSubscriptionKey @"com.Closed1LLC.Closed1.AutoRenewableSubscription"
 #define kAutoRenewableGroupSignup @"com.Closed1LLC.Closed1.AutoRenewableSubscriptionsignup"
@@ -40,10 +42,14 @@
 {
     id<RMStoreReceiptVerifier> _receiptVerifier;
     RMStoreKeychainPersistence *_persistence;
+    NSArray *loginResponce;
+    NSString *subscriptionKey;
 }
 
 
+@property (weak, nonatomic) IBOutlet UIView *termsInAppPurchaseview;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *linkedinButton;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailtextField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *passwordTextField;
@@ -72,143 +78,35 @@
     self.loginView.layer.shadowOffset = CGSizeMake(-3, 3);
     self.loginView.layer.shadowOpacity = 0.5;
     self.loginView.layer.shadowPath = shadowPath.CGPath;
-    
-    [self.navigationController setNavigationBarHidden:YES];
-    
     [self checkUserLoginStataus];
-    
-    //NSArray *_products = @[@"com.Closed1LLC.Closed1.AutoRenewable",
-                        //   @"com.Closed1LLC.Closed.AppPuchase1"];
-    
-    
-    /*
-    
-   
-    
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:_products] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-        
-        
-        
-    } failure:^(NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-
-    
-    
-    
-    
-    
-    
-    [[RMStore defaultStore] restoreTransactions];
-    [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
-        
-        if (transactions.count>0) {
-            
-            RMStore *store = [RMStore defaultStore];
-            RMStoreKeychainPersistence *_persistence = store.transactionPersistor;
-            NSArray* _productIdentifiers = _persistence.purchasedProductIdentifiers.allObjects;
-            
-            NSLog(@"%@", _productIdentifiers);
-            
-            [[RMStore defaultStore] refreshReceiptOnSuccess:^{
-                
-            }failure:^(NSError *error){
-                
-            }];
-            
-            [[RMStore defaultStore] refreshReceipt];
-
-            
-            BOOL isActive = false;
-            RMAppReceipt *appReceipt = [RMAppReceipt bundleReceipt];
-            if (appReceipt) {
-                isActive =  [appReceipt containsActiveAutoRenewableSubscriptionOfProductIdentifier:@"com.Closed1LLC.Closed1.AutoRenewable" forDate:[NSDate date]];
-            }
-            if (isActive) {
-                // Enable Premium Features
-                
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Puchase is activated", @"")
-                                            message:nil
-                                           delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                  otherButtonTitles:nil] show];
-            }
-            else {
-                // Disable Premium Features
-                
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NO Puchases are availabe", @"")
-                                            message:nil
-                                           delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                  otherButtonTitles:nil] show];
-                
-                
-                NSString *productID = _products[0];
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-                [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                    
-                    
-                    
-                    
-                } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                    UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                                       message:error.localizedDescription
-                                                                      delegate:nil
-                                                             cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                             otherButtonTitles:nil];
-                    [alerView show];
-                }];
-
-                
-            }
-            
-        }
-        
-    }failure:^(NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Restore Transactions Failed", @"")
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        
-        
-        
-        
-        
-        
-    }];
-    
-     */
-    
-    
-    
-    
-    
-
+    self.termsInAppPurchaseview.hidden = YES;
+    self.tableView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 
 {
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.emailtextField.text = nil;
     self.passwordTextField.text = nil;
-    
+}
 
+- (IBAction)privacyButtonTapped:(id)sender {
+    
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.title = @"Privacy Policy";
+    webView.urlString = @"https://closed1app.com/privacy-policy/";
+    [self.navigationController pushViewController:webView animated:YES];
+    
+}
+- (IBAction)termsButtonTapped:(id)sender {
+    
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webView.title = @"Terms & Conditions";
+    webView.urlString = @"https://closed1app.com/terms-of-service/";
+    [self.navigationController pushViewController:webView animated:YES];
+    
+    
 }
 -(void)checkUserLoginStataus
 {
@@ -233,35 +131,7 @@
     webView.isLinkedinSelected = YES;
     webView.delegate = self;
     webView.title = @"Sign in";
-    [self presentViewController:webView animated:YES completion:nil];
-    
-    /*
-    [LISDKSessionManager createSessionWithAuth:[NSArray arrayWithObjects:LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION, nil]
-state:@"some state"
-showGoToAppStoreDialog:YES
-successBlock:^(NSString *returnState) {
-    
-    NSLog(@"%s","success called!");
-    LISDKSession *session = [[LISDKSessionManager sharedInstance] session];
-    NSLog(@"value=%@ isvalid=%@",[session value],[session isValid] ? @"YES" : @"NO");
-    NSMutableString *text = [[NSMutableString alloc] initWithString:[session.accessToken description]];
-    [text appendString:[NSString stringWithFormat:@",state=\"%@\"",returnState]];
-    NSLog(@"Response label text %@",text);
-//    _responseLabel.text = text;
-//    self.lastError = nil;
-    // retain cycle here?
-//    [self updateControlsWithResponseLabel:NO];
-    
-}
-errorBlock:^(NSError *error) {
-    NSLog(@"%s %@","error called! ", [error description]);
-//    self.lastError = error;
-    //  _responseLabel.text = [error description];
-//    [self updateControlsWithResponseLabel:YES];
-}
-    ];
-    
-    */
+    [self.navigationController pushViewController:webView animated:YES];
     
 }
 
@@ -463,39 +333,7 @@ errorBlock:^(NSError *error) {
                     //Check for other receipt sucess
                     
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.dimBackground = YES;
-                    hud.labelText = @"Checking Active Subscription";
-                    
-                    if ([RMStore canMakePayments]){
-                        
-                        NSString *productID = kAutorenewableSubscriptionKey;
-                        
-                        [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-                            
-                            if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
-                                
-                                [self saveUserDetails:serverResponce];
-                                [self openHomeScreen];
-                                [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
-                                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-
-
-                            }
-                            
-                            
-                        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                                               message:error.localizedDescription
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                                     otherButtonTitles:nil];
-                            [alerView show];
-                            
-                        }];
-                    }
+                    [self askUserForMakingInAppPurchaseWithSubscriptionID:kAutorenewableSubscriptionKey withServerRespoce:serverResponce];
                 }
                 
                 
@@ -503,37 +341,7 @@ errorBlock:^(NSError *error) {
                 
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-                [[[UIAlertView alloc]initWithTitle:@"Failed to get Subscription" message:@"Please tap on login button again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-                
-                
-                
-                NSString *productID = kAutorenewableSubscriptionKey;
-                
-                [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-                    
-                    if ([transaction.payment.productIdentifier isEqualToString:kAutorenewableSubscriptionKey]) {
-                        
-                        [self saveUserDetails:serverResponce];
-                        [self openHomeScreen];
-                        [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
-                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                        
-                        
-                    }
-                    
-                    
-                } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                                       message:error.localizedDescription
-                                                                      delegate:nil
-                                                             cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                             otherButtonTitles:nil];
-                    [alerView show];
-                    
-                }];
-            
-
+                [self askUserForMakingInAppPurchaseWithSubscriptionID:kAutoRenewableGroupSignup withServerRespoce:serverResponce];
              
             }];
             
@@ -561,6 +369,63 @@ errorBlock:^(NSError *error) {
     
 }
 
+
+-(void)askUserForMakingInAppPurchaseWithSubscriptionID: (NSString *)subscriptionID withServerRespoce: (NSArray *)serverResponce
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    self.termsInAppPurchaseview.hidden = NO;
+    self.tableView.hidden = NO;
+    subscriptionKey = subscriptionID;
+    loginResponce = serverResponce;
+}
+
+-(IBAction)CancelInApppurchseTapped: (id)sender
+{
+    self.termsInAppPurchaseview.hidden = YES;
+    self.tableView.hidden = YES;
+}
+
+-(IBAction)buyInAppPurchaseTapped: (id)sender
+{
+    
+    self.termsInAppPurchaseview.hidden = YES;
+    self.tableView.hidden  = YES;
+    
+    if([RMStore canMakePayments]){
+        
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Purchasing Subscription";
+    [[RMStore defaultStore] addPayment:subscriptionKey success:^(SKPaymentTransaction *transaction) {
+        
+        if ([transaction.payment.productIdentifier isEqualToString:subscriptionKey]) {
+            
+            [self saveUserDetails:loginResponce];
+            [self openHomeScreen];
+            [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey:@"LginInAppDate"];
+            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+            
+            
+        }
+        
+        
+    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                           message:error.localizedDescription
+                                                          delegate:nil
+                                                 cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                 otherButtonTitles:nil];
+        [alerView show];
+        
+    }];
+        
+    }else{
+        
+        [[[UIAlertView alloc] initWithTitle:@"Ypou cannot make paymnet" message:@"Please try login with different apple aor make paymnet from closed1app.com" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+    }
+}
+
 - (void)configureStore
 {
     
@@ -572,9 +437,11 @@ errorBlock:^(NSError *error) {
     [RMStore defaultStore].transactionPersistor = _persistence;
 }
 
-
 -(void)openHomeScreen
 {
+    
+    self.termsInAppPurchaseview.hidden = YES;
+    self.tableView.hidden = YES;
     
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     self.emailtextField.text = @"";
@@ -969,6 +836,51 @@ errorBlock:^(NSError *error) {
     }
     
     return YES;
+}
+
+
+#pragma mark:- TableView Delegate
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0){
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        
+        return cell;
+        
+    }else if (indexPath.row == 1){
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConditionCell"];
+        
+        UIButton *termButton = (UIButton *)[cell viewWithTag:1];
+        [termButton addTarget:self action:@selector(termsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *privacyButton = (UIButton *)[cell viewWithTag:2];
+        [privacyButton addTarget:self action:@selector(privacyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell;
+        
+    }else{
+        return [UITableViewCell new];
+    }
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return  400;
+    }else if (indexPath.row ==1){
+        return 101;
+    }else{
+        return 0;
+    }
 }
 
 

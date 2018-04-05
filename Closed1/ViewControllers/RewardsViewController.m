@@ -26,11 +26,6 @@
     // Do any additional setup after loading the view.
     
     self.claimrewardButton.layer.cornerRadius = 5.0f;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    self.navigationItem.leftBarButtonItem = backButton;
-    self.title = @"Rewards";
-    
     [self getRewardsDetailsfromServer];
     [self.navigationController configureNavigationBar:self];
 }
@@ -86,32 +81,5 @@
         self.claimrewardButton.hidden = YES;
     }
 }
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:34.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-   
-    
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Rewards"];
-    [self.view addSubview:navBar];
-    
-}
-
--(void) backButtonTapped: (id) sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 @end

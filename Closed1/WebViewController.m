@@ -34,6 +34,7 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController configureNavigationBar:self];
     _webView.delegate = self;
     [self configureProxyWebView];
  
@@ -50,11 +51,6 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self createCustumNavigationBar];
-}
-
 -(void)configureProxyWebView
 {
     _progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
@@ -63,31 +59,9 @@ NSString *const accessTokenEndPoint = @"https://www.linkedin.com/uas/oauth2/acce
     _progressProxy.progressDelegate = (id)self;
     
 }
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:self.title];
-    [self.view addSubview:navBar];
-    
-}
-
 -(void)backButtonTapped: (id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 

@@ -29,7 +29,6 @@ extension String {
     
 
    
-    @IBOutlet weak var tableViewTopConstarint: NSLayoutConstraint!
     @IBOutlet weak var freinfReeustCountLabel: UILabel!
 
     @IBOutlet weak var freindRequestCountView: UIView!
@@ -69,16 +68,6 @@ extension String {
             object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(FreindRequestCountRecivedFromServer), name: NSNotification.Name(rawValue: ""), object: nil)
-        
-        
-        
-        if(self.iscameFromChatScreen){
-
-            self.tableViewTopConstarint.constant = 0;
-        }else{
-            self.tableViewTopConstarint.constant = -20;
-
-        }
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -245,6 +234,7 @@ extension String {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         LoginViewController().getFreindListCount()
         FreindRequestCountRecivedFromServer()
         

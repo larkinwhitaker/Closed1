@@ -16,7 +16,8 @@
 #import "ProfileDetailViewController.h"
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
-
+#import "TabBarHandler.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface SearchViewController () <UITabBarDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDelegate, ServerFailedDelegate>
 
@@ -48,8 +49,6 @@
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     [self getFeedsArray];
 
-    [self createCustumNavigationBar];
-    
     self.refreshControl = [[UIRefreshControl alloc]init];
     [_refreshControl addTarget:self action:@selector(refreshButtonTapped:) forControlEvents:UIControlEventValueChanged];
     _refreshControl.backgroundColor = [UIColor clearColor];
@@ -57,6 +56,18 @@
     self.tableView.refreshControl = _refreshControl;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFeedsArray) name:NSSystemTimeZoneDidChangeNotification object:nil];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
+    [tabBarHandler.navigationController setNavigationBarHidden:YES animated:NO];
+//    [tabBarHandler.navigationController configureNavigationBar:self];
+//    tabBarHandler.title = @"Search Deal";
+//    tabBarHandler.navigationItem.hidesBackButton = YES;
+//    tabBarHandler.navigationItem.leftBarButtonItem = nil;
 
 }
 
@@ -176,23 +187,6 @@
         });
         
     });
-}
-
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Search"];
-    [self.view addSubview:navBar];
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

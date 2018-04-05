@@ -21,6 +21,8 @@
 #import "JobProfile+CoreDataProperties.h"
 #import "RewardsViewController.h"
 #import "EditFeedsViewController.h"
+#import "InappPurchaseTermViewController.h"
+#import "TabBarHandler.h"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -30,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createCustumNavigationBar];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableData) name:@"NewFeedsAvilable" object:nil];
 
 }
@@ -44,15 +45,25 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self reloadTableData];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
+    [tabBarHandler.navigationController setNavigationBarHidden:YES animated:NO];
+//    [tabBarHandler.navigationController configureNavigationBar:self];
+//    tabBarHandler.title = @"Settings";
+//    tabBarHandler.navigationItem.hidesBackButton = YES;
+//    tabBarHandler.navigationItem.leftBarButtonItem = nil;
 
-    [self.navigationController setNavigationBarHidden:YES];
-    
+    [self reloadTableData];
 }
 
 - (IBAction)myDealsButtonTapped:(id)sender {
     
     EditFeedsViewController *userfeedsScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"EditFeedsViewController"];
+    [self.navigationController pushViewController:userfeedsScreen animated:YES];
+}
+- (IBAction)inappPurchasetermButtonTapped:(id)sender {
+    
+    InappPurchaseTermViewController *userfeedsScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"InappPurchaseTermViewController"];
     [self.navigationController pushViewController:userfeedsScreen animated:YES];
 }
 
@@ -71,22 +82,6 @@
     [self.navigationController pushViewController:changePassword animated:YES];
 }
 
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Settings"];
-    [self.view addSubview:navBar];
-    
-}
-
 #pragma mark - TableView Delegates
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -96,7 +91,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 600;
+    return 640;
 }
 
 

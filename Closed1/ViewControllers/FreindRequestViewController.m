@@ -14,7 +14,7 @@
 #import "MagicalRecord.h"
 #import "UIImageView+WebCache.h"
 #import "ContactDetails+CoreDataProperties.h"
-
+#import "UINavigationController+NavigationBarAttribute.h"
 #import "ChatsView.h"
 #import "ChatView.h"
 
@@ -31,11 +31,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self createCustumNavigationBar];
-    
     _userdDetails = [UserDetails MR_findFirst];
-   
+    [self.navigationController configureNavigationBar:self];
+    self.title = @"Friend Requests";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackButton"] style: UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
     [self getFreindList];
+}
+
+-(void)backButtonTapped: (id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)getFreindList
@@ -77,29 +82,6 @@
     });
 }
 
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Friend Requests"];
-    [self.view addSubview:navBar];
-    
-}
 
 -(void)backButtonTapped{
     [self.navigationController popViewControllerAnimated:YES];

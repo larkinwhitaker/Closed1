@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A3207C8E40EF854A7BE058BC1545D98A'
-               BlueprintName = 'IQAudioRecorderController'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libIQAudioRecorderController.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A3207C8E40EF854A7BE058BC1545D98A"
+               BlueprintName = "IQAudioRecorderController"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libIQAudioRecorderController.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

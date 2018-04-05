@@ -12,7 +12,8 @@
 #import "UserDetails+CoreDataClass.h"
 #import "MBProgressHUD.h"
 #import "MagicalRecord.h"
-
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "TabBarHandler.h"
 
 @interface ShareViewController ()<UITextViewDelegate, ServerFailedDelegate>
 
@@ -26,21 +27,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createCustumNavigationBar];
-    
     self.commentTextView.textContainer.lineFragmentPadding = 5.0;
     self.nametextView.textContainer.lineFragmentPadding = 5.0;
-    
-//    textContainerInset = UIEdgeInsets.zero;
-//    textContainer.lineFragmentPadding = 0;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    TabBarHandler *tabBarHandler = (TabBarHandler *)self.tabBarController;
+    [tabBarHandler.navigationController setNavigationBarHidden:YES animated:NO];
+//    [tabBarHandler.navigationController configureNavigationBar:self];
+//    tabBarHandler.title = @"Share Deal";
+//    tabBarHandler.navigationItem.hidesBackButton = YES;
+//    tabBarHandler.navigationItem.leftBarButtonItem = nil;
+
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM-dd-yyyy HH:mm"];
     
@@ -51,22 +52,6 @@
     
 }
 
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Share a Deal"];
-    [self.view addSubview:navBar];
-    
-}
 - (IBAction)shareDealTapped:(id)sender {
     
     [self.view endEditing:YES];

@@ -31,35 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController configureNavigationBar:self];
     self.deleteButton.layer.borderWidth = 2.0f;
     self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.deleteButton.layer.cornerRadius = 5.0f;
-    [self createCustumNavigationBar];
-   
 }
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Change Password"];
-    [self.view addSubview:navBar];
-    
-}
+
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
 
 {

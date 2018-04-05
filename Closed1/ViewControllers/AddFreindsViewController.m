@@ -17,7 +17,7 @@
 #import "ChatView.h"
 #import "FreindRequestViewController.h"
 #import "ProfileDetailViewController.h"
-
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface AddFreindsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -34,7 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchBar.delegate = self;
-    
+    [self.navigationController configureNavigationBar:self];
+    self.title = @"Add Freind";
     _nofreindsLabel = [[UILabel alloc]initWithFrame:self.navigationController.view.frame];
     _nofreindsLabel.hidden = YES;
     _nofreindsLabel.text = @"Search name of friend whom\nyou wish to send friend request";
@@ -46,7 +47,13 @@
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     
     [self getFreindListFromServer:@"Getting List"];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackButton"] style: UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
+
+}
+
+-(void)backButtonTapped: (id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)getFreindListFromServer: (NSString *)progressTitle
@@ -92,8 +99,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createCustumNavigationBar];
-    
     self.filteredArray = [[NSMutableArray alloc]init];
     [self.filteredArray removeAllObjects];
     [self.tableView reloadData];
@@ -101,27 +106,6 @@
     _nofreindsLabel.hidden = NO;
 }
 
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Add Friend"];
-    [self.view addSubview:navBar];
-    
-}
 
 -(void)backButtonTapped
 {

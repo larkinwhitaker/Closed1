@@ -76,9 +76,9 @@ PODS:
   - ProgressHUD (2.4)
   - Protobuf (3.2.1)
   - Reachability (3.2)
-  - Realm (2.1.2):
-    - Realm/Headers (= 2.1.2)
-  - Realm/Headers (2.1.2)
+  - Realm (2.8.1):
+    - Realm/Headers (= 2.8.1)
+  - Realm/Headers (2.8.1)
   - RNCryptor (3.0.1)
   - RNGridMenu (0.1.3)
   - SCSiriWaveformView (1.1.0)
@@ -102,7 +102,7 @@ DEPENDENCIES:
   - OpenSSL-for-iOS (= 1.0.2.d.1)
   - ProgressHUD
   - Reachability
-  - Realm (= 2.1.2)
+  - Realm (= 2.8.1)
   - RNCryptor (= 3.0.1)
   - RNGridMenu
   - SinchRTC
@@ -133,12 +133,12 @@ SPEC CHECKSUMS:
   ProgressHUD: 4b66b0df0e08519c5c7283a198fd2867a114c95a
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
+  Realm: 2627602ad6818451f0cb8c2a6e072f7f10a5f360
   RNCryptor: 761fc3ed94d1a0e409ba5b8e5dbef6a8f69352a7
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
   SCSiriWaveformView: fbb2be796930670698ed6705f3b48f3dd387a73f
   SinchRTC: ee4da1a6f08d8093813c06d90cf6fbb32068f893
 
-PODFILE CHECKSUM: bc0746ce79228a0750dd0505f9235e153cca743e
+PODFILE CHECKSUM: 7edef29713d94ebe7bb1bbb8e6fa829e14fcfb9f
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

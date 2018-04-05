@@ -10,6 +10,7 @@
 #import "SKSplashIcon.h"
 #import "SKSplashView.h"
 #import "LoginViewController.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface SplashScreenViewController ()<SKSplashDelegate>
 
@@ -28,9 +29,8 @@
 -(void)viewWillAppear:(BOOL)animated
 
 {
-    [self.navigationController setNavigationBarHidden:YES];
-    
     [self createAnimationSplashScreen];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 

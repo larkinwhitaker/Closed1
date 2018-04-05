@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6771B1E564EC4ECA9C7F924136BD6AD4'
-               BlueprintName = 'RNGridMenu'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libRNGridMenu.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6771B1E564EC4ECA9C7F924136BD6AD4"
+               BlueprintName = "RNGridMenu"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libRNGridMenu.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

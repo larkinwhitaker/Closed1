@@ -117,12 +117,14 @@ var count = 0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-       createCustumNavigationBar()
-    
-    
-        
         checkABPermission()
+        self.navigationController?.isNavigationBarHidden = false
+        self.title = "Contacts"
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 34.0/255.0, green: 187.0/255.0, blue: 187.0/255.0, alpha: 1.0)
+        let addButton = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(dismissModal))
+        let closeButton =  UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(backTapped))
+        self.navigationItem.rightBarButtonItem = addButton
+        self.navigationItem.leftBarButtonItem = closeButton
 
         //Refresh addressbook
         if(ABAddressBookGetAuthorizationStatus() == .authorized){
@@ -132,31 +134,7 @@ var count = 0
             getTableViewSectionTitle()
             tableView.reloadData()
             
-            
         }
-        
-      
-    }
-    
-    func createCustumNavigationBar()
-    {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        let navBar = UINavigationBar(frame: CGRect(x: self.view.bounds.origin.x-10, y: self.view.bounds.origin.y , width: self.view.frame.size.width + 10, height: 60))
-        let navItem = UINavigationItem()
-        
-        let addButton = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(dismissModal))
-        let closeButton =  UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(backTapped))
-        navItem.rightBarButtonItem = addButton
-        navItem.leftBarButtonItem = closeButton
-        
-
-        navBar.items = [navItem]
-        navBar.barTintColor = UIColor(red: 38.0/255.0, green: 166.0/255.0, blue: 154.0/255.0, alpha: 1.0)
-        navBar.tintColor = UIColor.white
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        navItem.title = "Contacts"
-        self.view.addSubview(navBar)
-        
     }
     
     func backTapped()

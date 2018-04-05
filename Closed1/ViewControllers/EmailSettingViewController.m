@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface EmailSettingViewController ()<UITabBarDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -24,36 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self createCustumNavigationBar];
-    
-}
-
-- (void)createCustumNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonTapped:)];
-    
-    navItem.rightBarButtonItem = saveButton;
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Email Setting"];
-    [self.view addSubview:navBar];
-    
+    [self.navigationController configureNavigationBar:self];
+    self.tableView.estimatedRowHeight = 400;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)saveButtonTapped: (id)sender
@@ -86,10 +60,10 @@
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 413;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 500;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

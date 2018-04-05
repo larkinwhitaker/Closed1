@@ -22,6 +22,7 @@
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
 #import "EditedFeedsShareViewController.h"
+#import "UINavigationController+NavigationBarAttribute.h"
 
 @interface ProfileDetailViewController ()<UITableViewDelegate, UITableViewDataSource,MFMailComposeViewControllerDelegate, ServerFailedDelegate, MailSendDelegates>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -48,6 +49,7 @@
     hud.dimBackground = YES;
     hud.labelText = @"Fetching details";
     self.tableView.hidden = YES;
+    [self.navigationController configureNavigationBar:self];
     
     if (_shouldNOTDisplayProfile) {
         
@@ -97,37 +99,18 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HomeScreenTableViewCell" bundle:nil] forCellReuseIdentifier:@"HomeScreenTableViewCell"];
     
-    
-    [self createCustumNavigationBar];
-    
     self.tableView.estimatedRowHeight = 362;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
 }
 
-- (void)createCustumNavigationBar
+-(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x-10, self.view.bounds.origin.y, self.view.frame.size.width+10 , 60)];
-    UINavigationItem * navItem = [[UINavigationItem alloc] init];
-    
-    navBar.items = @[navItem];
-    [navBar setBarTintColor:[UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0]];
-    navBar.translucent = NO;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
-    
-    navItem.leftBarButtonItem = backButton;
-    
-    
-    
-    [navBar setTintColor:[UIColor whiteColor]];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [navItem setTitle:@"Profile"];
-    [self.view addSubview:navBar];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackButton"] style: UIBarButtonItemStylePlain target:self action:@selector(backButtonTapped:)];
+    [self.navigationController configureNavigationBar:self];
+    self.title = @"Profile";
 }
+
 -(IBAction)backButtonTapped:(UIBarButtonItem *)sender
 
 {
