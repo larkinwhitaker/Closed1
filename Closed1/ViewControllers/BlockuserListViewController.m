@@ -11,6 +11,8 @@
 #import "UserDetails+CoreDataProperties.h"
 #import "MagicalRecord.h"
 #import "ClosedResverResponce.h"
+#import "UINavigationController+NavigationBarAttribute.h"
+#import "CommonFunction.h"
 
 @interface BlockuserListViewController () <UITableViewDelegate , UITableViewDataSource>
 
@@ -25,6 +27,13 @@
     // Do any additional setup after loading the view.
     self.blockeduserListArray = [[NSMutableArray alloc] init];
     [self getBlockedFreindListFromServer];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController configureNavigationBar:self];
+    self.navigationItem.titleView = [CommonFunction createNavigationView:@"Blocked users" withView:self.view];
 }
 
 -(void)backButtonTapped
