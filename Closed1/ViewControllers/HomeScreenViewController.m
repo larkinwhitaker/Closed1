@@ -360,7 +360,7 @@
         NSArray *serverResponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_user_feeds&user_id=%zd", user.userID] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            NSLog(@"serverResponce: %@", serverResponce);
             for (NSDictionary *singleFeed in serverResponce) {
                 
                 NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc]init];
@@ -412,6 +412,7 @@
                 }
             }
             
+            NSLog(@"self.feedsArray: %@", self.feedsArray);
             
             if (_feedsArray.count == 0) {
                 
@@ -827,26 +828,28 @@
 
 -(void)likeButtonTapped: (UIButton *)sender
 {
+    NSLog(@"likeButtonTapped");
+    NSMutableDictionary *post = [self.feedsArray objectAtIndex:sender.tag];
+    NSLog(@"%@", post);
     
-    BOOL isSelected = [[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"isLike"] boolValue];
+    BOOL isSelected = [[post valueForKey:@"isLike"] boolValue];
     if (!isSelected) {
-        
-        NSInteger likeCOunt = [[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"LikeCount"] integerValue];
+        NSLog(@"isSelected -> No, Adding to Count");
+        NSInteger likeCOunt = [[post valueForKey:@"LikeCount"] integerValue];
         
         NSLog(@"Before Like count is: %zd", likeCOunt);
         
-        [[self.feedsArray objectAtIndex:sender.tag] setValue:[NSNumber numberWithInteger:likeCOunt+1] forKey:@"LikeCount"];
-        [[self.feedsArray objectAtIndex:sender.tag] setValue:[NSNumber numberWithBool:YES] forKey:@"isLike"];
+        [post setValue:[NSNumber numberWithInteger:likeCOunt+1] forKey:@"LikeCount"];
+        [post setValue:[NSNumber numberWithBool:YES] forKey:@"isLike"];
         
     }else{
-        
-        NSInteger likeCOunt = [[[self.feedsArray objectAtIndex:sender.tag] valueForKey:@"LikeCount"] integerValue];
+        NSLog(@"isSelected -> Yes, Removing from Count");
+        NSInteger likeCOunt = [[post valueForKey:@"LikeCount"] integerValue];
         
         NSLog(@"After Like count is: %zd", likeCOunt);
         
-        [[self.feedsArray objectAtIndex:sender.tag] setValue:[NSNumber numberWithInteger:likeCOunt-1] forKey:@"LikeCount"];
-        [[self.feedsArray objectAtIndex:sender.tag] setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
-        
+        [post setValue:[NSNumber numberWithInteger:likeCOunt-1] forKey:@"LikeCount"];
+        [post setValue:[NSNumber numberWithBool:NO] forKey:@"isLike"];
     }
     
     [self.tablView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
@@ -855,7 +858,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSString *likeURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%@&user_id=%@",[[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"activity_id"] ,[[[_feedsArray objectAtIndex:sender.tag] valueForKey:@"Feeds"] valueForKey:@"user_id"]];
+        NSString *likeURL = [NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=like&activity_id=%@&user_id=%@",[[post valueForKey:@"Feeds"] valueForKey:@"activity_id"] ,[[post valueForKey:@"Feeds"] valueForKey:@"user_id"]];
        
        NSArray *responce = [[ClosedResverResponce sharedInstance] getResponceFromServer: likeURL DictionartyToServer:@{} IsEncodingRequires:NO];
         

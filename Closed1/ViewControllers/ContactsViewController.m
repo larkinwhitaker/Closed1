@@ -460,7 +460,7 @@
         
     }else{
         
-        [[[UIAlertView alloc]initWithTitle:@"Sorry you cannot send message" message:@"It seems that you haven't installed sim in your device or Airplone maode is turn ON." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc]initWithTitle:@"Sorry you cannot send message" message:@"It seems that you haven't installed sim in your device or Airplane mode is turn ON." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
     }
     
 }

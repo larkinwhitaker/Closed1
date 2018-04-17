@@ -77,13 +77,13 @@
         NSArray *serverREsponce = [[ClosedResverResponce sharedInstance] getResponceFromServer:[NSString stringWithFormat:@"https://closed1app.com/api-mobile/?function=get_profile_data&user_id=%zd", self.userid] DictionartyToServer:@{} IsEncodingRequires:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            NSLog(@"serverResponce: %@", serverREsponce);
             if ([serverREsponce valueForKey:@"success"] != nil) {
                 
                 if ([[serverREsponce valueForKey:@"success"] integerValue] == 1) {
                     self.tableView.hidden = NO;
                     self.userDetails = [serverREsponce valueForKey:@"data"];
-                    
+                    NSLog(@"self.userDetails: %@", self.userDetails);
                 }else{
                     
                     [[[UIAlertView alloc]initWithTitle:@"oopss!!" message:@"We are unable to process your request at this time. Please try again later." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil] show];
@@ -183,7 +183,18 @@
         
         _profileDetails = [tableView dequeueReusableCellWithIdentifier:@"ProfileDetailsCell"];
         
-        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:[self.userDetails valueForKey:@"profile Image"]] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
+        NSString *imagePath = @"";
+        if ([[self.userDetails valueForKey:@"profile Image"] isKindOfClass:[NSArray class]]) {
+            NSArray *profileImagePaths = [self.userDetails valueForKey:@"profile Image"];
+            if ([profileImagePaths count] > 0) {
+                imagePath = [profileImagePaths objectAtIndex:0];
+            }
+        }
+        else if ([[self.userDetails valueForKey:@"profile Image"] isKindOfClass:[NSString class]]) {
+            imagePath = [self.userDetails valueForKey:@"profile Image"];
+        }
+        
+        [_profileDetails.profileImage sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:[UIImage imageNamed:@"male-circle-128.png"]];
         
        if(self.isCurrentUser == YES){
             
